@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.vite/
+
+# Generated route HTML (source of truth is src/pages/* + data/*.json)
+/index.html
+/404.html
+/work/
+/services/
+/about/
+/contact/
+/privacy/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
