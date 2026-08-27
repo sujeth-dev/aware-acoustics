@@ -1,0 +1,15 @@
+/* ===========================================================================
+   motion.css — Transitions only. No page-load or scroll animation (A8).
+   State changes are acknowledged with opacity and border-colour, nothing else.
+   The reduced-motion escape hatch lives in base.css and neutralises all of it.
+   =========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-nav__link,
+  .nav-overlay__link,
+  .site-footer__link { transition: opacity var(--transition-default); }
+
+  .cta { transition: border-color var(--transition-default); }
+
+  .record-row { transition: background-color var(--transition-subtle); }
+}

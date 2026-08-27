@@ -8,6 +8,7 @@ dist/
 # Generated route HTML (source of truth is src/pages/* + data/*.json)
 /index.html
 /404.html
+/404/
 /work/
 /services/
 /about/

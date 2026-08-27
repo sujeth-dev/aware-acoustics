@@ -1,0 +1,314 @@
+/* ===========================================================================
+   components.css — Public components and their states.
+   Sharp edges throughout; the only radius is --radius-thumb on thumbnails.
+   =========================================================================== */
+
+/* ─── Material texture plate — A5 four-layer stack ────────────────────────
+   1 base gradient · 2 fibre pattern · 3 SVG grain · 4 raking light.
+   Layer order in `background` is top-most first.
+   ------------------------------------------------------------------------ */
+
+.plate {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--concrete);
+  background-image:
+    linear-gradient(196deg, rgba(255,255,255,.10), rgba(0,0,0,.22) 62%),
+    var(--plate-grain),
+    repeating-linear-gradient(84deg, rgba(255,255,255,.045) 0 1px, transparent 1px 7px),
+    linear-gradient(103deg, #8a8478, #6b6258);
+}
+
+:root {
+  --plate-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+.plate--wool {
+  background-image:
+    linear-gradient(196deg, rgba(255,255,255,.09), rgba(0,0,0,.24) 62%),
+    var(--plate-grain),
+    repeating-linear-gradient(31deg, rgba(255,255,255,.05) 0 1px, transparent 1px 6px),
+    linear-gradient(120deg, #6f7a74, #5d6763);
+}
+
+.plate--felt {
+  background-image:
+    linear-gradient(196deg, rgba(255,255,255,.08), rgba(0,0,0,.3) 62%),
+    var(--plate-grain),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 8px),
+    linear-gradient(140deg, #33455c, #22303f);
+}
+
+.plate--perforated {
+  background-image:
+    linear-gradient(196deg, rgba(255,255,255,.10), rgba(0,0,0,.22) 62%),
+    var(--plate-grain),
+    radial-gradient(circle at center, rgba(0,0,0,.28) 1.6px, transparent 1.7px),
+    linear-gradient(103deg, #8a8478, #6b6258);
+  background-size: auto, 160px 160px, 15px 15px, auto;
+}
+
+.plate--metal {
+  background-image:
+    linear-gradient(196deg, rgba(255,255,255,.12), rgba(0,0,0,.2) 62%),
+    var(--plate-grain),
+    radial-gradient(circle at center, rgba(0,0,0,.22) 2px, transparent 2.1px),
+    linear-gradient(100deg, #7d817f, #6b706e);
+  background-size: auto, 160px 160px, 19px 19px, auto;
+}
+
+.plate--slab {
+  background-image:
+    linear-gradient(196deg, rgba(255,255,255,.10), rgba(0,0,0,.18) 62%),
+    var(--plate-grain),
+    repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 2px, transparent 2px 34px),
+    linear-gradient(115deg, #a7a49c, #8c8981);
+}
+
+/* Gradient veils protecting text over textures — A5. */
+.plate--veiled::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,.12) 40%, transparent 65%),
+    linear-gradient(to right, rgba(0,0,0,.4), transparent 48%);
+}
+
+.plate--editorial::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(0,0,0,.52), rgba(0,0,0,.06) 55%, transparent);
+}
+
+/* ─── Header ─── absolute, not fixed (A8) ─────────────────────────────── */
+
+.site-header {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 20;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--pad);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-block: var(--space-sm);
+}
+
+.wordmark__mark {
+  width: auto;
+  height: 26px;
+}
+
+.wordmark__text {
+  font-size: 19px;
+  letter-spacing: -.015em;
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.site-nav__link {
+  padding-block: 12px;
+  opacity: .78;
+}
+
+.site-nav__link:hover { opacity: 1; }
+.site-nav__link.is-current { color: var(--color-accent); opacity: 1; }
+
+.on-dark .site-nav__link.is-current,
+.page--dark-header .site-nav__link.is-current { color: var(--color-accent-hover); }
+
+/* Hamburger — two 1px rules, 44px target (A/B11). */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-toggle__rules {
+  display: block;
+  width: 24px;
+  margin-inline: auto;
+}
+
+.nav-toggle__rules > span {
+  display: block;
+  height: 1px;
+  background: currentColor;
+}
+
+.nav-toggle__rules > span + span { margin-top: 7px; }
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  align-content: center;
+  padding: var(--pad);
+  background: var(--earth-deep);
+}
+
+.nav-overlay[hidden] { display: none; }
+
+.nav-overlay__nav { display: grid; gap: var(--space-lg); }
+
+.nav-overlay__link {
+  font-size: clamp(34px, 9vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -.028em;
+  opacity: .78;
+}
+
+.nav-overlay__link.is-current { color: var(--color-accent-hover); opacity: 1; }
+
+body.nav-open { overflow: hidden; }
+
+/* ─── Call to action — A7 ─── */
+
+.cta {
+  display: inline-block;
+  font-size: 18px;
+  padding-bottom: 4px;
+  padding-top: 10px;
+  border-bottom: 1px solid var(--color-accent);
+}
+
+.cta:hover { border-bottom-color: var(--color-accent-hover); }
+.cta--primary { font-size: clamp(19px, 1.6vw, 23px); }
+.cta__glyph { margin-left: .45em; }
+
+.on-dark .cta { border-bottom-color: var(--color-accent-hover); }
+
+/* ─── Tag row — A7 ─── */
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: 5px 12px;
+  font-size: 13px;
+  letter-spacing: .04em;
+  border: var(--border-light);
+  border-radius: var(--radius-none);
+}
+
+.on-dark .tag { border-color: var(--line-light); }
+
+/* ─── Field caption card — A7 ─── */
+
+.field-caption {
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(42, 38, 34, .78);
+  border: var(--border-overlay);
+  color: var(--color-text-inverse);
+  backdrop-filter: var(--blur-overlay);
+}
+
+.field-caption__title {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.field-caption__meta { color: var(--color-text-muted); }
+
+/* ─── Data list — A7 ─── */
+
+.data-list { margin: 0; }
+
+.data-list__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 10px 0;
+  border-bottom: var(--border-light);
+}
+
+.data-list__label { color: var(--color-text-secondary); }
+.data-list__value { margin: 0; }
+
+.on-dark .data-list__row { border-bottom-color: var(--line-light); }
+
+/* ─── Development fixture marker ───────────────────────────────────────
+   Deliberately unstyled-looking and loud. It must never be mistaken for
+   finished content in a review build. Excluded from production output.
+   ---------------------------------------------------------------------- */
+
+.dev-fixture {
+  padding: var(--space-lg);
+  border: 1px dashed var(--color-accent);
+  background: rgba(166, 58, 50, .06);
+}
+
+.dev-fixture__flag { color: var(--color-accent); }
+.dev-fixture__heading { margin-top: var(--space-sm); }
+.dev-fixture__detail { margin-top: var(--space-sm); max-width: 55ch; }
+.dev-fixture__blocked { margin-top: var(--space-sm); }
+
+.on-dark .dev-fixture {
+  border-color: var(--color-accent-hover);
+  background: rgba(191, 70, 61, .12);
+}
+
+.on-dark .dev-fixture__flag,
+.on-dark .dev-fixture__blocked { color: var(--color-accent-hover); }
+
+/* ─── Footer ─── */
+
+.site-footer {
+  padding: var(--space-3xl) var(--pad) var(--space-xl);
+  background: var(--dust-warm);
+  border-top: var(--border-light);
+}
+
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2xl) var(--space-xl);
+}
+
+.site-footer__col { display: grid; align-content: start; gap: var(--space-sm); }
+
+.site-footer__name { font-size: 19px; letter-spacing: -.015em; }
+.site-footer__note { max-width: 24ch; }
+
+.site-footer__link {
+  font-size: 15px;
+  opacity: .78;
+}
+
+a.site-footer__link:hover { opacity: 1; }
+
+.site-footer__meta {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-md);
+  border-top: var(--border-light);
+}

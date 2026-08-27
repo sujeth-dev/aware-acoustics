@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "generate": "node scripts/generate-pages.js",
     "build": "vite build",
+    "build:production": "NODE_ENV=production npm run validate:data && NODE_ENV=production vite build",
     "preview": "vite preview",
     "validate:data": "node scripts/validate-data.js"
   },

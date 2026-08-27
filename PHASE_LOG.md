@@ -182,3 +182,87 @@ Contrast re-verification for the DEC-012 beige lift is still owed at Phase 10.
 ### Next
 
 Phase 3a — Vite scaffold, page templates, shared layout, JSON loading with runtime guards.
+
+---
+
+## Phase 3a — Build foundation (blocking slice of Phase 3, DEC-013)
+
+| Field | Value |
+|---|---|
+| **Date started** | 2026-08-27 |
+| **Status** | `COMPLETE` — 3a only; 3b (ESLint, Vitest, Playwright, Lighthouse CI) deferred |
+| **Approval** | Not a gate. 3a is a prerequisite for Phase 5, per DEC-013 |
+
+### Completed
+
+- **`vite.config.js`** — MPA build (`appType: "mpa"`), `publicDir: public`, `outDir: dist`, and a
+  local `aware-route-generator` plugin that materialises the route tree before Vite reads it and
+  regenerates it on change to `src/pages`, `src/components`, `src/lib`, `data/` or the generator.
+- **`scripts/generate-pages.js`** — writes one HTML file per route. No HTML is checked in; templates
+  plus `data/*.json` are the source of truth. Routes render with trailing slashes
+  (`/work/` → `work/index.html`), and `/404/` additionally emits a root `404.html` host fallback.
+  Generated paths are gitignored.
+- **`src/lib/data.js`** — JSON loading with per-record runtime guards (shape, types, enum values,
+  tier minimums per DEC-007, foreign keys against `services.json`/`standards.json`). Guard failures
+  are fatal when `NODE_ENV=production` and loud otherwise. Nothing is defaulted or coerced to make
+  a page render. `client` is stripped at the boundary for every `clientPublic: false` project
+  (DEC-010), so templates cannot leak a private name into HTML, metadata or asset paths.
+  Selectors: `publishedProjects`, `caseProjects`, `featuredProjects`, `publishedServices`,
+  `publishedStandards`, `publishedPeople`, `standardsForService`, `projectsForService`.
+- **`src/lib/html.js`** — `esc`, `join`, `when`, `each`, `attrs`, `pad2`, `oneLine`. Absent data
+  returns an empty string so the calling template omits the component; no helper supplies a
+  fallback value.
+- **`src/components/`** — `document.js` (shell, `<head>`, font loading, landmarks), `header.js`
+  (wordmark, four-item nav, sub-900px overlay panel), `nav.js`, `footer.js` (four columns),
+  `ui.js` (eyebrow, CTA, tag row, field caption, data list, dev-fixture marker).
+- **`src/pages/`** — one module per route plus `index.js` route table. Record routes derive from
+  published case-tier projects only, so a record page cannot exist without its evidence.
+- **CSS** — `layout.css` (bands, grounds, A6 grid ratios, editorial flip), `components.css`
+  (four-layer texture plates and their veils, header/nav/overlay, CTA, tags, field caption, data
+  list, dev-fixture marker, footer), `motion.css` (transitions inside a `prefers-reduced-motion:
+  no-preference` block), `responsive.css` (900px/600px only), `main.css` entry.
+- **`src/js/main.js`** — the only public script. Overlay nav toggle with `aria-expanded`, focus
+  move, Escape-to-close and a width-change close. Every page is complete with it blocked.
+- `public/assets/brand/logo.png` — the supplied raster logo in the served tree (DEC-014).
+
+### Decisions taken inside this phase
+
+- **No checked-in HTML.** Generated route files are build artefacts and are gitignored. This keeps
+  "a template must never become the source of a fact" enforceable — there is no HTML to edit.
+- **Canonical tags omitted** until `settings.domainConfirmed` is true (Q-05). A guessed origin is
+  worse than no canonical. Full metadata is Phase 11.
+- **Footer legal line omitted** per DEC-014. The footer renders the year and the Privacy link with
+  no entity name; no legal name is invented.
+- **`build` vs `build:production`.** `npm run build` is the development build. `npm run
+  build:production` sets `NODE_ENV=production`, which makes the data guards fatal and enforces
+  V-14 (fewer than 2 featured case records fails). It is expected to fail today — that is the
+  Q-08/Q-09 gate working, not a defect.
+
+### Not built (deliberate — Phase 3b, DEC-013)
+
+ESLint, Prettier, Vitest, Playwright, Lighthouse CI, the CI workflow, bundle budgets and the
+`no-hardcoded-facts` test. These run incrementally through Phases 5–9 and harden at Phase 9/13.
+
+### Tests
+
+- `node scripts/validate-data.js` — passed.
+- Build smoke: `npm run build` → 8 routes, 13.6 kB CSS, 1.4 kB JS.
+- Dev smoke: `npm run dev` → `/`, `/work/`, `/services/`, `/about/`, `/contact/`, `/privacy/`,
+  `/404/` all return 200.
+
+### Lighthouse
+
+Deferred to Phase 3b — no page carries real content yet, so a score would not be meaningful.
+
+### Open issues
+
+Unchanged. `git push` to `origin main` is currently unavailable from the build environment (no
+GitHub credential); commits are local until a credential is supplied.
+
+### Commit
+
+`build: add application foundation and quality pipeline`
+
+### Next
+
+Phase 5 — Homepage, six sections plus footer (WEBSITE_PLAN.md §5.1/§6, CONTENT_PLAN.md §3).
