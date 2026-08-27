@@ -8,8 +8,8 @@
 
 ## 1. Delivery contract
 
-This plan builds 11 static public routes plus data-generated case records and a constrained content
-admin. Public rendering uses vanilla HTML/CSS/JS with Vite (**DEC-001**). Firestore is the managed
+This plan builds 5 static public routes plus data-generated case records and a constrained content
+admin (**DEC-011**). Public rendering uses vanilla HTML/CSS/JS with Vite (**DEC-001**). Firestore is the managed
 source; validated JSON snapshots feed the static build (**DEC-004**).
 
 | Quality target | Threshold |
@@ -32,13 +32,34 @@ production.
 | Gate | After phase | Approval scope | Blocking condition |
 |---|---:|---|---|
 | **Gate 01 · Content + IA** | 1 | Audit, IA, copy direction, data requests | **Q-01…Q-07** unresolved; client-risk decisions unacknowledged |
-| **Gate 02 · Design system** | 2 | Tokens, type, textures, logo, photography rule, responsive compositions | **Q-16/Q-26**, **DEC-003** sign-off |
-| **Gate 03 · Technical foundation** | 4 | Stack, data pipeline, admin/auth/security, environments | Firebase/Vercel ownership and roles unresolved |
+| **Gate 02 · Design system** | 2a (2b deferred) | Core tokens, type, logo, photography rule | **Q-16/Q-26**, **DEC-003** sign-off. Full contrast/focus/motion/screenshot-regression suite (2b) moves to Phase 10 and does **not** block Homepage |
+| **Gate 03 · Technical foundation** | 4 (runs parallel to 5–9) | Stack, data pipeline, admin/auth/security, environments | Firebase/Vercel ownership and roles unresolved. Required before Gate 04's admin-workflow sign-off and before launch — **not** before page-building starts |
 | **Gate 04 · Feature + content** | 9 | All public templates, real content, forms, admin workflow | Homepage/Work proof absent; **Q-08/Q-09** |
 | **Gate 05 · Staging acceptance** | 14 | QA, accessibility, performance, SEO, UAT, launch runbook | Any P0/P1 defect or threshold failure |
 | **Gate 06 · Production acceptance** | 15 | Domain, live smoke tests, monitoring, ownership | Gate 05 not signed; rollback unavailable |
 
 **Production domain connection is prohibited before Gate 05 passes.**
+
+### 2.1 Critical path to Homepage — DEC-013
+
+Client feedback (2026-08-27): too much infrastructure sat between the approved content/IA and the
+first visible page. Phases 2–4 as originally scoped bundled build-blocking setup together with
+hardening and admin work that a static site does not need in order to render. Split:
+
+| Phase | Blocking slice (must exist before Phase 5) | Deferred slice (moves later, does not block) |
+|---|---|---|
+| **Phase 2** | Core tokens/base/type CSS only — enough to style real markup | Full contrast/focus/keyboard/reduced-motion audit and the 320–1440 screenshot regression suite → **Phase 10** |
+| **Phase 3** | Vite scaffold, page templates, shared layout, JSON loading with runtime guards — enough to run a dev server and build | Vitest/Playwright/Lighthouse CI workflow, ESLint config, bundle-budget enforcement → runs incrementally alongside Phases 5–9, hardens fully at **Phase 9/13** |
+| **Phase 4** | Nothing — Homepage reads `data/*.json` directly, exactly as committed today. Firestore is the long-term admin source (**DEC-004**), not a prerequisite for a static build | Entire phase (Firebase Auth/Firestore/Storage, admin UI, publish pipeline) moves off the critical path, run any time before Gate 04 |
+
+**Revised rule: Phase 5 (Homepage) starts as soon as Phase 2's tokens and Phase 3's scaffold exist.**
+It does not wait on Gate 02's full sign-off, Gate 03, or any part of Phase 4. Phases 6–9 (Work,
+Services, About, Contact) follow the same rule. The full design-system hardening pass, the CI/test
+pipeline, and the admin/Firebase build proceed in parallel with or after page-building, converging
+before **Gate 04**.
+
+Nothing else about phase content changes — Phase 2, 3 and 4's task tables below still describe the
+complete scope of each phase. This section only reorders *when* each slice is required.
 
 ---
 
@@ -87,50 +108,50 @@ missing proof into sample prose.
 
 ---
 
-## Phase 2 — Production design system
+## Phase 2 — Production design system (split 2a/2b, **DEC-013**)
 
 | Field | Plan |
 |---|---|
 | Goal | Translate Mineral / Material into accessible tokens, components and responsive proofs |
 | Dependencies | Gate 01 direction approval · brand Part A |
-| Development tasks | Build token/base/type/layout/component/motion/responsive CSS; texture plates; component lab |
-| Content tasks | Test real long headings, technical units, missing-image states |
+| Development tasks | **2a (blocking Phase 5):** token/base/type CSS, texture plate base recipes. **2b (deferred to Phase 10):** full component lab, layout/motion/responsive component set |
+| Content tasks | Test real long headings, technical units, missing-image states — runs against real pages once they exist, not a speculative lab |
 | Data tasks | Bind project/result fixtures to component proofs |
-| Tests | Contrast, focus, keyboard, reduced motion, 320–1440 screenshots, overflow scan |
+| Tests | **2a:** none blocking. **2b, moved to Phase 10:** contrast, focus, keyboard, reduced motion, 320–1440 screenshots, overflow scan |
 | Performance | Font subset/preload test; texture paint cost; no unnecessary image LCP |
-| Approval gate | **Gate 02 · Design system** |
-| Outputs | CSS architecture · public component lab · admin UI proof · visual baseline |
+| Approval gate | **Gate 02 · Design system** — scope narrowed to 2a; 2b verified at Phase 10/Gate 05 |
+| Outputs | CSS architecture (tokens/base/type) now; public component lab · admin UI proof · visual baseline at Phase 10 |
 | Commit | `feat: establish mineral production design system` |
 | Documentation | Update `DESIGN_GUIDE.md`; record token deviations |
 | Client dependencies | **Q-16**, **Q-17**, **Q-26**; **DEC-003** approval |
 
 ---
 
-## Phase 3 — Build foundation and CI
+## Phase 3 — Build foundation and CI (split 3a/3b, **DEC-013**)
 
 | Field | Plan |
 |---|---|
 | Goal | Create reproducible Vite build, lint/test/format commands and environment boundaries |
-| Dependencies | Gate 02 · **DEC-001** |
-| Development tasks | Initialise package/config; templates/router conventions; shared layout; error handling; CI jobs |
+| Dependencies | Phase 2a tokens · **DEC-001** — no longer waits on the full Gate 02 |
+| Development tasks | **3a (blocking Phase 5):** package/Vite init, page templates, router conventions, shared layout, JSON loading with runtime guards. **3b (deferred, runs incrementally through 5–9, hardens at Phase 9/13):** ESLint, Vitest/Playwright/Lighthouse configs, CI workflow, error handling polish |
 | Content tasks | Wire global navigation/footer from structured settings |
 | Data tasks | Load JSON with typed runtime guards; sanitised public export boundary |
-| Tests | Unit runner · formatter · ESLint · build smoke · no-hardcoded-facts test |
-| Performance | Establish Lighthouse baseline and bundle budgets |
-| Approval gate | Part of Gate 03 |
-| Outputs | `package.json` · Vite/Vitest/Playwright/Lighthouse configs · CI workflow · base shell |
+| Tests | **3a:** build smoke only. **3b:** unit runner · formatter · ESLint · no-hardcoded-facts test |
+| Performance | Establish Lighthouse baseline and bundle budgets — 3b, once pages exist to measure |
+| Approval gate | Part of Gate 03 — 3b only; 3a is a prerequisite for Phase 5, not a gate |
+| Outputs | `package.json` · base shell now; Vite/Vitest/Playwright/Lighthouse configs · CI workflow through Phase 9 |
 | Commit | `build: add application foundation and quality pipeline` |
 | Documentation | `.env.example` · local setup · CI command table |
 | Client dependencies | Hosting/source-control organisation access |
 
 ---
 
-## Phase 4 — Content pipeline and admin
+## Phase 4 — Content pipeline and admin (off critical path, **DEC-013**)
 
 | Field | Plan |
 |---|---|
 | Goal | Implement secure content editing and build-time publication path |
-| Dependencies | Phase 3 · `PROJECT_DATA.md` · **DEC-004/005** |
+| Dependencies | Phase 3a scaffold · `PROJECT_DATA.md` · **DEC-004/005** — runs any time before Gate 04, in parallel with Phases 5–9, not before them |
 | Development tasks | Firebase Auth/Firestore/Storage; admin routes/forms; publish endpoint; deploy hook; snapshot script |
 | Content tasks | Configure validation help and evidence-gap labels |
 | Data tasks | Collections, rules, indexes, migrations, seed import and sanitation |
@@ -149,7 +170,7 @@ missing proof into sample prose.
 | Field | Plan |
 |---|---|
 | Goal | Build six-section first screen-to-appointment narrative |
-| Dependencies | Gate 03 · approved copy · ≥2 case records for production |
+| Dependencies | Phase 2a tokens · Phase 3a scaffold · approved copy · ≥2 case records for production (**DEC-013** — no longer waits on Gate 03) |
 | Development tasks | Hero, about, selected work, services, verification, appointment, footer |
 | Content tasks | Final home copy; real project records and target/measured proof |
 | Data tasks | Featured query max four; standards strip; settings binding |

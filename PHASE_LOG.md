@@ -56,6 +56,14 @@ user-facing changes.
   Updated in `brand-design-direction.md` (tokens now marked `[D]` not `[E]`), `DESIGN_GUIDE.md`,
   `_HANDOFF.md`. Owed: formal contrast re-check in Phase 10.
 
+- **DEC-013** — trimmed the critical path to Homepage. Split Phase 2 into 2a (tokens/base CSS,
+  blocking) / 2b (full component lab + accessibility/responsive audit suite, deferred to Phase 10).
+  Split Phase 3 into 3a (Vite scaffold + JSON loading, blocking) / 3b (full CI: Vitest/Playwright/
+  Lighthouse/ESLint, deferred, hardens at Phase 9/13). Moved Phase 4 (Firebase admin, entire phase)
+  off the critical path entirely — Homepage reads `data/*.json` directly, no admin/CMS required to
+  render a static page. Gate 03 no longer blocks Phase 5–9. Updated `MASTER_PLAN.md` §2/2.1 and the
+  Phase 2/3/4/5 tables. Nothing dropped, only resequenced.
+
 ### Remaining in Phase 0 / Phase 1
 
 - Receive written answers to **Q-01**, **Q-05**, **Q-06**, **Q-07** and acknowledge the full

@@ -261,3 +261,44 @@ constant, keeping existing contrast pairings intact and the palette's warm-tan h
 untouched. Contrast re-verification is still owed once real components exist in Phase 2/10 — the
 hue/lightness-hold approach should keep prior ratios intact, but does not substitute for the
 Phase 10 accessibility pass.
+
+---
+
+## DEC-013 — Trimmed critical path to Homepage
+
+**Status:** Decided · 2026-08-27
+
+**Context.** As originally scoped, `MASTER_PLAN.md` gated Phase 5 (Homepage) behind Phase 2
+(full production design system — tokens plus a complete component lab with contrast/focus/
+keyboard/reduced-motion audits and a 320–1440 screenshot regression suite), Phase 3 (full build
+foundation plus a complete CI pipeline — Vitest/Playwright/Lighthouse/ESLint workflows), and
+Phase 4 (the entire Firebase/Firestore/Storage admin system and publish pipeline) via Gate 03.
+Client feedback: too much infrastructure sat between approved content and the first visible page,
+when `data/*.json` is already validated and sufficient to start building against.
+
+**Options.** Keep the original gated sequence · trim by removing hardening work outright ·
+split each phase into a blocking slice (what a static page literally needs to exist) and a
+deferred slice (hardening/tooling/admin that doesn't gate rendering), reordering only *when* work
+happens, not *whether* it happens.
+
+**Decision.** Split, not cut:
+- **Phase 2a** (tokens/base/type CSS) blocks Phase 5. **Phase 2b** (component lab, full
+  accessibility/responsive audit suite) moves to Phase 10, verified against real built pages.
+- **Phase 3a** (Vite scaffold, templates, JSON loading) blocks Phase 5. **Phase 3b** (ESLint,
+  Vitest/Playwright/Lighthouse CI) runs incrementally through Phases 5–9, hardens at Phase 9/13.
+- **Phase 4** (Firebase admin, entire) comes off the critical path. Homepage and every static page
+  read `data/*.json` directly, exactly as already committed — Firestore is the long-term admin
+  source of truth (**DEC-004**) but not a prerequisite for a static build. Phase 4 runs any time
+  before Gate 04, in parallel with page-building.
+- Gate 02's scope narrows to 2a. Gate 03 no longer blocks Phase 5–9; it still gates Gate 04's
+  admin-workflow sign-off and production launch.
+
+**Rationale.** Nothing about *what* gets built changes — every task in Phases 2, 3 and 4 still
+happens. Only the sequencing changes: a static vanilla-HTML/CSS/JS site (**DEC-001**) does not
+need a finished CMS or a finished CI pipeline to render a page from JSON that already validates.
+
+**Consequences.** `MASTER_PLAN.md` §2 (gates table), new §2.1, and the Phase 2/3/4/5 tables
+updated same day. No other phase numbering changed — Phase 6–16 references elsewhere are still
+valid. Risk accepted: Phase 3b/9 hardening happens after pages exist rather than before, so a
+systemic CSS or build issue could surface across more pages before being caught — mitigated by
+the no-hardcoded-facts test and build-smoke check staying in the 3a blocking slice.
