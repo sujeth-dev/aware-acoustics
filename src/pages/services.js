@@ -140,11 +140,10 @@ ${each(projects, (project) => `    <li>${project.tier === "case"
 </div>`;
   }
 
-  return when(!isProduction, () => devFixture(
-    `No published project references ${service.name.toLowerCase()} yet.`,
-    "The evidence module renders two to three related project records the moment they publish, and falls back to a compact name list below that. It is never filled with example projects.",
-    "Q-08 · Q-09"
-  ));
+  // Evidence module renders 2-3 related project records the moment they
+  // publish, falling back to the compact name list above that. Blocked on
+  // Q-08 · Q-09 (see DEFERRED.md). Never filled with example projects.
+  return when(!isProduction, () => devFixture(`Evidence for ${service.name.toLowerCase()} publishes here once available.`));
 }
 
 function relatedLinks(data, service) {

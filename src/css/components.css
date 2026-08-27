@@ -255,29 +255,27 @@ body.nav-open { overflow: hidden; }
 
 .on-dark .data-list__row { border-bottom-color: var(--line-light); }
 
-/* ─── Development fixture marker ───────────────────────────────────────
-   Deliberately unstyled-looking and loud. It must never be mistaken for
-   finished content in a review build. Excluded from production output.
+/* ─── Development placeholder ───────────────────────────────────────────
+   An on-brand texture plate, not a bug-tracker readout: a dashed accent
+   border keeps it unmistakably not-finished-content, but the surface and
+   copy stay in the site's own material language. Never carries question
+   IDs, validator rule names or field state — those live in a code comment
+   at the call site and in DEFERRED.md. Excluded from production output.
    ---------------------------------------------------------------------- */
 
 .dev-fixture {
-  padding: var(--space-lg);
+  padding: var(--space-xl) var(--space-lg);
   border: 1px dashed var(--color-accent);
-  background: rgba(166, 58, 50, .06);
+  min-height: 9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.dev-fixture__flag { color: var(--color-accent); }
-.dev-fixture__heading { margin-top: var(--space-sm); }
-.dev-fixture__detail { margin-top: var(--space-sm); max-width: 55ch; }
-.dev-fixture__blocked { margin-top: var(--space-sm); }
+.dev-fixture__flag { color: var(--color-accent-hover); }
+.dev-fixture__heading { margin-top: var(--space-sm); color: #fff; max-width: 40ch; }
 
-.on-dark .dev-fixture {
-  border-color: var(--color-accent-hover);
-  background: rgba(191, 70, 61, .12);
-}
-
-.on-dark .dev-fixture__flag,
-.on-dark .dev-fixture__blocked { color: var(--color-accent-hover); }
+.on-dark .dev-fixture { border-color: var(--color-accent-hover); }
 
 /* ─── Footer ─── */
 

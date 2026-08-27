@@ -3,7 +3,7 @@
  * Text-only CTAs with a red underline. No filled buttons on the public site.
  */
 
-import { esc, when, each, pad2 } from "../lib/html.js";
+import { esc, each, pad2 } from "../lib/html.js";
 
 /** Section eyebrow: red number · label. `number` may be omitted (e.g. 404). */
 export function eyebrow(number, label) {
@@ -47,19 +47,22 @@ ${each(present, (row) => `  <div class="data-list__row">
 }
 
 /**
- * Development-fixture marker.
+ * Development placeholder.
  *
- * Used where a section's real content is blocked on a client answer. It states
- * the gap and the blocking question ID; it never stands in for the content with
- * sample prose or demonstration numbers (MASTER_PLAN.md §1, CONTENT_PLAN.md §1).
+ * Used where a section's real content is blocked on a client answer. Renders
+ * an on-brand texture plate with one short, human-readable line — never the
+ * blocking question IDs, validator rule names or internal field state, and
+ * never sample prose or demonstration numbers standing in for real content
+ * (MASTER_PLAN.md §1, CONTENT_PLAN.md §1). The full technical reasoning for
+ * why a given section is empty belongs in a code comment at the call site and
+ * in DEFERRED.md, not in rendered copy — this stays reviewable by a
+ * non-technical client without reading like an issue tracker.
  * Rendered only when NODE_ENV !== "production" — the production behaviour for
  * each gated section is documented alongside its call site.
  */
-export function devFixture(heading, detail, blockedOn) {
-  return `<aside class="dev-fixture" role="note" aria-label="Development fixture">
-  <p class="dev-fixture__flag t-label">Dev fixture · not for review or production</p>
-  <p class="dev-fixture__heading">${esc(heading)}</p>
-  <p class="dev-fixture__detail t-meta">${esc(detail)}</p>
-  ${when(blockedOn, () => `<p class="dev-fixture__blocked t-label">Blocked on ${esc(blockedOn)}</p>`)}
-</aside>`;
+export function devFixture(heading, plateVariant = "felt") {
+  return `<div class="dev-fixture plate plate--${esc(plateVariant)}" role="note" aria-label="Placeholder, not final content">
+  <p class="dev-fixture__flag t-label">Placeholder — content pending</p>
+  <p class="dev-fixture__heading t-h5">${esc(heading)}</p>
+</div>`;
 }

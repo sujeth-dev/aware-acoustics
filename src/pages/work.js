@@ -35,13 +35,13 @@ function counter(projects) {
 export function workPage(data) {
   const projects = publishedProjects(data);
 
+  // All ten seeded projects are published: false at tier "record" pending
+  // client evidence. Blocked on Q-04 · Q-08 · Q-09 · Q-18 (see DEFERRED.md).
+  // Renders every published project in both tiers as soon as one exists;
+  // nothing here is populated from the unpublished seeds.
   const list = projects.length > 0
     ? `<div class="record-list">${recordRows(projects)}</div>${counter(projects)}`
-    : when(!isProduction, () => devFixture(
-        "No project is published yet.",
-        "All ten seeded projects are published: false at tier \"record\" pending client evidence. The index renders every published project in both tiers as soon as one exists; nothing here is populated from unpublished seeds.",
-        "Q-08 · Q-09 · Q-04 · Q-18"
-      ));
+    : when(!isProduction, () => devFixture("Work index publishes here once a project is ready."));
 
   return {
     route: "/work/",

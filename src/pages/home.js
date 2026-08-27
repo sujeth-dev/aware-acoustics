@@ -73,13 +73,15 @@ function about() {
 function selectedWork(data) {
   const featured = featuredProjects(data);
 
+  // Every seeded project is tier "record", published: false, with no year and
+  // no target/measured pair — nothing qualifies as a featured case record yet.
+  // Blocked on Q-08 · Q-09 · Q-18 (see DEFERRED.md). Renders real records the
+  // moment two or more exist; production build fails here by design
+  // (validate-data V-14) rather than falling back to the ten shallow deck
+  // entries. None of that detail belongs in the rendered placeholder itself.
   const body = featured.length > 0
     ? `<div class="record-list">${recordRows(featured)}</div>`
-    : when(!isProduction, () => devFixture(
-        "Selected work has no publishable records yet.",
-        "Every seeded project is tier \"record\", published: false, with no year and no target/measured pair, so nothing qualifies as a featured case record. This section renders real records the moment two or more exist; it will not be populated from the ten shallow deck entries. The production build fails here by design (validate-data V-14).",
-        "Q-08 · Q-09 · Q-18"
-      ));
+    : when(!isProduction, () => devFixture("Selected work publishes here once records are ready."));
 
   return `<section class="section ground-stone" aria-labelledby="home-work">
   <div class="grid grid--projects-head section__head">
@@ -125,13 +127,12 @@ function services(data) {
 function verification(data) {
   const standards = publishedStandards(data);
 
-  // The target/measured grid requires Q-09. Until it lands the section carries
-  // the process and the register only — never a demonstration number.
-  const metrics = when(!isProduction, () => devFixture(
-    "The target-versus-measured block is not populated.",
-    "No published project carries a target/measured pair, so there is no real result to show. The production behaviour for this block is omission: the section publishes the process and the standards register, and the numeric grid appears only once measured evidence exists.",
-    "Q-09"
-  ));
+  // The target/measured grid requires Q-09 (see DEFERRED.md). No published
+  // project carries a target/measured pair, so there is no real result to
+  // show. Production behaviour is omission: the section publishes the
+  // process and the standards register only; the numeric grid appears once
+  // measured evidence exists. Never a demonstration number.
+  const metrics = when(!isProduction, () => devFixture("Target-versus-measured evidence publishes here once available."));
 
   return `<section class="section ground-navy on-dark" aria-labelledby="home-verification">
   <div class="grid grid--verification">
