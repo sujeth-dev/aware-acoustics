@@ -1,0 +1,52 @@
+[
+  {
+    "id": "architectural-acoustics",
+    "slug": "architectural-acoustics",
+    "name": "Architectural acoustics",
+    "summary": "Room geometry, absorption and use resolved against a stated acoustic criterion.",
+    "parameters": ["RT60", "STI", "ALCONS", "NRC"],
+    "standards": ["is-2526", "din-18041", "iso-3382", "iso-354", "astm-c423"],
+    "published": true,
+    "order": 10
+  },
+  {
+    "id": "sound-insulation-and-noise-control",
+    "slug": "sound-insulation-and-noise-control",
+    "name": "Sound insulation and noise control",
+    "summary": "Separation, background noise and vibration criteria coordinated with architecture and MEP.",
+    "parameters": ["STC", "NC", "Ambient noise", "Speech privacy"],
+    "standards": ["bs-8233-2014", "ashrae-handbook-2015", "en-12354", "iso-16283-1-2014", "iso-717-1-jis-a-1419-1"],
+    "published": true,
+    "order": 20
+  },
+  {
+    "id": "simulation-and-modelling",
+    "slug": "simulation-and-modelling",
+    "name": "Simulation and modelling",
+    "summary": "Predictive models test geometry, materials and source behaviour before construction.",
+    "parameters": ["RT60", "STI", "ALCONS", "SPL"],
+    "standards": ["is-2526", "din-18041", "iso-3382"],
+    "published": true,
+    "order": 30
+  },
+  {
+    "id": "measurement-and-verification",
+    "slug": "measurement-and-verification",
+    "name": "Measurement and verification",
+    "summary": "The completed condition measured, compared with its target and reported.",
+    "parameters": ["RT60", "STI", "NC", "STC", "Ambient noise"],
+    "standards": ["iso-16283-1-2014", "iso-3382", "iso-717-1-jis-a-1419-1", "iso-354", "iso-12999-1-2014", "is-9736"],
+    "published": true,
+    "order": 40
+  },
+  {
+    "id": "audiovisual",
+    "slug": "audiovisual",
+    "name": "Audiovisual",
+    "summary": "Scope, deliverables and tools are awaiting client confirmation.",
+    "parameters": [],
+    "standards": [],
+    "published": false,
+    "order": 50
+  }
+]

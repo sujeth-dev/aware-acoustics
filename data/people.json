@@ -1,0 +1,30 @@
+[
+  {
+    "id": "padmanabha",
+    "name": "Padmanabha",
+    "role": null,
+    "bio": "An acoustic consultant with more than 18 years of technical consultancy experience across environmental and mechanical acoustics, detailed design, reports, drawings, BOQs and multidisciplinary coordination.",
+    "experienceYears": 18,
+    "credentials": ["Acoustics specialisation, IIT Kharagpur", "Graduate, BMS College of Engineering"],
+    "tools": ["EASE", "ODEON", "3D acoustic modelling"],
+    "email": "padmanabha@awareacoustics.in",
+    "phone": null,
+    "portrait": null,
+    "published": false,
+    "order": 10
+  },
+  {
+    "id": "srikanth-t",
+    "name": "Srikanth T",
+    "role": null,
+    "bio": "A business and product-development professional with more than 25 years of total experience, including more than 12 years in building, environmental and product acoustics.",
+    "experienceYears": 25,
+    "credentials": ["Graduate, Bangalore University", "More than 12 years in acoustics"],
+    "tools": [],
+    "email": "srikanth@awareacoustics.in",
+    "phone": null,
+    "portrait": null,
+    "published": false,
+    "order": 20
+  }
+]

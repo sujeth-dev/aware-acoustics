@@ -1,0 +1,467 @@
+TOTAL SLIDES: 36
+
+===== SLIDE 1 (name=Slide1) =====
+  | ACOUSTICS & AV CONSULTANTS
+  [IMAGE] media/image1.jpeg  (4.17014in x 2.30208in)
+  ~ Professional Acoustic Consultancy Services
+  ~ Architectural & Industrial Acoustics | Environmental Noise
+
+===== SLIDE 2 (name=Slide2) =====
+  | | AWARE Acoustics |
+  | Page 02
+  | ABOUT US
+  | We are a professional acoustic consultancy firm providing scientific, independent, and performance based acoustic solutions for the built environment. Our expertise lies in analyzing, designing, and optimizing acoustic comfort while ensuring compliance with national and international standards.
+  | With a strong technical foundation and practical project experience, we work closely with architects, project management consultants, developers, and engineers to integrate acoustic performance seamlessly into architectural and MEP designs.
+  | Our consultancy approach is focused on clarity, compliance, and constructability—ensuring that recommended solutions are both technically effective and practically achievable on site.
+
+===== SLIDE 3 (name=Slide18) =====
+  | | AWARE Acoustics |
+  | Page 03
+  | With over 18 years of experience in technical acoustical consultancy, Acoustics delivers high-performance solutions across architectural, environmental, and mechanical acoustics. The principal consultant is specialized in Acoustics from IIT Kharagpur and holds a graduate degree from BMS College of Engineering, with strong expertise in EASE, ODEON, and advanced 3D acoustic modelling tools. The consultancy has executed acoustical simulations and designs for major Indian airports and multiple underground metro stations, contributing to acoustically efficient and regulation-compliant infrastructure.
+  | With over 12 years at MMG Acoustical Consultants, Bengaluru, a pioneer in the field, extensive experience was gained in noise and vibration studies, environmental and mechanical acoustics, detailed design, technical reports, drawings, BOQs, and multidisciplinary coordination.
+  | The portfolio includes prestigious clients such as Adani, Microsoft, VMware, Google, Cisco, Adobe, and MBRDI. Well-versed in LEED, ASTM, ISO, BSI, and ASHRAE standards, Acoustics focuses on sustainable, performance-driven design, delivering comprehensive and customized acoustical solutions across India.
+  | OUR TEAM
+  | PADMANABHA
+  [IMAGE] media/image2.png  (4.66415in x 6.22366in)
+
+===== SLIDE 4 (name=Slide17) =====
+  | | AWARE Acoustics |
+  | Page 04
+  | A seasoned professional with strong expertise inBusiness and Product Development, backed by a proven track record inniche acoustical product development and consultancy. Highly skilled intechnical and design consultancy, acoustics engineering, and customer relationship management. A graduate ofBangalore University, with a deep understanding of translating technical solutions into practical, value-driven outcomes.
+  | Withover 25 years of overall professional experience, including12+ years dedicated to the acoustics domain, he has been actively involved inend-to-end product development,acoustical design consultancy, andtesting & measurement. His experience spans work with leading organizations specializes in Building Acoustics, Environmental Noise & Product Acoustics in alignment with International Standards.
+  | He has successfully managedkey accounts and strategic engagementswith several prominent national and global organizations, includingGoogle, Dell, Microsoft, Bank of America, IBM, Atlassian, Intel, GSK, Amazon, Bank of New York, Standard Chartered Bank, Novo Nordisk, IIM Visakhapatnam, and IIT Hyderabad, among others.
+  | .
+  | OUR TEAM
+  | SRIKANTH T
+  [IMAGE] media/image3.png  (4.67352in x 6.02601in)
+
+===== SLIDE 5 (name=Slide5) =====
+  | | AWARE Acoustics |
+  | Page 05
+  | Standards Followed
+  ~ Design Standards
+  ~ BS 8233:2014– Sound insulation & noise control in buildings
+  ~ IS 2526– Acoustical design of auditoriums & conference halls
+  ~ ASHRAE Handbook (2015)– HVAC noise & vibration control
+  ~ DIN 18041– Acoustic quality in small & medium-sized rooms
+  ~ EN 12354 (Parts 1–6)– Prediction of building acoustic performance
+  ~ Measurement & Testing Standards
+  ~ ISO 16283-1:2014– Airborne sound insulation (field measurement)
+  ~ ISO 3382– Reverberation time measurement
+  ~ ISO 717-1 / JIS A 1419-1– Rating of airborne sound insulation
+  ~ ISO 354– Sound absorption measurement
+  ~ ISO 12999-1:2014– Measurement uncertainty in building acoustics
+  ~ IS 9736– Acoustics terminology for buildings
+  ~ Green Building & Wellness Standards
+  ~ LEED v4 / v5– Acoustic performance (EQ Credit)
+  ~ WELL Building Standard– Sound Mapping & Acoustic Comfort
+
+===== SLIDE 6 (name=Slide3) =====
+  | To be a premier provider of acoustic solutions, creating better-sounding environments by effectively addressing sound and noise control challenges across diverse applications.
+  | VISION
+  | MISSION
+  ~ To deliver engineering-driven acoustic solutions that enhance human comfort and speech clarity through innovative design, while effectively controlling unwanted noise across diverse built environments.
+  | | AWARE Acoustics |
+  | Page 06
+
+===== SLIDE 7 (name=Slide19) =====
+  | | AWARE Acoustics |
+  | Page 08
+  | Green Norms & Sustainability
+  ~ We integrate environmentally responsible materials and design strategies into our insulation and acoustic solutions to minimize environmental impact while maintaining high standards of sound engineering and performance. Our approach emphasizes the use of recycled and renewable resources, low-VOC materials, and sustainable systems that support healthier indoor environments and long-term sustainability.
+  ~ Key Focus Areas:
+  ~ Use of recycled and renewable insulation and acoustic materials
+  ~ Preference for low-VOC and environmentally safe products
+  ~ Sustainable and eco-friendly design strategies in acoustic treatments
+  ~ Selection of materials compliant with green certifications (ISO 14001, LEED, and equivalent standards)
+  ~ Identification and engagement of geographically proximate suppliers meeting green compliance requirements to reduce carbon footprint
+
+===== SLIDE 8 (name=Slide6) =====
+  | Page 09
+  | OUR SERVICE
+  ~ We are an independent acoustic consultancy delivering high-impact sound, noise, and vibration solutions using cutting-edge measurement systems and simulation tools. We optimize acoustic performance across offices, residences, studios, and industrial environments..
+  ~ We deliver tailored acoustic solutions for corporate offices, studios, call centers, and diverse environments—ensuring every space performs exactly as intended.
+  ~ We enhance site performance by focusing on all parameters of Acoustics such as :• Sound Insulation• Noise Control• Speech Clarity
+  | | AWARE Acoustics |
+
+===== SLIDE 9 (name=Slide7) =====
+  | Page 10
+  | Reverberation Time (RT60)
+  [IMAGE] media/image4.jpg  (4.65104in x 4.06597in)
+  ~ Ta = 0.16 V/A
+  ~ Where
+  ~ Ta = reverberation time(s)
+  ~ V = room volume (m3)
+  ~ A = the total sound absorption of the room (m2 Sabine)
+  ~ Reverberation Time (RT) is the duration required for sound energy in an enclosed space to decay by a specified amount after the sound source is abruptly stopped. It is typically measured as a 60 dB reduction, referred to as RT60.
+  ~ RT60 is a widely accepted acoustic parameter used to characterize the acoustic quality of spaces such as concert halls, auditoriums, and performance venues, indicating how long sound persists before diminishing to 60 dB below its initial level.
+  | | AWARE Acoustics |
+
+===== SLIDE 10 (name=Slide9) =====
+  | Page 11
+  | Reverberation control is achieved through the strategic placement of sound-absorbing materials on walls, ceilings, and floor surfaces.
+  | Material selection is based on the NRC (Noise Reduction Coefficient) to meet the desired acoustic performance criteria.
+  | Reverberation Control
+  [IMAGE] media/image5.jpeg  (4.38715in x 3.28993in)
+  [IMAGE] media/image6.jpeg  (4.25174in x 3.18924in)
+  | | AWARE Acoustics |
+
+===== SLIDE 11 (name=Slide10) =====
+  | Page 12
+  | The Speech Transmission Index (STI) is a standardized metric that quantifies speech intelligibility in a space.
+  | Rated on a scale from 0 to 1, it evaluates the effects of noise, reverberation, sound masking, filtering, and signal degradation on speech clarity, and is widely used to assess and optimize acoustic performance in communication-critical environments.
+  | Speech Transmission Index (STI)
+  [IMAGE] media/image7.png  (6.42535in x 3.3941in)
+  [IMAGE] media/image8.png  (6.42535in x 1.60764in)
+  [IMAGE] media/image9.png  (10.45833in x 5.61285in)
+  | | AWARE Acoustics |
+
+===== SLIDE 12 (name=Slide11) =====
+  | Page 13
+  | Articulation Loss
+  [IMAGE] media/image10.png  (5.29514in x 3.90972in)
+  ~ Articulation Loss of Consonants (ALCONS) represents the percentage of consonants that are not correctly perceived by a listener, indicating speech clarity and intelligibility within a space.
+  ~ An ALCONS value of0%denotes excellent speech intelligibility with no consonant loss. Values around10%indicate reduced clarity and progressively poorer intelligibility, while15%is generally considered the upper limit of acceptable articulation loss.
+  [IMAGE] media/image11.png  (6.80729in x 1.70139in)
+  ~ Background Noise:Ambient noise can mask consonant sounds, reducing speech clarity and making words harder to distinguish.
+  ~ Reverberation:Excessive reverberation or echoes smear speech over time, particularly affecting the intelligibility of consonants.
+  ~ Speaker Quality:Speakers with weak vocal projection or poor articulation typically result in higher ALCONS values.
+  ~ Listener Hearing:Individuals with hearing loss or reduced speech perception ability are more likely to experience increased articulation loss.
+  | | AWARE Acoustics |
+
+===== SLIDE 13 (name=Slide12) =====
+  | Noise Criteria – Background Noise
+  | Page 14
+  ~ Noise Criteria (NC) is determined by measuring the background noise within a building using a 1/1-octave band spectrum. The measured sound levels are plotted against a family of standard NC curves, covering frequencies from 63 Hz to 8000 Hz, to evaluate overall noise acceptability..
+  [IMAGE] media/image12.png  (8.30556in x 6.47743in)
+  | | AWARE Acoustics |
+
+===== SLIDE 14 (name=Slide20) =====
+  | Noise Reduction Coefficient (NRC)
+  | Page 15
+  ~ The Noise Reduction Coefficient (NRC) is a standardized, single-number rating used to evaluate the sound absorption performance of acoustic materials. It represents the average sound absorption coefficient measured at mid-frequency octave bands.
+  ~ NRC values range from 0.0 to 1.0, with higher values indicating greater sound absorption and reduced sound reflection within an enclosed space.
+  ~ NRC 0.0: No effective sound absorption; sound energy is fully reflected.
+  ~ NRC 0.5: Moderate absorption, with approximately 50% of incident sound energy absorbed.
+  ~ NRC 1.0: High absorption, with most incident sound energy absorbed and minimal reflection.
+  ~ Measurement Standards: NRC values are typically determined in accordance with ASTM C423 / ISO 354, based on laboratory measurements conducted in a reverberation chamber.
+  | | AWARE Acoustics |
+
+===== SLIDE 15 (name=Slide13) =====
+  | Page 16
+  | Simulation
+  | Key Benefits of Acoustic Simulation
+  | Optimize overall sound quality and speech intelligibility
+  | Identify potential noise and acoustic performance issues at early design stages
+  | Support efficient and cost-effective design of spaces and systems.
+  ~ Acoustic simulation uses advanced computer software to model and predict the behavior of sound within a given environment. By digitally simulating sound propagation, noise levels, and acoustic performance, we are able to analyze and optimize sound quality in a space before physical construction or prototyping.
+  ~ The simulations account for key acoustic phenomena such as sound reflections, absorption, and diffraction, enabling informed design decisions and performance-driven solutions.
+  ~ Tools & Inputs
+  ~ Software Used:EASE
+  ~ Material Properties:Absorption and reflection coefficients for all surfaces
+  ~ Sound Source Modeling:Stage layouts, loudspeaker positions, and source characteristics
+  | AcousticsAnalysisResults
+  | RT
+  | Sound Pressure Level Distribution 0- Seating, Identify Hot spots
+  | Reflections
+  | Clarity Metrics
+  | Frequency Response
+  | Design Recommendations - Acoustics Treatment Suggestions
+  | Geometry Adjustments
+  | System Integration
+  | Validations – Measurements
+  | User Needs
+  | | AWARE Acoustics |
+
+===== SLIDE 16 (name=Slide23) =====
+  | Noise Survey & Assessment
+  | Page 17
+  ~ We analyze noise pollution sources and evaluate their impact on surrounding environments to ensure compliance with local regulations. Leveraging strong acoustical expertise, we provide actionable insights and tailored solutions for effective noise mitigation.
+  ~ Through data-driven analysis, we identify noise pollution sources and assess their environmental impact in compliance with local regulations. Our in-depth acoustical expertise enables us to deliver precise, actionable recommendations for effective noise mitigation
+  [IMAGE] media/image13.jpeg  (6.19444in x 3.27778in)
+  [IMAGE] media/image14.jpeg  (7.2309in x 3.19792in)
+  | | AWARE Acoustics |
+
+===== SLIDE 17 (name=Slide22) =====
+  | Instrumentation
+  | Page 18
+  ~ Reverberation Time (RT60)
+  ~ Speech Transmission Index (STI)
+  ~ Speech Privacy Between Adjacent Spaces
+  ~ Ambient Noise Level Assessment
+  ~ Speech Intelligibility Evaluation
+  ~ Acoustic Simulation & Modelling
+  ~ Noise Criteria (NC) Curve Analysis
+  [IMAGE] media/image15.jpg  (4.25in x 6.33333in)
+  [IMAGE] media/image16.png  (6.29514in x 4.4809in)
+  [IMAGE] media/image17.png  (5.08507in x 4.24479in)
+  | | AWARE Acoustics |
+
+===== SLIDE 18 (name=Slide15) =====
+  ~ EASE (Enhanced Acoustic Simulator for Engineers) is a powerful software tool used for the simulation and acoustic design of architectural spaces to identify and address potential acoustical challenges. It enables detailed audio signal modeling and analysis of key acoustic parameters such as Reverberation Time (RT), Speech Transmission Index (STI), Articulation Loss, Sound Pressure Level (SPL), and overall speech intelligibility.
+  ~ The software also allows engineers to predict how sound behaves within a specific space and to evaluate the impact of various acoustic treatments. By simulating different design scenarios, EASE helps optimize acoustic performance and improve sound quality before implementation.
+  ~ Software’s
+  [IMAGE] media/image18.jpeg  (4.66743in x 3.13313in)
+  [IMAGE] media/image19.jpeg  (2.291in x 3.13313in)
+  | | AWARE Acoustics |
+  | Page 19
+
+===== SLIDE 19 (name=Slide24) =====
+  | Acoustic Performance Parameters for LEED
+  | Page 20
+  ~ HVAC Background Noise Levels
+  ~ Partition Sound Insulation (STC Rating)
+  ~ Reverberation Time (RT60)
+  ~ Ambient Noise Criteria (NC Levels)
+  ~ Acoustic Performance Parameters – WELL :
+  ~ Adequate Wall Construction (2 Points)
+  ~ Proper Door Specifications (1 Point)
+  ~ Reverberation Time Compliance (RT60) (1 Point)
+  ~ Sound-Absorbing Ceiling Systems (1 Point)
+  ~ Sound-Absorbing Vertical Surfaces (1 Point)
+  ~ Sound Masking Systems Implementation (2 Points)
+  ~ Impact Noise–Reducing Flooring Systems (1 Point)
+  [IMAGE] media/image12.png  (5.5191in x 7.36111in)
+  | | AWARE Acoustics |
+
+===== SLIDE 20 (name=Slide25) =====
+  | Acoustic Design & Consultancy Services
+  ~ Design & Documentation
+  ~ Acoustic design guidelines & documentation
+  ~ DBR & detailed acoustic drawings
+  ~ Floor STC marking & sound insulation layouts
+  ~ MEP noise & vibration control recommendations
+  ~ Value engineering suggestions
+  ~ Review & Tender Support:
+  ~ Proposed & updated interior layout reviews
+  ~ Tender drawings & BOQ specifications review
+  ~ Material & sample submissions evaluation
+  ~ Review & Tender Support:
+  ~ On-site mock-up reviews
+  ~ Acoustic testing & measurement reports
+  ~ Final DBR & compliance reporting
+  [IMAGE] media/image20.png  (6.29861in x 3.86458in)
+  [IMAGE] media/image21.png  (6.30556in x 3.98785in)
+  | | AWARE Acoustics |
+  | Page 21
+
+===== SLIDE 21 (name=Slide27) =====
+  [IMAGE] media/image22.jpeg  (11.37674in x 3.8941in)
+  [IMAGE] media/image23.jpeg  (11.79688in x 4.41667in)
+  ~ Audio Visual and DigitalTransformation
+
+===== SLIDE 22 (name=Slide28) =====
+  [IMAGE] media/image24.png  (17.89702in x 8.81445in)
+  ~ Digital Workplace Framework
+
+===== SLIDE 23 (name=Slide29) =====
+  ~ A Day in Life of An Employee Workplace
+  [IMAGE] media/image25.jpeg  (16.59896in x 8.5816in)
+
+===== SLIDE 24 (name=Slide26) =====
+  [IMAGE] media/image26.png  (2.86514in x 1.16049in)
+  [IMAGE] media/image27.jpeg  (20in x 11.21938in)
+
+===== SLIDE 25 (name=Slide31) =====
+  [IMAGE] media/image28.png  (20in x 11.25in)
+
+===== SLIDE 26 (name=Slide32) =====
+  [IMAGE] media/image29.png  (20in x 11.25in)
+
+===== SLIDE 27 (name=Slide33) =====
+  [IMAGE] media/image30.jpeg  (3.17708in x 2.03646in)
+  [IMAGE] media/image31.jpeg  (3.17708in x 1.88542in)
+  [IMAGE] media/image32.jpeg  (3.17708in x 2.13715in)
+  [IMAGE] media/image33.jpeg  (3.08507in x 1.77778in)
+  [IMAGE] media/image34.jpeg  (3.04167in x 2.03472in)
+  [IMAGE] media/image35.jpeg  (2.44965in x 1.69444in)
+  [IMAGE] media/image36.jpeg  (2.44965in x 1.56771in)
+  [IMAGE] media/image37.jpeg  (2.45139in x 1.69271in)
+  [IMAGE] media/image38.jpeg  (2.38368in x 1.69444in)
+  [IMAGE] media/image39.jpeg  (2.38194in x 1.52778in)
+  [IMAGE] media/image40.jpeg  (3.04167in x 1.86111in)
+  [IMAGE] media/image41.jpeg  (2.42014in x 1.90625in)
+  | Corporate
+  | Hospitals
+  | Airports
+  | Schools
+  | Open office area
+  | Metros
+  | Hotel
+  | Convention centre
+  | Theatre
+  | Stadium
+  | Religious
+  | Factories
+  ~ Core Expertise: Acoustic Solutions
+  [IMAGE] media/image42.jpeg  (3.61979in x 2.03646in)
+  | Technical Labs
+  [IMAGE] media/image31.jpeg  (3.17708in x 1.88542in)
+  [IMAGE] media/image43.jpeg  (3.35764in x 1.81424in)
+  | Residential Towers
+
+===== SLIDE 28 (name=Slide81) =====
+  | Major Projects
+  ~ Corporates & Experience Centers
+  ~ Technical Labs, Healthcare, Educational , Industrial, Airports
+  [IMAGE] media/image44.jpeg  (9.48611in x 2.16493in)
+  [IMAGE] media/image45.jpeg  (2.08333in x 0.69097in)
+  [IMAGE] media/image46.jpeg  (0.9375in x 0.6684in)
+  [IMAGE] media/image47.jpeg  (1.09201in x 0.75694in)
+  [IMAGE] media/image44.jpeg  (5.68576in x 1.0816in)
+  [IMAGE] media/image44.jpeg  (1.76563in x 0.92188in)
+  [IMAGE] media/image44.jpeg  (1.76389in x 0.92187in)
+  [IMAGE] media/image44.jpeg  (1.76389in x 0.92187in)
+  [IMAGE] media/image44.jpeg  (1.76389in x 0.77951in)
+  [IMAGE] media/image48.jpeg  (1.80208in x 0.54687in)
+  [IMAGE] media/image49.jpeg  (1.07292in x 1.06597in)
+  [IMAGE] media/image50.jpeg  (1.31771in x 0.88021in)
+  [IMAGE] media/image51.jpeg  (1.03125in x 0.67014in)
+  [IMAGE] media/image52.jpeg  (1.41319in x 0.80035in)
+  [IMAGE] media/image53.jpeg  (1.46181in x 0.53299in)
+  [IMAGE] media/image54.jpeg  (1.71701in x 0.68576in)
+  [IMAGE] media/image55.jpeg  (1.60243in x 0.83507in)
+  [IMAGE] media/image56.jpeg  (0.97743in x 0.97743in)
+  [IMAGE] media/image57.jpeg  (1.42708in x 0.92535in)
+  [IMAGE] media/image58.jpeg  (2.12674in x 0.90104in)
+  [IMAGE] media/image59.jpeg  (1.01042in x 1.00347in)
+  [IMAGE] media/image60.jpeg  (3.04688in x 0.71875in)
+  [IMAGE] media/image61.jpeg  (3.04514in x 0.75868in)
+  [IMAGE] media/image62.jpeg  (1.38021in x 1.45486in)
+  [IMAGE] media/image63.jpeg  (1.96528in x 0.66493in)
+  [IMAGE] media/image64.jpeg  (0.88715in x 1.06771in)
+  [IMAGE] media/image65.jpeg  (0.97743in x 0.98438in)
+  [IMAGE] media/image66.jpeg  (1.56944in x 0.38542in)
+
+===== SLIDE 29 (name=Slide82) =====
+  | Major Projects
+  | VM Ware ORR – Bangalore corporate office design and testing
+  | consultancy.
+  | VM Ware Kalyani Vista (KV-2.0) Corporate -Bangalore,
+  | L&T Corporate office Mahape Mumbai.
+  | Microsoft corporate office – Luxury building – Bangalore.
+  | Google India Opal Corporate office Bangalore.
+  | E-Bay Corporate office Bangalore.
+  | ICICI Prudential Life Insurance Corporate Office Mumbai.
+  | DE Shaw Software Pvt Ltd, Hyderabad.
+  | DNVGL Corporate office Pune.
+  | Standard Chartered Bank Kolkata
+  | HILTI corporate office - Gujarat
+  | Recording Studio for Pristine Design Studio.
+  | Ball Room Acoustics Intercontinental Hotel - Kuwait.
+  | Hilton Olympia Hotel Ball room Acoustics – Kuwait.
+  | Titan Corporate office, Bangalore.
+  | Texas Instruments, Bangalore.
+  | Intel SRR4 Corporate office Bangalore.
+  | ZenQ Corporate office, Hyderabad.
+  | Johnson and Johnson corporate office Bangalore and Hyderabad.
+  | Rozarpay Corporate office Bangalore
+  | Swaram TATA Bangalore.
+  | Corporates
+
+===== SLIDE 30 (name=Slide83) =====
+  | Major Projects
+  | Auditoriums
+  | RNSITAuditorium(MultipurposeHall1400-seater)
+  | RevaUniversityCollegeAmphitheater(1500Seats&1400Atrium)Bangalore.
+  | YashodaHospitalAuditorium,Hyderabad.
+  | GPREngineeringCollege,SeminarhallAcoustics(500seats),Kurnool,AndhraPradesh.
+  | GlandPharmaAuditorium–Hyderabad.
+  | GaudiumSchoolAuditorium–Hyderabad.
+  | HNScienceCenterAuditorium–Gauribidanuru,Karnataka.
+  | TAbdulWahidSchoolAuditorium(1000seats)atAmbur.
+  | KuvempuKalamandira,Chikkamagaluru,Karnataka.
+  | ITITheater–KRPuram,Bangalore.
+  | L&TMultipurposeHall.
+  | Vipassana Meditation Centre Pagoda Mumbai
+  | SachidanandaGanapathiAshram - Meditation Hall & Auditorium.
+  | Residential Segment
+  [IMAGE] media/image67.png  (13.83333in x 1.84549in)
+  [TABLE]
+   | •       Kalpataru Real Estate
+   | •       Aditya Birla
+   | •       In orbit –Rahejas
+
+===== SLIDE 31 (name=Slide84) =====
+  | Major Projects
+  | Airports
+  | Town Hall
+  | Hospitality
+  | DehradunAirport–AudioandAcousticSimulation.
+  | LucknowInternationalAirport–AudioandAcousticSimulation.
+  | GuwahatiInternationalAirport–AdaniGroup-AcousticsandaudioConsultancy
+  | QualcommCafeteria–Acoustics-MMoserBangalore.
+  | BioconCafeteria,Bangalore.
+  | PaypalCafeteria/Townhall,Bangalore.
+  | Cafetaria/TownHall–ABB
+  | JW Marriot – Juhu Mumbai – WIP
+  | Inter Continental - Kuwait. – Completed
+  | Hyatt Bangalore – WIP
+  | GrandOberoi– WIP
+  | ITCCoorg– Completed – Indirect.
+  | JW Marriot –SaharMumbai – Completed.
+  | Western Lake –PawaiMumbai
+  | MarriottHotelVashiMumbai.
+  | HICC – WIP
+  | West Inn Powai , Mumbai
+  | Marie Gold Hyderabad
+
+===== SLIDE 32 (name=Slide37) =====
+  [IMAGE] media/image68.jpg  (3.82065in x 6.31313in)
+  [IMAGE] media/image69.jpg  (3.82065in x 6.31313in)
+  [IMAGE] media/image70.jpg  (3.82065in x 6.31313in)
+  [IMAGE] media/image71.jpg  (3.82065in x 6.31313in)
+  ~ Guwahati International Airport
+  ~ Assam India (6.0L Sft. - Guwahati)
+  ~ Yashoda Hospital Auditorium (450 Seats - Hyderabad
+  ~ RNS Institute of Technology Auditorium
+  ~ (Indoor Sports Hall - 1400 Seater Auditorium)
+  ~ TITAN Company Acoustics Design & Consultancy
+  ~ (2.0 L Sq.Ft. – Bangalore)
+  ~ Our Key Projects
+
+===== SLIDE 33 (name=Slide35) =====
+  ~ Our Key Projects
+  | West In Mumbai
+  | JW Marriot – Sahar
+  | Intercontinental Hotel Kuwait
+  | Location : Mumbai
+  | Scope of Works : Acoustics Consultancy Services
+  | Location : Mumbai
+  | Scope of Works : Acoustics Consultancy Services
+  | Location : Kuwait
+  | Scope of Works : Acoustics Consultancy Services
+  [IMAGE] media/image72.jpeg  (4.15799in x 5.21875in)
+  [IMAGE] media/image73.jpeg  (3.99132in x 5.38368in)
+  [IMAGE] media/image74.jpeg  (3.59549in x 5.17708in)
+
+===== SLIDE 34 (name=Slide36) =====
+  ~ Our Key Projects
+  | Wayfair-Bangalore
+  [IMAGE] media/image75.jpeg  (3.88542in x 4.77257in)
+  [IMAGE] media/image76.jpeg  (3.88542in x 4.77431in)
+  [IMAGE] media/image77.jpeg  (3.85764in x 4.54861in)
+  | Total Area : 1.5 LSft
+  | Location : Vadodara
+  | Scope of Works : Acoustics Consultancy Services
+  | Total Area : 4.0 LSft.
+  | Location : Bangalore
+  | Scope of Works : Acoustics Consultancy Services
+  | Total Area : 3.0LSft.
+  | Location : Bangalore
+  | Scope of Works : Acoustics Consultancy Services
+  | GoogleOpel-Bangalore
+  | Hilti-Vadodara
+
+===== SLIDE 35 (name=Slide14) =====
+  | CONTACT US
+  | +91 93916 51916+91 98450 64815
+  | Phone
+  | Mail
+  | | AWARE Acoustics |
+  ~ padmanabha@awareacoustics.in
+  ~ srikanth@awareacoustics.in
+
+===== SLIDE 36 (name=Slide21) =====
+  | THANK YOU
+  | | AWARE Acoustics |
