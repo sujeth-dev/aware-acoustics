@@ -58,7 +58,7 @@ structured data where applicable. A template must never become the source of a f
 | G-03 | Primary CTA | Send us a drawing set | `REWRITTEN FROM SOURCE` · lifecycle evidence, slide 20 |
 | G-04 | Secondary CTA, work | See the work | `REWRITTEN FROM SOURCE` |
 | G-05 | Secondary CTA, method | How we verify | `REWRITTEN FROM SOURCE` · slides 15, 17 |
-| G-06 | Footer location | Bengaluru, India | `CLIENT TO CONFIRM` · **Q-01** |
+| G-06 | Footer location | Bengaluru, India | `APPROVED FROM SOURCE` · city confirmed by client 2026-08-27; legal address still **Q-01** |
 | G-07 | Footer legal line | © [year] [legal entity]. Privacy. | `CLIENT TO PROVIDE` · **Q-01**, **Q-30** |
 | G-08 | Direct contact | +91 93916 51916 · +91 98450 64815 · named emails | `APPROVED FROM SOURCE` · slide 35; routing blocked on **Q-28** |
 
@@ -78,11 +78,11 @@ Navigation labels are `Work · Services · About · Contact` (**DEC-011**). Do n
 | Body | We set acoustic criteria, model the design, document what must be built and verify the result on site. | `REWRITTEN FROM SOURCE` · slides 15, 17, 20 |
 | Tags | Room acoustics · Noise & vibration · Simulation · Measurement | `APPROVED FROM SOURCE` · slides 15–17, 20 |
 | CTA | Send us a drawing set | `REWRITTEN FROM SOURCE` |
-| Caption | Bengaluru, India · Est. [year] | `CLIENT TO CONFIRM` · **Q-01**, **Q-02** |
+| Caption | Bengaluru, India · Est. 2011 | `APPROVED FROM SOURCE` · city confirmed 2026-08-27, year confirmed **Q-02** |
 | Image need | CSS texture plate only; no photograph | **DEC-003** |
 
 Technical metadata: `Organization` name and canonical URL from `settings.json`; headline stays
-under 58 characters for stable line breaks. Fallback before **Q-01/Q-02**: omit the caption card.
+under 58 characters for stable line breaks. Caption card now renders — both city and year are confirmed.
 
 ### H-02 · About
 

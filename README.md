@@ -63,14 +63,16 @@ Project facts, people, standards and contact details change in structured data, 
 | `plan/MASTER_PLAN.md` | Full Phase 0–16 execution and approval gates |
 | `plan/CHANGE_GUIDE.md` | Change classes and worked maintenance procedures |
 | `plan/DEPLOYMENT_PLAN.md` | Environments, CI/CD, launch, rollback and operations |
-| `DECISIONS.md` | Durable DEC-001…DEC-010 records |
+| `DECISIONS.md` | Durable DEC-001… records, reasoning included |
+| `DEFERRED.md` | Everything deliberately set aside — client-blocked or self-deferred — scan-in-30-seconds index, pick up any row any time |
 | `PHASE_LOG.md` | Execution state and approval history |
 | `CHANGELOG.md` | User-visible changes by release |
 | `data/*.json` | Safe planning seeds; not approved public content |
 
 ## Critical launch blocks
 
-- Client-list attribution **C-02/Q-03** must be separated from prior-employer experience.
 - `image7.png` and other uncleared deck assets remain `DO NOT PUBLISH`.
 - No project has a year, target or measured result; Homepage and Work proof require **Q-08/Q-09**.
 - Do not connect `awareacoustics.in` until **Q-05** and staging **Gate 05** are complete.
+
+See `DEFERRED.md` for the full list of open items and exactly what unblocks each one.

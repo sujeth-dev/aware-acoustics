@@ -69,8 +69,9 @@ over exact count. All values are unique and generated from structured data when 
 | `/contact/` | `Contact Aware Acoustics | Bengaluru` | Project-stage enquiry and verified direct routes |
 | `/privacy/` | `Privacy | Aware Acoustics` | Data-handling statement |
 
-Until **Q-01** confirms Bengaluru as the practice address, location in title/description is a draft
-recommendation and must not become LocalBusiness NAP.
+Bengaluru as city is confirmed (2026-08-27) and may be used in title/description text. The full
+street address needed for `LocalBusiness` structured data (NAP) is still open — **Q-01** now covers
+only legal name, entity type and registered address, not the city.
 
 ---
 
@@ -148,7 +149,8 @@ when it has sourced scope, deliverables and proof; this keeps AV held under IA-0
 
 ## 10. Geography
 
-Bengaluru is the recommended primary market pending **Q-01**. Real delivered-work locations include
+Bengaluru is the confirmed primary market (client confirmed 2026-08-27; registered address itself
+still **Q-01**). Real delivered-work locations include
 Mumbai, Hyderabad, Pune, Kolkata, Vadodara, Guwahati, Lucknow, Dehradun, other Indian locations and
 Kuwait. Geography is expressed through the About-page practice summary and published project records.
 

@@ -302,3 +302,40 @@ updated same day. No other phase numbering changed — Phase 6–16 references e
 valid. Risk accepted: Phase 3b/9 hardening happens after pages exist rather than before, so a
 systemic CSS or build issue could surface across more pages before being caught — mitigated by
 the no-hardcoded-facts test and build-smoke check staying in the 3a blocking slice.
+
+---
+
+## DEC-014 — Proceed on verified facts, generic where absent, revisit at end
+
+**Status:** Decided · 2026-08-27
+
+**Context.** Several open items (logo vector/colour, **Q-01**, **Q-06**, **Q-07**) don't need to
+block build start. For each, client direction: use whatever is already verified in the deck; where
+nothing is verified, stay generic and defer full resolution rather than blocking or inventing.
+
+**Decision, applied per item:**
+
+| Item | What's in the deck | Action now | Revisit when |
+|---|---|---|---|
+| **Logo file** | Finalised raster PNG supplied | Use the PNG as-is for header/footer/favicon. Do not wait on a vector. | Vector (SVG/AI/EPS) arrives — swap in, no other change needed |
+| **Logo/palette colour (DEC-002)** | Logo red/gold run brighter than `--red`; no gold token exists | **Leave all colour tokens exactly as they are.** Logo runs slightly off-palette; that is normal and not being fixed speculatively. | Only if the client actively asks the site accent to match the logo |
+| **Q-01 legal entity** | Nothing — audit confirms legal name, entity type, CIN/GSTIN, and registered address are all `CLIENT TO PROVIDE` with no source value anywhere | Keep using the verified trading name **"Aware Acoustics"** everywhere (already `settings.tradingName`). Legal name, entity type, address, and the footer legal line stay omitted — not invented, not guessed | Client supplies the legal facts — before Gate 06 / production launch at the latest, since it's legally expected on an Indian business site |
+| **Q-06 AV service** | Cover descriptor "ACOUSTICS & AV CONSULTANTS"; slides 31–32 confirm "audio and acoustic simulation" delivered on the Guwahati, Dehradun and Lucknow airport projects. Slides 21–24 (AV/Digital Workplace) have zero body text and are likely template stock (audit line 556) | Updated `data/services.json`'s `audiovisual` entry summary to state the one verified fact. **Still `published: false`** — a single verified line item isn't a substantiated service with scope/deliverables/tools, and the deck's own AV slides look unreliable. Not shown in nav or Services page yet | Client provides written AV scope/deliverables/tools — then flip `published: true` and build out the section properly |
+| **Q-07 equipment** | Nothing — audit confirms no meter make, model, IEC class or calibration status is stated anywhere in the deck | No change. Instrumentation section on `/about/` stays omitted entirely, per existing rule (never ships with placeholder copy) | Client provides the equipment register |
+
+**Rationale.** None of these five items block a static page from rendering. Where the deck already
+verifies a fact, use it. Where it doesn't, inventing a placeholder is exactly what the brief
+prohibits — omission is the correct generic state, not a stand-in value.
+
+**Consequences.** `data/services.json` updated. No page, token, or nav change results from this
+decision — everything listed stays exactly as safe/omitted as before, just with a clearer paper
+trail for whoever picks each item up. Tracked together here so the five don't need separate
+one-off decisions each time they resurface.
+
+**Update · 2026-08-27, same day.** Client confirmed the practice is based in **Bengaluru**. This
+narrows the Q-01 row above: city is now a verified fact, not an unknown. `settings.city` set to
+`"Bengaluru"`. Footer location and the homepage hero caption ("Bengaluru, India · Est. 2011") now
+render — both city and founding year are confirmed — instead of being omitted. What Q-01 still
+covers, unchanged: legal name, entity type, CIN/GSTIN, and the full registered street address
+needed for the footer legal line and `LocalBusiness` structured data (NAP). Updated
+`CONTENT_PLAN.md` (G-06, H-01) and `SEO_PLAN.md` (§4, §10) accordingly.

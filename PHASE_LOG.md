@@ -64,6 +64,17 @@ user-facing changes.
   render a static page. Gate 03 no longer blocks Phase 5–9. Updated `MASTER_PLAN.md` §2/2.1 and the
   Phase 2/3/4/5 tables. Nothing dropped, only resequenced.
 
+- **DEC-014** — logo/Q-01/Q-06/Q-07 handling: use the raster logo now (no vector wait), leave all
+  colour tokens unchanged (logo runs off-palette, left as-is), keep using the trading name "Aware
+  Acoustics" with no invented legal entity details, updated the AV service summary in
+  `data/services.json` with the one verified deck fact while keeping it unpublished, and left the
+  equipment section omitted. All five tracked together for pickup later; none block build start.
+
+- **Q-01 narrowed** — client confirmed the practice is based in Bengaluru. `settings.city` set;
+  footer location and homepage hero caption now render instead of being omitted. Q-01 now covers
+  only legal name, entity type, CIN/GSTIN and full registered address (needed for the footer legal
+  line and `LocalBusiness` NAP), not the city. Updated `CONTENT_PLAN.md`, `SEO_PLAN.md`, DEC-014.
+
 ### Remaining in Phase 0 / Phase 1
 
 - Receive written answers to **Q-01**, **Q-05**, **Q-06**, **Q-07** and acknowledge the full
