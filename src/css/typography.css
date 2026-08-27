@@ -1,14 +1,14 @@
 /* ===========================================================================
    typography.css — Font loading, the Part A type scale, prose and data styles.
 
-   Part A (A4) specified Newsreader as the sole public typeface. DEC-015
+   Part A (A4) specified Newsreader as the sole public typeface. DEC-016
    (2026-08-27) deliberately departs from that: --serif now resolves to
    Spectral, still used everywhere headings/body/navigation/captions did
    before — one typeface, just not Part A's original one. --font-mono
    carries data/meta rows (eyebrows, record metadata, tables) and now
    resolves to JetBrains Mono, not IBM Plex Mono. --font-body ('Public
    Sans') is a Part B [C] token reserved for the admin layer and is
-   deliberately not loaded on the public site — unchanged by DEC-015.
+   deliberately not loaded on the public site — unchanged by DEC-016.
 
    All heading weights are 300. Authority comes from size and spacing.
    =========================================================================== */

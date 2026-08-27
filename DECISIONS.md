@@ -371,7 +371,7 @@ glossary picks it up with no template change. `parameters` joins the Firestore c
 
 ---
 
-## DEC-015 — Typeface swap: Spectral + JetBrains Mono
+## DEC-016 — Typeface swap: Spectral + JetBrains Mono
 
 **Status:** Decided · 2026-08-27
 
