@@ -368,3 +368,39 @@ have **no** glossary entry: they still appear in the discipline's tag row, but n
 "good" value is invented for them. When the client supplies definitions, add an entry and the
 glossary picks it up with no template change. `parameters` joins the Firestore collection list in
 `PROJECT_DATA.md` §7 when Phase 4 is built.
+
+---
+
+## DEC-015 — Typeface swap: Spectral + JetBrains Mono
+
+**Status:** Decided · 2026-08-27
+
+**Context.** Part A source direction specified Newsreader as the sole public typeface, IBM Plex
+Mono for data/meta rows. Client reviewed a live comparison of six alternative pairings rendered
+against real homepage copy and brand tokens, and picked a direction other than the source default.
+
+**Options presented.** Keep Newsreader/IBM Plex Mono (current) · Fraunces + Space Mono ·
+Spectral + JetBrains Mono · Zilla Slab + IBM Plex Mono · Instrument Serif display + Jost body ·
+Newsreader (unchanged) + JetBrains Mono only.
+
+**Decision.** Spectral (headings, body, navigation, captions — replacing Newsreader everywhere it
+was used) + JetBrains Mono (data/meta rows — replacing IBM Plex Mono).
+
+**Rationale.** Client preference, chosen directly against the live specimen comparison.
+
+**Consequences.** `--serif` in `src/css/tokens.css` moves from `[E]` (Part A source, literal
+Newsreader) to `[D]` (deliberate departure), same convention as DEC-012's beige tokens — the "was"
+value stays noted inline so the source record isn't silently lost. `--font-mono` likewise moves
+from `[C]` to `[D]`. `src/components/document.js`'s `FONTS` constant updated to load Spectral +
+JetBrains Mono from Google Fonts instead. `src/css/typography.css`'s header comment updated to
+describe the departure rather than claim Newsreader is still in force. All weight/spacing rules in
+`typography.css` (all headings weight 300, size/spacing carries authority, not boldness) are
+unchanged — only the face changed, not the type-scale logic. Static pages regenerated via
+`npm run generate` to pick up the new font link. `--font-body` (Public Sans, reserved for the
+admin layer) is untouched — this decision does not affect Phase 4.
+
+**Separately confirmed, no code change:** the logo wordmark ("Aware Acoustics" text in
+`assets/finalised logo @5x.png`) is visually consistent with **Poppins** (Regular or Light) —
+identified by comparison, not a verified font file. This is a different, independent typeface from
+the site's own Spectral — the logo is a fixed external asset and was never expected to match the
+site's type system, same logic as DEC-002/DEC-014's logo colour handling.

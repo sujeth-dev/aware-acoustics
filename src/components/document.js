@@ -12,8 +12,10 @@ import { siteFooter } from "./footer.js";
 
 const FONTS =
   "https://fonts.googleapis.com/css2" +
-  "?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500" +
-  "&family=IBM+Plex+Mono:wght@400" +
+  // Spectral + JetBrains Mono — deliberate departure from Part A's Newsreader-only
+  // direction, decided 2026-08-27 (DEC-015). Italic 300 kept for prose emphasis.
+  "?family=Spectral:ital,wght@0,300;0,400;0,500;1,300" +
+  "&family=JetBrains+Mono:wght@400;500" +
   "&display=swap";
 
 /**

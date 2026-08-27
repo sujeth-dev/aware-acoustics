@@ -74,6 +74,13 @@ user-facing changes.
   footer location and homepage hero caption now render instead of being omitted. Q-01 now covers
   only legal name, entity type, CIN/GSTIN and full registered address (needed for the footer legal
   line and `LocalBusiness` NAP), not the city. Updated `CONTENT_PLAN.md`, `SEO_PLAN.md`, DEC-014.
+- **DEC-015** — typeface swap, Newsreader/IBM Plex Mono → Spectral/JetBrains Mono, client's pick
+  against a live specimen comparison. Updated `src/css/tokens.css` (`--serif`, `--font-mono`, now
+  `[D]` not `[E]`/`[C]`, "was" values noted), `src/css/typography.css` header comment,
+  `src/components/document.js`'s `FONTS` constant. Regenerated static pages via `npm run generate`.
+  `--font-body` (Public Sans, admin-reserved) untouched. Separately: logo wordmark identified as
+  visually consistent with Poppins by comparison, not a verified font file — independent of the
+  site's own typeface, no code change from that.
 
 ### Remaining in Phase 0 / Phase 1
 
