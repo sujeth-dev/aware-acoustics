@@ -122,3 +122,63 @@ _(not yet committed)_
 
 Send the client confirmation pack and obtain **Approval Gate 01 — Content + IA**. Then run Phase 2
 from `plan/MASTER_PLAN.md` only after the gate conditions are recorded.
+
+---
+
+## Phase 2a — Core design tokens (blocking slice of Phase 2, DEC-013)
+
+| Field | Value |
+|---|---|
+| **Date started** | 2026-08-27 |
+| **Status** | `COMPLETE` — 2a only; 2b (component lab, audit suite) deferred to Phase 10 |
+| **Approval** | `GATE 02 NARROWED TO 2a` per DEC-013 |
+
+### Completed
+
+- `src/css/tokens.css` — the Complete CSS Token Set transcribed verbatim from
+  `assets/brand-design-direction.md`, including the DEC-012 beige values
+  (`--dust` `#e7dccb`, `--dust-warm` `#ded2ba`, `--stone` `#d3c3a7`). No token invented, none
+  omitted. `[E]`/`[D]`/`[C]` provenance markers retained inline.
+- `src/css/base.css` — reset, element defaults, focus-visible ring (`2px solid var(--color-accent)`,
+  brightened to `--color-accent-hover` on dark grounds per B11), `.visually-hidden`, skip link,
+  touch-action, the `prefers-reduced-motion` block and a print fallback.
+- `src/css/typography.css` — the A4 type scale as utility classes (`.t-hero`, `.t-h2`…`.t-h5`,
+  `.t-body`, `.t-lead`, `.t-standfirst`, `.eyebrow`, `.t-meta`, `.t-data`, `.t-label`), all heading
+  weights 300, negative tracking per size, `em`/`i` neutralised to a colour shift (A4 bans italics),
+  measure utilities at 34/46/55ch, and `.on-dark` inversions.
+
+### Deviations recorded
+
+- **Body typeface.** The token set defines `--font-body: 'Public Sans'` (Part B `[C]`), but Part A
+  §A4 states Newsreader is the sole public typeface — serif throughout, including body and
+  navigation. Part A is the authority, so `body` is set to `var(--serif)`. `--font-body` is kept in
+  `tokens.css` unchanged and reserved for the admin layer (Phase 4), which is not public-facing.
+- **Fonts loaded.** Newsreader (300/400/500) and IBM Plex Mono (400) only. Public Sans is not
+  requested by any public page, so it is not loaded. Font `<link>` tags are added in Phase 3a with
+  the document shell.
+
+### Not built (deliberate — Phase 2b, DEC-013)
+
+Component lab, texture-plate recipes as components, contrast/focus/keyboard/reduced-motion audit,
+320–1440 screenshot regression suite. Deferred to Phase 10, verified against real pages.
+
+### Tests
+
+`node scripts/validate-data.js` — passed. No UI tests exist yet; they begin in Phase 3b.
+
+### Lighthouse
+
+N/A — no page renders yet.
+
+### Open issues
+
+`DEC-002` (logo runs off-palette) unchanged and deliberately unresolved per DEC-014.
+Contrast re-verification for the DEC-012 beige lift is still owed at Phase 10.
+
+### Commit
+
+`feat: establish mineral production design system`
+
+### Next
+
+Phase 3a — Vite scaffold, page templates, shared layout, JSON loading with runtime guards.

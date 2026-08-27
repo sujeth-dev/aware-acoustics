@@ -1,0 +1,93 @@
+/* ===========================================================================
+   tokens.css — Raw and semantic tokens only. No selectors beyond :root.
+   Source: assets/brand-design-direction.md § "Complete CSS Token Set".
+   Beige tokens reflect DEC-012. Do not add a value here without recording it
+   in plan/DESIGN_GUIDE.md.
+   [E] extracted from source · [D] derived · [C] created
+   =========================================================================== */
+
+:root {
+  /* ─── Colors: Ground & Surface ─── */
+  --dust:             #e7dccb;       /* [D] primary background — DEC-012 */
+  --dust-warm:        #ded2ba;       /* [D] alternate surface — DEC-012 */
+  --stone:            #d3c3a7;       /* [D] cards, project backgrounds — DEC-012 */
+  --stone-light:      #d8d0c4;       /* [E] texture base variant */
+  --fibre:            #9e9486;       /* [E] mid-tone, texture */
+  --concrete:         #8a8478;       /* [E] neutral mid-grey */
+  --felt:             #7c7568;       /* [E] warm dark grey */
+  --graphite:         #6b6258;       /* [E] secondary text, borders */
+  --earth:            #38342e;       /* [E] dark surface */
+  --earth-deep:       #2a2622;       /* [E] deepest surface */
+  --navy:             #0d1721;       /* [E] verification section */
+  --navy-mid:         #152232;       /* [E] dark surface variant */
+  --ink:              #1a1610;       /* [E] primary text */
+  --slate:            #6b6258;       /* [E] captions, metadata */
+
+  /* ─── Colors: Accent ─── */
+  --red:              #A63A32;       /* [E] accent */
+  --red-dark:         #8F302C;       /* [E] pressed/active */
+  --red-bright:       #BF463D;       /* [E] hover, emphasis on dark */
+
+  /* ─── Colors: Status ─── */
+  --verified:         #4A6B52;       /* [C] targets met */
+  --info:             #3A5670;       /* [C] neutral informational */
+
+  /* ─── Colors: Semantic Roles ─── */
+  --color-background:      var(--dust);           /* [D] */
+  --color-surface:         var(--dust-warm);      /* [D] */
+  --color-surface-alt:     var(--stone);          /* [D] */
+  --color-surface-dark:    var(--earth-deep);     /* [D] */
+  --color-surface-deep:    var(--navy);           /* [D] */
+  --color-text:            var(--ink);            /* [D] */
+  --color-text-secondary:  var(--slate);          /* [D] */
+  --color-text-inverse:    var(--dust);           /* [D] */
+  --color-text-muted:      rgba(255,255,255,.52); /* [D] */
+  --color-accent:          var(--red);            /* [D] */
+  --color-accent-hover:    var(--red-bright);     /* [D] */
+  --color-accent-dark:     var(--red-dark);       /* [D] */
+  --color-border:          rgba(26,22,16,.14);    /* [E] */
+  --color-border-dark:     rgba(255,255,255,.12); /* [E] */
+
+  /* ─── Borders ─── */
+  --line:             rgba(26,22,16,.14);            /* [E] */
+  --line-light:       rgba(255,255,255,.12);         /* [E] */
+  --border-light:     1px solid var(--line);         /* [D] */
+  --border-dark:      1px solid var(--line-light);   /* [D] */
+  --border-strong:    1px solid rgba(26,22,16,.2);   /* [D] */
+  --border-overlay:   1px solid rgba(255,255,255,.1);/* [D] */
+
+  /* ─── Typography ─── */
+  --serif:            'Newsreader', Georgia, serif;                           /* [E] */
+  --font-heading:     var(--serif);                                           /* [D] */
+  --font-body:        'Public Sans', system-ui, -apple-system, sans-serif;    /* [C] */
+  --font-mono:        'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace; /* [C] */
+
+  /* ─── Spacing ─── */
+  --space-xs:         4px;                        /* [C] */
+  --space-sm:         8px;                        /* [D] */
+  --space-md:         16px;                       /* [D] */
+  --space-lg:         24px;                       /* [D] */
+  --space-xl:         36px;                       /* [D] */
+  --space-2xl:        48px;                       /* [D] */
+  --space-3xl:        64px;                       /* [D] */
+  --space-section:    clamp(80px, 12vh, 140px);   /* [D] */
+  --pad:              clamp(22px, 5.5vw, 88px);   /* [E] */
+
+  /* ─── Radius ─── */
+  --radius-none:      0;                          /* [E] */
+  --radius-thumb:     12px;                       /* [E] */
+
+  /* ─── Shadows ─── */
+  --shadow-plate:     0 20px 60px rgba(0,0,0,.35); /* [E] */
+  --shadow-subtle:    0 4px 16px rgba(0,0,0,.08);  /* [C] */
+  --shadow-overlay:   0 8px 32px rgba(0,0,0,.24);  /* [C] */
+
+  /* ─── Transitions ─── */
+  --transition-fast:    .15s;                     /* [E] */
+  --transition-default: .2s;                      /* [E] */
+  --transition-subtle:  .25s;                     /* [D] */
+
+  /* ─── Effects ─── */
+  --blur-overlay:     blur(10px);                 /* [E] */
+  --blur-dropdown:    blur(16px);                 /* [E] */
+}
