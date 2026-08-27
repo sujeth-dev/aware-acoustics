@@ -40,3 +40,33 @@
     padding: 8px 0;
   }
 }
+
+/* ─── Homepage components ─── */
+
+@media (max-width: 900px) {
+  .hero__caption {
+    position: static;
+    margin-top: var(--space-xl);
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .record-row {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: var(--space-sm) var(--space-md);
+  }
+
+  .record-row__thumb {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .record-row__info { grid-column: 2; grid-row: 1; }
+  .record-row__glyph { display: none; }
+
+  .band { grid-template-columns: 32px minmax(0, 1fr); }
+  .band__link { grid-column: 2; justify-self: start; }
+}

@@ -312,3 +312,97 @@ a.site-footer__link:hover { opacity: 1; }
   padding-top: var(--space-md);
   border-top: var(--border-light);
 }
+
+/* ─── Hero — §01, WEBSITE_PLAN.md §6 ──────────────────────────────────── */
+
+.hero {
+  position: relative;
+  display: grid;
+  align-content: end;
+  min-height: min(100svh, 860px);
+  padding: calc(var(--space-section) + 40px) var(--pad) var(--space-3xl);
+  box-shadow: var(--shadow-plate);
+}
+
+.hero__body { display: grid; gap: var(--space-lg); justify-items: start; }
+.hero__body .t-hero { max-width: 13ch; }
+.hero__caption { position: absolute; right: var(--pad); bottom: var(--space-3xl); max-width: 34ch; }
+
+/* The header sits over the hero plate on pages that open with one. */
+.page--hero-dark .site-header { color: var(--color-text-inverse); }
+.page--hero-dark .site-nav__link.is-current { color: var(--color-accent-hover); }
+
+/* ─── Record rows — A7 ─────────────────────────────────────────────────── */
+
+.record-list { border-top: var(--border-light); }
+
+.record-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 1fr 36px;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+  border-bottom: var(--border-light);
+}
+
+.record-row--case:hover { background-color: rgba(26, 22, 16, .025); }
+
+.record-row__number { align-self: start; padding-top: 4px; }
+
+.record-row__thumb {
+  display: block;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--radius-thumb);
+}
+
+.record-row__info { display: grid; gap: var(--space-xs); }
+.record-row__title { font-size: 18px; letter-spacing: -.015em; }
+.record-row__glyph { justify-self: end; }
+
+.ground-stone .record-list,
+.ground-stone .record-row { border-color: rgba(26, 22, 16, .18); }
+
+/* ─── Service bands — §04. Four full-width bands, never a card grid. ──── */
+
+.band-list { border-top: var(--border-light); }
+
+.band {
+  display: grid;
+  grid-template-columns: 48px 1fr 36px;
+  gap: var(--space-lg);
+  align-items: start;
+  padding: var(--space-xl) 0;
+  border-bottom: var(--border-light);
+}
+
+.band--flip { background-color: rgba(26, 22, 16, .03); }
+.band__number { padding-top: 6px; color: var(--color-accent); }
+.band__body { display: grid; gap: var(--space-md); }
+.band__link { justify-self: end; padding: 4px 0; }
+.band__link:hover { color: var(--color-accent); }
+
+/* ─── Standards strip — §05 ───────────────────────────────────────────── */
+
+.standards-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  margin: var(--space-md) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ─── Appointment direct routes — §06 ─────────────────────────────────── */
+
+.home-appointment__direct {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm) var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.home-appointment__direct a { border-bottom: 1px solid var(--line); }
+.home-appointment__direct a:hover { border-bottom-color: var(--color-accent); }

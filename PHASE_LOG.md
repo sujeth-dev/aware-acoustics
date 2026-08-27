@@ -266,3 +266,88 @@ GitHub credential); commits are local until a credential is supplied.
 ### Next
 
 Phase 5 — Homepage, six sections plus footer (WEBSITE_PLAN.md §5.1/§6, CONTENT_PLAN.md §3).
+
+---
+
+## Phase 5 — Homepage
+
+| Field | Value |
+|---|---|
+| **Date started** | 2026-08-27 |
+| **Status** | `COMPLETE FOR STRUCTURE` — production content blocked on Q-08/Q-09 |
+| **Approval** | Contributes to Gate 04 |
+
+### Completed
+
+Six sections plus the shared footer, in the order set by `WEBSITE_PLAN.md` §6, with copy from
+`CONTENT_PLAN.md` H-01…H-06:
+
+| § | Section | Ground | Source of its content |
+|---|---|---|---|
+| 01 | Hero | four-layer texture plate + veils | H-01 copy; caption from `settings.city`/`country`/`foundedYear` |
+| 02 | About | `--dust-warm`, 1.2fr/.8fr | H-02 copy |
+| 03 | Selected work | `--stone`, 1fr/1fr head | `featuredProjects()` — currently empty |
+| 04 | Services | `--dust-warm`, four alternating bands | `services.json` (name, summary, parameters) |
+| 05 | Verification | `--navy`, .9fr/1.1fr | H-05 copy + `standards.json` register and count |
+| 06 | Appointment | `--dust`, centred | H-06 copy + `settings.phones`/`emails` |
+
+- `src/components/record-row.js` — the A7 numbered row in both compositions: case-tier rows link
+  into `/work/[slug]/` and carry client label · city · year · one headline measured value;
+  list-tier rows render a texture plate and are not links (DEC-007). Absent values drop out of the
+  meta line rather than rendering an empty label.
+- Section CSS added for the hero plate, record rows, the four service bands, the standards strip
+  and the centred appointment block, plus 900px/600px recomposition (record row collapses to
+  `32px minmax(0,1fr)` with a 16:9 thumbnail strip above; bands collapse the same way).
+
+### Gated content — what renders instead
+
+- **§03 Selected work.** No project qualifies: all ten seeds are `tier: "record"`,
+  `published: false`, with no year and no target/measured pair. Development renders a dev-fixture
+  marker naming the gap and the blocking questions. Production refuses to build — the featured
+  count check now lives in `scripts/generate-pages.js` as well as `validate-data.js` V-14.
+  Nothing is populated from the ten shallow deck entries.
+- **§05 Verification.** The target/measured grid needs Q-09. Development shows a dev-fixture
+  marker; production omits the block entirely and publishes the process copy plus the standards
+  register and its count. No demonstration numbers, industry averages or example results.
+- **§02 About detail panel.** The independence triad is `CLIENT TO CONFIRM` under Q-22, so the
+  panel is omitted per the documented fallback rather than softened into a weaker claim.
+
+### Decisions taken inside this phase
+
+- **`AWARE_ENV` replaces `NODE_ENV` as the content gate.** Vite sets `NODE_ENV=production` for
+  every `vite build`, including development builds of gated pages, which silently suppressed the
+  dev-fixture markers in a build meant to show them. `AWARE_ENV=production` is now the switch and
+  is set only by `npm run build:production`. `validate-data.js` honours either variable, so no
+  existing CI invocation changes behaviour. Recorded in `plan/PROJECT_DATA.md` §6.
+- **Two body links to `/contact/`.** `WEBSITE_PLAN.md` §7 asks for exactly one body link to
+  `/contact/` per page, while §6 specifies a primary CTA in the hero *and* §4 places the primary
+  CTA at Home §06. The homepage-specific spec wins: the hero CTA ("Send us a drawing set") and the
+  appointment CTA ("Start a conversation") both resolve to `/contact/`. They are never in view
+  together, so the "no more than one primary CTA in view" rule still holds. Flagged for the Phase
+  10 link audit rather than silently resolved.
+
+### Tests
+
+- `node scripts/validate-data.js` — passed.
+- `npm run build` (development content) — 8 routes, 16.1 kB CSS, 1.4 kB JS.
+- `AWARE_ENV=production npm run generate` — fails as designed: *"production build requires at
+  least 2 featured published case records; found 0. Blocked on Q-08 / Q-09."*
+- Visual check at 1440px and 375px against the built output: section order, grounds, band
+  alternation, standards strip, mobile record/band recomposition and footer collapse all correct.
+
+### Lighthouse
+
+Deferred to Phase 3b/13. The homepage carries no images and no third-party script; the only
+external request is the Google Fonts stylesheet.
+
+### Open issues
+
+Unchanged, plus: `git push` to `origin main` still unavailable from the build environment.
+
+### Commit
+
+`feat: build evidence-led homepage`
+
+### Next
+
+Phase 6 — Work index and `/work/[slug]/` project records.

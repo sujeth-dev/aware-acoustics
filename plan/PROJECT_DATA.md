@@ -223,8 +223,10 @@ One object holds `tradingName`, `legalName`, `entityType`, `foundedYear`, `addre
 | V-15 | Two or three featured case records in production | Warn |
 | V-16 | More than 4 featured case records | Fail |
 
-Development fixtures may bypass V-14 only when `NODE_ENV !== "production"`; no content rule may
-be bypassed in production.
+Development fixtures may bypass V-14 only when `AWARE_ENV !== "production"`; no content rule may
+be bypassed in production. `AWARE_ENV` — not `NODE_ENV` — is the content gate, because Vite sets
+`NODE_ENV=production` for every `vite build`, including development builds of gated pages.
+`npm run build:production` sets it; `npm run build` and `npm run dev` do not.
 
 ---
 

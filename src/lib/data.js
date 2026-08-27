@@ -19,7 +19,17 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const dataDir = path.join(root, "data");
 
-export const isProduction = process.env.NODE_ENV === "production";
+/**
+ * Content gating switch.
+ *
+ * Deliberately NOT NODE_ENV: Vite sets NODE_ENV=production for every `vite
+ * build`, including the development builds used while pages are still gated on
+ * client evidence. AWARE_ENV is set only by `npm run build:production`, so the
+ * gates below mean "a build intended for review or launch", not "a minified
+ * build". NODE_ENV is still honoured for CI runners that set it explicitly
+ * alongside AWARE_ENV.
+ */
+export const isProduction = process.env.AWARE_ENV === "production";
 
 const problems = [];
 

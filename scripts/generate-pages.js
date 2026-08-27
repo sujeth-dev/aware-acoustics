@@ -19,7 +19,7 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
-import { loadData } from "../src/lib/data.js";
+import { loadData, featuredProjects, isProduction } from "../src/lib/data.js";
 import { renderDocument } from "../src/components/document.js";
 import { allPages } from "../src/pages/index.js";
 
@@ -41,6 +41,16 @@ function clean() {
 
 export function generatePages({ silent = false } = {}) {
   const data = loadData();
+
+  // Mirrors validate-data.js V-14 so a production build cannot render a
+  // Selected Work section with no evidence behind it (WEBSITE_PLAN.md §6 03).
+  if (isProduction && featuredProjects(data).length < 2) {
+    throw new Error(
+      `production build requires at least 2 featured published case records; found ${featuredProjects(data).length}. ` +
+      "Blocked on Q-08 / Q-09."
+    );
+  }
+
   const pages = allPages(data);
 
   clean();

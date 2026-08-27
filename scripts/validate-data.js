@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(root, "data");
-const production = process.env.NODE_ENV === "production";
+const production = process.env.AWARE_ENV === "production" || process.env.NODE_ENV === "production";
 const errors = [];
 const warnings = [];
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;

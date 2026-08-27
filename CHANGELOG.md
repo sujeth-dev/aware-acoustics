@@ -11,6 +11,9 @@ follow semantic versioning once implementation begins.
 
 - Complete planning system for source, content, data, design, imagery, admin, SEO, delivery and change management.
 - Safe structured-data seeds and executable validation rules.
+- Core design tokens, base styles and the Newsreader type scale.
+- Vite build with generated routes for Home, Work, Services, About, Contact, Privacy and 404.
+- Homepage: hero, about, selected work, services, verification and appointment sections.
 
 ### Security
 
