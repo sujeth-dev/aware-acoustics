@@ -351,3 +351,75 @@ Unchanged, plus: `git push` to `origin main` still unavailable from the build en
 ### Next
 
 Phase 6 — Work index and `/work/[slug]/` project records.
+
+---
+
+## Phase 6 — Work index and project records
+
+| Field | Value |
+|---|---|
+| **Date started** | 2026-08-27 |
+| **Status** | `COMPLETE FOR STRUCTURE` — zero records publish today; blocked on Q-08/Q-09 |
+| **Approval** | Contributes to Gate 04 |
+
+### Completed
+
+**`/work/`** — eyebrow, H1 *Work held to a number.*, standfirst, record list, derived counter line
+(`[n] projects · [n] measured records`) and the appointment CTA. Renders every published project in
+both tiers. With none published, development shows a dev-fixture marker naming the gap; production
+omits the list rather than printing a zero counter.
+
+**Filter strip** — implemented as the threshold test `filtersQualify()`, not as markup: filters
+ship only above 12 published projects with at least four sectors carrying two projects each
+(`WEBSITE_PLAN.md` §5.2). At 0 published the test returns false and nothing renders. Building the
+control now would be furniture that makes a small list look smaller.
+
+**`/work/[slug]/`** — the full §5.3 hierarchy: hero plate (cover image when the record has one,
+texture plate when it does not) with the field caption card; fact table; `01 · Condition`;
+`02 · Approach`; `03 · Verification` target/measured table on the navy ground; `04 · Standards and
+tools` tag rows; gallery; prev/next across published case records; appointment CTA. Reverse links
+into `/services/#[discipline]` come from the record's own `services[]` (`WEBSITE_PLAN.md` §7).
+
+Routes are derived from published case-tier records only, so a record page cannot exist without the
+evidence its template renders. Today that yields zero record routes, which is correct.
+
+### Verification fixture — how the template was proved
+
+No real record can reach `/work/[slug]/` yet, so `tests/fixtures/case-record.fixture.json` plus
+`tests/render-record.smoke.mjs` (`npm run test:smoke`) exercise it. The fixture is synthetic,
+labelled `FIXTURE` in every field, lives outside `data/`, and is never read by
+`scripts/generate-pages.js`. `tests/fixtures/README.md` states that plainly. The smoke test asserts
+the section structure, that a standard designation resolves from `standards.json`, that the reverse
+service link and CTA render, and — per DEC-010 — that the private `client` value never reaches the
+markup while the anonymised label does.
+
+### Responsive
+
+`.result-table` stacks per parameter below 600px using `data-label` prefixes rather than scrolling
+sideways — the payload data must never require a horizontal scroll (`WEBSITE_PLAN.md` §8). Record
+rows collapse to `32px minmax(0,1fr)` with a 16:9 thumbnail strip above; the gallery goes one-up;
+the hero caption card moves below the plate.
+
+### Tests
+
+- `node scripts/validate-data.js` — passed.
+- `npm run test:smoke` — passed, including the client-anonymisation assertion.
+- Visual check at 1440px of `/work/` and of the record template rendered against the fixture:
+  section order, fact table, target/measured table on navy, tag rows, CTA and footer all correct.
+  Fixed from that pass: sector value now title-cased, standfirst/narrative/tag-row spacing.
+
+### Lighthouse
+
+Deferred to Phase 3b/13.
+
+### Open issues
+
+Unchanged. Record pages cannot be reviewed with real content until Q-08/Q-09 land.
+
+### Commit
+
+`feat: publish structured work records`
+
+### Next
+
+Phase 7 — Services, single page with four in-page anchor sections.

@@ -1,0 +1,53 @@
+{
+  "slug": "fixture-case-record",
+  "title": "FIXTURE — Case record template",
+  "client": "FIXTURE Client",
+  "clientAnonymised": "FIXTURE anonymised client descriptor",
+  "clientPublic": false,
+  "sector": "education",
+  "location": "FIXTURE location",
+  "city": "FIXTURE city",
+  "country": "India",
+  "year": 2020,
+  "status": "completed",
+  "area": null,
+  "areaUnit": null,
+  "capacity": 1000,
+  "capacityUnit": "seats",
+  "appointedBy": "FIXTURE appointing party",
+  "tier": "case",
+  "scope": ["FIXTURE scope item"],
+  "services": ["architectural-acoustics", "measurement-and-verification"],
+  "standards": ["iso-3382", "is-2526"],
+  "tools": ["FIXTURE tool"],
+  "targets": [
+    { "parameter": "RT60", "space": "FIXTURE space", "value": 1, "unit": "s", "standard": "iso-3382" }
+  ],
+  "measured": [
+    { "parameter": "RT60", "space": "FIXTURE space", "value": 1, "unit": "s", "standard": "iso-3382" }
+  ],
+  "summary": "FIXTURE summary used to exercise the record template.",
+  "condition": "FIXTURE condition paragraph.",
+  "approach": "FIXTURE approach paragraph.",
+  "outcome": "FIXTURE outcome paragraph.",
+  "images": [
+    {
+      "id": "fixture-01",
+      "category": "project-space",
+      "src": "/assets/fixtures/fixture-01.avif",
+      "fallback": "/assets/fixtures/fixture-01.webp",
+      "width": 1600,
+      "height": 1200,
+      "alt": "FIXTURE image alt text",
+      "caption": "FIXTURE caption",
+      "source": "Fixture",
+      "licence": "Fixture",
+      "credit": null,
+      "cleared": true,
+      "order": 10
+    }
+  ],
+  "featured": true,
+  "published": true,
+  "order": 10
+}

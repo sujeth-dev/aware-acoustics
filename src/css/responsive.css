@@ -70,3 +70,47 @@
   .band { grid-template-columns: 32px minmax(0, 1fr); }
   .band__link { grid-column: 2; justify-self: start; }
 }
+
+/* ─── Project record ─── */
+
+@media (max-width: 900px) {
+  .record-hero .field-caption {
+    position: static;
+    margin-top: var(--space-xl);
+    max-width: none;
+  }
+
+  .gallery { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  /* Target/measured stacks per parameter rather than scrolling sideways. */
+  .result-table,
+  .result-table thead,
+  .result-table tbody,
+  .result-table tr,
+  .result-table th,
+  .result-table td { display: block; }
+
+  .result-table thead { display: none; }
+
+  .result-table tr {
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .result-table th,
+  .result-table td {
+    padding: 2px 0;
+    border: 0;
+  }
+
+  .result-table td:empty { display: none; }
+
+  .result-table td::before {
+    content: attr(data-label) " · ";
+    color: var(--color-text-muted);
+  }
+
+  .record-pagination__link--next { text-align: left; }
+}

@@ -42,6 +42,8 @@
 .section__head { margin-bottom: var(--space-2xl); }
 .section__head .eyebrow { margin-bottom: var(--space-lg); }
 .section__title { margin-bottom: var(--space-lg); }
+.section__head .t-standfirst,
+.section__head .t-lead { margin-top: var(--space-lg); }
 
 .section__foot {
   margin-top: var(--space-2xl);

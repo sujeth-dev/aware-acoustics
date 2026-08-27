@@ -9,7 +9,8 @@
     "build": "vite build",
     "build:production": "AWARE_ENV=production npm run validate:data && AWARE_ENV=production vite build",
     "preview": "vite preview",
-    "validate:data": "node scripts/validate-data.js"
+    "validate:data": "node scripts/validate-data.js",
+    "test:smoke": "node tests/render-record.smoke.mjs"
   },
   "devDependencies": {
     "vite": "^5.4.0"

@@ -25,6 +25,9 @@ export function allPages(data) {
     contactPage(data),
     privacyPage(data),
     notFoundPage(data),
-    ...caseProjects(data).map((project) => workRecordPage(project, data))
+    ...(() => {
+      const records = caseProjects(data);
+      return records.map((project) => workRecordPage(project, data, records));
+    })()
   ];
 }

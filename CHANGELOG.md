@@ -14,6 +14,7 @@ follow semantic versioning once implementation begins.
 - Core design tokens, base styles and the Newsreader type scale.
 - Vite build with generated routes for Home, Work, Services, About, Contact, Privacy and 404.
 - Homepage: hero, about, selected work, services, verification and appointment sections.
+- Work index and the project-record template, including the target-versus-measured table.
 
 ### Security
 
