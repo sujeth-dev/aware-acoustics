@@ -157,6 +157,22 @@ function guardStandard(standard) {
   return ok;
 }
 
+function guardParameter(parameter) {
+  const label = `parameter ${parameter?.id ?? "<missing-id>"}`;
+  const ok =
+    isString(parameter?.id) &&
+    isString(parameter?.label) &&
+    isString(parameter?.name) &&
+    isString(parameter?.unit) &&
+    isString(parameter?.definition) &&
+    (parameter?.range === null || isString(parameter?.range)) &&
+    isString(parameter?.source) &&
+    isBool(parameter?.published) &&
+    isInt(parameter?.order);
+  if (!ok) fail(`${label}: malformed parameter record`);
+  return ok;
+}
+
 function guardPerson(person) {
   const label = `person ${person?.id ?? "<missing-id>"}`;
   const ok =
@@ -202,7 +218,7 @@ export function clientLabel(project) {
 
 function byOrder(a, b) {
   if (a.order !== b.order) return a.order - b.order;
-  return String(a.title ?? a.name ?? a.designation ?? "").localeCompare(String(b.title ?? b.name ?? b.designation ?? ""));
+  return String(a.title ?? a.name ?? a.designation ?? a.label ?? "").localeCompare(String(b.title ?? b.name ?? b.designation ?? b.label ?? ""));
 }
 
 export function loadData() {
@@ -212,6 +228,7 @@ export function loadData() {
   const services = guardArray(readJson("services.json"), "services.json").filter(guardService).sort(byOrder);
   const standards = guardArray(readJson("standards.json"), "standards.json").filter(guardStandard).sort(byOrder);
   const people = guardArray(readJson("people.json"), "people.json").filter(guardPerson).sort(byOrder);
+  const parameters = guardArray(readJson("parameters.json"), "parameters.json").filter(guardParameter).sort(byOrder);
   const settings = readJson("settings.json");
   guardSettings(settings);
 
@@ -232,7 +249,7 @@ export function loadData() {
     console.warn(`WARN: data guard reported ${problems.length} issue(s):\n${report}`);
   }
 
-  return { projects, services, standards, people, settings, problems: [...problems] };
+  return { projects, services, standards, people, parameters, settings, problems: [...problems] };
 }
 
 /* ─── Selectors ────────────────────────────────────────────────────────── */
@@ -243,6 +260,16 @@ export const featuredProjects = (data) => caseProjects(data).filter((project) =>
 export const publishedServices = (data) => data.services.filter((service) => service.published);
 export const publishedStandards = (data) => data.standards.filter((standard) => standard.published);
 export const publishedPeople = (data) => data.people.filter((person) => person.published);
+
+/**
+ * Glossary entries for a service's parameters, matched on the parameter label.
+ * A parameter with no sourced definition simply has no entry — it still appears
+ * in the tag row, but the glossary never invents a unit, range or "good" value.
+ */
+export const glossaryForService = (data, service) =>
+  (service.parameters ?? [])
+    .map((label) => data.parameters.find((parameter) => parameter.published && parameter.label.toLowerCase() === String(label).toLowerCase()))
+    .filter(Boolean);
 
 export const standardsForService = (data, serviceId) =>
   publishedStandards(data).filter((standard) => standard.services.includes(serviceId));

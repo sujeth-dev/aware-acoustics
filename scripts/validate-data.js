@@ -39,6 +39,7 @@ const projects = readJson("projects.json");
 const services = readJson("services.json");
 const standards = readJson("standards.json");
 const people = readJson("people.json");
+const parameters = readJson("parameters.json");
 const settings = readJson("settings.json");
 
 for (const [name, value, expectedArray] of [
@@ -46,6 +47,7 @@ for (const [name, value, expectedArray] of [
   ["services.json", services, true],
   ["standards.json", standards, true],
   ["people.json", people, true],
+  ["parameters.json", parameters, true],
   ["settings.json", settings, false]
 ]) {
   if (expectedArray !== Array.isArray(value)) errors.push(`${name}: unexpected root type`);
@@ -64,6 +66,7 @@ const requiredProjectFields = [
 for (const duplicate of duplicateValues(projects, "slug")) errors.push(`projects.json: duplicate slug "${duplicate}"`);
 for (const duplicate of duplicateValues(services, "id")) errors.push(`services.json: duplicate id "${duplicate}"`);
 for (const duplicate of duplicateValues(standards, "id")) errors.push(`standards.json: duplicate id "${duplicate}"`);
+for (const duplicate of duplicateValues(parameters, "id")) errors.push(`parameters.json: duplicate id "${duplicate}"`);
 
 for (const project of projects) {
   const label = `project ${project.slug || "<missing-slug>"}`;
@@ -115,6 +118,10 @@ for (const service of services) {
   for (const standard of service.standards || []) if (!standardIds.has(standard)) errors.push(`service ${service.id}: unknown standard "${standard}"`);
 }
 
+for (const parameter of parameters) {
+  requireFields(parameter, ["id", "label", "name", "unit", "definition", "range", "source", "published", "order"], `parameter ${parameter.id}`);
+}
+
 for (const standard of standards) {
   requireFields(standard, ["id", "designation", "subject", "category", "services", "editionStatus", "published", "order"], `standard ${standard.id}`);
   for (const service of standard.services || []) if (!serviceIds.has(service)) errors.push(`standard ${standard.id}: unknown service "${service}"`);
@@ -128,4 +135,4 @@ if (featured > 4) errors.push(`no more than 4 featured case records are allowed;
 for (const warning of warnings) console.warn(`WARN: ${warning}`);
 for (const error of errors) console.error(`ERROR: ${error}`);
 if (errors.length) process.exitCode = 1;
-else console.log(`Validated ${projects.length} projects, ${services.length} services, ${standards.length} standards, ${people.length} people and site settings.`);
+else console.log(`Validated ${projects.length} projects, ${services.length} services, ${standards.length} standards, ${parameters.length} parameters, ${people.length} people and site settings.`);
