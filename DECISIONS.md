@@ -342,36 +342,7 @@ needed for the footer legal line and `LocalBusiness` structured data (NAP). Upda
 
 ---
 
-## DEC-015 — Parameter glossary as structured data
-
-**Status:** Decided · 2026-08-27
-
-**Context.** `WEBSITE_PLAN.md` §5.4 requires a glossary component on each Services section listing
-"the metrics this discipline works in, each with unit, range and what 'good' is", and §1 makes the
-glossary the reason the six parameter explainer slides do not become pages. `services.json` carries
-only parameter *labels* (`"RT60"`, `"STI"`), which cannot render a definition, a unit or a range.
-
-**Options.** Hardcode definitions in the Services template · extend `services.json` with nested
-parameter objects · add a `data/parameters.json` collection with foreign-key matching on label.
-
-**Decision.** Add `data/parameters.json`. Each entry carries `id`, `label`, `name`, `unit`,
-`definition`, `range` (nullable), `source`, `published`, `order`, and is guarded in
-`src/lib/data.js` and `scripts/validate-data.js` like every other collection.
-
-**Rationale.** Hardcoding would make a template the source of a technical fact, which
-`PROJECT_DATA.md` §1 and `CONTENT_PLAN.md` §9 both prohibit. Nesting inside `services.json` would
-duplicate RT60 and STI across three disciplines and let the copies drift.
-
-**Consequences.** Five entries exist — RT60, STI, ALCONS, NRC and NC — each sourced from a named
-deck slide. Parameters the deck names without defining (STC, ambient noise, speech privacy, SPL)
-have **no** glossary entry: they still appear in the discipline's tag row, but no unit, range or
-"good" value is invented for them. When the client supplies definitions, add an entry and the
-glossary picks it up with no template change. `parameters` joins the Firestore collection list in
-`PROJECT_DATA.md` §7 when Phase 4 is built.
-
----
-
-## DEC-016 — Typeface swap: Spectral + JetBrains Mono
+## DEC-015 — Typeface swap: Spectral + JetBrains Mono
 
 **Status:** Decided · 2026-08-27
 
@@ -404,3 +375,10 @@ admin layer) is untouched — this decision does not affect Phase 4.
 identified by comparison, not a verified font file. This is a different, independent typeface from
 the site's own Spectral — the logo is a fixed external asset and was never expected to match the
 site's type system, same logic as DEC-002/DEC-014's logo colour handling.
+
+**Note, 2026-08-27.** The Services page (Phase 7, commit `45ff97c`) that this decision was
+originally numbered alongside — and its own DEC-015 "Parameter glossary as structured data" — was
+reverted at the client's request (held back from the remote for now; nothing wrong with the work
+itself). This decision was renumbered from DEC-016 back to DEC-015 once that removed the
+collision. When Phase 7 is rebuilt, the parameter-glossary decision will need a fresh number, not
+a re-use of this one.

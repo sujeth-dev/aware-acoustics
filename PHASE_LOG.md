@@ -74,7 +74,7 @@ user-facing changes.
   footer location and homepage hero caption now render instead of being omitted. Q-01 now covers
   only legal name, entity type, CIN/GSTIN and full registered address (needed for the footer legal
   line and `LocalBusiness` NAP), not the city. Updated `CONTENT_PLAN.md`, `SEO_PLAN.md`, DEC-014.
-- **DEC-016** — typeface swap, Newsreader/IBM Plex Mono → Spectral/JetBrains Mono, client's pick
+- **DEC-015** — typeface swap, Newsreader/IBM Plex Mono → Spectral/JetBrains Mono, client's pick
   against a live specimen comparison. Updated `src/css/tokens.css` (`--serif`, `--font-mono`, now
   `[D]` not `[E]`/`[C]`, "was" values noted), `src/css/typography.css` header comment,
   `src/components/document.js`'s `FONTS` constant. Regenerated static pages via `npm run generate`.
@@ -430,54 +430,3 @@ Unchanged. Record pages cannot be reviewed with real content until Q-08/Q-09 lan
 ### Next
 
 Phase 7 — Services, single page with four in-page anchor sections.
-
----
-
-## Phase 7 — Services
-
-| Field | Value |
-|---|---|
-| **Date started** | 2026-08-27 |
-| **Status** | `COMPLETE FOR STRUCTURE` — evidence modules blocked on Q-08/Q-09 |
-| **Approval** | Contributes to Gate 04 |
-
-### Completed
-
-Single `/services/` page (DEC-011) with an overview of four full-width horizontal bands — not a
-card grid — each jumping to its in-page anchor, followed by four discipline sections at
-`#architectural-acoustics`, `#sound-insulation-and-noise-control`, `#simulation-and-modelling` and
-`#measurement-and-verification`, alternating `--dust` / `--dust-warm`.
-
-Each section carries: eyebrow and H2 from `services.json`, standfirst from the service summary,
-`The condition` (CONTENT_PLAN E-02…E-05), `What we do` as a mono-labelled deliverable list,
-the parameter glossary, a standards tag row filtered by discipline from `standards.json`, the
-evidence module, sibling jump links, and the appointment foot — eyebrow `Appointment`,
-*Set the criterion before the detail closes.*, CTA `Send us a drawing set`.
-
-### Decisions taken inside this phase
-
-- **DEC-015 — `data/parameters.json`.** The glossary needs a unit, definition and range per
-  parameter; `services.json` holds labels only. Hardcoding them in the template would make a
-  template the source of a technical fact. Five entries exist, each sourced to a named deck slide.
-  STC, ambient noise, speech privacy and SPL are named in the deck but never defined there, so they
-  have no glossary entry — they appear in the tag row and nothing is invented for them.
-- **"Flanking" avoided in body copy.** CONTENT_PLAN E-03's sourced condition line uses the word,
-  which the same row marks `CLIENT TO CONFIRM` before body use. The clause is rewritten to keep the
-  meaning — sound paths around a junction, services penetrations, plant noise arriving by another
-  route — without the gated term.
-- **Evidence fallback.** Two to three related records render when they exist; exactly one renders
-  as a compact name list; zero renders a dev-fixture marker in development and nothing in
-  production. No example projects.
-
-### Tests
-
-`node scripts/validate-data.js` — passed, now covering 5 parameters. Page generates with all four
-anchors present.
-
-### Commit
-
-`feat: add acoustic services page`
-
-### Next
-
-Phase 8 — About (practice + method merged).

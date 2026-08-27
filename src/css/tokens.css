@@ -57,10 +57,10 @@
   --border-overlay:   1px solid rgba(255,255,255,.1);/* [D] */
 
   /* ─── Typography ─── */
-  --serif:            'Spectral', Georgia, serif;                             /* [D] DEC-016, was 'Newsreader' [E] */
+  --serif:            'Spectral', Georgia, serif;                             /* [D] DEC-015, was 'Newsreader' [E] */
   --font-heading:     var(--serif);                                           /* [D] */
   --font-body:        'Public Sans', system-ui, -apple-system, sans-serif;    /* [C] */
-  --font-mono:        'JetBrains Mono', 'SFMono-Regular', Consolas, monospace; /* [D] DEC-016, was 'IBM Plex Mono' [C] */
+  --font-mono:        'JetBrains Mono', 'SFMono-Regular', Consolas, monospace; /* [D] DEC-015, was 'IBM Plex Mono' [C] */
 
   /* ─── Spacing ─── */
   --space-xs:         4px;                        /* [C] */
