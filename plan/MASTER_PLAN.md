@@ -61,6 +61,19 @@ before **Gate 04**.
 Nothing else about phase content changes — Phase 2, 3 and 4's task tables below still describe the
 complete scope of each phase. This section only reorders *when* each slice is required.
 
+### 2.2 Commit and push discipline
+
+Commit at the end of every phase — one commit per phase, message matching that phase's `Commit`
+convention in its task table below. Do not batch multiple phases into one commit and do not commit
+mid-phase.
+
+**Push to `origin/main` after every phase commit, no exceptions from Phase 5 onward.** Homepage
+(Phase 5) is the first mandatory push checkpoint — it is the first publicly visible page, so it is
+the point at which local-only progress stops being acceptable. Every phase after it pushes
+immediately after its commit, not batched at the end of a session. If a session is running
+unattended (e.g. via `/loop`), this is what keeps work recoverable if the session is interrupted —
+never leave more than one phase's worth of work unpushed.
+
 ---
 
 ## Phase 0 — Source audit and repository foundation

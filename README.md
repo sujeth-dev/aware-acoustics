@@ -29,6 +29,8 @@ Remove-Item Env:NODE_ENV
 4. Record Gate 01 approval in `PHASE_LOG.md`.
 5. Begin Phase 2 from `plan/MASTER_PLAN.md`; do not start production Homepage or Work content while
    **Q-08/Q-09** remain unanswered.
+6. One commit per phase, pushed to `origin/main` immediately after — mandatory from Phase 5
+   (Homepage) onward. See `plan/MASTER_PLAN.md` §2.2.
 
 ## Sources of truth
 
