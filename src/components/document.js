@@ -9,6 +9,7 @@
 import { esc, join, when } from "../lib/html.js";
 import { siteHeader } from "./header.js";
 import { siteFooter } from "./footer.js";
+import { isProduction } from "../lib/data.js";
 
 const FONTS =
   "https://fonts.googleapis.com/css2" +
@@ -47,6 +48,7 @@ export function renderDocument(page, data) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
+${when(!isProduction, '<meta name="robots" content="noindex, nofollow">')}
 ${when(canonical, () => `<link rel="canonical" href="${esc(canonical)}">`)}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

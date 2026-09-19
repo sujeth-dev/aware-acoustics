@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 
 import { generatePages } from "./scripts/generate-pages.js";
+import { isProduction } from "./src/lib/data.js";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 
@@ -33,6 +34,24 @@ function routeGenerator() {
   };
 }
 
+/**
+ * Any build that is not AWARE_ENV=production carries visible placeholder
+ * markers, so it must never be indexed. The production build allows crawling;
+ * the sitemap line is added with the Phase 11 SEO pass.
+ */
+function robotsTxt() {
+  return {
+    name: "aware-robots-txt",
+    generateBundle() {
+      this.emitFile({
+        type: "asset",
+        fileName: "robots.txt",
+        source: isProduction ? "User-agent: *\nAllow: /\n" : "User-agent: *\nDisallow: /\n"
+      });
+    }
+  };
+}
+
 const { written } = generatePages({ silent: true });
 
 const input = Object.fromEntries(
@@ -43,7 +62,7 @@ export default defineConfig({
   root,
   publicDir: "public",
   appType: "mpa",
-  plugins: [routeGenerator()],
+  plugins: [routeGenerator(), robotsTxt()],
   build: {
     outDir: "dist",
     emptyOutDir: true,
