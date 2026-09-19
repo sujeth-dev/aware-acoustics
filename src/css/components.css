@@ -334,7 +334,9 @@ a.site-footer__link:hover { opacity: 1; }
   box-shadow: var(--shadow-plate);
 }
 
-.hero__body { display: grid; gap: var(--space-lg); justify-items: start; }
+/* minmax(0, 1fr) + min-width: 0 stop the mobile tag strip widening the page; no visual change. */
+.hero__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); justify-items: start; }
+.hero__body > * { min-width: 0; max-width: 100%; }
 .hero__body .t-hero { max-width: 13ch; }
 .hero__caption { position: absolute; right: var(--pad); bottom: var(--space-3xl); max-width: 34ch; }
 
@@ -367,6 +369,11 @@ a.site-footer__link:hover { opacity: 1; }
   border-radius: var(--radius-thumb);
 }
 
+/* List-tier rows (no page behind them) are a compact index line, not a hero-sized row:
+   a 74-row list of wide plates is monotone and roughly 12,000px tall. */
+.record-row--list { grid-template-columns: 48px 120px minmax(0, 1fr); padding: var(--space-md) 0; }
+.record-row--list .record-row__thumb { height: 64px; }
+
 .record-row__info { display: grid; gap: var(--space-xs); }
 .record-row__title { font-size: 18px; letter-spacing: -.015em; }
 .record-row__glyph { justify-self: end; }
@@ -380,7 +387,7 @@ a.site-footer__link:hover { opacity: 1; }
 
 .band {
   display: grid;
-  grid-template-columns: 48px 1fr 36px;
+  grid-template-columns: 48px minmax(0, 1fr) 36px;
   gap: var(--space-lg);
   align-items: start;
   padding: var(--space-xl) 0;
@@ -389,7 +396,7 @@ a.site-footer__link:hover { opacity: 1; }
 
 .band--flip { background-color: rgba(26, 22, 16, .03); }
 .band__number { padding-top: 6px; color: var(--color-accent); }
-.band__body { display: grid; gap: var(--space-md); }
+.band__body { display: grid; gap: var(--space-md); min-width: 0; }
 .band__link { justify-self: end; padding: 4px 0; }
 .band__link:hover { color: var(--color-accent); }
 
@@ -649,6 +656,7 @@ a.site-footer__link:hover { opacity: 1; }
   border-radius: var(--radius-thumb);
 }
 
+.person-row--text { grid-template-columns: .8fr 1.2fr; }
 .person-row__name { font-size: clamp(24px, 2.2vw, 32px); letter-spacing: -.02em; }
 .person-row__role { margin-top: var(--space-xs); }
 .person-row__bio { margin-top: var(--space-md); }

@@ -9,6 +9,10 @@
   border-top: var(--border-light);
 }
 
+/* The header is absolute, so a page that opens with a plain section (no hero plate)
+   needs the same clearance the hero gets. */
+main > .section:first-child { padding-top: calc(var(--space-section) + 40px); }
+
 .section--flush { padding-top: 0; }
 .section--tight { padding-block: clamp(48px, 7vh, 88px); }
 
@@ -26,6 +30,9 @@
 /* ─── Grid ratios — A6 ─── */
 
 .grid { display: grid; gap: var(--space-2xl) var(--space-3xl); }
+
+/* Grid items must be allowed to shrink, or a nowrap child (the mobile tag strip) widens the track. */
+.grid > * { min-width: 0; }
 
 .grid--practice      { grid-template-columns: 1.2fr .8fr; }
 .grid--projects-head { grid-template-columns: 1fr 1fr; }

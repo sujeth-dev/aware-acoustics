@@ -128,7 +128,7 @@ function discipline(data, service, index) {
 
   return `<section class="section ${ground}" id="${esc(service.slug)}" aria-labelledby="service-${esc(service.slug)}">
   <div class="grid grid--editorial${flip ? " grid--flip" : ""}">
-    <div>
+    <div class="stack-lg">
       <span class="band__swatch plate plate--${esc(servicePlate(service.id))}" aria-hidden="true"></span>
       ${eyebrow(index + 1, service.name)}
       <h2 class="t-h3" id="service-${esc(service.slug)}">${esc(service.name)}</h2>

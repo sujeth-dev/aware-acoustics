@@ -136,6 +136,9 @@ h1.t-hero {
   color: var(--color-text-secondary);
 }
 
+/* A label directly above a list or stack needs air below it. */
+.t-label + .stack { margin-top: var(--space-sm); }
+
 /* ─── Emphasis — no italics (A4). Colour shift only. ─── */
 
 .accent { color: var(--color-accent); }

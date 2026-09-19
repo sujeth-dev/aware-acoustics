@@ -4,7 +4,7 @@
  * A person with a portrait renders as an alternating two-column editorial
  * row, reusing grid--editorial/grid--flip so the image side flips per
  * index rather than repeating the same layout twice. A person without a
- * portrait renders as a single-column text row with no image slot — never
+ * portrait renders as a text-only split (name left, biography right), no image slot — never
  * a placeholder box (portraits are CLIENT TO PROVIDE, Q-17).
  */
 
@@ -18,26 +18,31 @@ function metaLine(person) {
   return join(parts, " · ");
 }
 
-function body(person) {
+function heading(person) {
   const label = metaLine(person);
-  return `<div class="person-row__body">
-    ${when(label, () => `<p class="t-label">${esc(label)}</p>`)}
-    <p class="person-row__name t-h5">${esc(person.name)}</p>
-    <p class="person-row__bio t-body">${esc(person.bio)}</p>
+  return `${when(label, () => `<p class="t-label">${esc(label)}</p>`)}
+    <p class="person-row__name t-h5">${esc(person.name)}</p>`;
+}
+
+function text(person) {
+  return `<p class="person-row__bio t-body">${esc(person.bio)}</p>
     ${when((person.credentials ?? []).length > 0, () => `<p class="person-row__meta t-meta">${esc(join(person.credentials, " · "))}</p>`)}
-    ${when((person.tools ?? []).length > 0, () => `<p class="person-row__meta t-meta">${esc(join(person.tools, " · "))}</p>`)}
-  </div>`;
+    ${when((person.tools ?? []).length > 0, () => `<p class="person-row__meta t-meta">${esc(join(person.tools, " · "))}</p>`)}`;
 }
 
 export function personRow(person, index) {
+  // No portrait: a text-only editorial split — name left, biography right. No image slot.
   if (!person.portrait) {
-    return `<article class="person-row">${body(person)}</article>`;
+    return `<article class="grid person-row person-row--text">
+    <div>${heading(person)}</div>
+    <div>${text(person)}</div>
+  </article>`;
   }
 
   const flip = index % 2 === 1;
   return `<article class="grid grid--editorial person-row${flip ? " grid--flip" : ""}">
     <img class="person-row__portrait" src="${esc(person.portrait)}" alt="" loading="lazy" decoding="async">
-    ${body(person)}
+    <div>${heading(person)}${text(person)}</div>
   </article>`;
 }
 

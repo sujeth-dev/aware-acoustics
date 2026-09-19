@@ -9,8 +9,9 @@
   .grid--editorial,
   .grid--verification,
   .grid--halves,
-  .grid--contact {
-    grid-template-columns: 1fr;
+  .grid--contact,
+  .person-row--text {
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-xl);
   }
 
@@ -73,6 +74,11 @@
 
   .record-row__info { grid-column: 2; grid-row: 1; }
   .record-row__glyph { display: none; }
+
+  /* List rows stay a single compact line on phones. */
+  .record-row--list { grid-template-columns: 32px 72px minmax(0, 1fr); }
+  .record-row--list .record-row__thumb { grid-column: 2; grid-row: 1; height: 48px; aspect-ratio: auto; }
+  .record-row--list .record-row__info { grid-column: 3; grid-row: 1; }
 
   .band { grid-template-columns: 32px minmax(0, 1fr); }
   .band__link { grid-column: 2; justify-self: start; }
