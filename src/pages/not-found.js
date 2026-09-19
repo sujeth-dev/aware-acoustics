@@ -7,9 +7,9 @@ export function notFoundPage() {
     route: "/404/",
     title: "Not found",
     description: "This address does not resolve.",
-    body: `<section class="section ground-dust">
+    body: `<section class="section ground-dust" aria-labelledby="not-found-title">
   ${eyebrow(null, "Not found")}
-  <h1 class="t-h2">This address does not resolve.</h1>
+  <h1 class="t-h2" id="not-found-title">This address does not resolve.</h1>
   <p class="t-body">Continue through the work, the services or the appointment route.</p>
   <p class="stack-lg">
     ${cta("/work/", "Work")}
