@@ -46,7 +46,25 @@
         "licence": "CC0 1.0 public domain dedication",
         "credit": "Suraj Digrase, Wikimedia Commons",
         "cleared": true,
-        "order": 1
+        "order": 1,
+        "representative": false,
+        "depicts": "Guwahati International Airport"
+      },
+      {
+        "id": "international-airport-assam-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/international-airport-assam/international-airport-assam-project-space-02.webp",
+        "fallback": "/assets/projects/international-airport-assam/international-airport-assam-project-space-02.jpg",
+        "width": 1200,
+        "height": 900,
+        "alt": "Boarding gate concourse at Lokpriya Gopinath Bordoloi International Airport, Guwahati",
+        "depicts": "Guwahati International Airport",
+        "representative": false,
+        "source": "https://commons.wikimedia.org/wiki/File:Guwahati_Airport_boarding_gates.jpg",
+        "licence": "CC BY-SA 4.0",
+        "credit": "SlowPhoton, Wikimedia Commons",
+        "cleared": true,
+        "order": 2
       }
     ],
     "featured": false,
@@ -85,7 +103,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "education-auditorium-bengaluru-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/education-auditorium-bengaluru/education-auditorium-bengaluru-project-space-01.webp",
+        "fallback": "/assets/projects/education-auditorium-bengaluru/education-auditorium-bengaluru-project-space-01.jpg",
+        "width": 1054,
+        "height": 1400,
+        "alt": "Street view of the main entrance and signage of RNS Institute of Technology, Bengaluru",
+        "depicts": "RNS Institute of Technology, Bengaluru",
+        "representative": false,
+        "source": "https://commons.wikimedia.org/wiki/File:RNS_Institute_of_Technology_(Channasandra,_Rajarajeshwari_Nagar,_Bangalore,_2024)_03.jpg",
+        "licence": "CC BY-SA 4.0",
+        "credit": "Gpkp, Wikimedia Commons",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 20
@@ -236,7 +271,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "technology-workplace-bengaluru-01-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/technology-workplace-bengaluru-01/technology-workplace-bengaluru-01-project-space-01.webp",
+        "fallback": "/assets/projects/technology-workplace-bengaluru-01/technology-workplace-bengaluru-01-project-space-01.jpg",
+        "width": 1200,
+        "height": 800,
+        "alt": "Exterior of the Google Ananta campus, Bengaluru",
+        "depicts": "Google Ananta campus, Bengaluru",
+        "representative": true,
+        "source": "https://blog.google/intl/en-in/company-news/welcome-to-ananta-google-indias-new-campus-in-bengaluru/",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Google",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "technology-workplace-bengaluru-01-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/technology-workplace-bengaluru-01/technology-workplace-bengaluru-01-project-space-02.webp",
+        "fallback": "/assets/projects/technology-workplace-bengaluru-01/technology-workplace-bengaluru-01-project-space-02.jpg",
+        "width": 1200,
+        "height": 800,
+        "alt": "Workspace interior at the Google Ananta campus, Bengaluru",
+        "depicts": "Google Ananta campus, Bengaluru",
+        "representative": true,
+        "source": "https://blog.google/intl/en-in/company-news/welcome-to-ananta-google-indias-new-campus-in-bengaluru/",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Google",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 60
@@ -325,7 +393,25 @@
         "licence": "Hotel marketing photograph; use directed by site owner 2026-09-19, licence not verified",
         "credit": "JW Marriott Mumbai Sahar",
         "cleared": true,
-        "order": 1
+        "order": 1,
+        "representative": false,
+        "depicts": "JW Marriott Sahar"
+      },
+      {
+        "id": "hospitality-property-mumbai-01-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/hospitality-property-mumbai-01/hospitality-property-mumbai-01-project-space-02.webp",
+        "fallback": "/assets/projects/hospitality-property-mumbai-01/hospitality-property-mumbai-01-project-space-02.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Grand Ballroom of JW Marriott Mumbai Sahar",
+        "depicts": "JW Marriott Mumbai Sahar",
+        "representative": false,
+        "source": "https://www.marriott.com/en-us/hotels/bomsa-jw-marriott-mumbai-sahar/photos/",
+        "licence": "Hotel marketing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "JW Marriott Mumbai Sahar",
+        "cleared": true,
+        "order": 2
       }
     ],
     "featured": false,
@@ -364,7 +450,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "hotel-ballroom-kuwait-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/hotel-ballroom-kuwait/hotel-ballroom-kuwait-project-space-02.webp",
+        "fallback": "/assets/projects/hotel-ballroom-kuwait/hotel-ballroom-kuwait-project-space-02.jpg",
+        "width": 544,
+        "height": 367,
+        "alt": "Lobby atrium of the InterContinental Kuwait, Salmiya",
+        "depicts": "InterContinental Kuwait, Salmiya",
+        "representative": true,
+        "source": "https://www.directhotels.com/Salmiya/InterContinental_Kuwait",
+        "licence": "Venue-listing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "DirectHotels.com",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 90
@@ -402,7 +505,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "hospitality-property-mumbai-02-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/hospitality-property-mumbai-02/hospitality-property-mumbai-02-project-space-01.webp",
+        "fallback": "/assets/projects/hospitality-property-mumbai-02/hospitality-property-mumbai-02-project-space-01.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Exterior of The Westin Mumbai Powai Lake",
+        "depicts": "The Westin Mumbai Powai Lake",
+        "representative": false,
+        "source": "https://www.marriott.com/en-us/hotels/bomww-the-westin-mumbai-powai-lake/photos/",
+        "licence": "Hotel marketing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "The Westin Mumbai Powai Lake",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "hospitality-property-mumbai-02-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/hospitality-property-mumbai-02/hospitality-property-mumbai-02-project-space-02.webp",
+        "fallback": "/assets/projects/hospitality-property-mumbai-02/hospitality-property-mumbai-02-project-space-02.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Grand Ballroom of The Westin Mumbai Powai Lake",
+        "depicts": "The Westin Mumbai Powai Lake",
+        "representative": false,
+        "source": "https://www.marriott.com/en-us/hotels/bomww-the-westin-mumbai-powai-lake/photos/",
+        "licence": "Hotel marketing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "The Westin Mumbai Powai Lake",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 100
@@ -514,7 +650,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "l-and-t-corporate-office-mumbai-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/l-and-t-corporate-office-mumbai/l-and-t-corporate-office-mumbai-project-space-01.webp",
+        "fallback": "/assets/projects/l-and-t-corporate-office-mumbai/l-and-t-corporate-office-mumbai-project-space-01.jpg",
+        "width": 1183,
+        "height": 1182,
+        "alt": "Exterior of the A. M. Naik Tower, Larsen & Toubro, Powai, Mumbai",
+        "depicts": "A. M. Naik Tower, Powai",
+        "representative": true,
+        "source": "https://fgglass.com/project-details/l&t-am-naik-towers",
+        "licence": "Third-party press image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "FG Glass",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "l-and-t-corporate-office-mumbai-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/l-and-t-corporate-office-mumbai/l-and-t-corporate-office-mumbai-project-space-02.webp",
+        "fallback": "/assets/projects/l-and-t-corporate-office-mumbai/l-and-t-corporate-office-mumbai-project-space-02.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Planet L&T experience centre inside the A. M. Naik Tower, Mumbai",
+        "depicts": "A. M. Naik Tower, Powai",
+        "representative": true,
+        "source": "https://www.larsentoubro.com/experience-centre-mumbai",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Larsen & Toubro",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 503
@@ -551,7 +720,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "microsoft-corporate-office-bengaluru-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/microsoft-corporate-office-bengaluru/microsoft-corporate-office-bengaluru-project-space-01.webp",
+        "fallback": "/assets/projects/microsoft-corporate-office-bengaluru/microsoft-corporate-office-bengaluru-project-space-01.jpg",
+        "width": 859,
+        "height": 540,
+        "alt": "Campus exterior at the Microsoft India Development Center, Bengaluru",
+        "depicts": "Microsoft India Development Center, Bengaluru",
+        "representative": true,
+        "source": "https://www.microsoft.com/en-in/msidc/bangalore-campus",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Microsoft",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "microsoft-corporate-office-bengaluru-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/microsoft-corporate-office-bengaluru/microsoft-corporate-office-bengaluru-project-space-02.webp",
+        "fallback": "/assets/projects/microsoft-corporate-office-bengaluru/microsoft-corporate-office-bengaluru-project-space-02.jpg",
+        "width": 859,
+        "height": 540,
+        "alt": "Lounge and workstation area at the Microsoft India Development Center, Bengaluru",
+        "depicts": "Microsoft India Development Center, Bengaluru",
+        "representative": true,
+        "source": "https://www.microsoft.com/en-in/msidc/bangalore-campus",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Microsoft",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 504
@@ -1032,7 +1234,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "abb-cafeteria-town-hall-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/abb-cafeteria-town-hall/abb-cafeteria-town-hall-project-space-01.webp",
+        "fallback": "/assets/projects/abb-cafeteria-town-hall/abb-cafeteria-town-hall-project-space-01.jpg",
+        "width": 1042,
+        "height": 577,
+        "alt": "Main office block of the ABB India campus, Nelamangala, Bengaluru",
+        "depicts": "ABB India campus, Nelamangala",
+        "representative": true,
+        "source": "https://w.media/how-abb-indias-new-campus-became-a-sustainable-and-digitalised-facility/",
+        "licence": "Third-party press image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "W.Media",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 517
@@ -1217,7 +1436,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "cisco-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/cisco/cisco-project-space-01.webp",
+        "fallback": "/assets/projects/cisco/cisco-project-space-01.jpg",
+        "width": 1200,
+        "height": 481,
+        "alt": "Corridor with wall graphics at the Cisco campus, Bengaluru",
+        "depicts": "Cisco campus, Bengaluru",
+        "representative": true,
+        "source": "https://rezonant.net/project/cisco-vtv/",
+        "licence": "Design-agency portfolio image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Rezonant Design",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 524
@@ -1254,7 +1490,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "siemens-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/siemens/siemens-project-space-01.webp",
+        "fallback": "/assets/projects/siemens/siemens-project-space-01.jpg",
+        "width": 1200,
+        "height": 560,
+        "alt": "Architectural render of the terraced Siemens Healthineers campus, Bengaluru",
+        "depicts": "Siemens Healthineers campus, Bengaluru",
+        "representative": true,
+        "source": "https://www.siemens-healthineers.com/en-in/pr-20210604-hc",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Siemens Healthineers",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "siemens-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/siemens/siemens-project-space-02.webp",
+        "fallback": "/assets/projects/siemens/siemens-project-space-02.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Architect's render of the dining area at the Siemens Healthineers campus, Bengaluru",
+        "depicts": "Siemens Healthineers campus, Bengaluru",
+        "representative": true,
+        "source": "https://eller-eller.de/en/portfolio/siemens-healthineers-center-bengaluru/",
+        "licence": "Architect portfolio render; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Eller + Eller Architekten",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 525
@@ -1439,7 +1708,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "reva-university-amphitheatre-bengaluru-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/reva-university-amphitheatre-bengaluru/reva-university-amphitheatre-bengaluru-project-space-01.webp",
+        "fallback": "/assets/projects/reva-university-amphitheatre-bengaluru/reva-university-amphitheatre-bengaluru-project-space-01.jpg",
+        "width": 878,
+        "height": 551,
+        "alt": "Swami Vivekananda Block on the REVA University campus, Bengaluru",
+        "depicts": "Swami Vivekananda Block, REVA University",
+        "representative": false,
+        "source": "https://www.reva.edu.in/about-university",
+        "licence": "Institution website image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "REVA University",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "reva-university-amphitheatre-bengaluru-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/reva-university-amphitheatre-bengaluru/reva-university-amphitheatre-bengaluru-project-space-02.webp",
+        "fallback": "/assets/projects/reva-university-amphitheatre-bengaluru/reva-university-amphitheatre-bengaluru-project-space-02.jpg",
+        "width": 875,
+        "height": 597,
+        "alt": "Stage and seating of the Kuvempu Auditorium, REVA University",
+        "depicts": "Kuvempu Auditorium, REVA University",
+        "representative": false,
+        "source": "https://www.reva.edu.in/campus-facilities",
+        "licence": "Institution website image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "REVA University",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 601
@@ -1476,7 +1778,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "somaiah-university-auditorium-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/somaiah-university-auditorium/somaiah-university-auditorium-project-space-01.webp",
+        "fallback": "/assets/projects/somaiah-university-auditorium/somaiah-university-auditorium-project-space-01.jpg",
+        "width": 540,
+        "height": 350,
+        "alt": "Aerial view of the Somaiya Vidyavihar University campus",
+        "depicts": "Somaiya Vidyavihar University campus",
+        "representative": true,
+        "source": "https://www.somaiya.edu/en/infrastructure/",
+        "licence": "Institution website image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Somaiya Vidyavihar University",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "somaiah-university-auditorium-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/somaiah-university-auditorium/somaiah-university-auditorium-project-space-02.webp",
+        "fallback": "/assets/projects/somaiah-university-auditorium/somaiah-university-auditorium-project-space-02.jpg",
+        "width": 540,
+        "height": 350,
+        "alt": "Auditorium with tiered seating and a stage at Somaiya Vidyavihar University",
+        "depicts": "Somaiya Vidyavihar University auditorium",
+        "representative": true,
+        "source": "https://www.somaiya.edu/en/infrastructure/",
+        "licence": "Institution website image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Somaiya Vidyavihar University",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 602
@@ -1513,7 +1848,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "gpr-engineering-college-seminar-hall-kurnool-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/gpr-engineering-college-seminar-hall-kurnool/gpr-engineering-college-seminar-hall-kurnool-project-space-01.webp",
+        "fallback": "/assets/projects/gpr-engineering-college-seminar-hall-kurnool/gpr-engineering-college-seminar-hall-kurnool-project-space-01.jpg",
+        "width": 1200,
+        "height": 407,
+        "alt": "Domed memorial building on the G. Pulla Reddy Engineering College campus, Kurnool",
+        "depicts": "G. Pulla Reddy Engineering College, Kurnool",
+        "representative": true,
+        "source": "https://www.gprec.ac.in/",
+        "licence": "Institution website image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "G. Pulla Reddy Engineering College",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 603
@@ -1624,7 +1976,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "hn-science-centre-auditorium-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/hn-science-centre-auditorium/hn-science-centre-auditorium-project-space-01.webp",
+        "fallback": "/assets/projects/hn-science-centre-auditorium/hn-science-centre-auditorium-project-space-01.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Sundial exhibit in front of the Dr. H. Narasimhaiah Science Centre, Gauribidanur, from a video thumbnail carrying title text",
+        "depicts": "Dr. H. Narasimhaiah Science Centre, Gauribidanur",
+        "representative": false,
+        "source": "https://www.youtube.com/watch?v=842WOqLlpqw",
+        "licence": "Video thumbnail uploaded by a third party; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "YouTube video thumbnail",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "hn-science-centre-auditorium-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/hn-science-centre-auditorium/hn-science-centre-auditorium-project-space-02.webp",
+        "fallback": "/assets/projects/hn-science-centre-auditorium/hn-science-centre-auditorium-project-space-02.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Inauguration ceremony for the auditorium and galleries at the Dr. H. Narasimhaiah Science Centre, Gauribidanur",
+        "depicts": "Dr. H. Narasimhaiah Science Centre, Gauribidanur",
+        "representative": false,
+        "source": "https://chikkaballapur.com/wp-content/uploads/2022/03/01MarCB02A.jpeg",
+        "licence": "Third-party press image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Chikkaballapur.com",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 606
@@ -1846,7 +2231,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "sachidananda-ganapathi-ashram-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/sachidananda-ganapathi-ashram/sachidananda-ganapathi-ashram-project-space-01.webp",
+        "fallback": "/assets/projects/sachidananda-ganapathi-ashram/sachidananda-ganapathi-ashram-project-space-01.jpg",
+        "width": 1050,
+        "height": 1400,
+        "alt": "Entrance wall and signage of the Avadhoota Datta Peetham, Sri Ganapati Sachchidananda Ashrama, Mysuru",
+        "depicts": "Sri Ganapati Sachchidananda Ashrama, Mysuru",
+        "representative": false,
+        "source": "https://commons.wikimedia.org/wiki/File:Sri_Ganapati_Sachchidanand_Ashrama_5,_Mysore_01.jpg",
+        "licence": "CC0 1.0",
+        "credit": "A.Murali, Wikimedia Commons",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "sachidananda-ganapathi-ashram-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/sachidananda-ganapathi-ashram/sachidananda-ganapathi-ashram-project-space-02.webp",
+        "fallback": "/assets/projects/sachidananda-ganapathi-ashram/sachidananda-ganapathi-ashram-project-space-02.jpg",
+        "width": 1200,
+        "height": 800,
+        "alt": "Interior of the Nada Mantapa auditorium with domed ceiling and stage, during an event",
+        "depicts": "Nada Mantapa, Sri Ganapati Sachchidananda Ashrama",
+        "representative": false,
+        "source": "https://www.dattapeetham.org/page/view/nada-mantapa",
+        "licence": "Institution website image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Avadhoota Datta Peetham",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 612
@@ -1920,7 +2338,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "hyatt-bengaluru-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/hyatt-bengaluru/hyatt-bengaluru-project-space-01.webp",
+        "fallback": "/assets/projects/hyatt-bengaluru/hyatt-bengaluru-project-space-01.jpg",
+        "width": 1023,
+        "height": 696,
+        "alt": "Exterior of Hyatt Centric Hebbal, Bengaluru",
+        "depicts": "Hyatt Centric Hebbal, Bengaluru",
+        "representative": true,
+        "source": "https://amimagazine.global/Meeting-Event-Venues/Bengaluru-India/Convention-Hotel/Hyatt-Centric-Hebbal-Bengaluru-p60148761",
+        "licence": "Venue-listing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Hyatt Centric Hebbal, via AMI",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "hyatt-bengaluru-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/hyatt-bengaluru/hyatt-bengaluru-project-space-02.webp",
+        "fallback": "/assets/projects/hyatt-bengaluru/hyatt-bengaluru-project-space-02.jpg",
+        "width": 1024,
+        "height": 671,
+        "alt": "Guest room at Hyatt Centric Hebbal, Bengaluru",
+        "depicts": "Hyatt Centric Hebbal, Bengaluru",
+        "representative": true,
+        "source": "https://amimagazine.global/Meeting-Event-Venues/Bengaluru-India/Convention-Hotel/Hyatt-Centric-Hebbal-Bengaluru-p60148761",
+        "licence": "Venue-listing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Hyatt Centric Hebbal, via AMI",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 702
@@ -1994,7 +2445,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "itc-coorg-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/itc-coorg/itc-coorg-project-space-01.webp",
+        "fallback": "/assets/projects/itc-coorg/itc-coorg-project-space-01.jpg",
+        "width": 1200,
+        "height": 800,
+        "alt": "Infinity pool with a waterfall and forest backdrop at WelcomHeritage Ayatana, Coorg",
+        "depicts": "WelcomHeritage Ayatana, Coorg",
+        "representative": true,
+        "source": "https://www.trivago.com/en-US/oar/hotel-welcomheritage-ayatana-coorg-kodagu",
+        "licence": "Venue-listing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "WelcomHeritage Ayatana, via Trivago",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "itc-coorg-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/itc-coorg/itc-coorg-project-space-02.webp",
+        "fallback": "/assets/projects/itc-coorg/itc-coorg-project-space-02.jpg",
+        "width": 1200,
+        "height": 800,
+        "alt": "Guest cottage bedroom with a forest-view balcony at WelcomHeritage Ayatana, Coorg",
+        "depicts": "WelcomHeritage Ayatana, Coorg",
+        "representative": true,
+        "source": "https://www.trivago.com/en-US/oar/hotel-welcomheritage-ayatana-coorg-kodagu",
+        "licence": "Venue-listing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "WelcomHeritage Ayatana, via Trivago",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 704
@@ -2179,7 +2663,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "hilton-olympia-hotel-ballroom-kuwait-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/hilton-olympia-hotel-ballroom-kuwait/hilton-olympia-hotel-ballroom-kuwait-project-space-01.webp",
+        "fallback": "/assets/projects/hilton-olympia-hotel-ballroom-kuwait/hilton-olympia-hotel-ballroom-kuwait-project-space-01.jpg",
+        "width": 1024,
+        "height": 842,
+        "alt": "Terrace and facade of Hilton Chennai at dusk",
+        "depicts": "Hilton Chennai",
+        "representative": true,
+        "source": "https://www.meetings-conventions.com/Meeting-Event-Venues/Chennai-India/Convention-Hotel/Hilton-Chennai-p2879234",
+        "licence": "Venue-listing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Hilton Chennai, via Meetings & Conventions",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "hilton-olympia-hotel-ballroom-kuwait-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/hilton-olympia-hotel-ballroom-kuwait/hilton-olympia-hotel-ballroom-kuwait-project-space-02.webp",
+        "fallback": "/assets/projects/hilton-olympia-hotel-ballroom-kuwait/hilton-olympia-hotel-ballroom-kuwait-project-space-02.jpg",
+        "width": 1024,
+        "height": 650,
+        "alt": "Hilton Grand Ballroom at Hilton Chennai, set for a conference",
+        "depicts": "Hilton Chennai",
+        "representative": true,
+        "source": "https://www.meetings-conventions.com/Meeting-Event-Venues/Chennai-India/Convention-Hotel/Hilton-Chennai-p2879234",
+        "licence": "Venue-listing photograph; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Hilton Chennai, via Meetings & Conventions",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 709
@@ -2216,7 +2733,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "aditya-birla-residential-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/aditya-birla-residential/aditya-birla-residential-project-space-01.webp",
+        "fallback": "/assets/projects/aditya-birla-residential/aditya-birla-residential-project-space-01.jpg",
+        "width": 1200,
+        "height": 1381,
+        "alt": "Developer render of the Birla Niyaara towers, Worli, Mumbai, at dusk",
+        "depicts": "Birla Niyaara, Worli",
+        "representative": true,
+        "source": "https://www.birlaestates.com/birla-niyaara-worli/",
+        "licence": "Developer marketing render; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Birla Estates",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "aditya-birla-residential-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/aditya-birla-residential/aditya-birla-residential-project-space-02.webp",
+        "fallback": "/assets/projects/aditya-birla-residential/aditya-birla-residential-project-space-02.jpg",
+        "width": 1200,
+        "height": 866,
+        "alt": "Developer cutaway render of a duplex living room at Birla Niyaara, Worli",
+        "depicts": "Birla Niyaara, Worli",
+        "representative": true,
+        "source": "https://www.birlaestates.com/birla-niyaara-worli/",
+        "licence": "Developer marketing render; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Birla Estates",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 801
@@ -2253,7 +2803,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "kalpataru-residential-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/kalpataru-residential/kalpataru-residential-project-space-01.webp",
+        "fallback": "/assets/projects/kalpataru-residential/kalpataru-residential-project-space-01.jpg",
+        "width": 807,
+        "height": 792,
+        "alt": "Dusk view of the Kalpataru Avana tower, Parel, Mumbai",
+        "depicts": "Kalpataru Avana, Parel",
+        "representative": true,
+        "source": "https://www.squareyards.com/mumbai-residential-property/kalpataru-avana/2803/project",
+        "licence": "Property-listing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Square Yards",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "kalpataru-residential-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/kalpataru-residential/kalpataru-residential-project-space-02.webp",
+        "fallback": "/assets/projects/kalpataru-residential/kalpataru-residential-project-space-02.jpg",
+        "width": 1200,
+        "height": 489,
+        "alt": "Apartment living room opening onto a balcony at Kalpataru Avana, Parel",
+        "depicts": "Kalpataru Avana, Parel",
+        "representative": true,
+        "source": "https://www.kalpataru.com/mumbai/kalpataru-avana",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Kalpataru",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 802
@@ -2290,7 +2873,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "inorbit-mall-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/inorbit-mall/inorbit-mall-project-space-01.webp",
+        "fallback": "/assets/projects/inorbit-mall/inorbit-mall-project-space-01.jpg",
+        "width": 1200,
+        "height": 900,
+        "alt": "Street-level dusk view of the Inorbit Mall Malad facade",
+        "depicts": "Inorbit Mall, Malad",
+        "representative": false,
+        "source": "https://commons.wikimedia.org/wiki/File:Inorbit_Mall.jpg",
+        "licence": "CC BY-SA 2.0",
+        "credit": "Rakesh Krishna Kumar, Wikimedia Commons",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "inorbit-mall-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/inorbit-mall/inorbit-mall-project-space-02.webp",
+        "fallback": "/assets/projects/inorbit-mall/inorbit-mall-project-space-02.jpg",
+        "width": 800,
+        "height": 533,
+        "alt": "Central atrium of Inorbit Mall Malad with domed skylight, staircases and escalators",
+        "depicts": "Inorbit Mall, Malad",
+        "representative": false,
+        "source": "https://commons.wikimedia.org/wiki/File:Inorbit_Malad-9.jpg",
+        "licence": "CC BY-SA 3.0",
+        "credit": "KuwarOnline, Wikimedia Commons",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 803
@@ -2327,7 +2943,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "alexa-technical-lab-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/alexa-technical-lab/alexa-technical-lab-project-space-01.webp",
+        "fallback": "/assets/projects/alexa-technical-lab/alexa-technical-lab-project-space-01.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Exterior of the Amazon Hyderabad campus, building HYD13",
+        "depicts": "Amazon Hyderabad campus (HYD13)",
+        "representative": true,
+        "source": "https://www.aboutamazon.in/news/workplace/amazons-largest-office-building-is-in-hyderabad",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Amazon",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "alexa-technical-lab-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/alexa-technical-lab/alexa-technical-lab-project-space-02.webp",
+        "fallback": "/assets/projects/alexa-technical-lab/alexa-technical-lab-project-space-02.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Reception area of the Amazon Hyderabad campus, building HYD13",
+        "depicts": "Amazon Hyderabad campus (HYD13)",
+        "representative": true,
+        "source": "https://www.aboutamazon.in/news/workplace/amazons-largest-office-building-is-in-hyderabad",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Amazon",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 901
@@ -2364,7 +3013,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "johnson-and-johnson-bengaluru-hyderabad-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/johnson-and-johnson-bengaluru-hyderabad/johnson-and-johnson-bengaluru-hyderabad-project-space-01.webp",
+        "fallback": "/assets/projects/johnson-and-johnson-bengaluru-hyderabad/johnson-and-johnson-bengaluru-hyderabad-project-space-01.jpg",
+        "width": 1200,
+        "height": 514,
+        "alt": "Exterior of the building housing the Johnson & Johnson Institute, Chennai",
+        "depicts": "Johnson & Johnson Institute, Chennai",
+        "representative": true,
+        "source": "https://www.jnjmedtech.com/en-US/education/about-jnj-institute/jji-locations/chennai-india/",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Johnson & Johnson MedTech",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "johnson-and-johnson-bengaluru-hyderabad-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/johnson-and-johnson-bengaluru-hyderabad/johnson-and-johnson-bengaluru-hyderabad-project-space-02.webp",
+        "fallback": "/assets/projects/johnson-and-johnson-bengaluru-hyderabad/johnson-and-johnson-bengaluru-hyderabad-project-space-02.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Dry lab at the Johnson & Johnson Institute, Chennai",
+        "depicts": "Johnson & Johnson Institute, Chennai",
+        "representative": true,
+        "source": "https://www.jnjmedtech.com/en-US/education/about-jnj-institute/jji-locations/chennai-india/",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Johnson & Johnson MedTech",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 902
@@ -2401,7 +3083,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "godrej-technical-lab-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/godrej-technical-lab/godrej-technical-lab-project-space-01.webp",
+        "fallback": "/assets/projects/godrej-technical-lab/godrej-technical-lab-project-space-01.jpg",
+        "width": 1200,
+        "height": 715,
+        "alt": "Staff group photo outside the Godrej Appliances R&D Centre, Pirangut, Pune",
+        "depicts": "Godrej Appliances R&D Centre, Pirangut",
+        "representative": true,
+        "source": "https://www.indianretailer.com/news/retail-india-news-godrej-appliances-enhances-rd-capabilities-through-infrastructure-expansion",
+        "licence": "Third-party press image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Indian Retailer",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 903
@@ -2438,7 +3137,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "etv-technical-lab-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/etv-technical-lab/etv-technical-lab-project-space-01.webp",
+        "fallback": "/assets/projects/etv-technical-lab/etv-technical-lab-project-space-01.jpg",
+        "width": 1200,
+        "height": 900,
+        "alt": "Main entrance of Ramoji Film City, Hyderabad, which houses ETV",
+        "depicts": "Ramoji Film City main entrance",
+        "representative": true,
+        "source": "https://commons.wikimedia.org/wiki/File:Ramoji_film_City_-_Main_entrance.jpg",
+        "licence": "CC BY-SA 4.0",
+        "credit": "Pratish Khedekar, Wikimedia Commons",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 904
@@ -2475,7 +3191,40 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "abb-technical-lab-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/abb-technical-lab/abb-technical-lab-project-space-01.webp",
+        "fallback": "/assets/projects/abb-technical-lab/abb-technical-lab-project-space-01.jpg",
+        "width": 1200,
+        "height": 675,
+        "alt": "Exterior of the ABB Innovation Center, Bengaluru",
+        "depicts": "ABB Innovation Center, Bengaluru",
+        "representative": true,
+        "source": "https://new.abb.com/news/detail/89417/abb-innovation-center-aic-one-of-its-largest-globally-inaugurated-in-india",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "ABB",
+        "cleared": true,
+        "order": 1
+      },
+      {
+        "id": "abb-technical-lab-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/abb-technical-lab/abb-technical-lab-project-space-02.webp",
+        "fallback": "/assets/projects/abb-technical-lab/abb-technical-lab-project-space-02.jpg",
+        "width": 1200,
+        "height": 800,
+        "alt": "Ribbon-cutting at the entrance of the ABB Innovation Center, Bengaluru",
+        "depicts": "ABB Innovation Center, Bengaluru",
+        "representative": true,
+        "source": "https://new.abb.com/news/detail/89417/abb-innovation-center-aic-one-of-its-largest-globally-inaugurated-in-india",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "ABB",
+        "cleared": true,
+        "order": 2
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 905
@@ -2512,7 +3261,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "citadel-technical-lab-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/citadel-technical-lab/citadel-technical-lab-project-space-01.webp",
+        "fallback": "/assets/projects/citadel-technical-lab/citadel-technical-lab-project-space-01.jpg",
+        "width": 800,
+        "height": 800,
+        "alt": "Two Horizon Centre office tower, Gurugram",
+        "depicts": "Two Horizon Centre, Gurugram",
+        "representative": true,
+        "source": "https://www.dlf.in/offices/gurugram/dlf-horizon-center",
+        "licence": "Company marketing image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "DLF",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 906
@@ -2549,7 +3315,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "equitas-bank-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/equitas-bank/equitas-bank-project-space-01.webp",
+        "fallback": "/assets/projects/equitas-bank/equitas-bank-project-space-01.jpg",
+        "width": 1200,
+        "height": 900,
+        "alt": "Entrance frontage of Equitas Towers, Saidapet, Chennai",
+        "depicts": "Equitas Towers, Chennai",
+        "representative": true,
+        "source": "https://lapaasvoice.com/equitas-chennai-corporate-office",
+        "licence": "Third-party press image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Lapaas Voice",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 1001
@@ -2586,7 +3369,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "hdfc-bank-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/hdfc-bank/hdfc-bank-project-space-01.webp",
+        "fallback": "/assets/projects/hdfc-bank/hdfc-bank-project-space-01.jpg",
+        "width": 1200,
+        "height": 900,
+        "alt": "HDFC Bank branch building at T-Hub, Hyderabad",
+        "depicts": "HDFC Bank T-Hub branch, Hyderabad",
+        "representative": true,
+        "source": "https://commons.wikimedia.org/wiki/File:HDFC_Bank_T-hub_branch.jpg",
+        "licence": "CC BY-SA 4.0",
+        "credit": "Kavali Chandrakanth KCK, Wikimedia Commons",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 1002
@@ -2623,7 +3423,24 @@
     "condition": null,
     "approach": null,
     "outcome": null,
-    "images": [],
+    "images": [
+      {
+        "id": "standard-chartered-bank-kolkata-project-space-01",
+        "category": "project-space",
+        "src": "/assets/projects/standard-chartered-bank-kolkata/standard-chartered-bank-kolkata-project-space-01.webp",
+        "fallback": "/assets/projects/standard-chartered-bank-kolkata/standard-chartered-bank-kolkata-project-space-01.jpg",
+        "width": 1200,
+        "height": 900,
+        "alt": "Standard Chartered Bank building at B.B.D. Bagh, Kolkata",
+        "depicts": "Standard Chartered Bank building, B.B.D. Bagh, Kolkata",
+        "representative": false,
+        "source": "https://commons.wikimedia.org/wiki/File:Standard_Chartered_Bank_Building,_B._B._D._Bag_in_Kolkata_05.jpg",
+        "licence": "CC BY-SA 4.0",
+        "credit": "Pinakpani, Wikimedia Commons",
+        "cleared": true,
+        "order": 1
+      }
+    ],
     "featured": false,
     "published": true,
     "order": 1003
@@ -2673,7 +3490,25 @@
         "licence": "CC BY-SA 4.0",
         "credit": "Anonymous8010, Wikimedia Commons",
         "cleared": true,
-        "order": 1
+        "order": 1,
+        "representative": false,
+        "depicts": "Dehradun Airport"
+      },
+      {
+        "id": "dehradun-airport-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/dehradun-airport/dehradun-airport-project-space-02.webp",
+        "fallback": "/assets/projects/dehradun-airport/dehradun-airport-project-space-02.jpg",
+        "width": 1200,
+        "height": 900,
+        "alt": "Departure and arrival concourse of the new terminal building, Dehradun (Jolly Grant) Airport",
+        "depicts": "Dehradun (Jolly Grant) Airport",
+        "representative": false,
+        "source": "https://commons.wikimedia.org/wiki/File:Dehradun_Airport_Terminal_Inside.jpg",
+        "licence": "CC BY-SA 4.0",
+        "credit": "Anonymous8010, Wikimedia Commons",
+        "cleared": true,
+        "order": 2
       }
     ],
     "featured": false,
@@ -2725,7 +3560,25 @@
         "licence": "Third-party press image; use directed by site owner 2026-09-19, licence not verified",
         "credit": "Live From A Lounge",
         "cleared": true,
-        "order": 1
+        "order": 1,
+        "representative": false,
+        "depicts": "Lucknow International Airport"
+      },
+      {
+        "id": "lucknow-international-airport-project-space-02",
+        "category": "project-space",
+        "src": "/assets/projects/lucknow-international-airport/lucknow-international-airport-project-space-02.webp",
+        "fallback": "/assets/projects/lucknow-international-airport/lucknow-international-airport-project-space-02.jpg",
+        "width": 1200,
+        "height": 900,
+        "alt": "Seating area inside Terminal 3, Chaudhary Charan Singh International Airport, Lucknow",
+        "depicts": "Lucknow Airport Terminal 3",
+        "representative": false,
+        "source": "https://zeenews.india.com/hindi/photos/lucknow-chaudhary-charan-singh-airport-terminal-3-inside-pics/2151436",
+        "licence": "Third-party press image; use directed by site owner 2026-09-19, licence not verified",
+        "credit": "Zee News",
+        "cleared": true,
+        "order": 2
       }
     ],
     "featured": false,

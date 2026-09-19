@@ -1,9 +1,13 @@
-# Web research — reference images and facts, NOT for publication
+# Web research — reference images and facts (published under DEC-019)
 
 > **Companion to:** `plan/PROJECT_INTAKE_2026.md` (the organisation plan this folder executes)
 > **Governed by:** `plan/IMAGE_WORKFLOW.md` — every image below is uncleared and must never be
 > copied into `assets/projects/`, `public/`, or referenced from `data/projects.json` until a rights
 > register entry exists and `cleared: true` is set.
+
+> **Update 2026-09-19 (DEC-019):** the owner directed that this set be published. 55 of these images are
+> now on `/work/`, processed into `public/assets/projects/`, each labelled and credited in `data/projects.json`.
+> The rights caveats below still stand: publication is on the owner's direction, not a rights clearance.
 
 ## What this is
 

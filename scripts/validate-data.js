@@ -107,6 +107,7 @@ for (const project of projects) {
     const fields = ["id", "category", "src", "fallback", "width", "height", "alt", "source", "licence", "cleared", "order"];
     requireFields(image, fields, `${label} image`);
     if (project.published && !image.cleared) errors.push(`${label}: published image is not rights-cleared`);
+    if (image.representative && !image.depicts) errors.push(`${label}: representative image ${image.id} must name what it depicts`);
     for (const assetPath of [image.src, image.fallback]) {
       if (!assetPath?.startsWith("/assets/")) errors.push(`${label}: image path must begin /assets/`);
       const diskPath = assetPath ? path.join(root, "public", assetPath.replace(/^\//, "")) : null;

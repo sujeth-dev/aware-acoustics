@@ -57,18 +57,24 @@ function filterStrip(data, projects) {
 }
 
 /**
- * Photographs on a list-tier row show the named facility, not Aware Acoustics
- * project photography. Credits are printed because open licences (CC BY-SA)
- * require attribution on the page.
+ * No photograph on a list-tier row is Aware Acoustics project photography.
+ * Some show the facility named; rows marked "Representative image" show a
+ * related site. Credits are printed because open licences (CC BY-SA, CC0)
+ * expect attribution on the page.
  */
+function creditLine(image) {
+  const licence = image.licence.startsWith("CC") ? ` · ${esc(image.licence)}` : "";
+  return `<a href="${esc(image.source)}" rel="noopener">${esc(image.credit)}</a>${licence}`;
+}
+
 function imageNote(projects) {
-  const credited = projects.flatMap((project) => (project.images ?? []).map((image) => ({ project, image })));
+  const credited = projects.filter((project) => (project.images ?? []).length > 0);
   if (credited.length === 0) return "";
 
   return `<div class="work-note t-meta">
-  <p>Photographs show the facilities named and are credited to their sources. They are not Aware Acoustics project photography.</p>
+  <p>None of these photographs is Aware Acoustics project photography. Where a row says “Representative image”, the photograph shows a related site, not the project itself. All are credited to their sources.</p>
   <ul class="work-note__credits">
-${each(credited, ({ project, image }) => `    <li>${esc(project.title)} — <a href="${esc(image.source)}" rel="noopener">${esc(image.credit)}</a>${image.licence.startsWith("CC") ? ` · ${esc(image.licence)}` : ""}</li>`)}
+${each(credited, (project) => `    <li>${esc(project.title)} — ${join([...new Set(project.images.map(creditLine))], "; ")}</li>`)}
   </ul>
 </div>`;
 }

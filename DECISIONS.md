@@ -484,3 +484,39 @@ Hilton Olympia Kuwait, an HDFC branch vs the HQ) or a campus entrance rather tha
 Verification numbers, Services evidence and the production build stay gated on Q-08/Q-09 — the
 data cannot supply case-tier proof. The permission record for client names is this decision plus the
 owner's statement; `PROJECT_DATA.md` §4 asks for a written record per project, to be kept on file.
+
+---
+
+## DEC-019 — Publish the web-research image set, labelled as representative
+
+**Status:** Decided · 2026-09-19 · supersedes the "Images" paragraph of DEC-018
+
+**Context.** DEC-018 published images for four records only. The site owner's standing instruction was
+web images, one exterior and one interior per project, and directed that all of the researched set
+(`assets/source/web-research/`) be published. That set was built as reference only: `IMAGE_WORKFLOW.md`
+requires a cleared rights entry, and many of its buildings were best-guess matches for a client name
+rather than a confirmed project site (Kalpataru Avana for "Kalpataru", Hilton Chennai for Hilton Olympia
+Kuwait, Google Ananta for Opal).
+
+**Decision.**
+
+- 55 images across 33 records are published: every researched image except Cisco's interior, which is
+  a promotional graphic of a woman and children with copy text and shows no site.
+- Each image records `source`, `licence`, `credit`, `depicts` (the site actually shown) and
+  `representative`. `cleared: true` records the owner's direction; it is not a rights finding.
+- `representative: true` (35 images) means the photograph shows a related site, not a confirmed project
+  site. Those rows print "Representative image · <site shown>" on the row itself, not only in the credits.
+- Licences are recorded as found. Nine Commons images were checked against the Commons API and carry
+  real open licences (CC BY-SA 2.0/3.0/4.0, CC0); with the two airport exteriors recorded earlier, 11 of
+  the 55 are openly licensed. The other 44 are press, marketing, listing or video-thumbnail images whose
+  licence is **not verified**; they carry the owner's direction only.
+- `/work/` states that none of the photographs is Aware Acoustics project photography and credits each
+  source. Alt text describes what the picture shows, including people, renders and thumbnails.
+- `validate-data.js` fails a representative image that does not name what it depicts; the browser test
+  fails any row photograph that does not decode and any representative row missing its label.
+
+**Consequences.** The residual copyright exposure grows from two images to 44. Several images are
+weak as portfolio material (a YouTube thumbnail with title text, a ceremony photo, a staff group photo,
+a street shot for HDFC). Replacing each with client-supplied photography, via `IMAGE_WORKFLOW.md` §5,
+remains the route to removing both the exposure and the "representative" labels. Two research folders
+(`others/`) have no image because the facility could not be identified.

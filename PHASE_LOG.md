@@ -590,3 +590,20 @@ devDependency. The remaining Phase 3b items (ESLint, no-hardcoded-facts, Vitest,
 
 Commits: `fix: resolve layout defects found in browser review` · `test: add browser smoke checks`.
 
+## Web images published (DEC-019)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-19 |
+| **Status** | `COMPLETE` |
+
+Published the web-research image set on the owner's direction: 55 images on 33 records (exterior and
+interior side by side on each list row). Images are re-encoded to 1200px-wide WebP and JPEG with
+metadata dropped and camera rotation applied first (an RNSIT photo came out sideways before that fix).
+Nine Commons licences were verified against the Commons API; the rest are recorded as unverified.
+Rows showing a related site carry a "Representative image · <site>" label. Cisco's interior was left
+out because it is an advertising graphic, not a space. A contact-sheet review changed four alt texts
+that had repeated the research notes rather than the picture.
+
+`npm run test:browser` now also fails on any row photograph that does not decode and on a
+representative row without its label.

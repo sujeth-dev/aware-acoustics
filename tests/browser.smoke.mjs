@@ -120,6 +120,29 @@ try {
     if (await page.locator("[data-work-filter]").isVisible()) fail("work (no JS): dead filter control is visible");
     await context.close();
   }
+
+  // Every /work/ row photograph decodes. Rows lazy-load, so force them eager first —
+  // otherwise a broken path below the fold never requests and never fails.
+  {
+    const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const page = await context.newPage();
+    await page.goto(`${BASE}/work/`, { waitUntil: "load" });
+    const broken = await page.evaluate(async () => {
+      const images = [...document.querySelectorAll(".record-row img")];
+      images.forEach((image) => { image.loading = "eager"; });
+      await Promise.all(images.map((image) => image.decode().catch(() => null)));
+      return { total: images.length, bad: images.filter((image) => !image.naturalWidth).map((image) => image.getAttribute("src")) };
+    });
+    if (broken.total === 0) fail("work: no row photographs rendered");
+    for (const src of broken.bad) fail(`work: photograph did not load: ${src}`);
+
+    // A row that shows a related site must say so on the row itself.
+    const projects = JSON.parse(fs.readFileSync("data/projects.json", "utf8"));
+    const expected = projects.filter((project) => project.published && (project.images ?? []).some((image) => image.representative)).length;
+    const labelled = await page.locator(".record-row__basis").count();
+    if (labelled !== expected) fail(`work: ${expected} rows show a representative image but ${labelled} carry the label`);
+    await context.close();
+  }
 } catch (error) {
   fail(`harness: ${error.message}`);
 } finally {

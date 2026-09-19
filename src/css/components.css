@@ -371,8 +371,19 @@ a.site-footer__link:hover { opacity: 1; }
 
 /* List-tier rows (no page behind them) are a compact index line, not a hero-sized row:
    a 74-row list of wide plates is monotone and roughly 12,000px tall. */
-.record-row--list { grid-template-columns: 48px 120px minmax(0, 1fr); padding: var(--space-md) 0; }
+.record-row--list { grid-template-columns: 48px 160px minmax(0, 1fr); padding: var(--space-md) 0; }
 .record-row--list .record-row__thumb { height: 64px; }
+
+/* Exterior and interior share one 160px cell; a single photo fills it. */
+.record-row__thumbs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--space-xs);
+}
+.record-row__thumbs .record-row__thumb { height: 64px; }
+
+.record-row__basis { color: var(--color-text-secondary); font-style: italic; }
 
 .record-row__info { display: grid; gap: var(--space-xs); }
 .record-row__title { font-size: 18px; letter-spacing: -.015em; }
@@ -463,6 +474,7 @@ a.site-footer__link:hover { opacity: 1; }
 
 .work-note { margin-top: var(--space-lg); max-width: 70ch; }
 .work-note__credits { margin: var(--space-sm) 0 0; padding: 0; list-style: none; }
+.work-note__credits li { margin-bottom: var(--space-xs); }
 .work-note__credits a { border-bottom: 1px solid var(--line); }
 
 /* Sector filter — DESIGN_GUIDE.md §10.5: ink text + 2px underline, aria-current. */
