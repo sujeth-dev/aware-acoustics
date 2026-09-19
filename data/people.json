@@ -10,7 +10,7 @@
     "email": "padmanabha@awareacoustics.in",
     "phone": null,
     "portrait": null,
-    "published": false,
+    "published": true,
     "order": 10
   },
   {
@@ -24,7 +24,7 @@
     "email": "srikanth@awareacoustics.in",
     "phone": null,
     "portrait": null,
-    "published": false,
+    "published": true,
     "order": 20
   }
 ]
