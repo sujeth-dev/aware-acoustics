@@ -10,9 +10,11 @@
     "build:production": "AWARE_ENV=production npm run validate:data && AWARE_ENV=production vite build",
     "preview": "vite preview",
     "validate:data": "node scripts/validate-data.js",
-    "test:smoke": "node tests/render-record.smoke.mjs"
+    "test:smoke": "node tests/render-record.smoke.mjs",
+    "test:browser": "vite build && node tests/browser.smoke.mjs"
   },
   "devDependencies": {
+    "playwright": "^1.63.0",
     "vite": "^5.4.0"
   }
 }

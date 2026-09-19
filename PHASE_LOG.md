@@ -459,7 +459,7 @@ Phase 7 — Services, single page with four in-page anchor sections.
 
 `validate-data.js` passed; `npm run build` — 8 routes; `test:smoke` passed;
 `AWARE_ENV=production npm run generate` still fails only at the Q-08/Q-09 featured-record gate.
-Not yet checked visually in a browser at 1440 / 375.
+Browser-checked afterwards — see the browser review below.
 
 ### Commit
 
@@ -545,7 +545,7 @@ Content intake (below), then Phase 3b.
 
 `validate-data.js` — 74 projects pass; `npm run build` — 8 routes; `test:smoke` passed;
 `AWARE_ENV=production npm run generate` still fails only at the Q-08/Q-09 featured-record gate.
-The filter script is syntax-checked but not exercised in a browser.
+The filter was then exercised in a real browser — see the browser review below.
 
 ### Open issues
 
@@ -560,3 +560,33 @@ Eastern Shipping Museum) could not be identified beyond the name.
 ### Next
 
 Phase 3b — lint, tests and CI.
+
+---
+
+## Browser review and layout fixes (start of Phase 3b)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-19 |
+| **Status** | `COMPLETE` |
+
+First time the redesign and the 74-row Work index were viewed in a real browser (Playwright
+Chromium, 1440 and 375 wide). Defects found and fixed:
+
+- **Mobile overflow** on Home and Services: the phone tag strip (`overflow-x: auto`) widened its grid
+  track. `.grid > *` and `.band__body` now shrink (`min-width: 0`), and the homepage hero body uses
+  `minmax(0, 1fr)`. The hero's appearance is unchanged; only a 38px sideways scroll was removed.
+- **Work index** was 12,500px of identical wide plates. List-tier rows are now compact index lines
+  (120×64 thumbnail; 72×48 on phones); the page is about 8,600px.
+- **Header clearance:** inner pages that open with a plain section now get the hero's top padding.
+- **Services** discipline sections had no spacing between eyebrow, heading, standfirst and body; the
+  left column is now a stack. Labels above lists get a small gap.
+- **People** text-only rows leave half the row empty; they are now a name / biography split.
+
+`tests/browser.smoke.mjs` (`npm run test:browser`) now asserts, at both widths for all 7 routes: no
+console errors, no failed requests, no horizontal overflow, one `<h1>`, the noindex meta; plus the
+filter (filter, URL state, back button, deep link) and the no-JavaScript list. Playwright is a new
+devDependency. The remaining Phase 3b items (ESLint, no-hardcoded-facts, Vitest, CI) are still open.
+
+Commits: `fix: resolve layout defects found in browser review` · `test: add browser smoke checks`.
+
