@@ -55,6 +55,8 @@ textarea {
   color: inherit;
 }
 
+[hidden] { display: none !important; }
+
 hr {
   border: 0;
   border-top: var(--border-light);

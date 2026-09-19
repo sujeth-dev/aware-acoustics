@@ -454,7 +454,34 @@ a.site-footer__link:hover { opacity: 1; }
 
 /* ─── Work index ──────────────────────────────────────────────────────── */
 
-.work-counter { margin-top: var(--space-lg); }
+.work-note { margin-top: var(--space-lg); max-width: 70ch; }
+.work-note__credits { margin: var(--space-sm) 0 0; padding: 0; list-style: none; }
+.work-note__credits a { border-bottom: 1px solid var(--line); }
+
+/* Sector filter — DESIGN_GUIDE.md §10.5: ink text + 2px underline, aria-current. */
+.filter-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-lg);
+  margin: var(--space-lg) 0 var(--space-md);
+}
+
+.filter-strip__link {
+  padding: 12px 0 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  border-bottom: 2px solid transparent;
+}
+
+.filter-strip__link:hover { color: var(--color-text); }
+
+.filter-strip__link[aria-current="true"] {
+  color: var(--color-text);
+  border-bottom-color: var(--color-text);
+}
 
 /* ─── Project record ──────────────────────────────────────────────────── */
 

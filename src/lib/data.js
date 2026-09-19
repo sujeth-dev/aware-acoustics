@@ -97,7 +97,7 @@ function guardProject(project) {
   check(isString(project?.clientAnonymised), "clientAnonymised is required (DEC-010)");
   check(isBool(project?.clientPublic), "clientPublic must be a boolean");
   check(isString(project?.sector), "sector is required");
-  check(isString(project?.location), "location is required");
+  check(project?.location === null || isString(project?.location), "location must be a string or null");
   check(project?.tier === "record" || project?.tier === "case", 'tier must be "record" or "case"');
   check(isStringArray(project?.services) && project.services.length > 0, "services requires at least one key");
   check(isStringArray(project?.scope) && project.scope.length > 0, "scope requires at least one item");
@@ -124,6 +124,12 @@ function guardProject(project) {
       "featured requires a published case record");
   }
 
+  return ok;
+}
+
+function guardSector(sector) {
+  const ok = isString(sector?.id) && isString(sector?.label) && isInt(sector?.order);
+  if (!ok) fail(`sector ${sector?.id ?? "<missing-id>"}: malformed sector record`);
   return ok;
 }
 
@@ -212,13 +218,16 @@ export function loadData() {
   const services = guardArray(readJson("services.json"), "services.json").filter(guardService).sort(byOrder);
   const standards = guardArray(readJson("standards.json"), "standards.json").filter(guardStandard).sort(byOrder);
   const people = guardArray(readJson("people.json"), "people.json").filter(guardPerson).sort(byOrder);
+  const sectors = guardArray(readJson("sectors.json"), "sectors.json").filter(guardSector).sort((a, b) => a.order - b.order);
   const settings = readJson("settings.json");
   guardSettings(settings);
 
   // Foreign keys.
   const serviceIds = new Set(services.map((service) => service.id));
+  const sectorIds = new Set(sectors.map((sector) => sector.id));
   const standardIds = new Set(standards.map((standard) => standard.id));
   for (const project of projects) {
+    if (!sectorIds.has(project.sector)) fail(`project ${project.slug}: unknown sector "${project.sector}"`);
     for (const key of project.services) if (!serviceIds.has(key)) fail(`project ${project.slug}: unknown service "${key}"`);
     for (const key of project.standards) if (!standardIds.has(key)) fail(`project ${project.slug}: unknown standard "${key}"`);
   }
@@ -232,7 +241,7 @@ export function loadData() {
     console.warn(`WARN: data guard reported ${problems.length} issue(s):\n${report}`);
   }
 
-  return { projects, services, standards, people, settings, problems: [...problems] };
+  return { projects, services, standards, people, sectors, settings, problems: [...problems] };
 }
 
 /* ─── Selectors ────────────────────────────────────────────────────────── */
@@ -249,5 +258,7 @@ export const standardsForService = (data, serviceId) =>
 
 export const projectsForService = (data, serviceId) =>
   publishedProjects(data).filter((project) => project.services.includes(serviceId));
+
+export const sectorLabel = (data, id) => data.sectors.find((sector) => sector.id === id)?.label ?? id;
 
 export const serviceById = (data, id) => data.services.find((service) => service.id === id) ?? null;

@@ -1,0 +1,14 @@
+[
+  { "id": "corporate", "label": "Corporate", "order": 10 },
+  { "id": "education", "label": "Education", "order": 20 },
+  { "id": "hospitality", "label": "Hospitality", "order": 30 },
+  { "id": "airport-and-transport", "label": "Airports", "order": 40 },
+  { "id": "technical-labs", "label": "Technical labs", "order": 50 },
+  { "id": "banking", "label": "Banking", "order": 60 },
+  { "id": "healthcare", "label": "Healthcare", "order": 70 },
+  { "id": "residential", "label": "Residential", "order": 80 },
+  { "id": "religious", "label": "Religious and meditation", "order": 90 },
+  { "id": "cultural-and-heritage", "label": "Cultural and heritage", "order": 100 },
+  { "id": "retail-and-mixed-use", "label": "Retail and mixed use", "order": 110 },
+  { "id": "specialist-acoustic", "label": "Specialist acoustics", "order": 120 }
+]

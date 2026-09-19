@@ -2,9 +2,11 @@
  * main.js — the only public script.
  *
  * Progressive enhancement only: every page is complete and navigable with this
- * file blocked. The overlay navigation is the sole interactive component on the
- * public site; the toggle button is hidden by CSS above 900px.
+ * file blocked. The overlay navigation and the /work/ sector filter are the only
+ * interactive components on the public site.
  */
+
+import { initWorkFilter } from "./work-filter.js";
 
 function initNavOverlay() {
   const toggle = document.querySelector(".nav-toggle");
@@ -43,3 +45,4 @@ function initNavOverlay() {
 }
 
 initNavOverlay();
+initWorkFilter();

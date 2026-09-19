@@ -3,7 +3,9 @@
 > **Depends on:** `PROJECT_DATA.md` (schema, DEC-007 tiers, DEC-010 anonymisation), `WEBSITE_PLAN.md` §5.2/§5.3
 > (`/work/` index and record rules), `IMAGE_WORKFLOW.md` (rights clearance), `00_SOURCE_AUDIT.md` §4/§6
 > **Feeds:** `data/projects.json`, the `assets/source/web-research/` intake pass, a future `data/sectors.json`
-> **Status:** Draft 01 · Intake plan only — no record in this file is published data
+> **Status:** Draft 01 · Intake plan. **Superseded in part by DEC-018 (2026-09-19):** the site owner cleared
+> client names and directed that the deck + spreadsheet be published as list-tier records; §5's "cannot become
+> published" and §7's sequence no longer hold for list-tier rows. Case-tier proof and image clearance stay open.
 
 ---
 

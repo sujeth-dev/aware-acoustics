@@ -437,3 +437,50 @@ nofollow">` (`document.js`) and a `robots.txt` with `Disallow: /` (`vite.config.
 build emits `Allow: /`; sitemap and canonicals arrive with the Phase 11 SEO pass and Q-05.
 
 **Consequences.** Nothing to remember at launch — `build:production` flips both automatically.
+
+---
+
+## DEC-018 — Content intake: list-tier publication from the deck and spreadsheet
+
+**Status:** Decided · 2026-09-19
+
+**Context.** The site owner supplied the client deck (`Aware Acoustics Profile - April 2026.odp`,
+extracted in full) and `LIST OF PROJECTS.xlsx`, said the client names are cleared for public use
+(closing Q-04), and directed that the intake proceed and that web images be used.
+
+**Verified before deciding.** The deck holds project names, cities, some seat counts and areas and a
+few WIP/Completed statuses on slides 29–34. It holds **no project year, design target or measured
+result** (the only year-like tokens are standard editions, 2014/2015). So the material supports
+`tier: "record"` rows, not `tier: "case"` records (DEC-007), and Q-08/Q-09 stay open.
+
+**Decision.**
+- `data/projects.json` is the de-duplicated union of deck slides 29–34 and the spreadsheet: the 10
+  existing seeds updated in place (slugs kept; named; `clientPublic: true`; `published: true`) plus 64
+  new list-tier records, 74 in total, `order` in the category blocks from the intake plan.
+- Only stated facts are entered. Location is `null` where neither source gives one (30 records).
+  Scope defaults to "Acoustics consultancy" (DEC-014 "generic where absent"); services default to
+  architectural acoustics only, the least claim.
+- Name-matches merged, not duplicated: Google/Opal, Titan, RNS IT, JW Marriott Sahar, Westin/West Inn,
+  InterContinental Kuwait, Guwahati; Biocon and Qualcomm (spreadsheet and deck cafeteria entries); the
+  deck's "Western Lake, Powai" is treated as the same engagement as West Inn until told otherwise.
+  Same client in two categories stays two records (ABB, Godrej).
+- `data/sectors.json` added; `sector` is now a foreign key checked by `data.js` and
+  `validate-data.js`. `location` may be `null` for list-tier records.
+- Sector filter built on `/work/` (the threshold in WEBSITE_PLAN §5.2 is now met), progressively
+  enhanced by `src/js/work-filter.js`; rows carry a real sector label; the counter never prints
+  "0 measured records".
+
+**Images.** Web-sourced images are used at the site owner's direction, overriding `IMAGE_WORKFLOW.md`'s
+rights-clearance rule for these four records only, and each is logged in its `images[]` entry with
+source URL, credit and licence, `cleared: true` recording the owner's decision. Only images that show
+the *exact named facility* are used: Guwahati (CC0) and Dehradun (CC BY-SA 4.0) airports, Lucknow
+Terminal 3 (press image) and JW Marriott Mumbai Sahar (hotel photograph). The last two carry
+"licence not verified" and are the residual copyright exposure. Credits print on `/work/`. Not used:
+research images that show a different property (Google Ananta vs the Opal project, Hilton Chennai vs
+Hilton Olympia Kuwait, an HDFC branch vs the HQ) or a campus entrance rather than the space worked on
+(Reva, RNSIT, Sachidananda, HN Science Centre), because each would misrepresent the engagement.
+
+**Consequences.** `/work/` lists 74 projects with sector filtering. Home Selected Work, Home
+Verification numbers, Services evidence and the production build stay gated on Q-08/Q-09 — the
+data cannot supply case-tier proof. The permission record for client names is this decision plus the
+owner's statement; `PROJECT_DATA.md` §4 asks for a written record per project, to be kept on file.

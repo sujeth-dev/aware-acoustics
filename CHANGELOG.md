@@ -19,6 +19,8 @@ follow semantic versioning once implementation begins.
 - About page: practice, people, approach, method process, and the grouped standards register.
 - Contact page layout and enquiry form structure (submission not yet connected); privacy scope preview.
 - Editorial components: statement, process spine, people row, standards register, stat, form fields.
+- Work index lists 74 named projects from the client deck and project list, with a sector filter and sector labels.
+- Four project rows carry credited photographs of the named facility.
 
 ### Changed
 

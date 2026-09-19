@@ -9,7 +9,7 @@
  * furniture that makes a small list look smaller, so it is not rendered.
  */
 
-import { join, when } from "../lib/html.js";
+import { esc, each, join, when } from "../lib/html.js";
 import { eyebrow, cta, stat, devFixture } from "../components/ui.js";
 import { recordRows } from "../components/record-row.js";
 import { publishedProjects, isProduction } from "../lib/data.js";
@@ -28,22 +28,59 @@ export function filtersQualify(projects) {
 
 function counter(projects) {
   // Never a zero counter — an empty publish state is omitted, not printed as
-  // "0 projects". Real figures only.
+  // "0 projects", and the measured clause only appears once a record has one.
   if (projects.length === 0) return "";
   const measured = projects.filter((project) => (project.measured ?? []).length > 0).length;
-  const label = `${projects.length === 1 ? "project" : "projects"} · ${measured} measured ${measured === 1 ? "record" : "records"}`;
+  const noun = projects.length === 1 ? "project" : "projects";
+  const label = measured > 0
+    ? `${noun} · ${measured} measured ${measured === 1 ? "record" : "records"}`
+    : `${noun} listed`;
   return stat(projects.length, label);
+}
+
+/**
+ * Sector filter — WEBSITE_PLAN.md §5.2, DESIGN_GUIDE.md §10.5. Rendered only
+ * above the threshold and `hidden` until src/js/work-filter.js enables it, so
+ * a visitor without JavaScript sees the complete list and no dead controls.
+ */
+function filterStrip(data, projects) {
+  if (!filtersQualify(projects)) return "";
+  const counts = new Map();
+  for (const project of projects) counts.set(project.sector, (counts.get(project.sector) ?? 0) + 1);
+  const sectors = data.sectors.filter((sector) => counts.has(sector.id));
+
+  return `<nav class="filter-strip" aria-label="Filter by sector" data-work-filter hidden>
+  <a class="filter-strip__link" href="/work/" data-sector-filter="" aria-current="true">All <span class="t-meta">${projects.length}</span></a>
+  ${each(sectors, (sector) => `<a class="filter-strip__link" href="/work/?sector=${esc(sector.id)}" data-sector-filter="${esc(sector.id)}">${esc(sector.label)} <span class="t-meta">${counts.get(sector.id)}</span></a>`)}
+</nav>
+<p class="t-meta" data-work-filter-status aria-live="polite" hidden></p>`;
+}
+
+/**
+ * Photographs on a list-tier row show the named facility, not Aware Acoustics
+ * project photography. Credits are printed because open licences (CC BY-SA)
+ * require attribution on the page.
+ */
+function imageNote(projects) {
+  const credited = projects.flatMap((project) => (project.images ?? []).map((image) => ({ project, image })));
+  if (credited.length === 0) return "";
+
+  return `<div class="work-note t-meta">
+  <p>Photographs show the facilities named and are credited to their sources. They are not Aware Acoustics project photography.</p>
+  <ul class="work-note__credits">
+${each(credited, ({ project, image }) => `    <li>${esc(project.title)} — <a href="${esc(image.source)}" rel="noopener">${esc(image.credit)}</a>${image.licence.startsWith("CC") ? ` · ${esc(image.licence)}` : ""}</li>`)}
+  </ul>
+</div>`;
 }
 
 export function workPage(data) {
   const projects = publishedProjects(data);
 
-  // All ten seeded projects are published: false at tier "record" pending
-  // client evidence. Blocked on Q-04 · Q-08 · Q-09 · Q-18 (see DEFERRED.md).
-  // Renders every published project in both tiers as soon as one exists;
-  // nothing here is populated from the unpublished seeds.
+  // Every published project renders in both tiers. Projects are list-tier
+  // until Q-08 · Q-09 · Q-18 supply the evidence a case record requires
+  // (see DEFERRED.md); the dev-fixture only shows when nothing is published.
   const list = projects.length > 0
-    ? `${counter(projects)}<div class="record-list">${recordRows(projects)}</div>`
+    ? `${counter(projects)}${filterStrip(data, projects)}<div class="record-list">${recordRows(projects, data)}</div>${imageNote(projects)}`
     : when(!isProduction, () => devFixture("Work index publishes here once a project is ready.", "slab"));
 
   return {
@@ -59,7 +96,6 @@ export function workPage(data) {
 </section>
 
 <section class="section section--tight ground-dust-warm">
-  ${when(filtersQualify(projects), '<!-- filter strip renders above the §5.2 threshold -->')}
   ${list}
 
   <div class="section__foot">${cta("/contact/", "Discuss a project", "primary")}</div>

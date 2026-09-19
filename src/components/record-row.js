@@ -10,7 +10,7 @@
  */
 
 import { esc, each, when, pad2, join } from "../lib/html.js";
-import { clientLabel } from "../lib/data.js";
+import { clientLabel, sectorLabel } from "../lib/data.js";
 
 /** The one headline measured value, when the record carries one. */
 export function headlineMeasured(project) {
@@ -28,11 +28,11 @@ function thumbnail(project) {
   return `<span class="record-row__thumb record-row__thumb--plate plate plate--slab" aria-hidden="true"></span>`;
 }
 
-export function recordRow(project, index) {
+export function recordRow(project, index, data) {
   const isCase = project.tier === "case";
   const meta = isCase
     ? [clientLabel(project), project.city, project.year, headlineMeasured(project)]
-    : [project.location, project.sector, ...(project.scope ?? []).slice(0, 1)];
+    : [project.location, sectorLabel(data, project.sector), ...(project.scope ?? []).slice(0, 1)];
 
   const inner = `<span class="record-row__number t-meta">${pad2(index + 1)}</span>
   ${thumbnail(project)}
@@ -43,10 +43,10 @@ export function recordRow(project, index) {
   ${when(isCase, '<span class="record-row__glyph" aria-hidden="true">↗</span>')}`;
 
   return isCase
-    ? `<a class="record-row record-row--case" href="/work/${esc(project.slug)}/">${inner}</a>`
-    : `<div class="record-row record-row--list">${inner}</div>`;
+    ? `<a class="record-row record-row--case" data-sector="${esc(project.sector)}" href="/work/${esc(project.slug)}/">${inner}</a>`
+    : `<div class="record-row record-row--list" data-sector="${esc(project.sector)}">${inner}</div>`;
 }
 
-export function recordRows(projects) {
-  return each(projects, (project, index) => recordRow(project, index));
+export function recordRows(projects, data) {
+  return each(projects, (project, index) => recordRow(project, index, data));
 }

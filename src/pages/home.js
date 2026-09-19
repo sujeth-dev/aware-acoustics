@@ -81,7 +81,7 @@ function selectedWork(data) {
   // (validate-data V-14) rather than falling back to the ten shallow deck
   // entries. None of that detail belongs in the rendered placeholder itself.
   const body = featured.length > 0
-    ? `<div class="record-list">${recordRows(featured)}</div>`
+    ? `<div class="record-list">${recordRows(featured, data)}</div>`
     : when(!isProduction, () => devFixture("Selected work publishes here once records are ready.", "wool"));
 
   return `<section class="section ground-stone" aria-labelledby="home-work">

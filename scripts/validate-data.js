@@ -39,6 +39,7 @@ const projects = readJson("projects.json");
 const services = readJson("services.json");
 const standards = readJson("standards.json");
 const people = readJson("people.json");
+const sectors = readJson("sectors.json");
 const settings = readJson("settings.json");
 
 for (const [name, value, expectedArray] of [
@@ -46,12 +47,14 @@ for (const [name, value, expectedArray] of [
   ["services.json", services, true],
   ["standards.json", standards, true],
   ["people.json", people, true],
+  ["sectors.json", sectors, true],
   ["settings.json", settings, false]
 ]) {
   if (expectedArray !== Array.isArray(value)) errors.push(`${name}: unexpected root type`);
 }
 
 const serviceIds = new Set(services.map((service) => service.id));
+const sectorIds = new Set(sectors.map((sector) => sector.id));
 const standardIds = new Set(standards.map((standard) => standard.id));
 const currentYear = new Date().getFullYear();
 const requiredProjectFields = [
@@ -63,6 +66,7 @@ const requiredProjectFields = [
 
 for (const duplicate of duplicateValues(projects, "slug")) errors.push(`projects.json: duplicate slug "${duplicate}"`);
 for (const duplicate of duplicateValues(services, "id")) errors.push(`services.json: duplicate id "${duplicate}"`);
+for (const duplicate of duplicateValues(sectors, "id")) errors.push(`sectors.json: duplicate id "${duplicate}"`);
 for (const duplicate of duplicateValues(standards, "id")) errors.push(`standards.json: duplicate id "${duplicate}"`);
 
 for (const project of projects) {
@@ -71,6 +75,7 @@ for (const project of projects) {
   if (!slugPattern.test(project.slug || "")) errors.push(`${label}: slug must be lowercase kebab-case`);
   if (!Array.isArray(project.scope) || project.scope.length === 0) errors.push(`${label}: scope requires at least one item`);
   if (!Array.isArray(project.services) || project.services.length === 0) errors.push(`${label}: services requires at least one item`);
+  if (!sectorIds.has(project.sector)) errors.push(`${label}: unknown sector "${project.sector}"`);
   for (const service of project.services || []) if (!serviceIds.has(service)) errors.push(`${label}: unknown service "${service}"`);
   for (const standard of project.standards || []) if (!standardIds.has(standard)) errors.push(`${label}: unknown standard "${standard}"`);
   if (project.year !== null && (!Number.isInteger(project.year) || project.year < 1900 || project.year > currentYear)) {

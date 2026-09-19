@@ -517,4 +517,46 @@ Commit: `feat: add appointment, privacy and utility route structure`
 
 ### Next
 
-Content intake (list-tier records from the deck and `LIST OF PROJECTS.xlsx`), then Phase 3b.
+Content intake (below), then Phase 3b.
+
+---
+
+## Content intake — list-tier project records (DEC-018)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-19 |
+| **Status** | `COMPLETE` for list-tier — case-tier proof still blocked on Q-08/Q-09 |
+| **Approval** | Contributes to Gate 04 |
+
+### Completed
+
+- Verified the deck is fully extracted (36/36 slides, 88 images) and holds no project years or
+  measured results.
+- `data/projects.json`: 74 records — 10 existing seeds named and published, 64 new list-tier records
+  from deck slides 29–34 and `LIST OF PROJECTS.xlsx`. 44 have a location; 30 are `null` (not stated).
+- `data/sectors.json` (12 sectors) with a foreign-key check; `location` nullable for list-tier.
+- `/work/`: sector filter (`work-filter.js`), sector labels on rows, no zero counter, image credits.
+- Four exact-facility images optimised into `public/assets/projects/` with rights fields; the rest of
+  the web research is not used (would misrepresent the engagement).
+- `[hidden]` now wins over component `display` rules (`base.css`).
+
+### Tests
+
+`validate-data.js` — 74 projects pass; `npm run build` — 8 routes; `test:smoke` passed;
+`AWARE_ENV=production npm run generate` still fails only at the Q-08/Q-09 featured-record gate.
+The filter script is syntax-checked but not exercised in a browser.
+
+### Open issues
+
+Q-08/Q-09/Q-18 (proof), Q-01, Q-05, Q-06, Q-07, Q-22, Q-24, Q-27–Q-30. Lucknow and JW Marriott images
+carry unverified licences (DEC-018). 30 records have no location; 2 (Pristine Design Studio, Great
+Eastern Shipping Museum) could not be identified beyond the name.
+
+### Commit
+
+`feat: publish project record list from client deck and intake`
+
+### Next
+
+Phase 3b — lint, tests and CI.

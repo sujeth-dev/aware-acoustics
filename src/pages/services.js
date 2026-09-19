@@ -109,7 +109,7 @@ function evidence(data, service) {
   if (projects.length > 0) {
     return `<div>
       <p class="t-label">Evidence</p>
-      <div class="record-list">${recordRows(projects.slice(0, 3))}</div>
+      <div class="record-list">${recordRows(projects.slice(0, 3), data)}</div>
     </div>`;
   }
   return when(!isProduction, () => devFixture(
