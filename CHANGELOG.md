@@ -15,6 +15,15 @@ follow semantic versioning once implementation begins.
 - Vite build with generated routes for Home, Work, Services, About, Contact, Privacy and 404.
 - Homepage: hero, about, selected work, services, verification and appointment sections.
 - Work index and the project-record template, including the target-versus-measured table.
+- Services page: overview plus four discipline sections with per-discipline material identity.
+- About page: practice, people, approach, method process, and the grouped standards register.
+- Contact page layout and enquiry form structure (submission not yet connected); privacy scope preview.
+- Editorial components: statement, process spine, people row, standards register, stat, form fields.
+
+### Changed
+
+- Home and Work pages recomposed with editorial alternation and per-discipline materials; homepage hero unchanged.
+- Non-production builds are marked noindex and serve a disallow-all robots file.
 
 ### Security
 

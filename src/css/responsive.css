@@ -8,7 +8,8 @@
   .grid--projects-head,
   .grid--editorial,
   .grid--verification,
-  .grid--halves {
+  .grid--halves,
+  .grid--contact {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
   }
@@ -38,6 +39,12 @@
     grid-template-columns: 1fr;
     gap: 2px;
     padding: 8px 0;
+  }
+
+  .statement-list__item,
+  .standards-register__row {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
   }
 }
 

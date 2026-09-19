@@ -46,6 +46,71 @@ ${each(present, (row) => `  <div class="data-list__row">
 </dl>`;
 }
 
+/** A single pulled statement line — larger than body copy, never bold. */
+export function statement(text) {
+  if (!text) return "";
+  return `<p class="statement">${esc(text)}</p>`;
+}
+
+/** Term/sentence triad (e.g. Clarity · Compliance · Constructability). */
+export function statementList(items) {
+  if (!Array.isArray(items) || items.length === 0) return "";
+  return `<div class="statement-list">
+${each(items, (item) => `  <div class="statement-list__item">
+    <p class="statement-list__term">${esc(item.term)}</p>
+    <p class="t-body">${esc(item.body)}</p>
+  </div>`)}
+</div>`;
+}
+
+/** Vertical numbered stage list — never a horizontal stepper (WEBSITE_PLAN.md §5.5). */
+export function processSpine(stages) {
+  if (!Array.isArray(stages) || stages.length === 0) return "";
+  return `<ol class="process-spine">
+${each(stages, (stage, index) => `  <li class="process-spine__item">
+    <span class="process-spine__number t-meta">${esc(pad2(index + 1))}</span>
+    <div class="process-spine__body">
+      <p class="process-spine__term t-h5">${esc(stage.term)}</p>
+      <p class="t-body">${esc(stage.body)}</p>
+    </div>
+  </li>`)}
+</ol>`;
+}
+
+const STANDARD_CATEGORY_LABELS = {
+  design: "Design standards",
+  measurement: "Measurement standards",
+  green: "Green and compliance"
+};
+
+/** Standards register grouped by category — driven entirely by standards.json. */
+export function standardsRegister(standards) {
+  if (!Array.isArray(standards) || standards.length === 0) return "";
+  const groups = ["design", "measurement", "green"]
+    .map((category) => ({ category, items: standards.filter((standard) => standard.category === category) }))
+    .filter((group) => group.items.length > 0);
+  if (groups.length === 0) return "";
+
+  return `<div class="standards-register">
+${each(groups, (group) => `  <div class="standards-register__group">
+    <p class="standards-register__group-label t-label">${esc(STANDARD_CATEGORY_LABELS[group.category])} · ${group.items.length}</p>
+${each(group.items, (standard) => `    <div class="standards-register__row t-data">
+      <span class="standards-register__designation">${esc(standard.designation)}</span>
+      <span class="standards-register__subject">${esc(standard.subject)}</span>
+    </div>`)}
+  </div>`)}
+</div>`;
+}
+
+/** A single large mono figure with a label — a considered gated state, a register count. */
+export function stat(figure, label) {
+  if (figure === null || figure === undefined || figure === "") return "";
+  return `<div class="stat">
+    <p class="stat__figure">${esc(figure)}</p>
+    <p class="stat__label t-label">${esc(label)}</p>
+  </div>`;
+}
+
 /**
  * Development placeholder.
  *

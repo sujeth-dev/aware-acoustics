@@ -28,7 +28,9 @@ Full reasoning for each lives in `DECISIONS.md`; this file is the scan-it-in-30-
 | 9 | **Logo/palette colour reconciliation** | Logo's red/gold run brighter than site tokens; left exactly as-is on purpose — logos commonly run slightly off a site's UI palette | Only if we/client actively decide the site accent should match the logo | DEC-002, DEC-014 |
 | 10 | **Phase 2b — full design-system hardening** | Contrast/focus/keyboard/reduced-motion audit, 320–1440 screenshot regression suite, full component lab | Scheduled for Phase 10, once real pages exist to test against | DEC-013 |
 | 11 | **Phase 3b — full CI pipeline** | ESLint, Vitest/Playwright/Lighthouse configs, CI workflow | Runs incrementally through Phases 5–9, hardens fully at Phase 9/13 | DEC-013 |
-| 12 | **Phase 4 — admin/CMS** | Entire Firebase Auth/Firestore/Storage/publish-pipeline phase | Any time before Gate 04, parallel to page-building — not a prerequisite for any page | DEC-013 |
+| 12 | **Phase 4 — admin/CMS** | Entire Firebase Auth/Firestore/Storage/publish-pipeline phase. Now scheduled **last**, after launch phases; content changes go through `data/*.json` commits until then | Client-owned Firebase project, named users, publish-role decision | DEC-013 |
+| 13 | **Parameter glossary** | Parameters render as tag rows from `services.json`; no definitions/units/ranges component | Needs sourced ranges per parameter (no invented values) and its own decision number | DEC-016, DESIGN_GUIDE §10.2 |
+| 14 | **Contact submission + privacy copy** | Form is structural only; privacy page is a scope preview | Q-01, Q-28…Q-30, practice inbox; Vercel function per DEC-009 | MASTER_PLAN Phase 9 |
 
 ---
 

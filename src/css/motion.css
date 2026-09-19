@@ -12,4 +12,7 @@
   .cta { transition: border-color var(--transition-default); }
 
   .record-row { transition: background-color var(--transition-subtle); }
+
+  .band__link { transition: color var(--transition-default); }
+  .field { transition: border-color var(--transition-default); }
 }

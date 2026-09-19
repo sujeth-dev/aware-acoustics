@@ -14,9 +14,10 @@
  *     demonstration numbers, industry averages or example results.
  */
 
-import { esc, each, when, join, pad2 } from "../lib/html.js";
-import { eyebrow, cta, tagRow, devFixture } from "../components/ui.js";
+import { esc, each, when, join } from "../lib/html.js";
+import { eyebrow, cta, tagRow, statement, stat, devFixture } from "../components/ui.js";
 import { recordRows } from "../components/record-row.js";
+import { serviceBandList } from "../components/service-bands.js";
 import {
   featuredProjects,
   publishedServices,
@@ -55,7 +56,7 @@ function about() {
   // The independence triad (H-02 detail panel) is CLIENT TO CONFIRM under Q-22.
   // Documented fallback: omit the panel. Do not soften it into a weaker claim.
   return `<section class="section ground-dust-warm" aria-labelledby="home-about">
-  <div class="grid grid--practice">
+  <div class="grid grid--editorial">
     <div class="section__head">
       ${eyebrow(1, "About")}
       <h2 class="t-h2" id="home-about">Between the drawing and the room as built.</h2>
@@ -63,7 +64,7 @@ function about() {
     <div class="stack-lg">
       <p class="t-body">Aware Acoustics works with architects, project managers, developers and engineers to define acoustic performance within architectural and MEP design.</p>
       <p class="t-body">The appointment can begin with criteria and simulation, continue through DBR, drawings, BOQ and submissions, and close with site measurement and compliance reporting.</p>
-      <p class="t-body">The test is practical: clarity in the document, compliance in the calculation, constructability on site.</p>
+      ${statement("The test is practical: clarity in the document, compliance in the calculation, constructability on site.")}
       <p>${cta("/about/", "About the practice")}</p>
     </div>
   </div>
@@ -81,7 +82,7 @@ function selectedWork(data) {
   // entries. None of that detail belongs in the rendered placeholder itself.
   const body = featured.length > 0
     ? `<div class="record-list">${recordRows(featured)}</div>`
-    : when(!isProduction, () => devFixture("Selected work publishes here once records are ready."));
+    : when(!isProduction, () => devFixture("Selected work publishes here once records are ready.", "wool"));
 
   return `<section class="section ground-stone" aria-labelledby="home-work">
   <div class="grid grid--projects-head section__head">
@@ -105,20 +106,7 @@ function services(data) {
     <h2 class="t-h2" id="home-services">Four disciplines. One performance brief.</h2>
   </div>
 
-  <div class="band-list">
-    ${each(list, (service, index) => `<article class="band${index % 2 === 1 ? " band--flip" : ""}">
-      <span class="band__number t-meta">${pad2(index + 1)}</span>
-      <div class="band__body">
-        <h3 class="t-h5">${esc(service.name)}</h3>
-        <p class="t-body measure-34">${esc(service.summary)}</p>
-        ${tagRow(service.parameters, `${service.name} parameters`)}
-      </div>
-      <a class="band__link" href="/services/#${esc(service.slug)}">
-        <span class="visually-hidden">${esc(service.name)}</span>
-        <span aria-hidden="true">↗</span>
-      </a>
-    </article>`)}
-  </div>
+  ${serviceBandList(list, "/services/#")}
 
   <div class="section__foot">${cta("/services/", "See all services")}</div>
 </section>`;
@@ -132,7 +120,7 @@ function verification(data) {
   // show. Production behaviour is omission: the section publishes the
   // process and the standards register only; the numeric grid appears once
   // measured evidence exists. Never a demonstration number.
-  const metrics = when(!isProduction, () => devFixture("Target-versus-measured evidence publishes here once available."));
+  const metrics = when(!isProduction, () => devFixture("Target-versus-measured evidence publishes here once available.", "metal"));
 
   return `<section class="section ground-navy on-dark" aria-labelledby="home-verification">
   <div class="grid grid--verification">
@@ -151,7 +139,7 @@ function verification(data) {
     <div class="stack-lg">
       ${metrics}
       <div>
-        <p class="t-label">Standards register · ${standards.length} entries</p>
+        ${stat(standards.length, "Standards in the register")}
         <ul class="standards-strip t-meta">
           ${each(standards, (standard) => `<li>${esc(standard.designation)}</li>`)}
         </ul>

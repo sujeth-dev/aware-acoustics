@@ -9,8 +9,8 @@
  * furniture that makes a small list look smaller, so it is not rendered.
  */
 
-import { esc, join, when } from "../lib/html.js";
-import { eyebrow, cta, devFixture } from "../components/ui.js";
+import { join, when } from "../lib/html.js";
+import { eyebrow, cta, stat, devFixture } from "../components/ui.js";
 import { recordRows } from "../components/record-row.js";
 import { publishedProjects, isProduction } from "../lib/data.js";
 
@@ -27,9 +27,12 @@ export function filtersQualify(projects) {
 }
 
 function counter(projects) {
+  // Never a zero counter — an empty publish state is omitted, not printed as
+  // "0 projects". Real figures only.
   if (projects.length === 0) return "";
   const measured = projects.filter((project) => (project.measured ?? []).length > 0).length;
-  return `<p class="work-counter t-meta">${projects.length} ${projects.length === 1 ? "project" : "projects"} · ${measured} measured ${measured === 1 ? "record" : "records"}</p>`;
+  const label = `${projects.length === 1 ? "project" : "projects"} · ${measured} measured ${measured === 1 ? "record" : "records"}`;
+  return stat(projects.length, label);
 }
 
 export function workPage(data) {
@@ -40,20 +43,22 @@ export function workPage(data) {
   // Renders every published project in both tiers as soon as one exists;
   // nothing here is populated from the unpublished seeds.
   const list = projects.length > 0
-    ? `<div class="record-list">${recordRows(projects)}</div>${counter(projects)}`
-    : when(!isProduction, () => devFixture("Work index publishes here once a project is ready."));
+    ? `${counter(projects)}<div class="record-list">${recordRows(projects)}</div>`
+    : when(!isProduction, () => devFixture("Work index publishes here once a project is ready.", "slab"));
 
   return {
     route: "/work/",
     title: "Work",
     description: "Project records organised by sector, discipline and the evidence available to publish.",
-    body: `<section class="section ground-dust">
+    body: `<section class="section ground-dust" aria-labelledby="work-title">
   <div class="section__head">
     ${eyebrow(1, "Work")}
-    <h1 class="t-h2">Work held to a number.</h1>
-    <p class="t-standfirst">Project records organised by sector, discipline and the evidence available to publish.</p>
+    <h1 class="t-h2" id="work-title">Work held to a number.</h1>
+    <p class="t-standfirst measure-46">Project records organised by sector, discipline and the evidence available to publish.</p>
   </div>
+</section>
 
+<section class="section section--tight ground-dust-warm">
   ${when(filtersQualify(projects), '<!-- filter strip renders above the §5.2 threshold -->')}
   ${list}
 

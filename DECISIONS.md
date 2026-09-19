@@ -382,3 +382,58 @@ reverted at the client's request (held back from the remote for now; nothing wro
 itself). This decision was renumbered from DEC-016 back to DEC-015 once that removed the
 collision. When Phase 7 is rebuilt, the parameter-glossary decision will need a fresh number, not
 a re-use of this one.
+
+---
+
+## DEC-016 — Page redesign: activate the brand's own devices, add restrained components
+
+**Status:** Decided · 2026-09-19
+
+**Context.** Client feedback: the built pages read as basic and not brand-oriented. Audit found the
+cause was not a thin brand system: `grid--editorial`/`grid--flip`, three of seven plate variants
+and the section-ground rhythm were defined but never used, and four of eight routes were one-line
+stubs (Services had been reverted by the client's request; About and Contact were never reached).
+
+**Options.** (a) Stay inside brand rules B12/A8 — activate the existing devices, add components in
+the same spirit. (b) Revisit banned patterns (animation, rounded cards, icons). Client chose (a):
+"the same basic design style, built on a creative, professional, modern and brand-kit-oriented
+approach." Homepage hero is explicitly left as-is.
+
+**Decision.** Redesign all eight routes except the hero. New components, all sharp-edged, no icons,
+no motion beyond existing opacity/border/colour transitions: `.statement` / `.statement-list`,
+`.process-spine`, `.person-row` (image-optional, on `grid--editorial`/`grid--flip`),
+`.standards-register`, `.stat`, `.field*` form controls, `.band__swatch`. Each discipline gets a
+fixed material plate (`service-plate.js`: wool, slab, perforated, metal) so its identity is the
+same wherever it appears. Services and Home share `service-bands.js`.
+
+**Deviations recorded, not hidden.**
+- Form fields are underline-style in `--serif`, not `DESIGN_GUIDE.md` §10.4's boxed 16px Public
+  Sans: Public Sans is deliberately not loaded on the public site (`typography.css`), and B12 bans
+  filled/rounded controls. Focus uses the global `:focus-visible` ring.
+- Homepage Appointment keeps `--dust` (WEBSITE_PLAN §6 spec) — an early idea to texture it was
+  dropped; the ground rhythm already varies.
+- 404 stays a dust band with no texture (DESIGN_GUIDE §10.7); a dark variant was tried and reverted.
+- About carries one body CTA (M-12); P-06's alternate CTA is unused (CONTENT_PLAN §1: one per page).
+- Withheld per CONTENT_PLAN status labels: the sound-insulation "flanking" condition line
+  (`CLIENT TO CONFIRM before body use`) and Contact "Next 03" (response time not supplied).
+- Parameter glossary (§10.2) is still not built — parameters render as tag rows from
+  `services.json`; it needs its own decision number when built.
+
+**Consequences.** Services structure exists again in the repo; it stays committed but the
+placeholders in its evidence slots remain until case records exist.
+
+---
+
+## DEC-017 — Non-production builds are noindex
+
+**Status:** Decided · 2026-09-19
+
+**Context.** Vercel is connected to the repository, so a push to `main` deploys the dev-content
+build (`npm run build`), which carries visible "Placeholder — content pending" markers. A
+`*.vercel.app` production URL is crawlable.
+
+**Decision.** Any build without `AWARE_ENV=production` emits `<meta name="robots" content="noindex,
+nofollow">` (`document.js`) and a `robots.txt` with `Disallow: /` (`vite.config.js`). The production
+build emits `Allow: /`; sitemap and canonicals arrive with the Phase 11 SEO pass and Q-05.
+
+**Consequences.** Nothing to remember at launch — `build:production` flips both automatically.

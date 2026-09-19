@@ -200,6 +200,18 @@ body.nav-open { overflow: hidden; }
 
 .on-dark .cta { border-bottom-color: var(--color-accent-hover); }
 
+/* A <button> carrying .cta (the form submit) needs its default chrome reset —
+   still no fill, per B12: no filled buttons anywhere on the public site. */
+button.cta {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--color-accent);
+  border-radius: var(--radius-none);
+  cursor: pointer;
+}
+
+.on-dark button.cta { border-bottom-color: var(--color-accent-hover); }
+
 /* ─── Tag row — A7 ─── */
 
 .tag-row {
@@ -381,6 +393,41 @@ a.site-footer__link:hover { opacity: 1; }
 .band__link { justify-self: end; padding: 4px 0; }
 .band__link:hover { color: var(--color-accent); }
 
+/* Material swatch — the discipline's own texture, standing in for an icon. */
+.band__swatch {
+  position: relative;
+  isolation: isolate;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+}
+
+.band__swatch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, .38);
+}
+
+.band__swatch .band__number { padding-top: 0; color: var(--dust); }
+
+/* ─── Stat — a single large mono figure with a label. ────────────────────── */
+
+.stat { display: grid; gap: var(--space-xs); }
+
+.stat__figure {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: clamp(40px, 5.5vw, 68px);
+  line-height: 1;
+  letter-spacing: -.01em;
+}
+
+.stat__label { color: var(--color-text-secondary); }
+.on-dark .stat__label { color: var(--color-text-muted); }
+
 /* ─── Standards strip — §05 ───────────────────────────────────────────── */
 
 .standards-strip {
@@ -494,3 +541,149 @@ a.site-footer__link:hover { opacity: 1; }
 .record-narrative__heading { margin-top: var(--space-md); }
 .record-narrative__body { margin-top: var(--space-md); }
 .record-tags { margin-top: var(--space-lg); }
+
+/* ─── Statement — a single pulled line, or a term/sentence triad. ────────
+   Reuses the serif heading family at a scale between .t-lead and .t-h3.
+   Never bold; the accent colour carries the emphasis (A4). ---------------- */
+
+.statement {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(23px, 2.4vw, 32px);
+  line-height: 1.3;
+  letter-spacing: -.015em;
+  max-width: 30ch;
+}
+
+.statement-list { border-top: var(--border-light); }
+.on-dark .statement-list { border-top-color: var(--line-light); }
+
+.statement-list__item {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-lg) var(--space-2xl);
+  padding: var(--space-lg) 0;
+  border-bottom: var(--border-light);
+}
+
+.on-dark .statement-list__item { border-bottom-color: var(--line-light); }
+
+.statement-list__term {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(21px, 2.1vw, 28px);
+  letter-spacing: -.015em;
+  color: var(--color-accent);
+}
+
+.on-dark .statement-list__term { color: var(--color-accent-hover); }
+
+/* ─── Process spine — vertical numbered stage list, never a horizontal
+   stepper (WEBSITE_PLAN.md §5.5). ----------------------------------------- */
+
+.process-spine { border-top: var(--border-light); }
+.on-dark .process-spine { border-top-color: var(--line-light); }
+
+.process-spine__item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+  border-bottom: var(--border-light);
+}
+
+.on-dark .process-spine__item { border-bottom-color: var(--line-light); }
+
+.process-spine__number { padding-top: 5px; color: var(--color-accent); }
+.on-dark .process-spine__number { color: var(--color-accent-hover); }
+.process-spine__body { display: grid; gap: var(--space-xs); }
+.process-spine__term { font-size: 18px; letter-spacing: -.015em; }
+
+/* ─── People — full-width editorial row, image-optional. Not a card. ────
+   Built on .grid.grid--editorial (with .grid--flip to alternate side);
+   a person without a portrait renders as a single-column text row with no
+   image slot, per WEBSITE_PLAN.md §5.5 — never a placeholder box. -------- */
+
+.people-list { border-top: var(--border-light); }
+.on-dark .people-list { border-top-color: var(--line-light); }
+
+.person-row {
+  padding: var(--space-2xl) 0;
+  border-bottom: var(--border-light);
+  align-items: start;
+}
+
+.on-dark .person-row { border-bottom-color: var(--line-light); }
+
+.person-row__portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-thumb);
+}
+
+.person-row__name { font-size: clamp(24px, 2.2vw, 32px); letter-spacing: -.02em; }
+.person-row__role { margin-top: var(--space-xs); }
+.person-row__bio { margin-top: var(--space-md); }
+.person-row__meta { margin-top: var(--space-lg); }
+
+/* ─── Standards register — grouped by category (design / measurement /
+   green), driven entirely by standards.json. --------------------------- */
+
+.standards-register { border-top: var(--border-light); }
+.on-dark .standards-register { border-top-color: var(--line-light); }
+
+.standards-register__group + .standards-register__group { margin-top: var(--space-xl); }
+.standards-register__group-label { margin-bottom: var(--space-md); }
+
+.standards-register__row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-lg);
+  padding: 10px 0;
+  border-bottom: var(--border-light);
+}
+
+.on-dark .standards-register__row { border-bottom-color: var(--line-light); }
+.standards-register__designation { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; }
+.standards-register__subject { color: var(--color-text-secondary); }
+
+/* ─── Form fields — Contact. Underline style; no fill, no radius (B12).
+   Focus indicator is the global :focus-visible ring in base.css. --------- */
+
+.form { border-top: var(--border-light); }
+
+.field {
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-md) 0;
+  border-bottom: var(--border-light);
+}
+
+.field:focus-within { border-bottom-color: var(--color-accent); }
+
+.field--consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  border-bottom: 0;
+  padding-top: var(--space-lg);
+}
+
+.field__input,
+.field__select,
+.field__textarea {
+  width: 100%;
+  padding: var(--space-sm) 0 2px;
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  appearance: none;
+}
+
+.field__textarea { resize: vertical; min-height: 6em; }
+.field__checkbox { margin-top: 3px; flex: none; }
+.form__foot { margin-top: var(--space-xl); }

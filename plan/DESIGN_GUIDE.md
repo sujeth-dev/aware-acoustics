@@ -265,6 +265,24 @@ preferred below 100 compact records.
 Dust band, h2-scale heading, one paragraph, three text links. No texture panel, illustration or
 full-height centring that hides the footer.
 
+### 10.8 Editorial components `[C]` — DEC-016
+
+All sharp-edged, icon-free, no motion beyond existing transitions. Built on tokens only.
+
+| Component | Use |
+|---|---|
+| `.statement` | One pulled sentence between `.t-lead` and `.t-h3` scale; weight 300, max 30ch |
+| `.statement-list` | Term/sentence triad (About approach); accent-coloured term, hairline rules |
+| `.process-spine` | Vertical numbered stages (About method, Contact next steps); never a horizontal stepper |
+| `.person-row` | Team bio row on `grid--editorial`, alternating with `grid--flip` when a portrait exists; a person without a portrait is a single text column, never a placeholder box |
+| `.standards-register` | Register grouped design / measurement / green from `standards.json` `category` |
+| `.stat` | One large mono figure with a label; only ever from real data, never a zero |
+| `.band__swatch` | 48px material chip carrying the discipline's plate (`service-plate.js`); replaces an icon |
+| `.field*` | Underline-style form controls in `--serif`; deviates from §10.4 (no boxed Public Sans — the face is not loaded publicly and B12 bans filled controls) |
+
+Material mapping is fixed: architectural acoustics `wool` · sound insulation `slab` · simulation
+`perforated` · measurement `metal`. A discipline never changes texture between pages.
+
 ---
 
 ## 11. Navigation and footer

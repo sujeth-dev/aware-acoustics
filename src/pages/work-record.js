@@ -73,12 +73,36 @@ function facts(project, data) {
   ]);
 }
 
-function narrative(number, label, heading, text) {
-  if (!text) return "";
-  return `<section class="section section--tight ground-dust">
-  ${eyebrow(number, label)}
-  <h2 class="t-h5 record-narrative__heading">${esc(heading)}</h2>
-  <p class="t-body record-narrative__body">${esc(text)}</p>
+/**
+ * Condition and Approach as one paired editorial unit (grid--editorial)
+ * instead of two stacked, identical section shells. Case-tier data always
+ * carries both together (data.js guardProject), so the two-column pairing
+ * is never left with an orphan half.
+ */
+function narrativePair(project) {
+  if (!project.condition && !project.approach) return "";
+
+  const condition = project.condition
+    ? `<div>
+      ${eyebrow(1, "Condition")}
+      <h2 class="t-h5 record-narrative__heading">What the space presented.</h2>
+      <p class="t-body record-narrative__body">${esc(project.condition)}</p>
+    </div>`
+    : "";
+
+  const approach = project.approach
+    ? `<div>
+      ${eyebrow(2, "Approach")}
+      <h2 class="t-h5 record-narrative__heading">What was specified, and why.</h2>
+      <p class="t-body record-narrative__body">${esc(project.approach)}</p>
+    </div>`
+    : "";
+
+  return `<section class="section ground-dust-warm" aria-label="Condition and approach">
+  <div class="grid grid--editorial">
+    ${condition}
+    ${approach}
+  </div>
 </section>`;
 }
 
@@ -186,8 +210,7 @@ export function workRecordPage(project, data, siblings = []) {
     body: join([
       hero(project),
       `<section class="section section--tight ground-dust">${facts(project, data)}${serviceLinks(project, data)}</section>`,
-      narrative(1, "Condition", "What the space presented.", project.condition),
-      narrative(2, "Approach", "What was specified, and why.", project.approach),
+      narrativePair(project),
       verification(project, data),
       standardsAndTools(project, data),
       gallery(project),

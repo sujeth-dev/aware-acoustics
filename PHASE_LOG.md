@@ -430,3 +430,91 @@ Unchanged. Record pages cannot be reviewed with real content until Q-08/Q-09 lan
 ### Next
 
 Phase 7 — Services, single page with four in-page anchor sections.
+
+---
+
+## Redesign pass — design system and Home / Work restyle (DEC-016)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-19 |
+| **Status** | `COMPLETE` — homepage hero deliberately untouched |
+| **Approval** | Client feedback: pages read as basic; stay on-brand, execute better |
+
+### Completed
+
+- Activated the brand devices that were defined but unused: `grid--editorial` / `grid--flip`, the
+  `wool`, `perforated` and `metal` plates, and the section-ground rhythm.
+- New components (`components.css`, helpers in `ui.js`): `.statement` / `.statement-list`,
+  `.process-spine`, `.person-row`, `.standards-register`, `.stat`, `.field*`, `.band__swatch`,
+  plus `grid--contact`. No icons, no rounded cards, no new motion.
+- Home: About on the editorial grid with the practice test pulled as a statement; Services bands
+  carry per-discipline material swatches via `service-bands.js` / `service-plate.js`; Verification
+  shows the standards count as a large figure.
+- Work index split into intro and list zones; Work record's Condition and Approach paired on
+  `grid--editorial`.
+- Non-production builds are noindex (DEC-017).
+
+### Tests
+
+`validate-data.js` passed; `npm run build` — 8 routes; `test:smoke` passed;
+`AWARE_ENV=production npm run generate` still fails only at the Q-08/Q-09 featured-record gate.
+Not yet checked visually in a browser at 1440 / 375.
+
+### Commit
+
+`feat: extend design system with editorial components`
+
+---
+
+## Phase 7 — Services
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-19 (rebuild; first build was reverted 2026-08-27 at client request) |
+| **Status** | `COMPLETE FOR STRUCTURE` — evidence slots gated on case records |
+| **Approval** | Contributes to Gate 04 |
+
+Overview band (shared `service-bands.js`) plus four discipline sections with alternating
+editorial composition. Copy is CONTENT_PLAN §5 E-01…E-05; parameters and standards read live from
+`services.json` / `standards.json`. The sound-insulation "flanking" line is withheld (CLIENT TO
+CONFIRM). Evidence renders the dev-fixture until a published case record matches a discipline.
+Audiovisual stays unbuilt (Q-06). Parameter glossary not built (see DEC-016).
+
+Commit: `feat: add acoustic services page`
+
+---
+
+## Phase 8 — About (practice and method)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-19 |
+| **Status** | `COMPLETE FOR STRUCTURE` |
+| **Approval** | Contributes to Gate 04 |
+
+Practice, People (both deck principals published, text-only rows, no titles — Q-24, no portraits —
+Q-17), Approach triad, Method process spine, grouped Standards register (covers M-09 and M-11;
+LEED/WELL/ISO 14001 sit under "Green and compliance"), single closing CTA. Omitted per gating:
+Independence (Q-22), Instrumentation (Q-07). "Where we work" renders only from published projects.
+
+Commit: `feat: add method standards and practice pages`
+
+---
+
+## Phase 9 — Contact, privacy and utility routes (structure only)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-19 |
+| **Status** | `IN PROGRESS` — structure done; submission endpoint and privacy copy remain |
+
+Contact: two-column layout with the §5.6.1 field set (structural form, no submit handler yet),
+direct phone/email from `settings.json`, two of three "what happens next" lines (third is CLIENT TO
+CONFIRM). Privacy: scope preview only, no policy text (Q-30). 404: dust band per DESIGN_GUIDE §10.7.
+
+Commit: `feat: add appointment, privacy and utility route structure`
+
+### Next
+
+Content intake (list-tier records from the deck and `LIST OF PROJECTS.xlsx`), then Phase 3b.
