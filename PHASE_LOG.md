@@ -625,3 +625,25 @@ pre-filled email. The earlier design restrictions (DEC-016, B12) and the image-l
 Reviewed at 1440px and 375px with Playwright screenshots of every route, then covered by
 `npm run test:browser`. Open items: written Condition / Approach / Outcome text for the six
 featured projects; client photography to replace the web-sourced set; the V-14 production gate.
+
+## Image sourcing pass for image-less projects
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-20 |
+| **Status** | `COMPLETE` — pending client review |
+
+Sourced photographs for 17 of the 41 projects that had none, and replaced or removed the published images that
+showed people (staff, ceremonies, a thumbnail with title text). Result: 84 published images on 51 projects; 23
+projects still have no image. Licences: 20 openly licensed (CC0, CC BY, CC BY-SA), 2 from the practice's own
+former website (ownership not documented here) and 62 recorded as not verified, on the site owner's direction.
+
+Left without an image, by rule: bare client names with no city (Anaplan, Caterpillar, Trimont, ExxonMobil,
+Salesforce, Samsung, IHG, Grand Oberoi, Godrej, Adani), L&T multipurpose hall, Swaram TATA, Pristine Design
+Studio and Great Eastern Shipping Museum. Left without an image because nothing usable was found: Wayfair, ICICI
+Prudential Life, DE Shaw, ZenQ, Razorpay, Gland Pharma, T Abdul Wahid School, ITI theatre and Gaudium (every
+available photograph showed children). Identifications that are assumptions: Marie Gold = Marigold Hotel,
+Hyderabad; HICC = Hyderabad International Convention Centre; eBay = Embassy TechVillage.
+
+Open items: client photography for the 23 image-less projects and to replace the unverified set
+(`IMAGE_WORKFLOW.md` §5); ask the client for the Aware Acoustics photographs behind the old website's works page.

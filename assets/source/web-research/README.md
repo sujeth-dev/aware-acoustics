@@ -9,6 +9,9 @@
 > now on `/work/`, processed into `public/assets/projects/`, each labelled and credited in `data/projects.json`.
 > The rights caveats below still stand: publication is on the owner's direction, not a rights clearance.
 
+> **Update 2026-09-20:** a second pass (17 more projects, people-free replacements) is in
+> `additions-2026-09-20/`, with a source, licence and credit table. Same caveat: published on the owner's direction, not a rights clearance.
+
 ## What this is
 
 A research pass over `LIST OF PROJECTS.xlsx` (2026-09-18): for 35 "flagship" projects across 8

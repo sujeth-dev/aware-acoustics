@@ -22,6 +22,12 @@ follow semantic versioning once implementation begins.
 - Work index lists 74 named projects from the client deck and project list, with a sector filter and sector labels.
 - 33 project rows carry credited exterior and interior photographs (55 images). Rows showing a related site rather than the project are labelled "Representative image"; source, licence and credit are printed on `/work/`.
 
+### Added (image sourcing pass, 2026-09-20)
+
+- Photographs for 17 more projects: 51 of 74 now have images and 23 still have none. Each image records its source, licence and credit. Two (Kuvempu Kalamandira and Intel SRR4) come from the practice's own former website, recovered from the Internet Archive.
+- Images that centred on people (a staff group photo, a ribbon-cutting, a ceremony, a video thumbnail with title text, a person in the foreground) were replaced with exterior or interior views. Where no substitute was found the image was removed (ABB technical lab, second image; HN Science Centre, second image). Frames were cropped where a person sat at the edge.
+- Working copies and a source table for this pass are in `assets/source/web-research/additions-2026-09-20/`.
+
 ### Changed (DEC-020 visual redesign)
 
 - New visual system: deep navy, crimson and gold with beige paper bands; Spectral, Manrope and JetBrains Mono; diffuser-skyline section edges, registration ticks, sound arcs and ruled grids. The numbered 01–04 squares are replaced by four discipline signature drawings.
