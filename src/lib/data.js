@@ -108,6 +108,8 @@ function guardProject(project) {
   check(isBool(project?.featured) && isBool(project?.published), "featured and published must be booleans");
   check(isInt(project?.order), "order must be an integer");
   check(project?.year === null || isInt(project?.year), "year must be an integer or null");
+  check(project?.showcaseRank === undefined || project?.showcaseRank === null || isInt(project?.showcaseRank),
+    "showcaseRank must be an integer when present");
 
   for (const result of [...(project?.targets ?? []), ...(project?.measured ?? [])]) guardResult(result, label);
 
@@ -249,7 +251,23 @@ export function loadData() {
 export const publishedProjects = (data) => data.projects.filter((project) => project.published);
 export const caseProjects = (data) => publishedProjects(data).filter((project) => project.tier === "case");
 export const featuredProjects = (data) => caseProjects(data).filter((project) => project.featured).slice(0, 4);
-export const publishedServices = (data) => data.services.filter((service) => service.published);
+/**
+ * The curated projects that get their own page and lead the Work index.
+ * Ordered by showcaseRank (1 = first). Independent of `featured`, which is the
+ * evidence-gated case-record flag (DEC-007) and is left untouched.
+ */
+export const showcaseProjects = (data) =>
+  publishedProjects(data)
+    .filter((project) => Number.isInteger(project.showcaseRank))
+    .sort((a, b) => a.showcaseRank - b.showcaseRank);
+
+export const isShowcase = (project) => Number.isInteger(project?.showcaseRank);
+
+/** Where a project lives: its own page when curated, otherwise the Work overlay. */
+export const projectHref = (project) =>
+  isShowcase(project) ? `/work/${project.slug}/` : `/work/?project=${project.slug}`;
+
+export const publishedServices =(data) => data.services.filter((service) => service.published);
 export const publishedStandards = (data) => data.standards.filter((standard) => standard.published);
 export const publishedPeople = (data) => data.people.filter((person) => person.published);
 

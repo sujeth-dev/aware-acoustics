@@ -607,3 +607,21 @@ that had repeated the research notes rather than the picture.
 
 `npm run test:browser` now also fails on any row photograph that does not decode and on a
 representative row without its label.
+
+## Visual redesign and Work restructure (DEC-020)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-20 |
+| **Status** | `COMPLETE` — pending client review |
+
+Answered the client design review: a distinctive system (navy · crimson · gold, diffuser-skyline edges,
+registration ticks, sound arcs) carried across every page; a fixed header and a heavier footer; the
+numbered squares replaced; Work rebuilt as hero → six featured pages → explore-all with an overlay;
+Services, About and Contact recomposed; Contact made an interactive four-step enquiry that sends a
+pre-filled email. The earlier design restrictions (DEC-016, B12) and the image-labelling rule
+(DEC-019) were lifted by the site owner and are recorded in DEC-020.
+
+Reviewed at 1440px and 375px with Playwright screenshots of every route, then covered by
+`npm run test:browser`. Open items: written Condition / Approach / Outcome text for the six
+featured projects; client photography to replace the web-sourced set; the V-14 production gate.

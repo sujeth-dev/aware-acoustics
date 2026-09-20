@@ -4,6 +4,7 @@
  */
 
 import { eyebrow, tagRow } from "../components/ui.js";
+import { arcs } from "../components/wave.js";
 
 // The minimum section set required by CONTENT_PLAN.md §8 U-01, named here
 // only as a scope preview — no policy text is drafted until counsel and the
@@ -19,13 +20,17 @@ export function privacyPage() {
     route: "/privacy/",
     title: "Privacy",
     description: "How Aware Acoustics handles enquiry data.",
-    body: `<section class="section ground-dust" aria-labelledby="privacy-title">
-  <div class="section__head">
-    ${eyebrow(1, "Privacy")}
-    <h1 class="t-h2" id="privacy-title">Privacy and data handling.</h1>
-    <p class="t-standfirst measure-46">This page is published in full once the practice's data-handling terms are confirmed with counsel. It will cover:</p>
+    bodyClass: "page--solid-header",
+    body: `<section class="section ground-navy-deep has-lines on-dark util" aria-labelledby="privacy-title">
+  ${arcs()}
+  <div class="wrap stack-xl">
+    <div class="section__head">
+      ${eyebrow(null, "Privacy")}
+      <h1 class="t-h1" id="privacy-title">Privacy and data <em>handling.</em></h1>
+      <p class="t-standfirst measure-46">This page is published in full once the practice's data-handling terms are confirmed with counsel. It will cover:</p>
+    </div>
+    ${tagRow(SECTIONS, "Sections this page will cover")}
   </div>
-  ${tagRow(SECTIONS, "Sections this page will cover")}
 </section>`
   };
 }

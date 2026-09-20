@@ -1,40 +1,30 @@
 /**
- * about.js — "/about/" · WEBSITE_PLAN.md §5.5, CONTENT_PLAN.md §6.
+ * about.js — "/about/" · DEC-020 redesign of WEBSITE_PLAN.md §5.5.
  * Practice + Method merged (DEC-011).
  *
- * Copy is CONTENT_PLAN.md §6 (P-01…P-07, M-01…M-12), interface copy rather
- * than a data-model fact — same convention as services.js's DISCIPLINE_COPY.
+ * Copy is CONTENT_PLAN.md §6 (P-01…P-07, M-01…M-12), interface copy rather than
+ * a data-model fact. Gating that still holds:
+ *   - Independence (P-03) is omitted — CLIENT TO CONFIRM, Q-22.
+ *   - Instrumentation (M-08) is omitted — no equipment source exists, Q-07.
  *
- * Gating, per the site-wide rule (never invent, never placeholder-publish):
- *   - Independence (P-03) omitted — CLIENT TO CONFIRM, Q-22.
- *   - Instrumentation (M-08) omitted entirely — no equipment source exists,
- *     Q-07, and WEBSITE_PLAN.md §5.5 says never ship it with placeholder copy.
- *   - "Where we work" renders only when at least one project is published;
- *     otherwise omitted silently (it is a derived fact, not a promised slot).
- *   - People (02) is a promised slot, so an empty publishedPeople() shows the
- *     devFixture gated state, same as Home §03/§05.
- *   - Standards register (M-09) and Compliance (M-11) are the same component:
- *     standardsRegister() groups by category, and standards.json already
- *     carries LEED/WELL/ISO 14001 under "green" — a separate M-11 table would
- *     duplicate it.
- *
- * CONTENT_PLAN.md §1 allows exactly one body-level appointment CTA per page.
- * The content hierarchy in WEBSITE_PLAN.md §5.5 places it once, at the very
- * end (M-12) — P-06's alternate CTA copy is not used, to honour that rule.
+ * The practice figures in the hero are computed from published projects. People
+ * have no portraits yet, so each gets a monogram plate rather than an empty
+ * image slot. The method is a connected timeline and the standards register is a
+ * filterable table (src/js/standards-tabs.js); without JavaScript every row shows.
  */
 
-import { when, join } from "../lib/html.js";
+import { esc, each, when, join } from "../lib/html.js";
+import { eyebrow, tagRow } from "../components/ui.js";
+import { imageHero } from "../components/hero.js";
+import { bestImage } from "../components/picture.js";
+import { arcs, edge } from "../components/wave.js";
+import { sectorFacts } from "../lib/facts.js";
 import {
-  eyebrow,
-  cta,
-  stat,
-  statementList,
-  processSpine,
-  standardsRegister,
-  devFixture
-} from "../components/ui.js";
-import { peopleList } from "../components/people-row.js";
-import { publishedProjects, publishedPeople, publishedStandards, isProduction } from "../lib/data.js";
+  publishedProjects,
+  showcaseProjects,
+  publishedPeople,
+  publishedStandards
+} from "../lib/data.js";
 
 const APPROACH = [
   { term: "Clarity.", body: "State the criterion." },
@@ -50,64 +40,104 @@ const METHOD_STAGES = [
   { term: "Measure the completed condition.", body: "Report the result against the target and applicable standard." }
 ];
 
-function whereWeWork(data) {
-  const projects = publishedProjects(data);
-  if (projects.length === 0) return "";
-  const cities = new Set(projects.map((project) => project.city).filter(Boolean));
-  const countries = new Set(projects.map((project) => project.country).filter(Boolean));
-  if (cities.size === 0) return "";
-  const label = countries.size > 1 ? `cities across ${countries.size} countries` : "cities";
-  return stat(cities.size, label);
+const CATEGORY_LABELS = {
+  design: "Design",
+  measurement: "Measurement",
+  green: "Green and compliance"
+};
+
+const initials = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0].toUpperCase()).join("");
+
+function hero(data, projects, showcase) {
+  const facts = sectorFacts(data, projects);
+  return imageHero({
+    id: "about-title",
+    label: "About",
+    title: "Independent in advice. Accountable in <em>measurement.</em>",
+    lead: "Aware Acoustics advises architects, PMCs, developers and engineers across design, tender, site review and handover.",
+    slides: [showcase[5], showcase[3]].filter(Boolean).map(bestImage).filter(Boolean),
+    facts: [
+      { figure: facts.projects, label: "Projects" },
+      { figure: facts.sectors, label: "Sectors" },
+      { figure: facts.cities, label: "Cities" },
+      { figure: facts.founded, label: "Established" }
+    ],
+    size: "medium",
+    titleClass: "t-h1 hero__title--wide"
+  });
 }
 
-function practice(data) {
-  return `<section class="section ground-dust" aria-labelledby="about-title">
-  <div class="section__head">
-    ${eyebrow(1, "About")}
-    <h1 class="t-h2" id="about-title">Independent in advice. Accountable in measurement.</h1>
-    <p class="t-standfirst measure-46">Aware Acoustics advises architects, PMCs, developers and engineers across design, tender, site review and handover.</p>
-  </div>
-  ${whereWeWork(data)}
-</section>`;
+function person(entry) {
+  const meta = join([entry.role, entry.experienceYears ? `${entry.experienceYears}+ years` : null].filter(Boolean), " · ");
+  return `<article class="person ticks" data-reveal>
+    <div class="person__mark" aria-hidden="true">
+      ${arcs()}
+      <span class="person__initials">${esc(initials(entry.name))}</span>
+    </div>
+    <div class="person__body">
+      ${when(meta, () => `<p class="t-label">${esc(meta)}</p>`)}
+      <h3 class="person__name t-h4">${esc(entry.name)}</h3>
+      <p class="t-body">${esc(entry.bio)}</p>
+      ${tagRow(entry.credentials, `${entry.name} credentials`)}
+      ${when((entry.tools ?? []).length > 0, () => `<div class="person__tools"><p class="t-label">Tools</p>${tagRow(entry.tools, `${entry.name} tools`)}</div>`)}
+    </div>
+  </article>`;
 }
 
 function people(data) {
   const list = publishedPeople(data);
-  const body = list.length > 0
-    ? peopleList(list)
-    : when(!isProduction, () => devFixture("Team profiles publish here once ready.", "wool"));
-
-  return `<section class="section ground-dust-warm" aria-labelledby="about-people">
-  <div class="section__head">
-    ${eyebrow(2, "People")}
-    <h2 class="t-h2" id="about-people">The people you appoint.</h2>
+  if (list.length === 0) return "";
+  return `<section class="section ground-dust" aria-labelledby="about-people">
+  ${edge()}
+  <div class="wrap">
+    <div class="section__head">
+      ${eyebrow(null, "People")}
+      <h2 class="t-h2" id="about-people">The people you <em>appoint.</em></h2>
+    </div>
+    <div class="people-grid">
+${each(list, person)}
+    </div>
   </div>
-  ${body}
 </section>`;
 }
 
 function approach() {
-  return `<section class="section ground-stone" aria-labelledby="about-approach">
-  <div class="section__head">
-    ${eyebrow(3, "Approach")}
-    <h2 class="t-h2" id="about-approach">The test is practical.</h2>
+  return `<section class="section ground-navy has-lines on-dark" aria-labelledby="about-approach">
+  ${edge()}
+  <div class="wrap">
+    <div class="section__head">
+      ${eyebrow(null, "Approach")}
+      <h2 class="t-h2" id="about-approach">The test is <em>practical.</em></h2>
+    </div>
+    <div class="approach">
+${each(APPROACH, (item, index) => `      <article class="approach__item ticks" data-reveal style="--i:${index}">
+        <h3 class="approach__term">${esc(item.term)}</h3>
+        <p class="t-lead">${esc(item.body)}</p>
+      </article>`)}
+    </div>
   </div>
-  ${statementList(APPROACH)}
 </section>`;
 }
 
 function method() {
   return `<section class="section ground-dust-warm" aria-labelledby="about-method">
-  <div class="grid grid--editorial">
-    <div class="section__head">
-      ${eyebrow(4, "Method")}
-      <h2 class="t-h2" id="about-method">A room is designed twice.</h2>
+  ${edge()}
+  <div class="wrap">
+    <div class="section__head grid grid--projects-head grid--end">
+      <div>
+        ${eyebrow(null, "Method")}
+        <h2 class="t-h2" id="about-method">A room is designed <em>twice.</em></h2>
+      </div>
       <p class="t-standfirst">First as a target and model. Then as a built condition that can be measured.</p>
     </div>
-    <div class="stack-lg">
-      ${processSpine(METHOD_STAGES)}
-      <p class="t-body measure-46">Models account for reflection, absorption and diffraction, and test RT, SPL, intelligibility and response before construction.</p>
-    </div>
+    <ol class="timeline">
+${each(METHOD_STAGES, (stage, index) => `      <li class="timeline__item" data-reveal style="--i:${index}">
+        <span class="timeline__node" aria-hidden="true"></span>
+        <h3 class="timeline__term t-h5">${esc(stage.term)}</h3>
+        <p class="t-body">${esc(stage.body)}</p>
+      </li>`)}
+    </ol>
+    <p class="t-body measure-55 timeline__foot">Models account for reflection, absorption and diffraction, and test RT, SPL, intelligibility and response before construction.</p>
   </div>
 </section>`;
 }
@@ -115,36 +145,52 @@ function method() {
 function standards(data) {
   const list = publishedStandards(data);
   if (list.length === 0) return "";
-  return `<section class="section ground-dust" aria-labelledby="about-standards">
-  <div class="section__head">
-    ${eyebrow(5, "Standards")}
-    <h2 class="t-h2" id="about-standards">Working to the applicable standard, in every discipline.</h2>
-    <p class="t-standfirst measure-46">Recycled or renewable acoustic materials, low-VOC products and proximate compliant sourcing are preferred where the project permits.</p>
-  </div>
-  ${standardsRegister(list)}
-</section>`;
-}
+  const categories = ["design", "measurement", "green"].filter((category) => list.some((standard) => standard.category === category));
 
-function appointment() {
-  return `<section class="section ground-navy on-dark centred" aria-labelledby="about-appointment">
-  ${eyebrow(null, "Appointment")}
-  <h2 class="t-h2" id="about-appointment">Bring the criterion into the room early.</h2>
-  <p class="stack-lg">${cta("/contact/", "Start a conversation", "primary")}</p>
+  return `<section class="section ground-dust" aria-labelledby="about-standards">
+  ${edge()}
+  <div class="wrap">
+    <div class="section__head grid grid--projects-head grid--end">
+      <div>
+        ${eyebrow(null, "Standards")}
+        <h2 class="t-h2" id="about-standards">Working to the applicable <em>standard.</em></h2>
+      </div>
+      <p class="t-standfirst">Recycled or renewable acoustic materials, low-VOC products and proximate compliant sourcing are preferred where the project permits.</p>
+    </div>
+
+    <div class="register-tabs" role="group" aria-label="Filter standards by category" data-standards-tabs hidden>
+      <button class="register-tabs__btn" type="button" data-standards-filter="" aria-pressed="true">All <span>${list.length}</span></button>
+${each(categories, (category) => `      <button class="register-tabs__btn" type="button" data-standards-filter="${esc(category)}" aria-pressed="false">${esc(CATEGORY_LABELS[category])} <span>${list.filter((standard) => standard.category === category).length}</span></button>`)}
+    </div>
+
+    <div class="register-table" data-standards-table>
+${each(list, (standard) => `      <div class="register-table__row" data-standard-category="${esc(standard.category)}">
+        <span class="register-table__designation">${esc(standard.designation)}</span>
+        <span class="register-table__subject">${esc(standard.subject)}</span>
+        <span class="register-table__category t-label">${esc(CATEGORY_LABELS[standard.category])}</span>
+      </div>`)}
+    </div>
+  </div>
 </section>`;
 }
 
 export function aboutPage(data) {
+  const projects = publishedProjects(data);
+  const showcase = showcaseProjects(data);
+  const first = bestImage(showcase[5]);
+
   return {
     route: "/about/",
     title: "About",
     description: "Independent in advice. Accountable in measurement.",
+    bodyClass: "page--about",
+    preload: first?.src,
     body: join([
-      practice(data),
+      hero(data, projects, showcase),
       people(data),
       approach(),
       method(),
-      standards(data),
-      appointment()
+      standards(data)
     ])
   };
 }

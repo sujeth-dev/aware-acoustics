@@ -22,6 +22,16 @@ follow semantic versioning once implementation begins.
 - Work index lists 74 named projects from the client deck and project list, with a sector filter and sector labels.
 - 33 project rows carry credited exterior and interior photographs (55 images). Rows showing a related site rather than the project are labelled "Representative image"; source, licence and credit are printed on `/work/`.
 
+### Changed (DEC-020 visual redesign)
+
+- New visual system: deep navy, crimson and gold with beige paper bands; Spectral, Manrope and JetBrains Mono; diffuser-skyline section edges, registration ticks, sound arcs and ruled grids. The numbered 01–04 squares are replaced by four discipline signature drawings.
+- Fixed header (transparent over a hero, navy glass once scrolled) with the logo on a beige tab; new footer with a crimson call band and an outlined wordmark.
+- Work page restructured: image hero, six featured projects each with their own page, and "Explore all work" (sector filter, search, show-more) opening every other project in an overlay. The image disclaimer and credits list are gone from the page; CC BY / CC BY-SA credits sit inside the project view.
+- Home, Services, About and Contact recomposed with a distinct layout per section. Contact is now a four-step enquiry with a live summary that sends a pre-filled email.
+- Data: optional `showcaseRank` on a project marks the six featured projects; `validate-data.js` checks it.
+- Motion added (reveal, hero crossfade, ticker), gated by `prefers-reduced-motion`.
+- `npm run test:browser` now covers the featured pages, explorer, overlay, no-JavaScript fallback, contact flow and scroll reveal.
+
 ### Changed
 
 - Home and Work pages recomposed with editorial alternation and per-discipline materials; homepage hero unchanged.

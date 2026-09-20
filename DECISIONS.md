@@ -45,7 +45,7 @@ do not trace the JPEG and present it as an authorised redraw.
 
 ## DEC-003 — Texture-first visual strategy
 
-**Status:** Recommended · Gate 02 sign-off required
+**Status:** Recommended · Gate 02 sign-off required · photography rule superseded by DEC-020
 
 **Context.** Brand Part A mandates no photography. The deck contains no hero image that is both
 cleared and production resolution; however, real project imagery can evidence completed work.
@@ -387,7 +387,7 @@ a re-use of this one.
 
 ## DEC-016 — Page redesign: activate the brand's own devices, add restrained components
 
-**Status:** Decided · 2026-09-19
+**Status:** Decided · 2026-09-19 · design constraint superseded by DEC-020
 
 **Context.** Client feedback: the built pages read as basic and not brand-oriented. Audit found the
 cause was not a thin brand system: `grid--editorial`/`grid--flip`, three of seven plate variants
@@ -489,7 +489,7 @@ owner's statement; `PROJECT_DATA.md` §4 asks for a written record per project, 
 
 ## DEC-019 — Publish the web-research image set, labelled as representative
 
-**Status:** Decided · 2026-09-19 · supersedes the "Images" paragraph of DEC-018
+**Status:** Decided · 2026-09-19 · supersedes the "Images" paragraph of DEC-018 · labelling superseded by DEC-020
 
 **Context.** DEC-018 published images for four records only. The site owner's standing instruction was
 web images, one exterior and one interior per project, and directed that all of the researched set
@@ -520,3 +520,61 @@ weak as portfolio material (a YouTube thumbnail with title text, a ceremony phot
 a street shot for HDFC). Replacing each with client-supplied photography, via `IMAGE_WORKFLOW.md` §5,
 remains the route to removing both the exposure and the "representative" labels. Two research folders
 (`others/`) have no image because the facility could not be identified.
+## DEC-020 — Visual redesign: navy · crimson · gold, and the Work restructure
+
+**Status:** Decided · 2026-09-20 · supersedes DEC-003 (no photographic heroes), DEC-016 (the "same basic
+design style" constraint), DEC-019 (representative-image labelling) and brand direction A8 / B12
+
+**Context.** Client design review of the live build: the site had content but no visual design language.
+It read as pale, plain and generic; header and footer had no character; the numbered 01–04 squares
+repeated on Home and Services; Work had no hero, listed all 74 projects at once, offered no real project
+view and carried noise copy; Services, About and Contact were information placed on a page; Contact did
+not feel like a contact experience. The site owner then lifted the earlier design restrictions and asked
+for the redesign to use every image, drop the image disclaimers, and take Velmont as the structural
+reference.
+
+**Decision.**
+
+- **Design rules lifted.** Gradients, layered imagery, rounded panels, filled buttons, italic emphasis,
+  icons, scroll and hero motion are all permitted. Motion stays inside `prefers-reduced-motion:
+  no-preference`. Focus rings, skip link, 44px targets and contrast (see `tokens.css`) are unchanged.
+- **Palette.** Deep navy is the dominant ground (header, heroes, footer, feature bands), with crimson
+  (fills, calls to action) and gold (rules, ticks, numerals, text on dark) taken from the logo. Beige
+  remains the paper tone between dark bands. Gold is never used as text on a light ground.
+- **Type.** Spectral (headings, prose), Manrope (buttons, navigation) and JetBrains Mono (data, labels).
+  The weight-300-only / no-italic rule is lifted; an italic accent word in each headline is now the
+  house device.
+- **Design language.** Diffuser-skyline section edges, registration-tick panel corners, concentric sound
+  arcs, ruled hairline grids, image-plus-navy-gradient heroes, and four discipline signature drawings in
+  place of the numbered squares. Section numbering is retired.
+- **Header and footer.** Fixed header, transparent over a hero and navy glass once scrolled; the logo
+  hangs on a beige tab so its navy wordmark stays legible on any ground. The footer is a crimson call band
+  (the site's one appointment prompt, omitted on /contact/), a navy body and an oversized outlined
+  wordmark.
+- **Work.** Image hero → six showcase projects → "Explore all work". A new optional `showcaseRank`
+  (1–6) on a project gives it its own page at `/work/<slug>/` (`work-feature.js`); it is independent of
+  `featured`, which stays the evidence-gated case-record flag. All 74 projects appear in the explorer
+  (sector filter, search, show-more); every non-showcase project opens in a server-rendered `<dialog>`
+  overlay, linkable as `/work/?project=<slug>`.
+- **Image labelling removed.** No "Representative image" labels, no page-level disclaimer, no credits
+  list. One exception: images licensed CC BY / CC BY-SA carry a small credit line inside the project view,
+  because those licences require attribution. `representative` and `depicts` remain in the data as
+  internal fields.
+- **Contact.** A four-step enquiry with a live summary. Sending composes a pre-filled `mailto:` to the
+  practice; there is no server and no third-party script. It is a complete plain form without JavaScript.
+
+**Consequences.**
+
+- Photographs of related sites are now shown as project imagery without any on-page disclosure. 44 of the
+  55 image licences remain **unverified** (DEC-019); that exposure is unchanged in size but is no longer
+  disclosed on the page. Replacing them with client photography (`IMAGE_WORKFLOW.md` §5) is still the
+  route to removing it.
+- Showcase pages carry facts and images only. No Condition / Approach / Outcome text exists, and none is
+  invented; DEC-007 still governs the case-record tier and `work-record.js` is unchanged and unused.
+- The six showcase projects (Guwahati airport, REVA University, JW Marriott Sahar, Google India Opal,
+  ABB technical lab, Dehradun airport) were chosen for image quality and sector spread. Change them by
+  editing `showcaseRank` in `data/projects.json`.
+- `npm run build:production` still fails by design at validate-data V-14 (it needs two featured case
+  records); that gate is unchanged.
+- Removed: the numbered service bands, the people rows, the list-tier record rows and the client-side
+  sector filter, all superseded by the components above.

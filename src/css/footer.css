@@ -1,0 +1,119 @@
+/* ===========================================================================
+   footer.css — A deliberate closing section: crimson call band, navy body
+   with sound arcs, and an oversized outlined wordmark bleeding off the base.
+   =========================================================================== */
+
+.site-footer { position: relative; color: var(--color-text-inverse); }
+
+/* ─── Call band ─── */
+
+.footer-cta {
+  position: relative;
+  padding: clamp(64px, 10vh, 112px) var(--pad) calc(clamp(64px, 10vh, 112px) + 20px);
+}
+
+.footer-cta__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-2xl);
+  max-width: var(--wrap);
+  margin-inline: auto;
+}
+
+.footer-cta__title {
+  max-width: 17ch;
+  font-size: clamp(34px, 5vw, 72px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.034em;
+  text-wrap: balance;
+}
+
+.footer-cta .arcs { color: #fff; opacity: .14; right: -8%; }
+
+/* ─── Body ─── */
+
+.site-footer__main {
+  --edge-color: var(--navy-deep);
+  position: relative;
+  padding: var(--space-3xl) var(--pad) 0;
+  overflow-x: clip;
+  background:
+    radial-gradient(900px 480px at 88% 40%, rgba(36, 71, 109, .5), transparent 65%),
+    var(--navy-deep);
+  border-top: 2px solid var(--gold);
+}
+
+.site-footer__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.3fr .8fr 1fr 1.1fr;
+  gap: var(--space-2xl) var(--space-xl);
+  max-width: var(--wrap);
+  margin-inline: auto;
+}
+
+.site-footer__col { display: grid; align-content: start; gap: 10px; }
+
+.site-footer__heading {
+  margin-bottom: 6px;
+  padding-bottom: 12px;
+  color: var(--gold);
+  border-bottom: 1px solid var(--line-gold);
+}
+
+.site-footer__name {
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: -.02em;
+}
+
+.site-footer__note { max-width: 30ch; color: var(--color-text-muted); }
+
+.site-footer__link {
+  font-size: 16px;
+  color: rgba(243, 237, 224, .82);
+}
+
+a.site-footer__link:hover { color: var(--gold-light); }
+
+.site-footer__meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  max-width: var(--wrap);
+  margin: var(--space-3xl) auto 0;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--line-light);
+}
+
+.site-footer__meta,
+.site-footer__meta .t-meta { color: var(--color-text-muted); }
+.site-footer__meta a:hover { color: var(--gold-light); }
+
+/* Giant outlined wordmark, cropped by the page edge. */
+.site-footer__wordmark {
+  position: relative;
+  z-index: 0;
+  height: .58em;
+  margin: var(--space-xl) calc(var(--pad) * -1) 0;
+  overflow: hidden;
+  font-family: var(--serif);
+  font-size: clamp(44px, 11.6vw, 214px);
+  font-weight: 300;
+  line-height: .95;
+  letter-spacing: -.05em;
+  text-align: center;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212, 168, 75, .5);
+  user-select: none;
+  pointer-events: none;
+}

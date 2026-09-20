@@ -1,0 +1,185 @@
+/* ===========================================================================
+   home.css — Homepage compositions: About, selected-work mosaic, service
+   cards and the verification register.
+   =========================================================================== */
+
+/* ─── About ─── */
+
+.pull {
+  padding: 6px 0 6px 28px;
+  max-width: 30ch;
+  font-size: clamp(23px, 2.3vw, 32px);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -.015em;
+  border-left: 3px solid var(--red);
+}
+
+.about-figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-card);
+}
+
+.about-figure picture,
+.about-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.about-figure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(8, 19, 31, .78), transparent 46%);
+  pointer-events: none;
+}
+
+.about-figure__caption {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 26px;
+  z-index: 4;
+  display: grid;
+  gap: 2px;
+  color: #fff;
+}
+
+.about-figure__caption .t-label,
+.about-figure__caption .t-meta { color: rgba(243, 237, 224, .85); }
+
+/* ─── Selected-work mosaic ─── */
+
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: clamp(220px, 22vw, 320px);
+  gap: var(--space-lg);
+}
+
+.tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--navy-mid);
+  border: 1px solid var(--line-gold);
+  border-radius: var(--radius-panel);
+}
+
+.tile--1 { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+
+.tile picture,
+.tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.tile img { transition: transform 1s var(--ease); }
+.tile:hover img { transform: scale(1.06); }
+
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(8, 19, 31, .88), rgba(8, 19, 31, .1) 58%);
+  pointer-events: none;
+}
+
+.tile__body {
+  position: absolute;
+  left: 24px;
+  right: 72px;
+  bottom: 22px;
+  z-index: 2;
+  display: grid;
+  gap: 4px;
+}
+
+.tile__sector { color: var(--gold); }
+.tile__title { font-size: clamp(20px, 1.9vw, 28px); line-height: 1.12; letter-spacing: -.02em; }
+.tile--1 .tile__title { font-size: clamp(28px, 3vw, 46px); }
+.tile__meta { color: rgba(243, 237, 224, .82); }
+
+.tile__glyph {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  font-family: var(--font-ui);
+  color: var(--gold);
+  border: 1px solid var(--line-gold);
+  border-radius: 50%;
+}
+
+.tile:hover .tile__glyph { color: var(--navy-deep); background: var(--gold); border-color: var(--gold); }
+
+/* ─── Service cards ─── */
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.svc-card { display: flex; }
+
+.svc-card__link {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-subtle);
+}
+
+.svc-card__link:hover {
+  border-color: var(--gold-deep);
+  box-shadow: var(--shadow-card);
+}
+
+.svc-card__art {
+  display: block;
+  padding: 34px 28px;
+  color: rgba(243, 237, 224, .88);
+  background: linear-gradient(160deg, var(--navy-mid), var(--navy-deep));
+}
+
+.svc-card__body { display: grid; gap: 14px; align-content: start; padding: 26px 26px 12px; }
+.svc-card__title { display: block; }
+.svc-card__summary { display: block; font-size: 15.5px; }
+.svc-card__go { justify-self: start; margin: 4px 26px 26px; }
+
+/* ─── Verification register ─── */
+
+.register { padding: var(--space-xl); }
+
+.register__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.register__count { margin: 0; }
+.register__count .stat__figure { font-size: clamp(48px, 5vw, 76px); }
+.register .tag-row { gap: 6px; }
+.register .tag { font-size: 11.5px; padding: 5px 11px; }
+
+.util { min-height: 70svh; display: grid; align-content: center; }

@@ -126,6 +126,16 @@ for (const standard of standards) {
   for (const service of standard.services || []) if (!serviceIds.has(service)) errors.push(`standard ${standard.id}: unknown service "${service}"`);
 }
 
+const showcase = projects.filter((project) => Number.isInteger(project.showcaseRank));
+const showcaseRanks = showcase.map((project) => project.showcaseRank);
+if (new Set(showcaseRanks).size !== showcaseRanks.length) errors.push("projects.json: showcaseRank values must be unique");
+if (showcase.length > 6) errors.push(`no more than 6 showcase projects are allowed; found ${showcase.length}`);
+for (const project of showcase) {
+  if (project.showcaseRank < 1) errors.push(`project ${project.slug}: showcaseRank must be 1 or greater`);
+  if (!project.published) errors.push(`project ${project.slug}: showcase project must be published`);
+  if ((project.images || []).length === 0) errors.push(`project ${project.slug}: showcase project requires at least one image`);
+}
+
 const featured = projects.filter((project) => project.featured && project.published && project.tier === "case").length;
 if (production && featured < 2) errors.push(`production requires at least 2 featured case records; found ${featured}`);
 else if (production && featured < 4) warnings.push(`production recommends 4 featured case records; found ${featured}`);

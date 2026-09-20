@@ -1,110 +1,208 @@
 /**
- * work.js — "/work/" · WEBSITE_PLAN.md §5.2, CONTENT_PLAN.md W-01.
+ * work.js — "/work/"
  *
- * Lists every published project in both tiers. Case-tier rows link to their
- * record; list-tier rows do not, because there is no page behind them (DEC-007).
+ * Restructured under DEC-020:
+ *   1. an image hero with computed facts,
+ *   2. the six showcase projects, each linking to its own page,
+ *   3. "Explore all work": every project as a card, filterable by sector and
+ *      searchable, opening in an overlay (src/js/work-overlay.js).
  *
- * Filters ship only above the §5.2 threshold — 12 published projects and at
- * least four sectors carrying two projects each. Below that a filter row is
- * furniture that makes a small list look smaller, so it is not rendered.
+ * The overlay content is server-rendered into a <template> per project so it
+ * needs no client-side data fetching. Without JavaScript every card still lists
+ * and the showcase links still work; the controls stay hidden.
  */
 
-import { esc, each, join, when } from "../lib/html.js";
-import { eyebrow, cta, stat, devFixture } from "../components/ui.js";
-import { recordRows } from "../components/record-row.js";
-import { publishedProjects, isProduction } from "../lib/data.js";
+import { esc, each, when, join } from "../lib/html.js";
+import { eyebrow } from "../components/ui.js";
+import { imageHero } from "../components/hero.js";
+import { picture, bestImage } from "../components/picture.js";
+import { waveform, edge } from "../components/wave.js";
+import { projectPanel, placeLabel } from "../components/project-view.js";
+import { sectorFacts } from "../lib/facts.js";
+import {
+  publishedProjects,
+  showcaseProjects,
+  isShowcase,
+  projectHref,
+  sectorLabel
+} from "../lib/data.js";
 
 const FILTER_MIN_PROJECTS = 12;
-const FILTER_MIN_SECTORS = 4;
-const FILTER_MIN_PER_SECTOR = 2;
 
-export function filtersQualify(projects) {
-  if (projects.length < FILTER_MIN_PROJECTS) return false;
-  const counts = new Map();
-  for (const project of projects) counts.set(project.sector, (counts.get(project.sector) ?? 0) + 1);
-  const populated = [...counts.values()].filter((count) => count >= FILTER_MIN_PER_SECTOR).length;
-  return populated >= FILTER_MIN_SECTORS;
+function hero(data, projects, showcase) {
+  // Start on a different project from the homepage so the two heroes don't open identically.
+  const rotated = [...showcase.slice(2), ...showcase.slice(0, 2)];
+  const slides = rotated.map(bestImage).filter(Boolean);
+  const facts = sectorFacts(data, projects);
+
+  return imageHero({
+    id: "work-title",
+    label: "Work",
+    title: "Rooms built to be <em>heard.</em>",
+    lead: `Airports, auditoriums, hotels, workplaces and laboratories: the projects Aware Acoustics has advised on, across ${facts.sectors} sectors.`,
+    slides,
+    facts: [
+      { figure: facts.projects, label: "Projects" },
+      { figure: facts.sectors, label: "Sectors" },
+      { figure: facts.cities, label: "Cities" }
+    ],
+    size: "medium",
+    titleClass: "t-h1"
+  });
 }
 
-function counter(projects) {
-  // Never a zero counter — an empty publish state is omitted, not printed as
-  // "0 projects", and the measured clause only appears once a record has one.
-  if (projects.length === 0) return "";
-  const measured = projects.filter((project) => (project.measured ?? []).length > 0).length;
-  const noun = projects.length === 1 ? "project" : "projects";
-  const label = measured > 0
-    ? `${noun} · ${measured} measured ${measured === 1 ? "record" : "records"}`
-    : `${noun} listed`;
-  return stat(projects.length, label);
+/* ─── Featured rows ─── */
+
+function featureRow(project, index, data) {
+  const dark = index % 2 === 1;
+  const image = bestImage(project);
+  const href = projectHref(project);
+  const detail = join(
+    [placeLabel(project), (project.scope ?? [])[0]].filter(Boolean),
+    " · "
+  );
+
+  return `<article class="feature${index % 2 === 1 ? " feature--flip" : ""}${dark ? " feature--dark" : ""}" data-reveal>
+  <a class="feature__media" href="${esc(href)}" tabindex="-1" aria-hidden="true">
+    ${picture(image, { alt: "", sizes: "(min-width: 900px) 56vw, 100vw", eager: index === 0 })}
+    <span class="feature__chip t-label">${esc(sectorLabel(data, project.sector))}</span>
+  </a>
+  <div class="feature__info ticks${dark ? " on-dark" : ""}">
+    <p class="eyebrow">${esc(sectorLabel(data, project.sector))}</p>
+    <h3 class="feature__title t-h3"><a href="${esc(href)}">${esc(project.title)}</a></h3>
+    ${when(detail, () => `<p class="feature__meta t-meta">${esc(detail)}</p>`)}
+    ${when(project.summary, () => `<p class="feature__summary t-body">${esc(project.summary)}</p>`)}
+    <a class="link-arrow" href="${esc(href)}">View project <span aria-hidden="true">↗</span></a>
+  </div>
+</article>`;
 }
 
-/**
- * Sector filter — WEBSITE_PLAN.md §5.2, DESIGN_GUIDE.md §10.5. Rendered only
- * above the threshold and `hidden` until src/js/work-filter.js enables it, so
- * a visitor without JavaScript sees the complete list and no dead controls.
- */
+function featured(data, showcase, total) {
+  if (showcase.length === 0) return "";
+  return `<section class="section ground-dust" aria-labelledby="work-featured">
+  ${edge()}
+  <div class="wrap">
+    <div class="section__head grid grid--projects-head grid--end">
+      <div>
+        ${eyebrow(null, "Featured projects")}
+        <h2 class="t-h2" id="work-featured">Featured <em>projects.</em></h2>
+      </div>
+      <p class="t-body">Each opens as its own page, with every photograph and every fact we hold for the project.</p>
+    </div>
+    <div class="feature-list">
+${each(showcase, (project, index) => featureRow(project, index, data))}
+    </div>
+    <p class="feature-more"><a class="cta cta--secondary" href="#explore">Explore all ${esc(total)} projects <span class="cta__glyph" aria-hidden="true">↓</span></a></p>
+  </div>
+</section>`;
+}
+
+/* ─── Explore all ─── */
+
+function card(project, index, data) {
+  const image = bestImage(project);
+  const href = projectHref(project);
+  const showcase = isShowcase(project);
+  const search = join(
+    [project.title, project.city, project.location, sectorLabel(data, project.sector), ...(project.scope ?? [])],
+    " "
+  ).toLowerCase();
+
+  return `<li class="work-card${image ? "" : " work-card--plate"}" data-slug="${esc(project.slug)}" data-sector="${esc(project.sector)}" data-search="${esc(search)}">
+  <a class="work-card__link" href="${esc(href)}"${showcase ? "" : ` data-project-link="${esc(project.slug)}"`}>
+    <span class="work-card__media">
+      ${image
+        ? picture(image, { alt: "", sizes: "(min-width: 1100px) 30vw, (min-width: 700px) 45vw, 100vw" })
+        : `<span class="work-card__plate" aria-hidden="true">${waveform(index + 1)}</span>`}
+      ${when(showcase, '<span class="work-card__flag t-label">Featured</span>')}
+    </span>
+    <span class="work-card__body">
+      <span class="work-card__sector t-label">${esc(sectorLabel(data, project.sector))}</span>
+      <span class="work-card__title">${esc(project.title)}</span>
+      <span class="work-card__meta t-meta">${esc(placeLabel(project) ?? (project.scope ?? [])[0] ?? "")}</span>
+    </span>
+    <span class="work-card__glyph" aria-hidden="true">↗</span>
+  </a>
+</li>`;
+}
+
 function filterStrip(data, projects) {
-  if (!filtersQualify(projects)) return "";
+  if (projects.length < FILTER_MIN_PROJECTS) return "";
   const counts = new Map();
   for (const project of projects) counts.set(project.sector, (counts.get(project.sector) ?? 0) + 1);
   const sectors = data.sectors.filter((sector) => counts.has(sector.id));
 
   return `<nav class="filter-strip" aria-label="Filter by sector" data-work-filter hidden>
-  <a class="filter-strip__link" href="/work/" data-sector-filter="" aria-current="true">All <span class="t-meta">${projects.length}</span></a>
-  ${each(sectors, (sector) => `<a class="filter-strip__link" href="/work/?sector=${esc(sector.id)}" data-sector-filter="${esc(sector.id)}">${esc(sector.label)} <span class="t-meta">${counts.get(sector.id)}</span></a>`)}
-</nav>
-<p class="t-meta" data-work-filter-status aria-live="polite" hidden></p>`;
+  <a class="filter-strip__link" href="/work/" data-sector-filter="" aria-current="true">All <span>${projects.length}</span></a>
+  ${each(sectors, (sector) => `<a class="filter-strip__link" href="/work/?sector=${esc(sector.id)}" data-sector-filter="${esc(sector.id)}">${esc(sector.label)} <span>${counts.get(sector.id)}</span></a>`)}
+</nav>`;
 }
 
-/**
- * No photograph on a list-tier row is Aware Acoustics project photography.
- * Some show the facility named; rows marked "Representative image" show a
- * related site. Credits are printed because open licences (CC BY-SA, CC0)
- * expect attribution on the page.
- */
-function creditLine(image) {
-  const licence = image.licence.startsWith("CC") ? ` · ${esc(image.licence)}` : "";
-  return `<a href="${esc(image.source)}" rel="noopener">${esc(image.credit)}</a>${licence}`;
+function dialog() {
+  return `<dialog class="pv-dialog on-dark" data-project-dialog aria-labelledby="pv-title">
+  <div class="pv-dialog__bar">
+    <p class="t-label" data-pv-position aria-live="polite"></p>
+    <div class="pv-dialog__actions">
+      <button class="pv-dialog__btn" type="button" data-pv-prev aria-label="Previous project"><span aria-hidden="true">←</span></button>
+      <button class="pv-dialog__btn" type="button" data-pv-next aria-label="Next project"><span aria-hidden="true">→</span></button>
+      <button class="pv-dialog__btn pv-dialog__btn--close" type="button" data-pv-close aria-label="Close project"><span aria-hidden="true">✕</span></button>
+    </div>
+  </div>
+  <div class="pv-dialog__body" data-pv-body></div>
+</dialog>`;
 }
 
-function imageNote(projects) {
-  const credited = projects.filter((project) => (project.images ?? []).length > 0);
-  if (credited.length === 0) return "";
+function explore(data, projects) {
+  return `<section class="section ground-navy has-lines on-dark" id="explore" aria-labelledby="work-explore">
+  ${edge()}
+  <div class="wrap">
+    <div class="section__head grid grid--projects-head grid--end">
+      <div>
+        ${eyebrow(null, "Explore all work")}
+        <h2 class="t-h2" id="work-explore">The complete <em>record.</em></h2>
+      </div>
+      <p class="t-body">All ${projects.length} projects, by sector. Open any project to see its images and facts.</p>
+    </div>
 
-  return `<div class="work-note t-meta">
-  <p>None of these photographs is Aware Acoustics project photography. Where a row says “Representative image”, the photograph shows a related site, not the project itself. All are credited to their sources.</p>
-  <ul class="work-note__credits">
-${each(credited, (project) => `    <li>${esc(project.title)} — ${join([...new Set(project.images.map(creditLine))], "; ")}</li>`)}
-  </ul>
-</div>`;
+    <div class="explorer" data-explorer>
+      <div class="explorer__controls">
+        ${filterStrip(data, projects)}
+        <label class="explorer__search" data-work-search hidden>
+          <span class="visually-hidden">Search projects by name, city or scope</span>
+          <input type="search" placeholder="Search projects" autocomplete="off" spellcheck="false">
+        </label>
+      </div>
+      <p class="explorer__status t-meta" data-work-status aria-live="polite"></p>
+
+      <ul class="work-grid" data-work-grid>
+${each(projects, (project, index) => card(project, index, data))}
+      </ul>
+
+      <p class="explorer__empty t-body" data-work-empty hidden>No project matches. <button class="link-arrow" type="button" data-work-reset>Clear filters</button></p>
+      <p class="explorer__more" data-work-more hidden><button class="cta cta--secondary" type="button">Show more projects</button></p>
+    </div>
+  </div>
+</section>
+
+${each(projects.filter((project) => !isShowcase(project)), (project, index) => `<template data-project-template="${esc(project.slug)}">${projectPanel(project, data, { seed: index + 1 })}</template>`)}
+${dialog()}`;
 }
 
 export function workPage(data) {
   const projects = publishedProjects(data);
-
-  // Every published project renders in both tiers. Projects are list-tier
-  // until Q-08 · Q-09 · Q-18 supply the evidence a case record requires
-  // (see DEFERRED.md); the dev-fixture only shows when nothing is published.
-  const list = projects.length > 0
-    ? `${counter(projects)}${filterStrip(data, projects)}<div class="record-list">${recordRows(projects, data)}</div>${imageNote(projects)}`
-    : when(!isProduction, () => devFixture("Work index publishes here once a project is ready.", "slab"));
+  const showcase = showcaseProjects(data);
+  const first = bestImage(showcase[2] ?? showcase[0]);
 
   return {
     route: "/work/",
     title: "Work",
-    description: "Project records organised by sector, discipline and the evidence available to publish.",
-    body: `<section class="section ground-dust" aria-labelledby="work-title">
-  <div class="section__head">
-    ${eyebrow(1, "Work")}
-    <h1 class="t-h2" id="work-title">Work held to a number.</h1>
-    <p class="t-standfirst measure-46">Project records organised by sector, discipline and the evidence available to publish.</p>
-  </div>
-</section>
-
-<section class="section section--tight ground-dust-warm">
-  ${list}
-
-  <div class="section__foot">${cta("/contact/", "Discuss a project", "primary")}</div>
-</section>`
+    description: "Airports, auditoriums, hotels, workplaces and laboratories: the projects Aware Acoustics has advised on, by sector.",
+    bodyClass: "page--work",
+    preload: first?.src,
+    body: join([
+      hero(data, projects, showcase),
+      featured(data, showcase, projects.length),
+      explore(data, projects)
+    ])
   };
 }

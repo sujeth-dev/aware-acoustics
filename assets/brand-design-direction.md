@@ -1,3 +1,7 @@
+> **Superseded in part — DEC-020 (2026-09-20).** Sections A8 and B12 (no gradients, no animation, no rounded
+> containers, no icons, no photographic heroes, text-only CTAs) and the beige-dominant palette no longer apply.
+> The current visual system is defined in `src/css/tokens.css` and recorded in `DECISIONS.md` DEC-020.
+
 # Aware Acoustics — Direction 02: Mineral / Material
 
 > Brand system extracted from `directions/02-mineral-material.html`

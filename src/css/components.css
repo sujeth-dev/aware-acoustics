@@ -1,12 +1,10 @@
 /* ===========================================================================
-   components.css — Public components and their states.
-   Sharp edges throughout; the only radius is --radius-thumb on thumbnails.
+   components.css — Shared primitives used across pages.
+   Page- and region-specific styling lives beside it: header, footer, hero,
+   home, work, overlay, services, about, contact, record.
    =========================================================================== */
 
-/* ─── Material texture plate — A5 four-layer stack ────────────────────────
-   1 base gradient · 2 fibre pattern · 3 SVG grain · 4 raking light.
-   Layer order in `background` is top-most first.
-   ------------------------------------------------------------------------ */
+/* ─── Material texture plate — retained for dev fixtures and record heroes ─── */
 
 .plate {
   position: relative;
@@ -66,7 +64,6 @@
     linear-gradient(115deg, #a7a49c, #8c8981);
 }
 
-/* Gradient veils protecting text over textures — A5. */
 .plate--veiled::after {
   content: "";
   position: absolute;
@@ -77,142 +74,110 @@
     linear-gradient(to right, rgba(0,0,0,.4), transparent 48%);
 }
 
-.plate--editorial::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(to top, rgba(0,0,0,.52), rgba(0,0,0,.06) 55%, transparent);
-}
-
-/* ─── Header ─── absolute, not fixed (A8) ─────────────────────────────── */
-
-.site-header {
-  position: absolute;
-  inset: 0 0 auto 0;
-  z-index: 20;
-}
-
-.site-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-lg);
-  padding: var(--space-lg) var(--pad);
-}
-
-.wordmark {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding-block: var(--space-sm);
-}
-
-.wordmark__mark {
-  width: auto;
-  height: 26px;
-}
-
-.wordmark__text {
-  font-size: 19px;
-  letter-spacing: -.015em;
-}
-
-.site-nav {
-  display: flex;
-  gap: var(--space-xl);
-}
-
-.site-nav__link {
-  padding-block: 12px;
-  opacity: .78;
-}
-
-.site-nav__link:hover { opacity: 1; }
-.site-nav__link.is-current { color: var(--color-accent); opacity: 1; }
-
-.on-dark .site-nav__link.is-current,
-.page--dark-header .site-nav__link.is-current { color: var(--color-accent-hover); }
-
-/* Hamburger — two 1px rules, 44px target (A/B11). */
-.nav-toggle {
-  display: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  background: none;
-  border: 0;
-  cursor: pointer;
-}
-
-.nav-toggle__rules {
-  display: block;
-  width: 24px;
-  margin-inline: auto;
-}
-
-.nav-toggle__rules > span {
-  display: block;
-  height: 1px;
-  background: currentColor;
-}
-
-.nav-toggle__rules > span + span { margin-top: 7px; }
-
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  display: grid;
-  align-content: center;
-  padding: var(--pad);
-  background: var(--earth-deep);
-}
-
-.nav-overlay[hidden] { display: none; }
-
-.nav-overlay__nav { display: grid; gap: var(--space-lg); }
-
-.nav-overlay__link {
-  font-size: clamp(34px, 9vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -.028em;
-  opacity: .78;
-}
-
-.nav-overlay__link.is-current { color: var(--color-accent-hover); opacity: 1; }
-
-body.nav-open { overflow: hidden; }
-
-/* ─── Call to action — A7 ─── */
+/* ─── Buttons — DEC-020: filled crimson primary, outlined secondary ─── */
 
 .cta {
-  display: inline-block;
-  font-size: 18px;
-  padding-bottom: 4px;
-  padding-top: 10px;
-  border-bottom: 1px solid var(--color-accent);
-}
-
-.cta:hover { border-bottom-color: var(--color-accent-hover); }
-.cta--primary { font-size: clamp(19px, 1.6vw, 23px); }
-.cta__glyph { margin-left: .45em; }
-
-.on-dark .cta { border-bottom-color: var(--color-accent-hover); }
-
-/* A <button> carrying .cta (the form submit) needs its default chrome reset —
-   still no fill, per B12: no filled buttons anywhere on the public site. */
-button.cta {
-  background: none;
-  border: 0;
-  border-bottom: 1px solid var(--color-accent);
-  border-radius: var(--radius-none);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--red);
+  border: 1px solid var(--red);
+  border-radius: var(--radius-sm);
   cursor: pointer;
 }
 
-.on-dark button.cta { border-bottom-color: var(--color-accent-hover); }
+.cta:hover {
+  background: var(--red-dark);
+  border-color: var(--red-dark);
+}
 
-/* ─── Tag row — A7 ─── */
+.cta__glyph {
+  display: inline-block;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.cta--secondary {
+  color: inherit;
+  background: transparent;
+  border-color: var(--line-strong);
+}
+
+.cta--secondary:hover {
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.on-dark .cta--secondary,
+.ground-navy .cta--secondary,
+.ground-navy-deep .cta--secondary {
+  color: var(--color-text-inverse);
+  border-color: var(--line-gold);
+}
+
+.on-dark .cta--secondary:hover,
+.ground-navy .cta--secondary:hover,
+.ground-navy-deep .cta--secondary:hover {
+  color: var(--navy-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.cta--light {
+  color: var(--navy-deep);
+  background: #fff;
+  border-color: #fff;
+}
+
+.cta--light:hover {
+  color: #fff;
+  background: var(--navy-deep);
+  border-color: var(--navy-deep);
+}
+
+.cta--gold {
+  color: var(--navy-deep);
+  background: var(--gold-gradient);
+  border-color: transparent;
+}
+
+.cta--gold:hover {
+  color: var(--navy-deep);
+  background: var(--gold-light);
+  border-color: transparent;
+}
+
+button.cta { appearance: none; }
+button.cta:disabled { opacity: .45; cursor: not-allowed; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; }
+
+/* Quiet text link with a gold underline. */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  padding-bottom: 3px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--gold);
+}
+
+.link-arrow:hover { border-bottom-color: var(--red); }
+
+/* ─── Tags and chips ─── */
 
 .tag-row {
   display: flex;
@@ -224,33 +189,38 @@ button.cta {
 }
 
 .tag {
-  padding: 5px 12px;
-  font-size: 13px;
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
   letter-spacing: .04em;
-  border: var(--border-light);
-  border-radius: var(--radius-none);
+  line-height: 1.3;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
 }
 
-.on-dark .tag { border-color: var(--line-light); }
+.on-dark .tag,
+.ground-navy .tag,
+.ground-navy-deep .tag {
+  color: var(--color-text-inverse);
+  border-color: var(--line-gold);
+  background: rgba(243, 237, 224, .04);
+}
 
-/* ─── Field caption card — A7 ─── */
+/* ─── Field caption — retained for the case-record hero ─── */
 
 .field-caption {
   padding: var(--space-md) var(--space-lg);
-  background: rgba(42, 38, 34, .78);
+  background: rgba(8, 19, 31, .78);
   border: var(--border-overlay);
+  border-radius: var(--radius-thumb);
   color: var(--color-text-inverse);
   backdrop-filter: var(--blur-overlay);
 }
 
-.field-caption__title {
-  font-size: 16px;
-  font-weight: 300;
-}
-
+.field-caption__title { font-size: 16px; }
 .field-caption__meta { color: var(--color-text-muted); }
 
-/* ─── Data list — A7 ─── */
+/* ─── Data list ─── */
 
 .data-list { margin: 0; }
 
@@ -267,470 +237,158 @@ button.cta {
 
 .on-dark .data-list__row { border-bottom-color: var(--line-light); }
 
-/* ─── Development placeholder ───────────────────────────────────────────
-   An on-brand texture plate, not a bug-tracker readout: a dashed accent
-   border keeps it unmistakably not-finished-content, but the surface and
-   copy stay in the site's own material language. Never carries question
-   IDs, validator rule names or field state — those live in a code comment
-   at the call site and in DEFERRED.md. Excluded from production output.
-   ---------------------------------------------------------------------- */
+/* ─── Development placeholder (excluded from production output) ─── */
 
 .dev-fixture {
   padding: var(--space-xl) var(--space-lg);
-  border: 1px dashed var(--color-accent);
+  border: 1px dashed var(--gold);
+  border-radius: var(--radius-thumb);
   min-height: 9rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.dev-fixture__flag { color: var(--color-accent-hover); }
+.dev-fixture__flag { color: var(--gold); }
 .dev-fixture__heading { margin-top: var(--space-sm); color: #fff; max-width: 40ch; }
 
-.on-dark .dev-fixture { border-color: var(--color-accent-hover); }
-
-/* ─── Footer ─── */
-
-.site-footer {
-  padding: var(--space-3xl) var(--pad) var(--space-xl);
-  background: var(--dust-warm);
-  border-top: var(--border-light);
-}
-
-.site-footer__inner {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-2xl) var(--space-xl);
-}
-
-.site-footer__col { display: grid; align-content: start; gap: var(--space-sm); }
-
-.site-footer__name { font-size: 19px; letter-spacing: -.015em; }
-.site-footer__note { max-width: 24ch; }
-
-.site-footer__link {
-  font-size: 15px;
-  opacity: .78;
-}
-
-a.site-footer__link:hover { opacity: 1; }
-
-.site-footer__meta {
-  display: flex;
-  gap: var(--space-sm);
-  margin-top: var(--space-3xl);
-  padding-top: var(--space-md);
-  border-top: var(--border-light);
-}
-
-/* ─── Hero — §01, WEBSITE_PLAN.md §6 ──────────────────────────────────── */
-
-.hero {
-  position: relative;
-  display: grid;
-  align-content: end;
-  min-height: min(100svh, 860px);
-  padding: calc(var(--space-section) + 40px) var(--pad) var(--space-3xl);
-  box-shadow: var(--shadow-plate);
-}
-
-/* minmax(0, 1fr) + min-width: 0 stop the mobile tag strip widening the page; no visual change. */
-.hero__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); justify-items: start; }
-.hero__body > * { min-width: 0; max-width: 100%; }
-.hero__body .t-hero { max-width: 13ch; }
-.hero__caption { position: absolute; right: var(--pad); bottom: var(--space-3xl); max-width: 34ch; }
-
-/* The header sits over the hero plate on pages that open with one. */
-.page--hero-dark .site-header { color: var(--color-text-inverse); }
-.page--hero-dark .site-nav__link.is-current { color: var(--color-accent-hover); }
-
-/* ─── Record rows — A7 ─────────────────────────────────────────────────── */
-
-.record-list { border-top: var(--border-light); }
-
-.record-row {
-  display: grid;
-  grid-template-columns: 48px 1fr 1fr 36px;
-  align-items: center;
-  gap: var(--space-lg);
-  padding: var(--space-lg) 0;
-  border-bottom: var(--border-light);
-}
-
-.record-row--case:hover { background-color: rgba(26, 22, 16, .025); }
-
-.record-row__number { align-self: start; padding-top: 4px; }
-
-.record-row__thumb {
-  display: block;
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-  border-radius: var(--radius-thumb);
-}
-
-/* List-tier rows (no page behind them) are a compact index line, not a hero-sized row:
-   a 74-row list of wide plates is monotone and roughly 12,000px tall. */
-.record-row--list { grid-template-columns: 48px 160px minmax(0, 1fr); padding: var(--space-md) 0; }
-.record-row--list .record-row__thumb { height: 64px; }
-
-/* Exterior and interior share one 160px cell; a single photo fills it. */
-.record-row__thumbs {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
-  gap: var(--space-xs);
-}
-.record-row__thumbs .record-row__thumb { height: 64px; }
-
-.record-row__basis { color: var(--color-text-secondary); font-style: italic; }
-
-.record-row__info { display: grid; gap: var(--space-xs); }
-.record-row__title { font-size: 18px; letter-spacing: -.015em; }
-.record-row__glyph { justify-self: end; }
-
-.ground-stone .record-list,
-.ground-stone .record-row { border-color: rgba(26, 22, 16, .18); }
-
-/* ─── Service bands — §04. Four full-width bands, never a card grid. ──── */
-
-.band-list { border-top: var(--border-light); }
-
-.band {
-  display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 36px;
-  gap: var(--space-lg);
-  align-items: start;
-  padding: var(--space-xl) 0;
-  border-bottom: var(--border-light);
-}
-
-.band--flip { background-color: rgba(26, 22, 16, .03); }
-.band__number { padding-top: 6px; color: var(--color-accent); }
-.band__body { display: grid; gap: var(--space-md); min-width: 0; }
-.band__link { justify-self: end; padding: 4px 0; }
-.band__link:hover { color: var(--color-accent); }
-
-/* Material swatch — the discipline's own texture, standing in for an icon. */
-.band__swatch {
-  position: relative;
-  isolation: isolate;
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-}
-
-.band__swatch::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: rgba(0, 0, 0, .38);
-}
-
-.band__swatch .band__number { padding-top: 0; color: var(--dust); }
-
-/* ─── Stat — a single large mono figure with a label. ────────────────────── */
+/* ─── Stat — a large figure with a mono label ─── */
 
 .stat { display: grid; gap: var(--space-xs); }
 
 .stat__figure {
-  font-family: var(--font-mono);
-  font-weight: 400;
-  font-size: clamp(40px, 5.5vw, 68px);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(44px, 5.6vw, 84px);
   line-height: 1;
-  letter-spacing: -.01em;
+  letter-spacing: -.03em;
+  font-variant-numeric: lining-nums;
+}
+
+.on-dark .stat__figure {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .stat__label { color: var(--color-text-secondary); }
 .on-dark .stat__label { color: var(--color-text-muted); }
 
-/* ─── Standards strip — §05 ───────────────────────────────────────────── */
+/* ─── Facts strip — ruled cells of figures. Replaces the old numbered squares. ─── */
 
-.standards-strip {
+.facts {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.on-dark .facts,
+.facts--dark {
+  border-color: var(--line-gold);
+}
+
+.facts__cell {
+  padding: var(--space-lg) var(--space-lg) var(--space-lg) var(--space-lg);
+  border-left: 1px solid var(--line);
+}
+
+.facts__cell:first-child { border-left: 0; padding-left: 0; }
+
+.on-dark .facts__cell,
+.facts--dark .facts__cell { border-left-color: var(--line-light); }
+
+/* ─── Marquee — a slow ticker of standard designations ─── */
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 18px 0;
+  background: var(--navy-deep);
+  border-top: 1px solid var(--line-gold);
+  border-bottom: 1px solid var(--line-gold);
+  color: var(--color-text-inverse);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee__track {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm) var(--space-lg);
-  margin: var(--space-md) 0 0;
+  width: max-content;
+  gap: 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* ─── Appointment direct routes — §06 ─────────────────────────────────── */
-
-.home-appointment__direct {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-sm) var(--space-lg);
-  margin-top: var(--space-xl);
-}
-
-.home-appointment__direct a { border-bottom: 1px solid var(--line); }
-.home-appointment__direct a:hover { border-bottom-color: var(--color-accent); }
-
-/* ─── Work index ──────────────────────────────────────────────────────── */
-
-.work-note { margin-top: var(--space-lg); max-width: 70ch; }
-.work-note__credits { margin: var(--space-sm) 0 0; padding: 0; list-style: none; }
-.work-note__credits li { margin-bottom: var(--space-xs); }
-.work-note__credits a { border-bottom: 1px solid var(--line); }
-
-/* Sector filter — DESIGN_GUIDE.md §10.5: ink text + 2px underline, aria-current. */
-.filter-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 var(--space-lg);
-  margin: var(--space-lg) 0 var(--space-md);
-}
-
-.filter-strip__link {
-  padding: 12px 0 8px;
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: .04em;
+  font-size: 13px;
+  letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--color-text-secondary);
-  border-bottom: 2px solid transparent;
+  white-space: nowrap;
 }
 
-.filter-strip__link:hover { color: var(--color-text); }
-
-.filter-strip__link[aria-current="true"] {
-  color: var(--color-text);
-  border-bottom-color: var(--color-text);
+.marquee__item::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  transform: rotate(45deg);
 }
 
-/* ─── Project record ──────────────────────────────────────────────────── */
+/* ─── Panel — a raised, ruled card ─── */
 
-.record-hero {
+.panel {
   position: relative;
+  padding: var(--space-xl);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-subtle);
+}
+
+.panel--dark {
+  color: var(--color-text-inverse);
+  background: linear-gradient(160deg, var(--navy-mid), var(--navy-deep));
+  border-color: var(--line-gold);
+  box-shadow: var(--shadow-card);
+  --tick-color: var(--gold);
+}
+
+/* ─── Ruled table — label column + value column ─── */
+
+.rule-table { margin: 0; border-top: 1px solid var(--line-strong); }
+
+.rule-table__row {
   display: grid;
-  align-content: end;
-  min-height: min(72svh, 640px);
-  padding: calc(var(--space-section) + 40px) var(--pad) var(--space-3xl);
-  overflow: hidden;
-}
-
-.record-hero__image {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.record-hero__body { display: grid; gap: var(--space-md); }
-.record-hero .field-caption { position: absolute; right: var(--pad); bottom: var(--space-3xl); max-width: 34ch; }
-
-.record-services {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm) var(--space-lg);
-  margin-top: var(--space-lg);
-}
-
-.record-services a { border-bottom: 1px solid var(--line); }
-.record-services a:hover { border-bottom-color: var(--color-accent); }
-
-/* Target/measured table — the payload. Never a horizontal scroll (WEBSITE_PLAN §8). */
-
-.result-table {
-  margin-top: var(--space-xl);
-  text-align: left;
-}
-
-.result-table th,
-.result-table td {
-  padding: 10px 18px 10px 0;
-  border-bottom: 1px solid var(--line-light);
-  font-weight: 400;
-  vertical-align: top;
-}
-
-.result-table thead th {
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  font-size: 11px;
-}
-
-.result-table tbody th { color: var(--color-text-inverse); }
-.result-table td:nth-child(4) { color: var(--color-accent-hover); }
-
-/* Gallery */
-
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(110px, .34fr) minmax(0, 1fr);
   gap: var(--space-lg);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.gallery__item { margin: 0; }
-.gallery__item img { border-radius: var(--radius-thumb); }
-.gallery__item figcaption { margin-top: var(--space-sm); }
+.rule-table__label { margin: 0; }
+.rule-table__value { margin: 0; min-width: 0; }
 
-/* Prev / next */
+.on-dark .rule-table,
+.panel--dark .rule-table { border-top-color: var(--line-gold); }
+.on-dark .rule-table__row,
+.panel--dark .rule-table__row { border-bottom-color: var(--line-light); }
 
-.record-pagination {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-lg);
-}
+/* ─── Signature graphics (wave.js) ─── */
 
-.record-pagination__link { display: grid; gap: var(--space-xs); }
-.record-pagination__link--next { text-align: right; }
-
-.record-narrative__heading { margin-top: var(--space-md); }
-.record-narrative__body { margin-top: var(--space-md); }
-.record-tags { margin-top: var(--space-lg); }
-
-/* ─── Statement — a single pulled line, or a term/sentence triad. ────────
-   Reuses the serif heading family at a scale between .t-lead and .t-h3.
-   Never bold; the accent colour carries the emphasis (A4). ---------------- */
-
-.statement {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(23px, 2.4vw, 32px);
-  line-height: 1.3;
-  letter-spacing: -.015em;
-  max-width: 30ch;
-}
-
-.statement-list { border-top: var(--border-light); }
-.on-dark .statement-list { border-top-color: var(--line-light); }
-
-.statement-list__item {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: var(--space-lg) var(--space-2xl);
-  padding: var(--space-lg) 0;
-  border-bottom: var(--border-light);
-}
-
-.on-dark .statement-list__item { border-bottom-color: var(--line-light); }
-
-.statement-list__term {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(21px, 2.1vw, 28px);
-  letter-spacing: -.015em;
-  color: var(--color-accent);
-}
-
-.on-dark .statement-list__term { color: var(--color-accent-hover); }
-
-/* ─── Process spine — vertical numbered stage list, never a horizontal
-   stepper (WEBSITE_PLAN.md §5.5). ----------------------------------------- */
-
-.process-spine { border-top: var(--border-light); }
-.on-dark .process-spine { border-top-color: var(--line-light); }
-
-.process-spine__item {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: var(--space-lg);
-  padding: var(--space-lg) 0;
-  border-bottom: var(--border-light);
-}
-
-.on-dark .process-spine__item { border-bottom-color: var(--line-light); }
-
-.process-spine__number { padding-top: 5px; color: var(--color-accent); }
-.on-dark .process-spine__number { color: var(--color-accent-hover); }
-.process-spine__body { display: grid; gap: var(--space-xs); }
-.process-spine__term { font-size: 18px; letter-spacing: -.015em; }
-
-/* ─── People — full-width editorial row, image-optional. Not a card. ────
-   Built on .grid.grid--editorial (with .grid--flip to alternate side);
-   a person without a portrait renders as a single-column text row with no
-   image slot, per WEBSITE_PLAN.md §5.5 — never a placeholder box. -------- */
-
-.people-list { border-top: var(--border-light); }
-.on-dark .people-list { border-top-color: var(--line-light); }
-
-.person-row {
-  padding: var(--space-2xl) 0;
-  border-bottom: var(--border-light);
-  align-items: start;
-}
-
-.on-dark .person-row { border-bottom-color: var(--line-light); }
-
-.person-row__portrait {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border-radius: var(--radius-thumb);
-}
-
-.person-row--text { grid-template-columns: .8fr 1.2fr; }
-.person-row__name { font-size: clamp(24px, 2.2vw, 32px); letter-spacing: -.02em; }
-.person-row__role { margin-top: var(--space-xs); }
-.person-row__bio { margin-top: var(--space-md); }
-.person-row__meta { margin-top: var(--space-lg); }
-
-/* ─── Standards register — grouped by category (design / measurement /
-   green), driven entirely by standards.json. --------------------------- */
-
-.standards-register { border-top: var(--border-light); }
-.on-dark .standards-register { border-top-color: var(--line-light); }
-
-.standards-register__group + .standards-register__group { margin-top: var(--space-xl); }
-.standards-register__group-label { margin-bottom: var(--space-md); }
-
-.standards-register__row {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: var(--space-lg);
-  padding: 10px 0;
-  border-bottom: var(--border-light);
-}
-
-.on-dark .standards-register__row { border-bottom-color: var(--line-light); }
-.standards-register__designation { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; }
-.standards-register__subject { color: var(--color-text-secondary); }
-
-/* ─── Form fields — Contact. Underline style; no fill, no radius (B12).
-   Focus indicator is the global :focus-visible ring in base.css. --------- */
-
-.form { border-top: var(--border-light); }
-
-.field {
-  display: grid;
-  gap: var(--space-xs);
-  padding: var(--space-md) 0;
-  border-bottom: var(--border-light);
-}
-
-.field:focus-within { border-bottom-color: var(--color-accent); }
-
-.field--consent {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  border-bottom: 0;
-  padding-top: var(--space-lg);
-}
-
-.field__input,
-.field__select,
-.field__textarea {
-  width: 100%;
-  padding: var(--space-sm) 0 2px;
-  font-family: var(--serif);
-  font-size: 17px;
-  color: var(--color-text);
-  background: transparent;
-  border: 0;
-  border-radius: var(--radius-none);
-  appearance: none;
-}
-
-.field__textarea { resize: vertical; min-height: 6em; }
-.field__checkbox { margin-top: 3px; flex: none; }
-.form__foot { margin-top: var(--space-xl); }
+.signature { display: block; width: 100%; height: auto; }
+.signature .sig-line { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.signature .sig-thin { fill: none; stroke: currentColor; stroke-width: .8; opacity: .5; }
+.signature .sig-gold { fill: none; stroke: var(--gold); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.signature .sig-fill { fill: var(--gold); }
+.signature .sig-dim { fill: currentColor; opacity: .16; }

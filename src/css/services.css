@@ -1,0 +1,178 @@
+/* ===========================================================================
+   services.css — /services/ : hero index, sticky sub-nav, discipline
+   compositions and the sector index.
+   =========================================================================== */
+
+/* ─── Hero index — the four signatures ─── */
+
+.svc-index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.svc-index__item {
+  display: grid;
+  gap: 12px;
+  align-content: space-between;
+  padding: 26px 24px 22px;
+  background: rgba(243, 237, 224, .05);
+  border: 1px solid var(--line-light);
+  border-radius: var(--radius-panel);
+  -webkit-backdrop-filter: var(--blur-overlay);
+  backdrop-filter: var(--blur-overlay);
+}
+
+.svc-index__item:hover { background: rgba(243, 237, 224, .1); border-color: var(--gold); }
+.svc-index__art { display: block; color: rgba(243, 237, 224, .85); }
+
+.svc-index__name {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* ─── Sub-nav ─── */
+
+.subnav {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 30;
+  background: rgba(8, 19, 31, .95);
+  border-bottom: 1px solid var(--line-gold);
+  -webkit-backdrop-filter: var(--blur-dropdown);
+  backdrop-filter: var(--blur-dropdown);
+}
+
+.subnav__inner {
+  display: flex;
+  gap: var(--space-xl);
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding: 0 var(--pad);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.subnav__inner::-webkit-scrollbar { display: none; }
+
+.subnav__link {
+  flex: none;
+  padding: 16px 0 14px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(243, 237, 224, .7);
+  border-bottom: 2px solid transparent;
+}
+
+.subnav__link:hover { color: #fff; }
+.subnav__link.is-active { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+.page--services section[id] { scroll-margin-top: calc(var(--header-h) + 52px); }
+
+/* ─── Discipline ─── */
+
+.svc-disc {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: var(--space-3xl);
+  align-items: start;
+}
+
+.svc-disc > * { min-width: 0; }
+.svc-disc--flip { direction: rtl; }
+.svc-disc--flip > * { direction: ltr; }
+
+.svc-disc__sig {
+  position: sticky;
+  top: calc(var(--header-h) + 76px);
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+}
+
+.svc-disc__art { padding: 8px 0 var(--space-md); color: rgba(243, 237, 224, .9); }
+
+.do-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.do-list li { position: relative; padding-left: 22px; }
+
+.do-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: .62em;
+  width: 7px;
+  height: 7px;
+  background: var(--gold-deep);
+  transform: rotate(45deg);
+}
+
+.svc-spec .rule-table__row { padding-block: 20px; }
+
+.svc-projects { display: grid; gap: var(--space-md); }
+
+.svc-projects__list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.svc-projects__item { display: grid; gap: 6px; align-content: start; }
+
+.svc-projects__media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--navy-mid);
+  border-radius: 10px;
+}
+
+.svc-projects__media picture,
+.svc-projects__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.svc-projects__media img { transition: transform .8s var(--ease); }
+.svc-projects__item:hover img { transform: scale(1.07); }
+
+.svc-projects__title { font-size: 15.5px; line-height: 1.2; }
+.svc-projects__item:hover .svc-projects__title { color: var(--red-text); }
+
+/* ─── Sector index ─── */
+
+.sector-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--space-3xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line-gold);
+}
+
+.sector-list__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 20px;
+  align-items: baseline;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.sector-list__name { font-size: clamp(22px, 2.2vw, 30px); font-weight: 300; letter-spacing: -.02em; }
+.sector-list__count { color: var(--color-text-muted); }
+.sector-list__glyph { font-family: var(--font-ui); color: var(--gold); }
+.sector-list__item:hover .sector-list__name { color: var(--gold-light); }

@@ -1,3 +1,7 @@
+> **Superseded in part — DEC-020 (2026-09-20).** The palette, the type rules (weight 300, no italics), the
+> "no gradients / no motion / sharp edges" constraints and the text-only CTA no longer apply. Accessibility
+> requirements (§5 contrast, focus, targets, reduced motion) still do. See `DECISIONS.md` DEC-020.
+
 # DESIGN GUIDE — Production System
 
 > **Depends on:** `assets/brand-design-direction.md` Part A, `WEBSITE_PLAN.md`, **DEC-002**, **DEC-003**

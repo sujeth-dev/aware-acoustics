@@ -1,9 +1,20 @@
 /* Public stylesheet entry. Order is load-bearing: tokens, then base, then
-   typography, then layout, then components, then motion, then responsive. */
+   typography, then layout, then shared components, then the regions and pages
+   that use them, then motion, then responsive (which must win last). */
 @import "./tokens.css";
 @import "./base.css";
 @import "./typography.css";
 @import "./layout.css";
 @import "./components.css";
+@import "./header.css";
+@import "./footer.css";
+@import "./hero.css";
+@import "./home.css";
+@import "./work.css";
+@import "./overlay.css";
+@import "./services.css";
+@import "./about.css";
+@import "./contact.css";
+@import "./record.css";
 @import "./motion.css";
 @import "./responsive.css";

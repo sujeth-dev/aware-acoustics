@@ -1,93 +1,133 @@
 /* ===========================================================================
    tokens.css — Raw and semantic tokens only. No selectors beyond :root.
-   Source: assets/brand-design-direction.md § "Complete CSS Token Set".
-   Beige tokens reflect DEC-012. Do not add a value here without recording it
-   in plan/DESIGN_GUIDE.md.
-   [E] extracted from source · [D] derived · [C] created
+
+   DEC-020 (2026-09-20) replaced the earlier beige-dominant "Mineral / Material"
+   palette with a navy · crimson · gold · beige system drawn from the logo.
+   Navy is now the dominant ground (header, heroes, footer, feature bands);
+   beige stays as the paper tone between dark bands.
+
+   Contrast notes (measured against the grounds they sit on):
+     --red-text   on --dust      5.5:1   text and links on light grounds
+     --red        white on it    5.5:1   button fill
+     --red-bright on --navy      5.1:1   text on dark grounds
+     --gold       on --navy      7.3:1   text, rules and numerals on dark grounds
+     gold is never used as text on a light ground — rules and ticks only
    =========================================================================== */
 
 :root {
-  /* ─── Colors: Ground & Surface ─── */
-  --dust:             #e7dccb;       /* [D] primary background — DEC-012 */
-  --dust-warm:        #ded2ba;       /* [D] alternate surface — DEC-012 */
-  --stone:            #d3c3a7;       /* [D] cards, project backgrounds — DEC-012 */
-  --stone-light:      #d8d0c4;       /* [E] texture base variant */
-  --fibre:            #9e9486;       /* [E] mid-tone, texture */
-  --concrete:         #8a8478;       /* [E] neutral mid-grey */
-  --felt:             #7c7568;       /* [E] warm dark grey */
-  --graphite:         #6b6258;       /* [E] secondary text, borders */
-  --earth:            #38342e;       /* [E] dark surface */
-  --earth-deep:       #2a2622;       /* [E] deepest surface */
-  --navy:             #0d1721;       /* [E] verification section */
-  --navy-mid:         #152232;       /* [E] dark surface variant */
-  --ink:              #1a1610;       /* [E] primary text */
-  --slate:            #6b6258;       /* [E] captions, metadata */
+  /* ─── Grounds: light ─── */
+  --dust:             #ece3d3;
+  --dust-warm:        #e2d6bf;
+  --stone:            #d6c6a8;
+  --paper:            #f6f1e7;       /* raised panels on beige */
+  --ink:              #14171d;       /* primary text */
+  --slate:            #5a5249;       /* secondary text on light — 5.5:1 on dust */
 
-  /* ─── Colors: Accent ─── */
-  --red:              #A63A32;       /* [E] accent */
-  --red-dark:         #8F302C;       /* [E] pressed/active */
-  --red-bright:       #BF463D;       /* [E] hover, emphasis on dark */
+  /* ─── Grounds: dark ─── */
+  --navy-deep:        #08131f;
+  --navy:             #0e2137;       /* dominant dark ground */
+  --navy-mid:         #16314f;
+  --navy-soft:        #24476d;
+  --earth-deep:       #2a2622;       /* legacy: dev fixtures */
 
-  /* ─── Colors: Status ─── */
-  --verified:         #4A6B52;       /* [C] targets met */
-  --info:             #3A5670;       /* [C] neutral informational */
+  /* ─── Legacy neutrals (still referenced by texture plates) ─── */
+  --stone-light:      #d8d0c4;
+  --fibre:            #9e9486;
+  --concrete:         #8a8478;
+  --felt:             #7c7568;
+  --graphite:         #6b6258;
+  --earth:            #38342e;
 
-  /* ─── Colors: Semantic Roles ─── */
-  --color-background:      var(--dust);           /* [D] */
-  --color-surface:         var(--dust-warm);      /* [D] */
-  --color-surface-alt:     var(--stone);          /* [D] */
-  --color-surface-dark:    var(--earth-deep);     /* [D] */
-  --color-surface-deep:    var(--navy);           /* [D] */
-  --color-text:            var(--ink);            /* [D] */
-  --color-text-secondary:  var(--slate);          /* [D] */
-  --color-text-inverse:    var(--dust);           /* [D] */
-  --color-text-muted:      rgba(255,255,255,.52); /* [D] */
-  --color-accent:          var(--red);            /* [D] */
-  --color-accent-hover:    var(--red-bright);     /* [D] */
-  --color-accent-dark:     var(--red-dark);       /* [D] */
-  --color-border:          rgba(26,22,16,.14);    /* [E] */
-  --color-border-dark:     rgba(255,255,255,.12); /* [E] */
+  /* ─── Accent: crimson ─── */
+  --red:              #c8283a;       /* fills */
+  --red-dark:         #a5202f;       /* pressed */
+  --red-text:         #a5202f;       /* text on light grounds */
+  --red-bright:       #f0616e;       /* text on dark grounds */
 
-  /* ─── Borders ─── */
-  --line:             rgba(26,22,16,.14);            /* [E] */
-  --line-light:       rgba(255,255,255,.12);         /* [E] */
-  --border-light:     1px solid var(--line);         /* [D] */
-  --border-dark:      1px solid var(--line-light);   /* [D] */
-  --border-strong:    1px solid rgba(26,22,16,.2);   /* [D] */
-  --border-overlay:   1px solid rgba(255,255,255,.1);/* [D] */
+  /* ─── Accent: gold ─── */
+  --gold:             #d4a84b;
+  --gold-deep:        #b8862a;
+  --gold-light:       #f0d078;
+  --gold-gradient:    linear-gradient(90deg, var(--gold-light), var(--gold) 45%, var(--gold-deep));
+
+  /* ─── Status ─── */
+  --verified:         #4a6b52;
+  --info:             #3a5670;
+
+  /* ─── Semantic roles ─── */
+  --color-background:      var(--dust);
+  --color-surface:         var(--dust-warm);
+  --color-surface-alt:     var(--stone);
+  --color-surface-dark:    var(--navy);
+  --color-surface-deep:    var(--navy-deep);
+  --color-text:            var(--ink);
+  --color-text-secondary:  var(--slate);
+  --color-text-inverse:    #f3ede0;
+  --color-text-muted:      rgba(243, 237, 224, .66);
+  --color-accent:          var(--red-text);
+  --color-accent-hover:    var(--red-bright);
+  --color-accent-dark:     var(--red-dark);
+  --color-border:          rgba(20, 23, 29, .16);
+  --color-border-dark:     rgba(243, 237, 224, .14);
+
+  /* ─── Lines ─── */
+  --line:             rgba(20, 23, 29, .16);
+  --line-strong:      rgba(20, 23, 29, .32);
+  --line-light:       rgba(243, 237, 224, .14);
+  --line-gold:        rgba(212, 168, 75, .42);
+  --border-light:     1px solid var(--line);
+  --border-dark:      1px solid var(--line-light);
+  --border-strong:    1px solid var(--line-strong);
+  --border-overlay:   1px solid rgba(243, 237, 224, .12);
 
   /* ─── Typography ─── */
-  --serif:            'Spectral', Georgia, serif;                             /* [D] DEC-015, was 'Newsreader' [E] */
-  --font-heading:     var(--serif);                                           /* [D] */
-  --font-body:        'Public Sans', system-ui, -apple-system, sans-serif;    /* [C] */
-  --font-mono:        'JetBrains Mono', 'SFMono-Regular', Consolas, monospace; /* [D] DEC-015, was 'IBM Plex Mono' [C] */
+  --serif:            'Spectral', Georgia, serif;
+  --font-heading:     var(--serif);
+  --font-ui:          'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:        var(--serif);
+  --font-mono:        'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
 
   /* ─── Spacing ─── */
-  --space-xs:         4px;                        /* [C] */
-  --space-sm:         8px;                        /* [D] */
-  --space-md:         16px;                       /* [D] */
-  --space-lg:         24px;                       /* [D] */
-  --space-xl:         36px;                       /* [D] */
-  --space-2xl:        48px;                       /* [D] */
-  --space-3xl:        64px;                       /* [D] */
-  --space-section:    clamp(80px, 12vh, 140px);   /* [D] */
-  --pad:              clamp(22px, 5.5vw, 88px);   /* [E] */
+  --space-xs:         4px;
+  --space-sm:         8px;
+  --space-md:         16px;
+  --space-lg:         24px;
+  --space-xl:         36px;
+  --space-2xl:        48px;
+  --space-3xl:        64px;
+  --space-section:    clamp(72px, 11vh, 132px);
+  --pad:              clamp(20px, 5vw, 80px);
+  --wrap:             1360px;
+  --header-h:         76px;
 
   /* ─── Radius ─── */
-  --radius-none:      0;                          /* [E] */
-  --radius-thumb:     12px;                       /* [E] */
+  --radius-none:      0;
+  --radius-sm:        4px;
+  --radius-thumb:     12px;
+  --radius-panel:     14px;
+  --radius-pill:      999px;
 
   /* ─── Shadows ─── */
-  --shadow-plate:     0 20px 60px rgba(0,0,0,.35); /* [E] */
-  --shadow-subtle:    0 4px 16px rgba(0,0,0,.08);  /* [C] */
-  --shadow-overlay:   0 8px 32px rgba(0,0,0,.24);  /* [C] */
+  --shadow-plate:     0 20px 60px rgba(0, 0, 0, .35);
+  --shadow-subtle:    0 4px 16px rgba(8, 19, 31, .10);
+  --shadow-card:      0 18px 44px rgba(8, 19, 31, .16);
+  --shadow-overlay:   0 24px 80px rgba(0, 0, 0, .5);
 
-  /* ─── Transitions ─── */
-  --transition-fast:    .15s;                     /* [E] */
-  --transition-default: .2s;                      /* [E] */
-  --transition-subtle:  .25s;                     /* [D] */
+  /* ─── Motion ─── */
+  --ease:             cubic-bezier(.22, .61, .36, 1);
+  --transition-fast:    .15s;
+  --transition-default: .25s;
+  --transition-subtle:  .35s;
 
   /* ─── Effects ─── */
-  --blur-overlay:     blur(10px);                 /* [E] */
-  --blur-dropdown:    blur(16px);                 /* [E] */
+  --blur-overlay:     blur(10px);
+  --blur-dropdown:    blur(16px);
+
+  /* ─── Ground gradients ─── */
+  --ground-crimson:
+    radial-gradient(700px 300px at 88% 100%, rgba(240, 208, 120, .28), transparent 66%),
+    linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+  --shade-hero:
+    linear-gradient(0deg, rgba(8, 19, 31, .92) 0%, rgba(8, 19, 31, .55) 42%, rgba(8, 19, 31, .28) 100%),
+    linear-gradient(115deg, rgba(14, 33, 55, .78) 0%, rgba(14, 33, 55, .12) 60%);
 }

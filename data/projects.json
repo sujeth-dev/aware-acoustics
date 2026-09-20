@@ -69,7 +69,8 @@
     ],
     "featured": false,
     "published": true,
-    "order": 10
+    "order": 10,
+    "showcaseRank": 1
   },
   {
     "slug": "education-auditorium-bengaluru",
@@ -307,7 +308,8 @@
     ],
     "featured": false,
     "published": true,
-    "order": 60
+    "order": 60,
+    "showcaseRank": 4
   },
   {
     "slug": "technology-workplace-bengaluru-02",
@@ -416,7 +418,8 @@
     ],
     "featured": false,
     "published": true,
-    "order": 80
+    "order": 80,
+    "showcaseRank": 3
   },
   {
     "slug": "hotel-ballroom-kuwait",
@@ -1744,7 +1747,8 @@
     ],
     "featured": false,
     "published": true,
-    "order": 601
+    "order": 601,
+    "showcaseRank": 2
   },
   {
     "slug": "somaiah-university-auditorium",
@@ -3227,7 +3231,8 @@
     ],
     "featured": false,
     "published": true,
-    "order": 905
+    "order": 905,
+    "showcaseRank": 5
   },
   {
     "slug": "citadel-technical-lab",
@@ -3513,7 +3518,8 @@
     ],
     "featured": false,
     "published": true,
-    "order": 1101
+    "order": 1101,
+    "showcaseRank": 6
   },
   {
     "slug": "lucknow-international-airport",

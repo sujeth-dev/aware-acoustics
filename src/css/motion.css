@@ -1,18 +1,87 @@
 /* ===========================================================================
-   motion.css — Transitions only. No page-load or scroll animation (A8).
-   State changes are acknowledged with opacity and border-colour, nothing else.
-   The reduced-motion escape hatch lives in base.css and neutralises all of it.
+   motion.css — Transitions, scroll reveal, hero drift and the ticker.
+
+   DEC-020 lifted the old "no animation on load or scroll" rule. Everything sits
+   inside `prefers-reduced-motion: no-preference`; base.css additionally forces
+   near-zero durations under `reduce`, so a visitor who asks for less motion
+   gets none.
    =========================================================================== */
 
 @media (prefers-reduced-motion: no-preference) {
-  .site-nav__link,
-  .nav-overlay__link,
-  .site-footer__link { transition: opacity var(--transition-default); }
 
-  .cta { transition: border-color var(--transition-default); }
+  /* ─── Interaction transitions ─── */
 
-  .record-row { transition: background-color var(--transition-subtle); }
+  .site-header { transition: background-color .35s var(--ease), border-color .35s var(--ease); }
+  .site-nav__link { transition: color .2s var(--ease), background-color .2s var(--ease); }
+  .site-nav__link::after { transition: transform .35s var(--ease); }
 
-  .band__link { transition: color var(--transition-default); }
-  .field { transition: border-color var(--transition-default); }
+  .cta {
+    transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+  }
+
+  .cta:hover { transform: translateY(-2px); }
+  .cta__glyph { transition: transform .25s var(--ease); }
+  .cta:hover .cta__glyph { transform: translate(3px, -3px); }
+
+  .link-arrow { transition: border-color .25s var(--ease); }
+
+  .feature,
+  .work-card__link,
+  .svc-card__link,
+  .svc-index__item,
+  .pager__link,
+  .reach__link,
+  .tile__glyph,
+  .filter-strip__link,
+  .register-tabs__btn,
+  .chip span,
+  .pv-gallery__thumb {
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .25s var(--ease), background-color .25s var(--ease), color .25s var(--ease), opacity .25s var(--ease);
+  }
+
+  .work-card__link:hover,
+  .svc-card__link:hover,
+  .svc-index__item:hover { transform: translateY(-6px); }
+
+  .feature:hover { box-shadow: 0 26px 60px rgba(8, 19, 31, .24); }
+
+  .sector-list__item { transition: padding-left .3s var(--ease); }
+  .sector-list__item:hover { padding-left: 12px; }
+
+  /* ─── Scroll reveal ─── */
+
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .8s var(--ease), transform .8s var(--ease);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .js [data-reveal].is-in { opacity: 1; transform: none; }
+
+  /* If the script never runs, nothing may stay hidden. */
+  .js [data-reveal]:not(.is-in) { animation: reveal-failsafe .01s 4s forwards; }
+
+  @keyframes reveal-failsafe { to { opacity: 1; transform: none; } }
+
+  /* ─── Hero ─── */
+
+  .hero__slide.is-active img { animation: hero-drift 16s var(--ease) both; }
+  @keyframes hero-drift { from { transform: scale(1.08); } to { transform: scale(1); } }
+
+  /* ─── Ticker ─── */
+
+  .marquee__track { animation: marquee 80s linear infinite; }
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ─── Overlay ─── */
+
+  .pv-dialog[open] { animation: pv-in .38s var(--ease); }
+  @keyframes pv-in { from { opacity: 0; transform: translateY(18px) scale(.985); } }
+
+  /* ─── Arcs breathe ─── */
+
+  .arcs svg { animation: arcs-breathe 12s ease-in-out infinite alternate; transform-origin: center; }
+  @keyframes arcs-breathe { from { transform: scale(1); } to { transform: scale(1.05); } }
 }

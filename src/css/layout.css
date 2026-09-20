@@ -1,37 +1,177 @@
 /* ===========================================================================
-   layout.css — Section bands, grounds, grids and flow.
-   Container width is controlled by --pad on each section; the page container
-   has no max-width (A6). Text measures are set on elements, not containers.
+   layout.css — Sections, grounds, structural devices and grids.
+
+   The signature devices live here so every page shares them:
+     .edge      diffuser-skyline transition between two grounds
+     .ticks     registration-mark corners on a framed panel
+     .has-lines ruled vertical hairlines behind a section
+     .arcs      concentric sound-arc layer behind a hero or dark band
    =========================================================================== */
 
 .section {
+  position: relative;
   padding: var(--space-section) var(--pad);
-  border-top: var(--border-light);
 }
 
-/* The header is absolute, so a page that opens with a plain section (no hero plate)
-   needs the same clearance the hero gets. */
-main > .section:first-child { padding-top: calc(var(--space-section) + 40px); }
+/* Every page opens on a hero except 404 / privacy, which use .page--solid-header
+   and need clearance under the fixed header. */
+.page--solid-header main > .section:first-child { padding-top: calc(var(--space-section) + var(--header-h)); }
 
 .section--flush { padding-top: 0; }
-.section--tight { padding-block: clamp(48px, 7vh, 88px); }
+.section--tight { padding-block: clamp(44px, 6.5vh, 84px); }
 
-/* ─── Grounds — A6 section surface rhythm ─── */
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+}
 
-.ground-dust       { background: var(--dust); }
-.ground-dust-warm  { background: var(--dust-warm); }
-.ground-stone      { background: var(--stone); }
-.ground-earth      { background: var(--earth-deep); color: var(--color-text-inverse); }
-.ground-navy       { background: var(--navy); color: var(--color-text-inverse); }
+/* ─── Grounds ─── */
 
-.ground-earth,
-.ground-navy { border-top-color: var(--line-light); }
+.ground-dust {
+  --edge-color: var(--dust);
+  background:
+    radial-gradient(900px 420px at 92% 12%, rgba(212, 168, 75, .13), transparent 62%),
+    var(--dust);
+}
 
-/* ─── Grid ratios — A6 ─── */
+.ground-dust-warm {
+  --edge-color: var(--dust-warm);
+  background:
+    radial-gradient(820px 380px at 6% 90%, rgba(200, 40, 58, .06), transparent 62%),
+    var(--dust-warm);
+}
+
+.ground-stone { --edge-color: var(--stone); background: var(--stone); }
+
+.ground-navy {
+  --edge-color: var(--navy);
+  --lines-color: rgba(243, 237, 224, .05);
+  background:
+    radial-gradient(900px 520px at 88% 46%, rgba(36, 71, 109, .55), transparent 65%),
+    linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: var(--color-text-inverse);
+}
+
+.ground-navy-deep {
+  --edge-color: var(--navy-deep);
+  --lines-color: rgba(243, 237, 224, .045);
+  background:
+    radial-gradient(1000px 560px at 82% 50%, rgba(22, 49, 79, .8), transparent 66%),
+    var(--navy-deep);
+  color: var(--color-text-inverse);
+}
+
+.ground-crimson {
+  --edge-color: var(--red);
+  background: var(--ground-crimson);
+  color: #fff;
+}
+
+.ground-earth { --edge-color: var(--earth-deep); background: var(--earth-deep); color: var(--color-text-inverse); }
+
+.ground-navy,
+.ground-navy-deep,
+.ground-crimson,
+.ground-earth { isolation: isolate; }
+
+/* ─── Section edge — the diffuser skyline ────────────────────────────────
+   Sits on top of a section and rises into the one above it, like the wells of
+   a quadratic-residue diffuser. Fill comes from the section's own ground. */
+
+.edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1px;
+  z-index: 2;
+  height: clamp(16px, 2.6vw, 38px);
+  transform: translateY(-100%);
+  color: var(--edge-color, var(--dust));
+  pointer-events: none;
+}
+
+.edge svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* ─── Ruled hairline grid ─── */
+
+.has-lines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--lines-color, rgba(20, 23, 29, .05)) 0 1px,
+    transparent 1px calc(100% / 6)
+  );
+  background-position: var(--pad) 0;
+  background-size: calc(100% - var(--pad) * 2) 100%;
+  background-repeat: no-repeat;
+}
+
+/* ─── Registration ticks — four corner marks on a framed panel ─── */
+
+.ticks { position: relative; }
+
+.ticks::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  z-index: 3;
+  pointer-events: none;
+  --t: var(--tick-color, var(--gold));
+  --l: 18px;
+  background:
+    linear-gradient(var(--t), var(--t)) 0 0 / var(--l) 1px no-repeat,
+    linear-gradient(var(--t), var(--t)) 0 0 / 1px var(--l) no-repeat,
+    linear-gradient(var(--t), var(--t)) 100% 0 / var(--l) 1px no-repeat,
+    linear-gradient(var(--t), var(--t)) 100% 0 / 1px var(--l) no-repeat,
+    linear-gradient(var(--t), var(--t)) 0 100% / var(--l) 1px no-repeat,
+    linear-gradient(var(--t), var(--t)) 0 100% / 1px var(--l) no-repeat,
+    linear-gradient(var(--t), var(--t)) 100% 100% / var(--l) 1px no-repeat,
+    linear-gradient(var(--t), var(--t)) 100% 100% / 1px var(--l) no-repeat;
+}
+
+/* ─── Sound arcs ─── */
+
+.arcs-clip {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.arcs {
+  position: absolute;
+  right: -14%;
+  top: 50%;
+  z-index: 0;
+  width: min(92vw, 980px);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  color: var(--gold);
+  opacity: .2;
+  pointer-events: none;
+}
+
+/* base.css gives every svg `fill: currentColor`; the arcs are strokes only. */
+.arcs svg { width: 100%; height: 100%; fill: none; }
+.arcs--left { right: auto; left: -18%; }
+.arcs--bottom { top: auto; bottom: -40%; transform: none; }
+
+/* ─── Grid ratios ─── */
 
 .grid { display: grid; gap: var(--space-2xl) var(--space-3xl); }
-
-/* Grid items must be allowed to shrink, or a nowrap child (the mobile tag strip) widens the track. */
 .grid > * { min-width: 0; }
 
 .grid--practice      { grid-template-columns: 1.2fr .8fr; }
@@ -40,8 +180,9 @@ main > .section:first-child { padding-top: calc(var(--space-section) + 40px); }
 .grid--verification  { grid-template-columns: .9fr 1.1fr; }
 .grid--halves        { grid-template-columns: 1fr 1fr; }
 .grid--contact       { grid-template-columns: 1.1fr .9fr; }
+.grid--start         { align-items: start; }
+.grid--end           { align-items: end; }
 
-/* Editorial alternation: flip the visual side without reordering the DOM. */
 .grid--flip { direction: rtl; }
 .grid--flip > * { direction: ltr; }
 
@@ -59,8 +200,9 @@ main > .section:first-child { padding-top: calc(var(--space-section) + 40px); }
   border-top: var(--border-light);
 }
 
-.ground-earth .section__foot,
-.ground-navy .section__foot { border-top-color: var(--line-light); }
+.on-dark .section__foot,
+.ground-navy .section__foot,
+.ground-navy-deep .section__foot { border-top-color: var(--line-light); }
 
 /* ─── Vertical flow ─── */
 

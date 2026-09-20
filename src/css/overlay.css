@@ -1,0 +1,230 @@
+/* ===========================================================================
+   overlay.css — The project view: the <dialog> on /work/, the gallery and the
+   facts table it shares with the six showcase pages.
+   =========================================================================== */
+
+/* ─── Dialog ─── */
+
+body.pv-open { overflow: hidden; }
+
+.pv-dialog {
+  width: min(1180px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  color: var(--color-text-inverse);
+  background: linear-gradient(160deg, var(--navy-mid), var(--navy-deep));
+  border: 1px solid var(--line-gold);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-overlay);
+}
+
+.pv-dialog[open] { display: flex; flex-direction: column; }
+
+.pv-dialog::backdrop {
+  background: rgba(4, 10, 17, .8);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.pv-dialog__bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.pv-dialog__bar .t-label { color: var(--gold); }
+.pv-dialog__actions { display: flex; gap: 8px; }
+
+.pv-dialog__btn {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--line-gold);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pv-dialog__btn:hover { color: var(--navy-deep); background: var(--gold); border-color: var(--gold); }
+
+.pv-dialog__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ─── Project panel ─── */
+
+.pv {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: var(--space-2xl);
+  padding: clamp(20px, 3vw, 40px);
+}
+
+.pv > * { min-width: 0; }
+
+.pv__info { display: grid; align-content: start; gap: var(--space-md); }
+.pv__title { max-width: none; font-size: clamp(28px, 3vw, 42px); }
+.pv__lead { color: var(--color-text-muted); }
+.pv__facts { margin-top: var(--space-sm); }
+.pv__info .cta-row { margin-top: var(--space-md); }
+
+.pv__service { border-bottom: 1px solid var(--line-gold); }
+.pv__service:hover { color: var(--gold-light); }
+
+/* ─── Gallery ─── */
+
+.pv-gallery__stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--navy-deep);
+  border-radius: var(--radius-thumb);
+}
+
+.pv-gallery__slide { position: relative; margin: 0; height: 100%; }
+.pv-gallery__slide[hidden] { display: none; }
+
+.pv-gallery__slide picture,
+.pv-gallery__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.pv-gallery__slide.is-portrait img { object-fit: contain; }
+
+.pv-gallery__credit {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 28px 16px 10px;
+  color: rgba(243, 237, 224, .85);
+  background: linear-gradient(0deg, rgba(8, 19, 31, .85), transparent);
+}
+
+.pv-gallery__credit a { border-bottom: 1px solid var(--line-gold); }
+
+.pv-gallery__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pv-gallery__thumb {
+  display: block;
+  width: 92px;
+  height: 66px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--navy-deep);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: .7;
+}
+
+.pv-gallery__thumb picture,
+.pv-gallery__thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.pv-gallery__thumb:hover { opacity: 1; }
+.pv-gallery__thumb[aria-current="true"] { opacity: 1; border-color: var(--gold); }
+
+/* No photograph: a waveform plate, never a grey box. */
+.pv-gallery--plate {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  color: rgba(212, 168, 75, .6);
+  background:
+    radial-gradient(360px 240px at 78% 28%, rgba(36, 71, 109, .8), transparent 70%),
+    var(--navy-mid);
+  border-radius: var(--radius-thumb);
+}
+
+.pv-gallery--plate .signature { height: 100%; }
+
+/* Stack mode — every image full width (showcase page) */
+.pv-gallery--stack { display: grid; gap: var(--space-xl); }
+
+.pv-gallery--stack .pv-gallery__slide {
+  height: auto;
+  overflow: hidden;
+  border-radius: var(--radius-thumb);
+  border: 1px solid var(--line-gold);
+}
+
+.pv-gallery--stack .pv-gallery__slide picture,
+.pv-gallery--stack .pv-gallery__slide img { height: auto; }
+
+.pv-gallery--stack .pv-gallery__slide.is-portrait {
+  width: min(560px, 100%);
+  margin-inline: auto;
+}
+
+/* ─── Showcase page ─── */
+
+.scope-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); }
+
+.scope-list__item {
+  position: relative;
+  padding: 20px 0 20px 34px;
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 300;
+  letter-spacing: -.02em;
+  border-bottom: 1px solid var(--line);
+}
+
+.scope-list__item::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.pv__aside { padding: var(--space-xl); }
+.pv__aside .rule-table { margin-top: var(--space-md); }
+
+.pager { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg); }
+
+.pager__link {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: center;
+  padding: var(--space-md);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+}
+
+.pager__link:hover { border-color: var(--gold-deep); box-shadow: var(--shadow-card); }
+.pager__link--next { text-align: right; }
+.pager__link--next .pager__media { order: 2; }
+.pager__link--next { grid-template-columns: minmax(0, 1fr) 140px; }
+
+.pager__media { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 8px; }
+.pager__media picture,
+.pager__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.pager__text { display: grid; gap: 4px; min-width: 0; }
+.pager__title { font-size: clamp(20px, 2vw, 26px); line-height: 1.15; letter-spacing: -.015em; }

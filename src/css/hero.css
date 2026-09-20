@@ -1,0 +1,174 @@
+/* ===========================================================================
+   hero.css — The page-opening composition, shared by every top-level page.
+
+   Layers, bottom to top:
+     .hero__media   crossfading image stack (or nothing on .hero--solid)
+     .hero__shade   navy gradient that carries the type and ties every hero
+                    to the same colour world
+     .arcs          concentric sound arcs
+     ::before       ruled hairline grid
+     .hero__inner   headline, lead and actions
+     .hero__facts   frosted strip of computed facts along the base
+   =========================================================================== */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: min(100svh, 940px);
+  color: var(--color-text-inverse);
+  background: var(--navy-deep);
+  overflow-x: clip;
+  isolation: isolate;
+  --edge-color: var(--navy-deep);
+  --lines-color: rgba(243, 237, 224, .07);
+}
+
+.hero--tall { min-height: min(100svh, 980px); }
+.hero--medium { min-height: min(86svh, 800px); }
+.hero--compact { min-height: min(72svh, 680px); }
+
+.hero.has-lines::before { z-index: 3; }
+
+/* ─── Media ─── */
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.6s var(--ease);
+}
+
+.hero__slide.is-active { opacity: 1; }
+
+.hero__slide picture,
+.hero__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--shade-hero);
+}
+
+.hero .arcs-clip { z-index: 2; }
+
+/* ─── Copy ─── */
+
+.hero__inner {
+  position: relative;
+  z-index: 4;
+  align-self: end;
+  width: 100%;
+  padding: calc(var(--header-h) + var(--space-3xl)) var(--pad) var(--space-3xl);
+}
+
+.hero__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: var(--space-lg);
+  max-width: var(--wrap);
+  margin-inline: auto;
+}
+
+.hero__body > * { min-width: 0; max-width: 100%; }
+
+.hero__title { color: #fff; text-shadow: 0 2px 40px rgba(8, 19, 31, .35); }
+
+.hero__lead {
+  max-width: 46ch;
+  color: rgba(243, 237, 224, .9);
+}
+
+.hero__tags { margin-top: var(--space-xs); }
+
+/* ─── Slide indicators ─── */
+
+.hero__dots {
+  position: absolute;
+  right: var(--pad);
+  bottom: calc(var(--space-3xl) + 6px);
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+}
+
+.hero__dots button {
+  width: 34px;
+  height: 20px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.hero__dots button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  height: 2px;
+  background: rgba(243, 237, 224, .35);
+}
+
+.hero__dots button[aria-current="true"]::before { background: var(--gold); }
+
+/* ─── Facts strip ─── */
+
+.hero__facts {
+  position: relative;
+  z-index: 4;
+  background: rgba(8, 19, 31, .58);
+  -webkit-backdrop-filter: var(--blur-dropdown);
+  backdrop-filter: var(--blur-dropdown);
+  border-top: 1px solid var(--line-gold);
+}
+
+.hero__facts .facts {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  border: 0;
+}
+
+.hero__facts .facts__cell { padding-block: var(--space-lg); }
+
+.hero__facts .stat__figure { font-size: clamp(34px, 3.8vw, 56px); }
+
+.hero__facts-wrap { padding: 0 var(--pad); }
+
+/* ─── Solid variant: no photograph, arcs carry the composition ─── */
+
+.hero--solid {
+  background:
+    radial-gradient(1100px 620px at 84% 46%, rgba(36, 71, 109, .75), transparent 66%),
+    linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+}
+
+/* ─── Split hero (Services, Contact): copy left, panel right ─── */
+
+.hero__split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: var(--space-3xl);
+  align-items: end;
+  max-width: var(--wrap);
+  margin-inline: auto;
+}
+
+.hero__split > * { min-width: 0; }

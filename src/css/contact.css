@@ -1,0 +1,229 @@
+/* ===========================================================================
+   contact.css — /contact/ : direct routes and the interactive enquiry.
+
+   The form is complete without JavaScript (all four steps show as one form).
+   contact-flow.js adds `data-enhanced` to the form, which reveals the progress
+   rail, shows one step at a time and reveals the live summary.
+   =========================================================================== */
+
+.hero__note { max-width: 46ch; color: rgba(243, 237, 224, .78); }
+
+/* ─── Direct routes ─── */
+
+.reach { padding: var(--space-xl); }
+.reach__list { display: grid; gap: 12px; margin: var(--space-md) 0 0; padding: 0; list-style: none; }
+.reach__item { display: flex; gap: 10px; align-items: stretch; }
+
+.reach__link {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding: 16px 20px;
+  background: rgba(243, 237, 224, .04);
+  border: 1px solid var(--line-light);
+  border-radius: 12px;
+}
+
+.reach__link:hover { border-color: var(--gold); background: rgba(243, 237, 224, .08); }
+.reach__link .t-label { color: var(--gold); }
+.reach__value { font-size: clamp(19px, 1.9vw, 25px); letter-spacing: -.01em; overflow-wrap: anywhere; }
+.reach__place { margin-top: var(--space-md); color: var(--color-text-muted); }
+
+.reach__copy {
+  padding: 0 18px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--line-gold);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.reach__copy:hover,
+.reach__copy.is-copied { color: var(--navy-deep); background: var(--gold); border-color: var(--gold); }
+
+/* ─── Enquiry layout ─── */
+
+.enq-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, .9fr);
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.enq-layout > * { min-width: 0; }
+.enq-form { padding: clamp(24px, 3.6vw, 52px); }
+
+.enq-progress {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 var(--space-2xl);
+  padding: 0;
+  list-style: none;
+}
+
+.enq-progress__btn {
+  display: block;
+  width: 100%;
+  padding: 12px 0 0;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-top: 3px solid var(--line-strong);
+  cursor: pointer;
+}
+
+.enq-progress__btn:disabled { cursor: default; opacity: .5; }
+.enq-progress__btn.is-done { border-top-color: var(--gold-deep); }
+.enq-progress__btn[aria-current="step"] { border-top-color: var(--red); }
+.enq-progress__dot { display: none; }
+
+.enq-progress__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* ─── Steps ─── */
+
+.enq-step { min-width: 0; margin: 0 0 var(--space-2xl); padding: 0; border: 0; }
+.enq-step[hidden] { display: none; }
+.enq-step:last-of-type { margin-bottom: 0; }
+.enq-step__legend { display: grid; gap: 8px; padding: 0; margin-bottom: var(--space-md); }
+.enq-step__title { max-width: none; }
+.enq-step__hint { margin-bottom: var(--space-lg); color: var(--color-text-secondary); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.chip { position: relative; }
+
+.chip input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.chip span {
+  display: inline-block;
+  padding: 12px 20px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+}
+
+.chip:hover span { border-color: var(--navy); }
+
+.chip input:checked + span {
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+
+.chip input:focus-visible + span { outline: 2px solid var(--red); outline-offset: 2px; }
+
+/* ─── Fields ─── */
+
+.field {
+  display: grid;
+  gap: 4px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.field:focus-within { border-bottom-color: var(--red); }
+
+.field--consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding-top: var(--space-lg);
+  border-bottom: 0;
+}
+
+.field__input,
+.field__select,
+.field__textarea {
+  width: 100%;
+  padding: var(--space-sm) 0 2px;
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-none);
+  appearance: none;
+}
+
+.field__textarea { min-height: 7em; resize: vertical; }
+.field__checkbox { flex: none; width: 18px; height: 18px; margin-top: 3px; accent-color: var(--red); }
+.field__input:focus-visible,
+.field__textarea:focus-visible { outline: none; }
+
+.enq-error {
+  margin-top: var(--space-md);
+  font-weight: 500;
+  color: var(--red-text);
+}
+
+.enq-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--space-xl); }
+
+/* ─── Confirmation ─── */
+
+.enq-done { display: grid; gap: var(--space-md); }
+.enq-done[hidden] { display: none; }
+.enq-done:focus-visible { outline: none; }
+.enq-done__text {
+  padding: 16px 18px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.55;
+  background: var(--dust);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+}
+
+/* ─── Side ─── */
+
+.enq-side {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.enq-summary { padding: var(--space-xl); }
+.enq-summary .rule-table { margin-top: var(--space-md); }
+.enq-summary .rule-table__row { padding-block: 10px; }
+.enq-summary [data-summary-field] { overflow-wrap: anywhere; }
+.enq-summary [data-summary-field].is-empty { color: rgba(243, 237, 224, .35); }
+.enq-summary__msg { margin-top: var(--space-md); color: var(--color-text-muted); white-space: pre-line; }
+
+.next { display: grid; gap: var(--space-md); }
+.next__list { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.next__item { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 14px; align-items: start; }
+
+.next__dot {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--red-text);
+  border: 1px solid var(--gold-deep);
+  border-radius: 50%;
+}

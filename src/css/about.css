@@ -1,0 +1,165 @@
+/* ===========================================================================
+   about.css — /about/ : people, approach, method timeline, standards register.
+   =========================================================================== */
+
+/* ─── People ─── */
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xl);
+}
+
+.person {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-subtle);
+}
+
+.person__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 190px;
+  overflow: hidden;
+  color: var(--gold);
+  background: linear-gradient(160deg, var(--navy-mid), var(--navy-deep));
+}
+
+.person__mark .arcs { right: -30%; width: 460px; opacity: .3; }
+
+.person__initials {
+  position: relative;
+  z-index: 1;
+  font-size: 72px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.04em;
+  color: var(--gold-light);
+}
+
+.person__body { display: grid; gap: 16px; align-content: start; padding: 28px 30px 34px; }
+.person__name { max-width: none; font-size: clamp(28px, 3vw, 40px); }
+.person__tools { display: grid; gap: 8px; }
+
+/* ─── Approach ─── */
+
+.approach {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.approach__item {
+  display: grid;
+  gap: var(--space-md);
+  align-content: start;
+  min-height: 300px;
+  padding: var(--space-2xl) var(--space-xl);
+  background: linear-gradient(160deg, rgba(22, 49, 79, .65), rgba(8, 19, 31, .45));
+  border: 1px solid var(--line-gold);
+  border-radius: var(--radius-panel);
+}
+
+.approach__term {
+  font-size: clamp(36px, 4vw, 60px);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--gold);
+}
+
+.approach__item .t-lead { color: rgba(243, 237, 224, .88); }
+
+/* ─── Method timeline ─── */
+
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 11px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold), rgba(184, 134, 42, .25));
+}
+
+.timeline__item { position: relative; display: grid; gap: 10px; align-content: start; padding-top: 50px; }
+
+.timeline__node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  background: var(--dust-warm);
+  border: 2px solid var(--gold-deep);
+  border-radius: 50%;
+}
+
+.timeline__node::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  background: var(--red);
+  border-radius: 50%;
+}
+
+.timeline__term { max-width: 16ch; }
+.timeline__foot { margin-top: var(--space-2xl); }
+
+/* ─── Standards register ─── */
+
+.register-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-lg); }
+
+.register-tabs__btn {
+  padding: 9px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.register-tabs__btn span { margin-left: 6px; color: var(--red-text); }
+.register-tabs__btn:hover { border-color: var(--navy); }
+
+.register-tabs__btn[aria-pressed="true"] {
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.register-tabs__btn[aria-pressed="true"] span { color: var(--gold); }
+
+.register-table { border-top: 1px solid var(--line-strong); }
+.register-table__row[hidden] { display: none; }
+
+.register-table__row {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.7fr) minmax(0, .7fr);
+  gap: var(--space-lg);
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.register-table__designation { font-family: var(--font-mono); font-size: 14px; font-weight: 500; letter-spacing: .02em; }
+.register-table__category { text-align: right; }

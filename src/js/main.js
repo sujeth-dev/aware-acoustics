@@ -2,11 +2,19 @@
  * main.js — the only public script.
  *
  * Progressive enhancement only: every page is complete and navigable with this
- * file blocked. The overlay navigation and the /work/ sector filter are the only
- * interactive components on the public site.
+ * file blocked. Each module below is a no-op when its markup is absent, so one
+ * entry point serves every page.
  */
 
-import { initWorkFilter } from "./work-filter.js";
+import { initHeader } from "./header.js";
+import { initReveal } from "./reveal.js";
+import { initHeroCarousels } from "./hero-carousel.js";
+import { initWorkExplorer } from "./work-explorer.js";
+import { initWorkOverlay } from "./work-overlay.js";
+import { initScrollspy } from "./scrollspy.js";
+import { initStandardsTabs } from "./standards-tabs.js";
+import { initContactFlow } from "./contact-flow.js";
+import { initCopyButtons } from "./copy.js";
 
 function initNavOverlay() {
   const toggle = document.querySelector(".nav-toggle");
@@ -45,4 +53,12 @@ function initNavOverlay() {
 }
 
 initNavOverlay();
-initWorkFilter();
+initHeader();
+initReveal();
+initHeroCarousels();
+initWorkExplorer();
+initWorkOverlay();
+initScrollspy();
+initStandardsTabs();
+initContactFlow();
+initCopyButtons();
