@@ -625,3 +625,27 @@ pre-filled email. The earlier design restrictions (DEC-016, B12) and the image-l
 Reviewed at 1440px and 375px with Playwright screenshots of every route, then covered by
 `npm run test:browser`. Open items: written Condition / Approach / Outcome text for the six
 featured projects; client photography to replace the web-sourced set; the V-14 production gate.
+
+## Mineral / material layer (DEC-021, part 1)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-20 |
+| **Branch** | `design/mineral-sound` (the sound dividers are on `design/sound-dividers`) |
+| **Status** | `COMPLETE` — experimental, pending client review |
+
+Adapted the earlier "Mineral / Material" draft into the DEC-020 system as richer stone bands, a fibre-hairline
+texture with one pre-rendered grain, a mineral plate for projects without a photograph, a generic
+"Illustrative build-up" diagram on Services, glass caption plates and ruled tables. The draft's problems were
+fixed rather than copied: low-contrast text, the all-brown palette, repeated SVG-noise, numbering and every
+invented figure (see DEC-021).
+
+Verification: `validate:data`, `test:smoke`, `test:browser` and the new `test:contrast` (34 of 34 pairs, worst
+grain and hairline pixel included) pass. Scroll frame times were compared against `main` in headless
+Chromium: median and 95th-percentile frame time were identical, and switching the grain off changed the mean
+by 0.5 ms (41.6 to 42.1 ms), so the grain has no measurable cost. Backdrop blur, not texture, dominates in
+software rendering. Reviewed at 1440 and 375 with Playwright screenshots.
+
+Open items for the client: whether the earth plates behind the discipline drawings suit the brand; whether
+the Services material study and its layer names are acceptable; whether the plate stays as the fallback
+or waits for photography; the deeper crimson used for italics on stone.
