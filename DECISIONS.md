@@ -651,14 +651,13 @@ part 2, stacked on this one).
   44, 58 or 72 s, in alternating directions, so neighbours never move in step. The curve is built from
   whole-cycle harmonics of the period, so the loop has no seam. Its shape also varies by a `seed`. A
   wave pauses whenever it is off screen, and is a still, complete picture under reduced motion or
-  without JavaScript. The decay does not move: a decay that drifted sideways would stop being a
-  decay.
-- **Decay is used once per page.** One continuous rectified waveform under an exponential envelope, a fine
-  gold −60 dB line and a small "T60" tick and mark. It sits where the page talks about measurement
-  (Home Verification, Services sector index, About Standards, Work "The complete record").
-- **One family of dividers.** After review the last two skylines (the footer body under the crimson call
-  band, and the Services material study) became waves too, so every boundary on every page is a wave or
-  the once-per-page decay. `edge("skyline")` remains in `wave.js` but nothing uses it.
+  without JavaScript. The skyline does not move either; it is no longer used.
+- **One family of dividers.** After review the diffuser skylines (the footer body under the crimson call
+  band, and the Services material study) and the reverberation-decay divider (a continuous rectified
+  waveform under an exponential envelope, with a gold -60 dB line and a "T60" tick) were both replaced by
+  waves, so every boundary on every page is the same kind of divider. `edge("skyline")` and
+  `edge("decay")` remain in `wave.js` but nothing uses them; the T60 mark and -60 dB line are therefore
+  not on the site.
 - **Continuous, gap-free.** Every silhouette is a single closed path filled with the section's own ground,
   bottom edge overlapping the section by 1 px, `preserveAspectRatio="none"`. It cannot show a gap at any
   width or against any ground above. The first version drew the decay as separate bars, which left gaps

@@ -659,14 +659,13 @@ or waits for photography; the deeper crimson used for italics on stone.
 | **Status** | `COMPLETE` — experimental, pending client review |
 
 Replaced the diffuser-skyline transitions with sound dividers built as inline SVG in `wave.js`: a smooth
-oscilloscope wave as the default (every wave loops seamlessly forever, still when motion is off), one continuous reverberation-decay divider with a
-−60 dB line and T60 tick per page. The skyline was first kept in the footer and the Services material study,
-then replaced there too so the site uses one family of dividers. Added
+oscilloscope wave as the default (every wave loops seamlessly forever, still when motion is off). The skyline and a continuous reverberation-decay divider were tried and then replaced by
+waves too, so the site uses one family of dividers. Added
 an octave-band axis in a few section heads instead of numbers. Traces draw in once on scroll; everything is
 static under reduced motion and without JavaScript.
 
 Direction changes during review: dividers must be continuous (the decay was redrawn from bars into one
-unbroken curve) and the wave should be used in most places, with the bar-like decay only sparingly.
+unbroken curve) and the wave should be used in most places, with the bar-like decay only sparingly; then the decay and the last skylines were replaced too, for consistency.
 
 Verification: `validate:data`, `test:smoke`, `test:contrast` and `test:browser` pass (13 routes at 1440 and
 375 with no horizontal overflow and one h1 each, plus the new divider checks). Reduced-motion and

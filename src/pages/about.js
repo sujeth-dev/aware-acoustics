@@ -148,7 +148,7 @@ function standards(data) {
   const categories = ["design", "measurement", "green"].filter((category) => list.some((standard) => standard.category === category));
 
   return `<section class="section ground-mineral-light" aria-labelledby="about-standards">
-  ${edge("decay")}
+  ${edge("wave", { seed: 3 })}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>

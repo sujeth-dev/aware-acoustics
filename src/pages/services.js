@@ -222,7 +222,7 @@ function sectorIndex(data) {
   if (sectors.length === 0) return "";
 
   return `<section class="section ground-navy has-lines on-dark" aria-labelledby="services-sectors">
-  ${edge("decay")}
+  ${edge("wave", { seed: 4 })}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>

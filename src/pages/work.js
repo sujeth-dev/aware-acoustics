@@ -161,7 +161,7 @@ function dialog() {
 
 function explore(data, projects) {
   return `<section class="section ground-navy has-lines on-dark" id="explore" aria-labelledby="work-explore">
-  ${edge("decay")}
+  ${edge("wave", { seed: 1 })}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>

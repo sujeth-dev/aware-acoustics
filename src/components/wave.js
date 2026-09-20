@@ -1,7 +1,7 @@
 /**
  * wave.js — the site's sound-motif graphics, generated as inline SVG.
  *
- *   edge(kind)    section dividers: decay, wave and the diffuser skyline
+ *   edge(kind)    section dividers: the wave (all the site uses), plus decay and skyline, kept available
  *   arcs()        concentric sound arcs behind heroes and dark bands
  *   signature(id) one drawing per discipline, replacing the old numbered squares
  *
@@ -24,9 +24,10 @@ const round = (value) => Math.round(value * 10) / 10;
               It loops forever (a seamless one-period drift) unless motion is off;
               `seed` varies the shape, speed and direction between neighbours
      decay    reverberation decay: one continuous rectified waveform under an
-              exponential envelope, a fine -60 dB line and a T60 tick. Used sparingly.
+              exponential envelope, a fine -60 dB line and a T60 tick. Kept available,
+              no longer used.
      skyline  quadratic-residue diffuser wells, the original divider. Kept available but
-              no longer used: the site keeps to one family of dividers (wave, decay).
+              no longer used: the site keeps to one family of dividers (the wave).
 
    Traces and envelopes draw in once when scrolled into view (data-draw, see
    reveal.js and motion.css). Without JavaScript or under reduced motion they are

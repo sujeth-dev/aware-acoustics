@@ -168,7 +168,7 @@ function verification(data) {
     .filter((group) => group.items.length > 0);
 
   return `<section class="section ground-navy-deep has-lines on-dark" aria-labelledby="home-verification">
-  ${edge("decay")}
+  ${edge("wave", { seed: 3 })}
   ${arcs()}
   <div class="wrap grid grid--verification grid--start">
     <div class="stack-xl">

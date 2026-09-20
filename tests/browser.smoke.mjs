@@ -302,7 +302,7 @@ try {
           if (rect.left > 0.5 || rect.right < window.innerWidth - 0.5) problems.push("a divider does not span the full width");
           if (rect.bottom < section.top - 0.5) problems.push("a divider leaves a gap above its section");
         }
-        if (document.querySelector(".edge--skyline")) problems.push("an old skyline divider is still on the page");
+        if (document.querySelector(".edge--skyline, .edge--decay")) problems.push("a divider that is not the wave is on the page");
         const texts = [...document.querySelectorAll(".eyebrow")].map((element) => element.textContent.trim());
         if (texts.some((text) => /^\d/.test(text))) problems.push("a numbered eyebrow is back");
         return { count: edges.length, problems: [...new Set(problems)] };
