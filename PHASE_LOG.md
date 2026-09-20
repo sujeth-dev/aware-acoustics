@@ -643,8 +643,7 @@ Sahar (1200 px) and the ABB aerial (1200 px) are still the best sources found.
 Licences across 133 images: 69 open (CC0, CC BY, CC BY-SA, public domain), 2 from the practice's own former website
 (ownership not documented here) and 62 recorded as not verified, on the site owner's direction.
 
-Assumed identifications: Marie Gold = Marigold Hotel, Hyderabad; HICC = Hyderabad International Convention Centre;
-eBay = Embassy TechVillage; Grand Oberoi = The Oberoi Grand, Kolkata; IHG = an InterContinental hotel in Mumbai.
+Stand-ins are described as generic in `depicts`; no stand-in is presented as a specific building.
 
 Open items: client photography to replace every generic and unverified image (`IMAGE_WORKFLOW.md` §5); ask the client for the
 photographs behind the old website's works page; better sources for the REVA, JW Marriott Sahar and ABB heroes.
