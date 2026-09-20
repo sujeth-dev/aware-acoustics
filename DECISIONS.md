@@ -688,3 +688,8 @@ part 2, stacked on this one).
 - `npm run test:browser` now checks dividers under reduced motion (not clipped, not animating), without
   JavaScript (visible), full width and gap-free, that no numbered eyebrow exists, and that no SVG-noise
   grain, waveform plate or build-up figure has come back.
+- A drifting wave must be two periods wide or its far end empties as it moves. `base.css` caps every
+  `svg` at `max-width: 100%`, which silently did this, so `.edge--live .edge__svg` lifts the cap. The
+  first loop shipped with that bug; the browser test now asserts the wave covers its box at five phases
+  of the loop, including the last frame before it wraps, and it was checked to fail with the cap
+  restored. To make the waves still instead, flip the `live` default in `wave.js` to `false`.

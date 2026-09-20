@@ -58,7 +58,9 @@
 
 /* A live wave is drawn over two periods in a box twice as wide; the first period alone
    is the static picture, and the drift (motion.css) slides exactly one period. */
-.edge--live .edge__svg { width: 200%; }
+/* base.css caps every svg at max-width: 100%, which would leave the second period nowhere
+   to be: it must be lifted for the drift to have something to slide into. */
+.edge--live .edge__svg { width: 200%; max-width: none; }
 
 .edge__t60 {
   position: absolute;

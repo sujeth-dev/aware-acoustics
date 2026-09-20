@@ -672,7 +672,9 @@ Verification: `validate:data`, `test:smoke`, `test:contrast` and `test:browser` 
 375 with no horizontal overflow and one h1 each, plus the new divider checks). Reduced-motion and
 no-JavaScript states are asserted by the browser test; the live draw-in and drift were checked directly.
 
-Direction change after review: every wave is an infinite loop, not only the hero ones.
+Direction change after review: every wave is an infinite loop, not only the hero ones. The first loop left
+its far end empty as it drifted (an svg `max-width: 100%` cap in base.css); fixed, and covered by a test
+that checks the drawing spans its box at every phase of the loop.
 
 Open items for the client: whether the wave-everywhere rhythm is preferred to the skyline; whether the T60
 mark and the octave axis read as intended or as noise; whether the constant motion is welcome or should be

@@ -352,6 +352,31 @@ try {
       })
     );
     if (loops.length === 0 || loops.some((looping) => !looping)) fail("dividers: every wave should loop forever when motion is allowed");
+
+    // A loop is only a loop if the drawing still covers its box at every phase, including the
+    // frame before it wraps. (An svg capped at 100% wide once left the far end empty mid-drift.)
+    const coverage = await loopPage.evaluate(() =>
+      [...document.querySelectorAll(".edge--live")].map((wave) => {
+        const svg = wave.querySelector(".edge__svg");
+        const box = wave.querySelector(".edge__box").getBoundingClientRect();
+        const animation = svg.getAnimations()[0];
+        const duration = animation.effect.getTiming().duration;
+        animation.pause();
+        const gaps = [];
+        for (const fraction of [0, 0.25, 0.5, 0.75, 0.999]) {
+          animation.currentTime = duration * fraction;
+          const rect = svg.getBoundingClientRect();
+          if (rect.left > box.left + 0.5 || rect.right < box.right - 0.5) gaps.push(fraction);
+        }
+        const twoPeriods = svg.getBoundingClientRect().width >= box.width * 2 - 1;
+        animation.play();
+        return { gaps, twoPeriods };
+      })
+    );
+    for (const wave of coverage) {
+      if (!wave.twoPeriods) fail("dividers: a live wave is not two periods wide, so it cannot loop");
+      if (wave.gaps.length > 0) fail(`dividers: a live wave leaves its far end empty at phase ${wave.gaps.join(", ")}`);
+    }
     await moving.close();
 
     // JavaScript off: dividers and their T60 marks are visible, nothing waits for a script.
