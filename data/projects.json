@@ -70,7 +70,7 @@
     "featured": false,
     "published": true,
     "order": 10,
-    "showcaseRank": 1
+    "showcaseRank": 5
   },
   {
     "slug": "education-auditorium-bengaluru",
@@ -424,7 +424,7 @@
     "featured": false,
     "published": true,
     "order": 60,
-    "showcaseRank": 4
+    "showcaseRank": 3
   },
   {
     "slug": "technology-workplace-bengaluru-02",
@@ -567,7 +567,7 @@
     "featured": false,
     "published": true,
     "order": 80,
-    "showcaseRank": 3
+    "showcaseRank": 2
   },
   {
     "slug": "hotel-ballroom-kuwait",
@@ -2511,14 +2511,14 @@
         "category": "project-space",
         "src": "/assets/projects/reva-university-amphitheatre-bengaluru/reva-university-amphitheatre-bengaluru-project-space-01.webp",
         "fallback": "/assets/projects/reva-university-amphitheatre-bengaluru/reva-university-amphitheatre-bengaluru-project-space-01.jpg",
-        "width": 878,
-        "height": 551,
-        "alt": "Swami Vivekananda Block on the REVA University campus, Bengaluru",
-        "depicts": "Swami Vivekananda Block, REVA University",
+        "width": 1920,
+        "height": 910,
+        "alt": "Stage of REVA Rangasthala with a blue curtain, loudspeakers and balconies rising above it, REVA University, Bengaluru",
+        "depicts": "REVA University Rangasthala atrium auditorium, Bengaluru",
         "representative": false,
-        "source": "https://www.reva.edu.in/about-university",
-        "licence": "Institution website image; use directed by site owner 2026-09-19, licence not verified",
-        "credit": "REVA University",
+        "source": "https://web.archive.org/web/20211217021721/http://awareacoustics.in/images/works/REVA%20Auditorium%20(Grand%20Staircase)1.jpeg",
+        "licence": "Aware Acoustics project photograph from the practice's former website (Internet Archive capture, 17 Dec 2021); use directed by site owner 2026-09-20; ownership not documented in this repository",
+        "credit": "Aware Acoustics, former website",
         "cleared": true,
         "order": 1
       },
@@ -2542,7 +2542,7 @@
     "featured": false,
     "published": true,
     "order": 601,
-    "showcaseRank": 2
+    "showcaseRank": 6
   },
   {
     "slug": "somaiah-university-auditorium",
@@ -4407,7 +4407,7 @@
     "featured": false,
     "published": true,
     "order": 905,
-    "showcaseRank": 5
+    "showcaseRank": 4
   },
   {
     "slug": "citadel-technical-lab",
@@ -4710,7 +4710,7 @@
     "featured": false,
     "published": true,
     "order": 1101,
-    "showcaseRank": 6
+    "showcaseRank": 1
   },
   {
     "slug": "lucknow-international-airport",
