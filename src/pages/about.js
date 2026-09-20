@@ -14,10 +14,10 @@
  */
 
 import { esc, each, when, join } from "../lib/html.js";
-import { eyebrow, tagRow } from "../components/ui.js";
+import { eyebrow, tagRow, octaveAxis } from "../components/ui.js";
 import { imageHero } from "../components/hero.js";
 import { bestImage } from "../components/picture.js";
-import { arcs, edge } from "../components/wave.js";
+import { edge } from "../components/wave.js";
 import { sectorFacts } from "../lib/facts.js";
 import {
   publishedProjects,
@@ -70,8 +70,7 @@ function hero(data, projects, showcase) {
 function person(entry) {
   const meta = join([entry.role, entry.experienceYears ? `${entry.experienceYears}+ years` : null].filter(Boolean), " · ");
   return `<article class="person ticks" data-reveal>
-    <div class="person__mark" aria-hidden="true">
-      ${arcs()}
+    <div class="person__mark mineral-plate mineral-plate--2" aria-hidden="true">
       <span class="person__initials">${esc(initials(entry.name))}</span>
     </div>
     <div class="person__body">
@@ -87,8 +86,8 @@ function person(entry) {
 function people(data) {
   const list = publishedPeople(data);
   if (list.length === 0) return "";
-  return `<section class="section ground-dust" aria-labelledby="about-people">
-  ${edge()}
+  return `<section class="section ground-mineral" aria-labelledby="about-people">
+  ${edge("wave", { live: true })}
   <div class="wrap">
     <div class="section__head">
       ${eyebrow(null, "People")}
@@ -103,7 +102,7 @@ ${each(list, person)}
 
 function approach() {
   return `<section class="section ground-navy has-lines on-dark" aria-labelledby="about-approach">
-  ${edge()}
+  ${edge("wave", { seed: 1 })}
   <div class="wrap">
     <div class="section__head">
       ${eyebrow(null, "Approach")}
@@ -121,12 +120,13 @@ ${each(APPROACH, (item, index) => `      <article class="approach__item ticks" d
 
 function method() {
   return `<section class="section ground-dust-warm" aria-labelledby="about-method">
-  ${edge()}
+  ${edge("wave", { seed: 2 })}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>
         ${eyebrow(null, "Method")}
         <h2 class="t-h2" id="about-method">A room is designed <em>twice.</em></h2>
+        ${octaveAxis()}
       </div>
       <p class="t-standfirst">First as a target and model. Then as a built condition that can be measured.</p>
     </div>
@@ -147,8 +147,8 @@ function standards(data) {
   if (list.length === 0) return "";
   const categories = ["design", "measurement", "green"].filter((category) => list.some((standard) => standard.category === category));
 
-  return `<section class="section ground-dust" aria-labelledby="about-standards">
-  ${edge()}
+  return `<section class="section ground-mineral-light" aria-labelledby="about-standards">
+  ${edge("decay")}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>

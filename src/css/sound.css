@@ -1,0 +1,124 @@
+/* ===========================================================================
+   sound.css — sound-themed section dividers and the octave-band axis (DEC-021).
+
+   The markup comes from src/components/wave.js (edge) and ui.js (octaveAxis). The
+   skyline keeps the base .edge rules in layout.css; decay and wave add to them.
+
+   Colour rule: a divider's fill is the section's own ground (--edge-color). Its
+   lines and the T60 mark sit inside that ground, so they take --edge-line and
+   --edge-ink from the ground itself and never depend on what is above.
+   scripts/check-contrast.mjs covers each pairing.
+   =========================================================================== */
+
+/* ─── Per-ground line and ink ─── */
+
+.ground-navy,
+.ground-navy-deep,
+.site-footer__main { --edge-line: var(--gold); --edge-ink: var(--gold); }
+
+.ground-crimson { --edge-line: var(--gold-light); --edge-ink: #fff; }
+
+.ground-dust,
+.ground-dust-warm,
+.ground-stone { --edge-line: var(--gold-ink); --edge-ink: var(--slate); }
+
+.ground-mineral,
+.ground-mineral-light { --edge-line: var(--gold-ink); --edge-ink: var(--slate-mineral); }
+
+/* ─── Decay and wave ─── */
+
+.edge--decay { height: clamp(34px, 4.4vw, 62px); }
+.edge--wave { height: clamp(28px, 3.6vw, 52px); }
+
+/* The box clips the drawing (and the live drift); the T60 mark sits outside it. */
+.edge__box {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.edge__svg--narrow { display: none; }
+
+@media (max-width: 600px) {
+  .edge__svg--wide { display: none; }
+  .edge__svg--narrow { display: block; }
+}
+
+.edge__fill { fill: currentColor; stroke: none; }
+
+.edge__line {
+  fill: none;
+  stroke: var(--edge-line, var(--gold));
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.edge--wave .edge__line { stroke-width: 1.4; stroke-linejoin: round; }
+.edge__tick { stroke-width: 1.5; }
+
+/* A live wave is drawn over two periods in a box twice as wide; the first period alone
+   is the static picture, and the drift (motion.css) slides exactly one period. */
+/* base.css caps every svg at max-width: 100%, which would leave the second period nowhere
+   to be: it must be lifted for the drift to have something to slide into. */
+.edge--live .edge__svg { width: 200%; max-width: none; }
+
+.edge__t60 {
+  position: absolute;
+  left: 90%;
+  top: calc(100% + 9px);
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--edge-ink, var(--color-text-secondary));
+  pointer-events: none;
+}
+
+/* The wave that follows the ticker rises into it: keep the standards text clear of the crest. */
+.marquee { padding-bottom: calc(18px + clamp(28px, 3.6vw, 52px)); }
+
+/* Room under the wave for the hero's facts strip, which the crest rises over. */
+.hero__facts { padding-bottom: clamp(10px, 1.6vw, 22px); }
+
+/* ─── Octave-band axis — a mono rule that replaces section numbers ─── */
+
+.octaves {
+  display: flex;
+  align-items: flex-start;
+  width: min(100%, 300px);
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .1em;
+  color: var(--color-text-secondary);
+  border-top: 1px solid var(--line-strong);
+}
+
+.octaves span {
+  position: relative;
+  flex: 1 1 0;
+  padding-top: 13px;
+}
+
+.octaves span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 7px;
+  background: currentColor;
+}
+
+.octaves .octaves__unit { flex: none; padding-left: 2px; }
+.octaves .octaves__unit::before { display: none; }
+
+.on-dark .octaves { color: var(--gold); border-top-color: var(--line-gold); }
+
+.section__head .octaves { margin-top: var(--space-lg); }

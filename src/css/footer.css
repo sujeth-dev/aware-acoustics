@@ -43,6 +43,7 @@
   padding: var(--space-3xl) var(--pad) 0;
   overflow-x: clip;
   background:
+    linear-gradient(180deg, var(--navy-deep) 0, transparent 72px),
     radial-gradient(900px 480px at 88% 40%, rgba(36, 71, 109, .5), transparent 65%),
     var(--navy-deep);
   border-top: 2px solid var(--gold);

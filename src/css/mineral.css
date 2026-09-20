@@ -1,0 +1,277 @@
+/* ===========================================================================
+   mineral.css — the mineral / material layer (DEC-021).
+
+   Adapted from the "Mineral / Material" direction: stone bands, a fibre-hairline
+   texture, one fine grain, a build-up diagram, glass caption plates and ruled
+   tables. It sits between the navy sections; it does not replace them.
+
+   Rules that came out of the review of the original draft:
+     - every text pair is >= 4.5:1 (scripts/check-contrast.mjs proves it);
+     - one grain, pre-rendered (public/assets/brand/grain.png), never an SVG filter;
+     - crimson and gold remain the accents, so the palette is never all brown;
+     - no numbering, and no figure that is not in data/*.json.
+   =========================================================================== */
+
+/* ─── Bands ───────────────────────────────────────────────────────────────
+   Stone carries the grain; the lighter band is hairlines only. --edge-color is
+   the colour at the very top of the band so the skyline / wave divider meets it
+   without a seam. Text tokens are re-pointed so components darken themselves. */
+
+.ground-mineral {
+  --edge-color: var(--mat-stone);
+  --color-text-secondary: var(--slate-mineral);
+  --red-text: var(--red-mineral);
+  background:
+    var(--grain),
+    var(--fibre-hairline),
+    linear-gradient(180deg, var(--mat-stone) 0%, #d3cbbe 100%);
+  background-size: 128px 128px, auto, auto;
+}
+
+.ground-mineral-light {
+  --edge-color: var(--mat-dust);
+  --color-text-secondary: var(--slate-mineral);
+  background:
+    var(--fibre-hairline-soft),
+    linear-gradient(180deg, var(--mat-dust) 0%, #e8e2d8 100%);
+}
+
+/* Ruled tables on a mineral band: a heavier head rule, like a printed schedule. */
+.ground-mineral .rule-table,
+.ground-mineral-light .rule-table { border-top: 2px solid var(--ink); }
+
+.ground-mineral .rule-table__row,
+.ground-mineral-light .rule-table__row { border-bottom-color: rgba(20, 23, 29, .26); }
+
+.ground-mineral .tag,
+.ground-mineral-light .tag { border-color: rgba(20, 23, 29, .42); }
+
+/* ─── Plate ───────────────────────────────────────────────────────────────
+   The fallback visual for any project with no photograph, and the base for
+   diagrams: a stone → fibre → graphite gradient, fibre hairlines, one grain.
+   A single element with layered backgrounds, so there is no extra paint layer. */
+
+.mineral-plate {
+  --plate-a: var(--mat-stone);
+  --plate-b: var(--mat-fibre);
+  --plate-c: var(--mat-graphite);
+  --plate-angle: 103deg;
+  --plate-lines: 84deg;
+  --tick-color: var(--red-mineral);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    var(--grain),
+    repeating-linear-gradient(var(--plate-lines), rgba(255, 255, 255, .14) 0 1px, transparent 1px 4px),
+    linear-gradient(var(--plate-angle), var(--plate-a) 0%, var(--plate-b) 58%, var(--plate-c) 100%);
+  background-size: 128px 128px, auto, auto;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16);
+}
+
+.mineral-plate--1 { --plate-angle: 103deg; }
+.mineral-plate--2 { --plate-a: var(--mat-dust); --plate-b: var(--mat-stone); --plate-c: var(--mat-fibre); --plate-angle: 148deg; --plate-lines: 96deg; }
+.mineral-plate--3 { --plate-a: var(--mat-fibre); --plate-b: var(--mat-graphite); --plate-c: var(--mat-earth); --plate-angle: 122deg; --plate-lines: 78deg; }
+.mineral-plate--4 { --plate-a: var(--mat-stone); --plate-b: var(--mat-fibre); --plate-c: var(--mat-stone); --plate-angle: 76deg; --plate-lines: 92deg; }
+
+/* Dark variant: a warm earth plate that carries light strokes and gold. */
+.mineral-plate--earth {
+  --plate-a: #2a2622;
+  --plate-b: var(--mat-earth);
+  --plate-c: #4a443c;
+  --plate-angle: 160deg;
+  --tick-color: var(--gold);
+  color: var(--color-text-inverse);
+  box-shadow: inset 0 0 0 1px var(--line-gold);
+}
+
+.mineral-plate--earth {
+  background:
+    var(--grain),
+    var(--fibre-hairline-light),
+    linear-gradient(var(--plate-angle), var(--plate-a) 0%, var(--plate-b) 58%, var(--plate-c) 100%);
+  background-size: 128px 128px, auto, auto;
+}
+
+/* The signature drawings sit on a plate in the plate's own ink. */
+.mineral-plate--earth .signature { color: rgba(226, 219, 208, .92); }
+
+/* ─── Glass plate — the field caption laid over a visual ─────────────────── */
+
+.glass-plate {
+  display: grid;
+  gap: 3px;
+  padding: 14px 18px;
+  color: var(--color-text-inverse);
+  background: rgba(8, 19, 31, .82);
+  border: 1px solid rgba(243, 237, 224, .2);
+  border-radius: var(--radius-thumb);
+  -webkit-backdrop-filter: var(--blur-overlay);
+  backdrop-filter: var(--blur-overlay);
+}
+
+.glass-plate__title {
+  font-family: var(--font-heading);
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+}
+
+.glass-plate .t-label { color: var(--gold); }
+.glass-plate .t-meta { color: rgba(243, 237, 224, .86); }
+
+/* ─── Build-up — generic layer stack (Services) ───────────────────────────
+   Names only. Layers are drawn at equal height on purpose: the diagram shows
+   order and kind, never thickness, density or any other specification. */
+
+.buildup {
+  position: relative;
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+}
+
+/* The diagram sits on a light plate inside a dark section, so its text is pinned to
+   ink here and is not left to .on-dark. */
+.buildup .buildup__end,
+.buildup .buildup__caption .t-label,
+.buildup .buildup__caption .t-meta { color: var(--ink); }
+
+.buildup__end {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.buildup__end::before {
+  content: "";
+  flex: none;
+  width: 22px;
+  height: 2px;
+  background: var(--red-mineral);
+}
+
+.buildup__stack {
+  position: relative;
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding: 0 0 0 26px;
+  list-style: none;
+}
+
+/* Sound arriving from the room side and passing through the layers. */
+.buildup__stack::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--red-mineral), rgba(122, 21, 36, .2));
+}
+
+.buildup__stack::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  bottom: 2px;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--red-mineral);
+  border-bottom: 2px solid var(--red-mineral);
+  opacity: .5;
+  transform: rotate(45deg);
+}
+
+.buildup__layer {
+  display: grid;
+  gap: 2px;
+  align-content: center;
+  min-height: 84px;
+  padding: 14px 20px;
+  color: var(--ink);
+  background-size: 128px 128px, auto, auto;
+  border: 1px solid rgba(20, 23, 29, .28);
+}
+
+.buildup__name {
+  font-family: var(--font-heading);
+  font-size: clamp(19px, 1.7vw, 23px);
+  line-height: 1.15;
+  letter-spacing: -.012em;
+}
+
+.buildup__role {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+/* Lining: a smooth board face. */
+.buildup__layer--lining {
+  background: var(--fibre-hairline), var(--mat-dust);
+}
+
+/* Absorbent layer: fibre, drawn as crossed hairlines over a fibre tone. */
+.buildup__layer--absorbent {
+  background:
+    var(--grain),
+    repeating-linear-gradient(84deg, rgba(255, 255, 255, .16) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(112deg, rgba(20, 23, 29, .09) 0 1px, transparent 1px 5px),
+    #aaa294;
+  background-size: 128px 128px, auto, auto, auto;
+}
+
+/* Air cavity: an open dashed frame, nothing solid. */
+.buildup__layer--cavity {
+  background: rgba(255, 255, 255, .2);
+  border-style: dashed;
+}
+
+/* Structure: dense and dark, so it is the one layer with light text. */
+.buildup__layer--structure {
+  color: var(--color-text-inverse);
+  background:
+    var(--grain),
+    repeating-linear-gradient(45deg, rgba(243, 237, 224, .05) 0 1px, transparent 1px 6px),
+    var(--mat-earth);
+  background-size: 128px 128px, auto, auto;
+  border-color: var(--mat-earth);
+}
+
+.buildup__caption { display: grid; gap: 4px; margin: 0; }
+
+/* ─── Material study (Services) — an editorial split ─────────────────────── */
+
+.material-study {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.material-study > * { min-width: 0; }
+
+.material-study__visual {
+  padding: clamp(28px, 4vw, 56px);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(255, 255, 255, .16);
+}
+
+/* ─── Feature row on a mineral band ───────────────────────────────────────── */
+
+.on-dark .data-list__label { color: var(--color-text-muted); }
+
+.feature__plate {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2;
+  max-width: 420px;
+}

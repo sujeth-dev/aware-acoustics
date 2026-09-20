@@ -35,8 +35,8 @@ function hero(project, data) {
 
 function overview(project, data) {
   const services = (project.services ?? []).map((id) => serviceById(data, id)).filter(Boolean);
-  return `<section class="section ground-dust" aria-labelledby="project-scope">
-  ${edge()}
+  return `<section class="section ground-mineral" aria-labelledby="project-scope">
+  ${edge("wave", { live: true })}
   <div class="wrap grid grid--editorial grid--start">
     <div class="stack-xl">
       <div>
@@ -59,7 +59,7 @@ ${each(project.scope ?? [], (item) => `        <li class="scope-list__item" data
 function gallery(project) {
   if ((project.images ?? []).length === 0) return "";
   return `<section class="section ground-navy has-lines on-dark" aria-labelledby="project-images">
-  ${edge()}
+  ${edge("wave", { seed: 1 })}
   <div class="wrap">
     <div class="section__head">
       ${eyebrow(null, "Project images")}
@@ -88,8 +88,8 @@ function pager(project, data, showcase) {
   const index = showcase.findIndex((item) => item.slug === project.slug);
   const prev = showcase[(index - 1 + showcase.length) % showcase.length];
   const next = showcase[(index + 1) % showcase.length];
-  return `<section class="section section--tight ground-dust-warm" aria-label="More featured projects">
-  ${edge()}
+  return `<section class="section section--tight ground-mineral-light" aria-label="More featured projects">
+  ${edge("wave", { seed: 2 })}
   <div class="wrap pager">
     ${neighbour(prev, data, "prev")}
     ${neighbour(next, data, "next")}

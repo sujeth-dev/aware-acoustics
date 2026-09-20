@@ -600,3 +600,118 @@ interior to be used. This adds no rule beyond that direction.
   image is small, or that has none, falls back to a portrait, which is why Guwahati airport was replaced by a 1920 px view.
 - **Counts.** 133 published images on 74 projects: 69 open (CC0, CC BY, CC BY-SA, public domain), 2 the practice's own, 62 recorded
   as not verified.
+
+---
+
+## DEC-021 — Mineral / material layer and sound-themed dividers
+
+**Status:** Decided · 2026-09-20 · experimental, delivered as two independently revertable branches ·
+builds on DEC-020, which it does not replace
+
+**Context.** The client likes the DEC-020 redesign and asked to bring back the feel of the earlier chosen
+"Mineral / Material" draft (stone and fibre tones, texture, a build-up diagram, editorial splits with spec
+tables, field-caption glass plates, a warm tactile tone) without losing navy as the dominant identity, and
+to replace most of the diffuser-skyline section transitions with sound-related ones. Both are experiments,
+so they are separate branches: `design/mineral-sound` (this part) and `design/sound-dividers` (DEC-021
+part 2, stacked on this one).
+
+**Decision, part 1 — the mineral layer.**
+
+- **Bands.** Two mineral grounds between the navy sections: `ground-mineral` (stone `#c8c0b2`, fibre
+  hairlines at 84°, one grain) and `ground-mineral-light` (`#e2dbd0`, hairlines only). Tokens are
+  `--mat-*` in `tokens.css`; the old `--stone` keeps its meaning.
+- **One grain.** `public/assets/brand/grain.png`, a 128 × 128 4-bit indexed tile of 6.4 KB written by
+  `scripts/build-grain.mjs` from a fixed seed, so it tiles without a seam and is reproducible. It is a
+  layer inside the band's or plate's own `background`, not a pseudo-element, and it replaces the
+  `feTurbulence` data-URI that the legacy `.plate` still used.
+- **Mineral plate.** The fallback visual for any project with no photograph, in four tonal variants so a
+  grid of them does not repeat, replacing the navy waveform plate on Work cards and in the project view.
+  It is a class (`plateClass(seed)` in `material.js`), so it applies to however many projects lack a
+  photograph at any time; the image work is owned by another session.
+- **Build-up diagram.** `buildUp()` on Services: four generic layers (Lining, Absorbent layer, Air cavity,
+  Structure) drawn at equal height, captioned "Illustrative build-up", with a second line saying it is not
+  to scale and not a specification. It carries no number; the browser test fails if a digit appears in it.
+- **Glass caption plate** (navy, 82%) over the Home About photograph and the Work feature rows; **ruled
+  tables** with a heavier head rule on mineral bands; feature rows gain a Scope / Disciplines / Year table
+  from project data.
+- **Where.** Home (About, Services), Services (disciplines on mineral bands with earth signature plates,
+  plus a "material study" section with the build-up and a spec table), About (People, Standards), Work
+  (featured rows), and the project view. Navy remains the dominant ground and the header, heroes, footer,
+  Selected work and Verification are unchanged.
+
+**Left out of the draft, and why.**
+
+- White text at 38–52% opacity: fails contrast. Every text pair is now at least 4.5:1.
+- An all-brown palette with no accent: crimson and gold stay the accents (crimson ticks and sound line on
+  light plates, gold on dark plates).
+- The `feTurbulence` SVG noise repeated on many elements: one pre-rendered tile instead.
+- A transparent nav with no mobile menu: our fixed header is kept.
+- Numbered 01/02/03 eyebrows: the client rejected numbered squares; nothing is numbered.
+- Every invented figure: NR 22, RT 1.58 s, 1,200 seats, 60 kg/m³, layer thicknesses, "100 mm batt". None
+  is used anywhere, and no build-up dimension exists on the site.
+- The earthy glass plate and the brown-only hero: the glass plate is navy, the hero is unchanged.
+
+**Consequences.**
+
+- The existing `--slate` (4.25:1) and `--red-text` (4.09:1) fail on stone, so the mineral bands re-point
+  their text tokens to `--slate-mineral` (5.2:1) and `--red-mineral` (4.7:1); `--gold-ink` (3.2:1) is for
+  lines and ticks on light grounds only, never text. Crimson italics on stone are therefore a deeper red
+  than on the beige bands.
+- `npm run test:contrast` (`scripts/check-contrast.mjs`) tests every new pair, compositing translucent
+  layers and testing text against the worst grain and hairline pixel, not the flat colour. 34 of 34 pass.
+  It found seven failures that flat-colour arithmetic missed, which is why the texture is slightly quieter
+  than first drawn (grain at most 8% alpha, dark hairline 6%).
+- `reveal.js` gained a scroll sweep: an element the IntersectionObserver skips in a fast scroll or anchor
+  jump is now revealed instead of waiting for the 4 s failsafe.
+- With 41 of 74 projects currently without a photograph, the mineral plate is very visible on Work. It is a
+  deliberate, honest fallback, but photography still shows the work better.
+
+**Decision, part 2 — sound-themed dividers** (branch `design/sound-dividers`).
+
+- **Wave is the default, and it loops.** A smooth oscilloscope trace, used at most section boundaries, at
+  hero bottoms and at the footer top. Every wave is an infinite loop: it drifts one exact period every
+  44, 58 or 72 s, in alternating directions, so neighbours never move in step. The curve is built from
+  whole-cycle harmonics of the period, so the loop has no seam. Its shape also varies by a `seed`. A
+  wave pauses whenever it is off screen, and is a still, complete picture under reduced motion or
+  without JavaScript. The decay does not move: a decay that drifted sideways would stop being a
+  decay.
+- **Decay is used once per page.** One continuous rectified waveform under an exponential envelope, a fine
+  gold −60 dB line and a small "T60" tick and mark. It sits where the page talks about measurement
+  (Home Verification, Services sector index, About Standards, Work "The complete record").
+- **One family of dividers.** After review the last two skylines (the footer body under the crimson call
+  band, and the Services material study) became waves too, so every boundary on every page is a wave or
+  the once-per-page decay. `edge("skyline")` remains in `wave.js` but nothing uses it.
+- **Continuous, gap-free.** Every silhouette is a single closed path filled with the section's own ground,
+  bottom edge overlapping the section by 1 px, `preserveAspectRatio="none"`. It cannot show a gap at any
+  width or against any ground above. The first version drew the decay as separate bars, which left gaps
+  and read as a bar chart; it was redrawn as one unbroken curve.
+- **Contrast without knowing the neighbour.** The −60 dB line, the trace and the T60 mark sit inside the
+  lower ground and take `--edge-line` / `--edge-ink` from that ground (gold on navy and footer, gold-light
+  on crimson, `--gold-ink` and the ground's own secondary text on light bands), so nothing depends on the
+  colour above.
+- **Octave-band axis.** `octaveAxis()`: a mono rule reading 125 · 250 · 500 · 1k · 2k · 4k Hz in five
+  section heads, instead of section numbers. The values are the standard preferred band centres, not
+  project data.
+- **Motion.** Waves and envelopes draw in once when scrolled into view (a clip wipe, driven by `data-draw`
+  in `reveal.js`). Everything is static and complete under `prefers-reduced-motion` and without
+  JavaScript. CSS and SVG only: no canvas, no library, no audio.
+
+**Consequences, part 2.**
+
+- Dividers are decorative (`aria-hidden`); nothing on a page depends on them.
+- HTML grows by about 2 KB per wave and 7 KB per decay before compression; a page carries roughly six
+  dividers, and the markup compresses well (Home 10.8 KB gzipped).
+- Scroll cost was measured against `main` in headless software Chromium. With backdrop blur off to lower
+  the noise floor, Home was about 3 ms per frame slower and About was level; with blur on the difference is
+  inside run-to-run variation (the baseline alone moved by about 7 ms between runs). Pausing the drift
+  offscreen removed about 5 ms of the earlier gap.
+- The first discipline on Services carries no divider: the sticky sub-nav sits directly above it and would
+  hide it.
+- `npm run test:browser` now checks dividers under reduced motion (not clipped, not animating), without
+  JavaScript (visible), full width and gap-free, that no numbered eyebrow exists, and that no SVG-noise
+  grain, waveform plate or build-up figure has come back.
+- A drifting wave must be two periods wide or its far end empties as it moves. `base.css` caps every
+  `svg` at `max-width: 100%`, which silently did this, so `.edge--live .edge__svg` lifts the cap. The
+  first loop shipped with that bug; the browser test now asserts the wave covers its box at five phases
+  of the loop, including the last frame before it wraps, and it was checked to fail with the cap
+  restored. To make the waves still instead, flip the `live` default in `wave.js` to `false`.

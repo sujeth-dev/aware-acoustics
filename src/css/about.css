@@ -21,16 +21,10 @@
 }
 
 .person__mark {
-  position: relative;
   display: grid;
   place-items: center;
   height: 190px;
-  overflow: hidden;
-  color: var(--gold);
-  background: linear-gradient(160deg, var(--navy-mid), var(--navy-deep));
 }
-
-.person__mark .arcs { right: -30%; width: 460px; opacity: .3; }
 
 .person__initials {
   position: relative;
@@ -39,7 +33,7 @@
   font-weight: 300;
   line-height: 1;
   letter-spacing: -.04em;
-  color: var(--gold-light);
+  color: var(--ink);
 }
 
 .person__body { display: grid; gap: 16px; align-content: start; padding: 28px 30px 34px; }

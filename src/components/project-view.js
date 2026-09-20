@@ -4,7 +4,7 @@
  * One implementation feeds both surfaces: the /work/ overlay (rendered into a
  * <template> per project and cloned by src/js/work-overlay.js) and the six
  * showcase pages. Nothing here invents copy: a fact that is absent from the
- * record simply has no row, and a project with no photograph gets a waveform
+ * record simply has no row, and a project with no photograph gets a mineral
  * plate rather than a grey box.
  *
  * Attribution: open-licence images (CC BY / CC BY-SA) carry a small credit line
@@ -13,7 +13,7 @@
 
 import { esc, each, when, join } from "../lib/html.js";
 import { picture } from "./picture.js";
-import { waveform } from "./wave.js";
+import { plateClass } from "./material.js";
 import { cta } from "./ui.js";
 import { sectorLabel, serviceById } from "../lib/data.js";
 
@@ -89,7 +89,7 @@ export function projectGallery(project, { mode = "stage", seed = 1 } = {}) {
   const images = project.images ?? [];
 
   if (images.length === 0) {
-    return `<div class="pv-gallery pv-gallery--plate ticks" aria-hidden="true">${waveform(seed)}</div>`;
+    return `<div class="pv-gallery pv-gallery--plate ${plateClass(seed)}" aria-hidden="true"></div>`;
   }
 
   if (mode === "stack") {

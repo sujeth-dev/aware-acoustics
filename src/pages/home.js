@@ -10,7 +10,7 @@
  */
 
 import { esc, each, when, join } from "../lib/html.js";
-import { eyebrow, cta, tagRow } from "../components/ui.js";
+import { eyebrow, cta, tagRow, octaveAxis } from "../components/ui.js";
 import { imageHero } from "../components/hero.js";
 import { picture, bestImage } from "../components/picture.js";
 import { arcs, edge, signature } from "../components/wave.js";
@@ -70,8 +70,8 @@ function about(data, showcase) {
   const { settings } = data;
   const place = join([settings.city, settings.country].filter(Boolean), ", ");
 
-  return `<section class="section ground-dust" id="about" aria-labelledby="home-about">
-  ${edge()}
+  return `<section class="section ground-mineral" id="about" aria-labelledby="home-about">
+  ${edge("wave", { live: true })}
   <div class="wrap grid grid--editorial grid--start">
     <div class="stack-xl">
       <div>
@@ -87,7 +87,7 @@ function about(data, showcase) {
     </div>
     ${when(image, () => `<figure class="about-figure ticks" data-reveal>
       ${picture(image, { alt: image.alt, sizes: "(min-width: 900px) 40vw, 100vw" })}
-      <figcaption class="about-figure__caption">
+      <figcaption class="glass-plate about-figure__caption">
         <span class="t-label">${esc(settings.tradingName)}</span>
         <span class="t-meta">${esc(place)}${settings.foundedYear ? ` · Est. ${esc(settings.foundedYear)}` : ""}</span>
       </figcaption>
@@ -112,12 +112,13 @@ function tile(project, index, data) {
 function selectedWork(data, showcase) {
   if (showcase.length === 0) return "";
   return `<section class="section ground-navy has-lines on-dark" aria-labelledby="home-work">
-  ${edge()}
+  ${edge("wave", { seed: 1 })}
   <div class="wrap">
     <div class="grid grid--projects-head grid--end section__head">
       <div>
         ${eyebrow(null, "Selected work")}
         <h2 class="t-h2" id="home-work">The record is the <em>result.</em></h2>
+        ${octaveAxis()}
       </div>
       <p class="t-body">Airports, campuses, hotels, workplaces and laboratories. Each project opens in full, with its images and the facts we hold for it.</p>
     </div>
@@ -131,20 +132,21 @@ ${each(showcase.slice(0, 6), (project, index) => tile(project, index, data))}
 
 function services(data) {
   const list = publishedServices(data);
-  return `<section class="section ground-dust-warm" aria-labelledby="home-services">
-  ${edge()}
+  return `<section class="section ground-mineral-light" aria-labelledby="home-services">
+  ${edge("wave", { seed: 2 })}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>
         ${eyebrow(null, "Services")}
         <h2 class="t-h2" id="home-services">Four disciplines. One performance <em>brief.</em></h2>
+        ${octaveAxis()}
       </div>
       <p class="t-body">Room acoustics, sound insulation, simulation and measurement, coordinated so the criterion set at the start is the one checked at the end.</p>
     </div>
     <div class="svc-grid">
 ${each(list, (service, index) => `      <article class="svc-card" data-reveal style="--i:${index}">
         <a class="svc-card__link" href="/services/#${esc(service.slug)}">
-          <span class="svc-card__art ticks">${signature(service.id)}</span>
+          <span class="svc-card__art mineral-plate mineral-plate--earth ticks">${signature(service.id)}</span>
           <span class="svc-card__body">
             <span class="svc-card__title t-h5">${esc(service.name)}</span>
             <span class="svc-card__summary t-body">${esc(service.summary)}</span>
@@ -166,7 +168,7 @@ function verification(data) {
     .filter((group) => group.items.length > 0);
 
   return `<section class="section ground-navy-deep has-lines on-dark" aria-labelledby="home-verification">
-  ${edge()}
+  ${edge("decay")}
   ${arcs()}
   <div class="wrap grid grid--verification grid--start">
     <div class="stack-xl">

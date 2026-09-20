@@ -6,6 +6,8 @@
 @import "./typography.css";
 @import "./layout.css";
 @import "./components.css";
+@import "./mineral.css";
+@import "./sound.css";
 @import "./header.css";
 @import "./footer.css";
 @import "./hero.css";

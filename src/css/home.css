@@ -33,27 +33,14 @@
   object-fit: cover;
 }
 
-.about-figure::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(8, 19, 31, .78), transparent 46%);
-  pointer-events: none;
-}
-
+/* The caption is a glass plate (mineral.css) laid over the photograph. */
 .about-figure__caption {
   position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: 26px;
+  left: 34px;
+  right: 34px;
+  bottom: 34px;
   z-index: 4;
-  display: grid;
-  gap: 2px;
-  color: #fff;
 }
-
-.about-figure__caption .t-label,
-.about-figure__caption .t-meta { color: rgba(243, 237, 224, .85); }
 
 /* ─── Selected-work mosaic ─── */
 
@@ -153,11 +140,10 @@
   box-shadow: var(--shadow-card);
 }
 
+/* Plate look (stone-earth, hairlines, grain) comes from .mineral-plate--earth. */
 .svc-card__art {
   display: block;
   padding: 34px 28px;
-  color: rgba(243, 237, 224, .88);
-  background: linear-gradient(160deg, var(--navy-mid), var(--navy-deep));
 }
 
 .svc-card__body { display: grid; gap: 14px; align-content: start; padding: 26px 26px 12px; }

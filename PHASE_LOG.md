@@ -647,3 +647,57 @@ Stand-ins are described as generic in `depicts`; no stand-in is presented as a s
 
 Open items: client photography to replace every generic and unverified image (`IMAGE_WORKFLOW.md` §5); ask the client for the
 photographs behind the old website's works page; better sources for the REVA, JW Marriott Sahar and ABB heroes.
+
+## Mineral / material layer (DEC-021, part 1)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-20 |
+| **Branch** | `design/mineral-sound` (the sound dividers are on `design/sound-dividers`) |
+| **Status** | `COMPLETE` — experimental, pending client review |
+
+Adapted the earlier "Mineral / Material" draft into the DEC-020 system as richer stone bands, a fibre-hairline
+texture with one pre-rendered grain, a mineral plate for projects without a photograph, a generic
+"Illustrative build-up" diagram on Services, glass caption plates and ruled tables. The draft's problems were
+fixed rather than copied: low-contrast text, the all-brown palette, repeated SVG-noise, numbering and every
+invented figure (see DEC-021).
+
+Verification: `validate:data`, `test:smoke`, `test:browser` and the new `test:contrast` (34 of 34 pairs, worst
+grain and hairline pixel included) pass. Scroll frame times were compared against `main` in headless
+Chromium: median and 95th-percentile frame time were identical, and switching the grain off changed the mean
+by 0.5 ms (41.6 to 42.1 ms), so the grain has no measurable cost. Backdrop blur, not texture, dominates in
+software rendering. Reviewed at 1440 and 375 with Playwright screenshots.
+
+Open items for the client: whether the earth plates behind the discipline drawings suit the brand; whether
+the Services material study and its layer names are acceptable; whether the plate stays as the fallback
+or waits for photography; the deeper crimson used for italics on stone.
+
+## Sound-themed dividers (DEC-021, part 2)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-20 |
+| **Branch** | `design/sound-dividers`, stacked on `design/mineral-sound` |
+| **Status** | `COMPLETE` — experimental, pending client review |
+
+Replaced the diffuser-skyline transitions with sound dividers built as inline SVG in `wave.js`: a smooth
+oscilloscope wave as the default (every wave loops seamlessly forever, still when motion is off), one continuous reverberation-decay divider with a
+−60 dB line and T60 tick per page. The skyline was first kept in the footer and the Services material study,
+then replaced there too so the site uses one family of dividers. Added
+an octave-band axis in a few section heads instead of numbers. Traces draw in once on scroll; everything is
+static under reduced motion and without JavaScript.
+
+Direction changes during review: dividers must be continuous (the decay was redrawn from bars into one
+unbroken curve) and the wave should be used in most places, with the bar-like decay only sparingly.
+
+Verification: `validate:data`, `test:smoke`, `test:contrast` and `test:browser` pass (13 routes at 1440 and
+375 with no horizontal overflow and one h1 each, plus the new divider checks). Reduced-motion and
+no-JavaScript states are asserted by the browser test; the live draw-in and drift were checked directly.
+
+Direction change after review: every wave is an infinite loop, not only the hero ones. The first loop left
+its far end empty as it drifted (an svg `max-width: 100%` cap in base.css); fixed, and covered by a test
+that checks the drawing spans its box at every phase of the loop.
+
+Open items for the client: whether the wave-everywhere rhythm is preferred to the skyline; whether the T60
+mark and the octave axis read as intended or as noise; whether the constant motion is welcome or should be
+limited to the hero.

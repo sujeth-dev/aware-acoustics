@@ -18,7 +18,7 @@ function telHref(phone) {
 
 function callBand() {
   return `<div class="footer-cta ground-crimson on-crimson">
-  ${edge()}
+  ${edge("wave")}
   ${arcs()}
   <div class="footer-cta__inner">
     <h2 class="footer-cta__title">Send us a plan. A programme. A problem that has not <em>happened yet.</em></h2>
@@ -36,7 +36,7 @@ export function siteFooter(data, { withCta = true } = {}) {
   return `<footer class="site-footer">
   ${when(withCta, callBand)}
   <div class="site-footer__main">
-    ${edge()}
+    ${edge("wave", { seed: 1 })}
     <div class="site-footer__inner">
 
       <div class="site-footer__col">

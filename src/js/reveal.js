@@ -1,13 +1,37 @@
 /**
- * reveal.js — fades `[data-reveal]` elements in as they enter the viewport.
+ * reveal.js — fades `[data-reveal]` elements in, and draws `[data-draw]` dividers, as
+ * they enter the viewport.
  *
  * The hidden starting state exists only under `.js` and only when the visitor
  * has not asked for reduced motion (see motion.css), so with scripting blocked,
  * or with reduced motion, every element is simply visible.
+ *
+ * An IntersectionObserver does the work, but it only reports what is in view at the
+ * moment it samples: a fast scroll, a slow frame or an anchor jump can carry an
+ * element past the viewport unseen. A rAF-throttled sweep on scroll reveals anything
+ * the visitor has already scrolled to or past, so nothing waits for the failsafe.
+ *
+ * The hero wave drifts slowly; it is paused whenever it is off screen so it costs
+ * nothing while the visitor reads the rest of the page.
  */
 
+const SELECTOR = "[data-reveal], [data-draw]";
+const VISIBLE_FRACTION = 0.94;
+
+function pauseLiveWavesOffscreen() {
+  const waves = document.querySelectorAll(".edge--live");
+  if (waves.length === 0) return;
+  const watcher = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) entry.target.classList.toggle("is-idle", !entry.isIntersecting);
+    },
+    { rootMargin: "80px 0px" }
+  );
+  waves.forEach((wave) => watcher.observe(wave));
+}
+
 export function initReveal() {
-  const items = [...document.querySelectorAll("[data-reveal]")];
+  const items = [...document.querySelectorAll(SELECTOR)];
   if (items.length === 0) return;
 
   const showAll = () => items.forEach((item) => item.classList.add("is-in"));
@@ -17,16 +41,42 @@ export function initReveal() {
     return;
   }
 
+  pauseLiveWavesOffscreen();
+
+  const pending = new Set(items);
+
+  const reveal = (item) => {
+    item.classList.add("is-in");
+    pending.delete(item);
+    observer.unobserve(item);
+  };
+
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add("is-in");
-        observer.unobserve(entry.target);
+        if (entry.isIntersecting) reveal(entry.target);
       }
     },
     { rootMargin: "0px 0px -6% 0px", threshold: 0.08 }
   );
 
   items.forEach((item) => observer.observe(item));
+
+  let queued = false;
+  const sweep = () => {
+    queued = false;
+    const limit = window.innerHeight * VISIBLE_FRACTION;
+    for (const item of [...pending]) {
+      if (item.getBoundingClientRect().top < limit) reveal(item);
+    }
+    if (pending.size === 0) window.removeEventListener("scroll", onScroll);
+  };
+
+  const onScroll = () => {
+    if (queued) return;
+    queued = true;
+    window.requestAnimationFrame(sweep);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
 }

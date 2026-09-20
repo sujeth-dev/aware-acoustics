@@ -192,7 +192,7 @@ export function contactPage(data) {
     body: join([
       hero(settings),
       `<section class="section ground-dust" id="enquiry" aria-labelledby="enquiry-title">
-  ${edge()}
+  ${edge("wave", { live: true })}
   <div class="wrap">
     <div class="section__head">
       ${eyebrow(null, "Enquiry")}

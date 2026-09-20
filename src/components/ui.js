@@ -16,6 +16,15 @@ export function eyebrow(_number, label) {
   return `<p class="eyebrow">${esc(label)}</p>`;
 }
 
+/**
+ * Octave-band axis: a mono rule that stands where a section number used to.
+ * The band centres are the standard preferred frequencies, not project data.
+ */
+export function octaveAxis() {
+  const bands = ["125", "250", "500", "1k", "2k", "4k"];
+  return `<p class="octaves" aria-hidden="true">${bands.map((band) => `<span>${band}</span>`).join("")}<span class="octaves__unit">Hz</span></p>`;
+}
+
 /** Button link. `tier` is "primary" (crimson fill) or "secondary" (outline); `extra` adds modifier classes. */
 export function cta(href, label, tier = "secondary", extra = "") {
   const modifiers = [`cta--${esc(tier)}`, extra].filter(Boolean).join(" ");

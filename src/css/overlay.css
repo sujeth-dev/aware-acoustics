@@ -146,18 +146,11 @@ body.pv-open { overflow: hidden; }
 .pv-gallery__thumb:hover { opacity: 1; }
 .pv-gallery__thumb[aria-current="true"] { opacity: 1; border-color: var(--gold); }
 
-/* No photograph: a waveform plate, never a grey box. */
+/* No photograph: a mineral plate (mineral.css), never a grey box. */
 .pv-gallery--plate {
   aspect-ratio: 4 / 3;
-  overflow: hidden;
-  color: rgba(212, 168, 75, .6);
-  background:
-    radial-gradient(360px 240px at 78% 28%, rgba(36, 71, 109, .8), transparent 70%),
-    var(--navy-mid);
   border-radius: var(--radius-thumb);
 }
-
-.pv-gallery--plate .signature { height: 100%; }
 
 /* Stack mode — every image full width (showcase page) */
 .pv-gallery--stack { display: grid; gap: var(--space-xl); }

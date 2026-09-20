@@ -6,6 +6,10 @@
  * indexes all four, a sticky sub-nav follows the reader, and every discipline is a
  * signature panel beside a ruled spec table.
  *
+ * DEC-021 puts the disciplines on mineral bands and adds a material study: the
+ * generic build-up diagram beside a ruled table. It names layers only; it carries
+ * no thickness, density or any other figure.
+ *
  * Discipline copy (standfirst / condition / "what we do") is CONTENT_PLAN.md
  * §5 E-02…E-05 — interface copy, not a data-model fact — so it lives here.
  * Parameters, standards and the sector index are read live from data/*.json.
@@ -15,9 +19,10 @@
  */
 
 import { esc, each, when, join } from "../lib/html.js";
-import { eyebrow, cta, tagRow } from "../components/ui.js";
+import { eyebrow, cta, tagRow, octaveAxis } from "../components/ui.js";
 import { picture, bestImage } from "../components/picture.js";
 import { arcs, edge, signature } from "../components/wave.js";
+import { buildUp } from "../components/material.js";
 import { placeLabel } from "../components/project-view.js";
 import {
   publishedServices,
@@ -146,7 +151,7 @@ function discipline(data, service, index) {
 
   const standards = standardsForService(data, service.id);
   const flip = index % 2 === 1;
-  const ground = flip ? "ground-dust-warm" : "ground-dust";
+  const ground = flip ? "ground-mineral-light" : "ground-mineral";
 
   const rows = [
     { label: "What we do", html: `<ul class="do-list">${each(copy.whatWeDo, (item) => `<li>${esc(item)}</li>`)}</ul>` },
@@ -156,9 +161,9 @@ function discipline(data, service, index) {
   ].filter((row) => row.html);
 
   return `<section class="section ${ground}" id="${esc(service.slug)}" aria-labelledby="service-${esc(service.slug)}">
-  ${edge()}
+  ${index === 0 ? "" : edge("wave", { seed: index })}
   <div class="wrap svc-disc${flip ? " svc-disc--flip" : ""}">
-    <aside class="svc-disc__sig panel panel--dark ticks on-dark" data-reveal>
+    <aside class="svc-disc__sig panel mineral-plate mineral-plate--earth ticks on-dark" data-reveal>
       <div class="svc-disc__art">${signature(service.id)}</div>
       ${eyebrow(null, "Discipline")}
       <h2 class="t-h3" id="service-${esc(service.slug)}">${esc(service.name)}</h2>
@@ -176,6 +181,37 @@ ${each(rows, (row) => `        <div class="rule-table__row" data-reveal><dt clas
 </section>`;
 }
 
+/* ─── Material study ─── */
+
+function materialStudy(list) {
+  const parameters = [...new Set(list.flatMap((service) => service.parameters ?? []))];
+  const rows = [
+    { label: "Layers", html: tagRow(["Lining", "Absorbent layer", "Air cavity", "Structure"], "Layers in the build-up") },
+    { label: "Set together", html: tagRow(["Thickness", "Density", "Air depth", "Mounting", "Edge condition"], "Decisions that set performance") },
+    { label: "Stated as", html: tagRow(parameters.slice(0, 8), "Parameters") },
+    { label: "Confirmed by", html: "<p>Measurement on site, reported against the criterion.</p>" }
+  ].filter((row) => row.html);
+
+  return `<section class="section ground-navy-deep on-dark" aria-labelledby="services-buildup">
+  ${edge("wave", { seed: 2 })}
+  <div class="wrap material-study">
+    <div class="material-study__visual mineral-plate mineral-plate--2 ticks" data-reveal>
+      ${buildUp()}
+    </div>
+    <div class="stack-xl">
+      <div>
+        ${eyebrow(null, "Material study")}
+        <h2 class="t-h2" id="services-buildup">What looks like a surface is usually a <em>build-up.</em></h2>
+      </div>
+      <p class="t-lead">The material is one part of the decision. How it is layered, spaced and fixed decides what it does, so each is set against the criterion and checked once built.</p>
+      <dl class="rule-table">
+${each(rows, (row) => `        <div class="rule-table__row"><dt class="rule-table__label t-label">${esc(row.label)}</dt><dd class="rule-table__value">${row.html}</dd></div>`)}
+      </dl>
+    </div>
+  </div>
+</section>`;
+}
+
 /* ─── Sector index ─── */
 
 function sectorIndex(data) {
@@ -186,12 +222,13 @@ function sectorIndex(data) {
   if (sectors.length === 0) return "";
 
   return `<section class="section ground-navy has-lines on-dark" aria-labelledby="services-sectors">
-  ${edge()}
+  ${edge("decay")}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>
         ${eyebrow(null, "Where it applies")}
         <h2 class="t-h2" id="services-sectors">Applied across <em>sectors.</em></h2>
+        ${octaveAxis()}
       </div>
       <p class="t-body">The same four disciplines, brought to different kinds of space. Open a sector to see its projects.</p>
     </div>
@@ -218,6 +255,7 @@ export function servicesPage(data) {
       hero(list),
       subnav(list),
       join(list.map((service, index) => discipline(data, service, index))),
+      materialStudy(list),
       sectorIndex(data)
     ])
   };
