@@ -625,3 +625,25 @@ pre-filled email. The earlier design restrictions (DEC-016, B12) and the image-l
 Reviewed at 1440px and 375px with Playwright screenshots of every route, then covered by
 `npm run test:browser`. Open items: written Condition / Approach / Outcome text for the six
 featured projects; client photography to replace the web-sourced set; the V-14 production gate.
+
+## Image sourcing pass for image-less projects
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-09-20 |
+| **Status** | `COMPLETE` — pending client review |
+
+Every project now has images (74 of 74; 133 images). Of the 41 that had none, 18 received a photograph of the project or
+of a related site of the same client, and 23 received a generic exterior and interior chosen at the site owner's
+direction, each marked `Generic image: …; not the project site` in `depicts`. Published images that centred on people
+(staff, ceremonies, a thumbnail with title text) were replaced, cropped or removed. Showcase heroes were upgraded to
+1920 px landscape sources where one exists (Guwahati airport, Dehradun airport, Google Ananta); REVA (878 px), JW Marriott
+Sahar (1200 px) and the ABB aerial (1200 px) are still the best sources found.
+
+Licences across 133 images: 69 open (CC0, CC BY, CC BY-SA, public domain), 2 from the practice's own former website
+(ownership not documented here) and 62 recorded as not verified, on the site owner's direction.
+
+Stand-ins are described as generic in `depicts`; no stand-in is presented as a specific building.
+
+Open items: client photography to replace every generic and unverified image (`IMAGE_WORKFLOW.md` §5); ask the client for the
+photographs behind the old website's works page; better sources for the REVA, JW Marriott Sahar and ABB heroes.
