@@ -50,6 +50,25 @@
   --gold-light:       #f0d078;
   --gold-gradient:    linear-gradient(90deg, var(--gold-light), var(--gold) 45%, var(--gold-deep));
 
+  /* ─── Mineral / material bands (DEC-021) ───
+     Stone, fibre, graphite and earth are the tones of the mineral-fibre and
+     board build-ups the practice specifies. They sit as richer bands between the
+     navy sections; navy stays dominant, crimson and gold stay the only accents. */
+  --mat-stone:        #c8c0b2;       /* stone band */
+  --mat-dust:         #e2dbd0;       /* lighter stone band */
+  --mat-fibre:        #9e9486;       /* plate midtone — ink text only */
+  --mat-graphite:     #6b6258;       /* plate shadow */
+  --mat-earth:        #38342e;       /* dark plate, light text */
+  --slate-mineral:    #3d362e;       /* secondary text on stone: 5.2:1 worst pixel (--slate is 4.3:1 there) */
+  --red-mineral:      #7a1524;       /* crimson text on stone: 4.7:1 worst pixel (--red-text is 4.1:1 there) */
+  --gold-ink:         #6b4d0f;       /* gold for lines and ticks on light grounds: 3.2:1, never text */
+
+  /* ─── The one grain: a pre-rendered 128px tiling PNG (scripts/build-grain.mjs) ─── */
+  --grain:            url("/assets/brand/grain.png");
+  --fibre-hairline:   repeating-linear-gradient(84deg, rgba(56, 52, 46, .06) 0 1px, transparent 1px 4px);
+  --fibre-hairline-soft: repeating-linear-gradient(84deg, rgba(56, 52, 46, .04) 0 1px, transparent 1px 4px);
+  --fibre-hairline-light: repeating-linear-gradient(84deg, rgba(255, 255, 255, .13) 0 1px, transparent 1px 4px);
+
   /* ─── Status ─── */
   --verified:         #4a6b52;
   --info:             #3a5670;

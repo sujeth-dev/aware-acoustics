@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "validate:data": "node scripts/validate-data.js",
     "test:smoke": "node tests/render-record.smoke.mjs",
+    "test:contrast": "node scripts/check-contrast.mjs",
     "test:browser": "vite build && node tests/browser.smoke.mjs"
   },
   "devDependencies": {

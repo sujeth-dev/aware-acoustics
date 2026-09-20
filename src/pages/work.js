@@ -13,10 +13,11 @@
  */
 
 import { esc, each, when, join } from "../lib/html.js";
-import { eyebrow } from "../components/ui.js";
+import { eyebrow, dataList } from "../components/ui.js";
 import { imageHero } from "../components/hero.js";
 import { picture, bestImage } from "../components/picture.js";
-import { waveform, edge } from "../components/wave.js";
+import { edge } from "../components/wave.js";
+import { plateClass } from "../components/material.js";
 import { projectPanel, placeLabel } from "../components/project-view.js";
 import { sectorFacts } from "../lib/facts.js";
 import {
@@ -24,7 +25,8 @@ import {
   showcaseProjects,
   isShowcase,
   projectHref,
-  sectorLabel
+  sectorLabel,
+  serviceById
 } from "../lib/data.js";
 
 const FILTER_MIN_PROJECTS = 12;
@@ -57,21 +59,26 @@ function featureRow(project, index, data) {
   const dark = index % 2 === 1;
   const image = bestImage(project);
   const href = projectHref(project);
-  const detail = join(
-    [placeLabel(project), (project.scope ?? [])[0]].filter(Boolean),
-    " · "
-  );
+  const place = placeLabel(project);
+  const disciplines = (project.services ?? []).map((id) => serviceById(data, id)).filter(Boolean).map((service) => service.name);
 
   return `<article class="feature${index % 2 === 1 ? " feature--flip" : ""}${dark ? " feature--dark" : ""}" data-reveal>
   <a class="feature__media" href="${esc(href)}" tabindex="-1" aria-hidden="true">
     ${picture(image, { alt: "", sizes: "(min-width: 900px) 56vw, 100vw", eager: index === 0 })}
-    <span class="feature__chip t-label">${esc(sectorLabel(data, project.sector))}</span>
+    <span class="glass-plate feature__plate">
+      <span class="t-label">${esc(sectorLabel(data, project.sector))}</span>
+      ${when(place, () => `<span class="glass-plate__title">${esc(place)}</span>`)}
+    </span>
   </a>
   <div class="feature__info ticks${dark ? " on-dark" : ""}">
     <p class="eyebrow">${esc(sectorLabel(data, project.sector))}</p>
     <h3 class="feature__title t-h3"><a href="${esc(href)}">${esc(project.title)}</a></h3>
-    ${when(detail, () => `<p class="feature__meta t-meta">${esc(detail)}</p>`)}
     ${when(project.summary, () => `<p class="feature__summary t-body">${esc(project.summary)}</p>`)}
+    <div class="feature__facts">${dataList([
+      { label: "Scope", value: join((project.scope ?? []).slice(0, 2), " · ") },
+      { label: "Disciplines", value: join(disciplines, " · ") },
+      { label: "Year", value: project.year }
+    ])}</div>
     <a class="link-arrow" href="${esc(href)}">View project <span aria-hidden="true">↗</span></a>
   </div>
 </article>`;
@@ -79,7 +86,7 @@ function featureRow(project, index, data) {
 
 function featured(data, showcase, total) {
   if (showcase.length === 0) return "";
-  return `<section class="section ground-dust" aria-labelledby="work-featured">
+  return `<section class="section ground-mineral" aria-labelledby="work-featured">
   ${edge()}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
@@ -113,7 +120,7 @@ function card(project, index, data) {
     <span class="work-card__media">
       ${image
         ? picture(image, { alt: "", sizes: "(min-width: 1100px) 30vw, (min-width: 700px) 45vw, 100vw" })
-        : `<span class="work-card__plate" aria-hidden="true">${waveform(index + 1)}</span>`}
+        : `<span class="work-card__plate ${plateClass(index)}" aria-hidden="true"></span>`}
       ${when(showcase, '<span class="work-card__flag t-label">Featured</span>')}
     </span>
     <span class="work-card__body">

@@ -18,7 +18,8 @@
 }
 
 :root {
-  --plate-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.4'/%3E%3C/svg%3E");
+  /* DEC-021: the single pre-rendered grain replaces the old feTurbulence data-URI. */
+  --plate-grain: var(--grain);
 }
 
 .plate--wool {

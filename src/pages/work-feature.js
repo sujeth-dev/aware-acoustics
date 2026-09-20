@@ -35,7 +35,7 @@ function hero(project, data) {
 
 function overview(project, data) {
   const services = (project.services ?? []).map((id) => serviceById(data, id)).filter(Boolean);
-  return `<section class="section ground-dust" aria-labelledby="project-scope">
+  return `<section class="section ground-mineral" aria-labelledby="project-scope">
   ${edge()}
   <div class="wrap grid grid--editorial grid--start">
     <div class="stack-xl">
@@ -88,7 +88,7 @@ function pager(project, data, showcase) {
   const index = showcase.findIndex((item) => item.slug === project.slug);
   const prev = showcase[(index - 1 + showcase.length) % showcase.length];
   const next = showcase[(index + 1) % showcase.length];
-  return `<section class="section section--tight ground-dust-warm" aria-label="More featured projects">
+  return `<section class="section section--tight ground-mineral-light" aria-label="More featured projects">
   ${edge()}
   <div class="wrap pager">
     ${neighbour(prev, data, "prev")}

@@ -120,14 +120,3 @@ export function signature(serviceId) {
   const draw = SIGNATURES[serviceId] ?? absorption;
   return `<svg class="signature" viewBox="0 0 320 200" aria-hidden="true" focusable="false">${draw()}</svg>`;
 }
-
-/** A neutral waveform used on cards that have no photograph. */
-export function waveform(seed = 1) {
-  const bars = [];
-  for (let index = 0; index < 42; index += 1) {
-    const x = 8 + index * 7.4;
-    const height = 6 + Math.abs(Math.sin(index * 0.55 + seed) * Math.cos(index * 0.21 + seed * 2)) * 66;
-    bars.push(`<line class="sig-line" x1="${round(x)}" y1="${round(90 - height)}" x2="${round(x)}" y2="${round(90 + height)}"/>`);
-  }
-  return `<svg class="signature" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">${bars.join("")}<line class="sig-gold" x1="0" y1="90" x2="320" y2="90"/></svg>`;
-}

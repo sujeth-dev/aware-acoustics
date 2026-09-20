@@ -17,7 +17,7 @@ import { esc, each, when, join } from "../lib/html.js";
 import { eyebrow, tagRow } from "../components/ui.js";
 import { imageHero } from "../components/hero.js";
 import { bestImage } from "../components/picture.js";
-import { arcs, edge } from "../components/wave.js";
+import { edge } from "../components/wave.js";
 import { sectorFacts } from "../lib/facts.js";
 import {
   publishedProjects,
@@ -70,8 +70,7 @@ function hero(data, projects, showcase) {
 function person(entry) {
   const meta = join([entry.role, entry.experienceYears ? `${entry.experienceYears}+ years` : null].filter(Boolean), " · ");
   return `<article class="person ticks" data-reveal>
-    <div class="person__mark" aria-hidden="true">
-      ${arcs()}
+    <div class="person__mark mineral-plate mineral-plate--2" aria-hidden="true">
       <span class="person__initials">${esc(initials(entry.name))}</span>
     </div>
     <div class="person__body">
@@ -87,7 +86,7 @@ function person(entry) {
 function people(data) {
   const list = publishedPeople(data);
   if (list.length === 0) return "";
-  return `<section class="section ground-dust" aria-labelledby="about-people">
+  return `<section class="section ground-mineral" aria-labelledby="about-people">
   ${edge()}
   <div class="wrap">
     <div class="section__head">
@@ -147,7 +146,7 @@ function standards(data) {
   if (list.length === 0) return "";
   const categories = ["design", "measurement", "green"].filter((category) => list.some((standard) => standard.category === category));
 
-  return `<section class="section ground-dust" aria-labelledby="about-standards">
+  return `<section class="section ground-mineral-light" aria-labelledby="about-standards">
   ${edge()}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">

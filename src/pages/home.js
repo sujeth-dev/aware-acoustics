@@ -70,7 +70,7 @@ function about(data, showcase) {
   const { settings } = data;
   const place = join([settings.city, settings.country].filter(Boolean), ", ");
 
-  return `<section class="section ground-dust" id="about" aria-labelledby="home-about">
+  return `<section class="section ground-mineral" id="about" aria-labelledby="home-about">
   ${edge()}
   <div class="wrap grid grid--editorial grid--start">
     <div class="stack-xl">
@@ -87,7 +87,7 @@ function about(data, showcase) {
     </div>
     ${when(image, () => `<figure class="about-figure ticks" data-reveal>
       ${picture(image, { alt: image.alt, sizes: "(min-width: 900px) 40vw, 100vw" })}
-      <figcaption class="about-figure__caption">
+      <figcaption class="glass-plate about-figure__caption">
         <span class="t-label">${esc(settings.tradingName)}</span>
         <span class="t-meta">${esc(place)}${settings.foundedYear ? ` · Est. ${esc(settings.foundedYear)}` : ""}</span>
       </figcaption>
@@ -131,7 +131,7 @@ ${each(showcase.slice(0, 6), (project, index) => tile(project, index, data))}
 
 function services(data) {
   const list = publishedServices(data);
-  return `<section class="section ground-dust-warm" aria-labelledby="home-services">
+  return `<section class="section ground-mineral-light" aria-labelledby="home-services">
   ${edge()}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
@@ -144,7 +144,7 @@ function services(data) {
     <div class="svc-grid">
 ${each(list, (service, index) => `      <article class="svc-card" data-reveal style="--i:${index}">
         <a class="svc-card__link" href="/services/#${esc(service.slug)}">
-          <span class="svc-card__art ticks">${signature(service.id)}</span>
+          <span class="svc-card__art mineral-plate mineral-plate--earth ticks">${signature(service.id)}</span>
           <span class="svc-card__body">
             <span class="svc-card__title t-h5">${esc(service.name)}</span>
             <span class="svc-card__summary t-body">${esc(service.summary)}</span>
