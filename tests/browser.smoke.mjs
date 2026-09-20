@@ -12,7 +12,10 @@
  *   3. confirms the JavaScript-off page keeps the full collection with no dead
  *      controls, and that no image disclaimer copy is printed (DEC-020);
  *   4. walks the four-step contact enquiry and checks the composed email;
- *   5. confirms scroll-reveal never leaves content hidden.
+ *   5. confirms scroll-reveal (and the divider draw-in) never leaves content hidden;
+ *   6. checks the DEC-021 layers: dividers static under reduced motion and without
+ *      JavaScript, full-width and gap-free; no SVG-noise grain; the generic build-up;
+ *      mineral plates in place of waveforms.
  *
  * Run `npm run build` first, or use `npm run test:browser`.
  * Optional: `--shots <dir>` saves a full-page screenshot per route and width.
@@ -269,16 +272,86 @@ try {
       });
       // Observer callbacks are asynchronous; give them a moment to drain.
       await page.waitForFunction(
-        () => [...document.querySelectorAll("[data-reveal]")].every((element) => element.classList.contains("is-in")),
+        () => [...document.querySelectorAll("[data-reveal], [data-draw]")].every((element) => element.classList.contains("is-in")),
         null,
         { timeout: 4000 }
       ).catch(async () => {
-        const stranded = await page.evaluate(() => [...document.querySelectorAll("[data-reveal]")].filter((element) => !element.classList.contains("is-in")).length);
+        const stranded = await page.evaluate(() => [...document.querySelectorAll("[data-reveal], [data-draw]")].filter((element) => !element.classList.contains("is-in")).length);
         fail(`reveal ${route}: ${stranded} element(s) never revealed`);
       });
     }
     await context.close();
   }
+  // 7 ─ Sound dividers and the mineral layer (DEC-021) ─────────────────────
+  {
+    // Reduced motion: dividers are static and complete, nothing clipped or animating.
+    const still = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce" });
+    const page = await still.newPage();
+    for (const route of ["/", "/about/", "/services/", "/work/"]) {
+      await page.goto(`${BASE}${route}`, { waitUntil: "networkidle" });
+      const state = await page.evaluate(() => {
+        const edges = [...document.querySelectorAll(".edge")];
+        const boxes = [...document.querySelectorAll("[data-draw] .edge__box")];
+        const live = [...document.querySelectorAll(".edge--live .edge__svg")];
+        const problems = [];
+        for (const box of boxes) if (getComputedStyle(box).clipPath !== "none") problems.push("a divider is still clipped under reduced motion");
+        for (const svg of live) if (getComputedStyle(svg).animationName !== "none") problems.push("a live wave animates under reduced motion");
+        for (const item of edges) {
+          const rect = item.getBoundingClientRect();
+          const section = item.parentElement.getBoundingClientRect();
+          if (rect.left > 0.5 || rect.right < window.innerWidth - 0.5) problems.push("a divider does not span the full width");
+          if (rect.bottom < section.top - 0.5) problems.push("a divider leaves a gap above its section");
+        }
+        const texts = [...document.querySelectorAll(".eyebrow")].map((element) => element.textContent.trim());
+        if (texts.some((text) => /^\d/.test(text))) problems.push("a numbered eyebrow is back");
+        return { count: edges.length, problems: [...new Set(problems)] };
+      });
+      if (state.count === 0) fail(`dividers ${route}: no section dividers rendered`);
+      for (const problem of state.problems) fail(`dividers ${route}: ${problem}`);
+    }
+
+    // The mineral layer: no SVG-noise grain, a single grain file, a generic build-up.
+    await page.goto(`${BASE}/services/`, { waitUntil: "networkidle" });
+    const stylesheet = await page.evaluate(async () => {
+      const href = document.querySelector('link[rel="stylesheet"][href*="/assets/"]').href;
+      return (await fetch(href)).text();
+    });
+    if (/feTurbulence|fractalNoise/i.test(stylesheet)) fail("mineral: an SVG-noise grain is back in the stylesheet");
+    if ((stylesheet.match(/grain\.png/g) ?? []).length === 0) fail("mineral: the pre-rendered grain is not referenced");
+    const buildUp = await page.evaluate(() => {
+      const figure = document.querySelector(".buildup");
+      return figure ? { text: figure.innerText, layers: figure.querySelectorAll(".buildup__layer").length } : null;
+    });
+    if (!buildUp) fail("services: the build-up diagram is missing");
+    else {
+      if (buildUp.layers !== 4) fail(`services: build-up should have 4 layers, found ${buildUp.layers}`);
+      if (!/illustrative build-up/i.test(buildUp.text)) fail("services: build-up is not captioned 'Illustrative build-up'");
+      if (/\d/.test(buildUp.text)) fail("services: build-up carries a figure; it must name layers only");
+    }
+
+    // Projects without a photograph get a mineral plate, not a waveform.
+    await page.goto(`${BASE}/work/`, { waitUntil: "networkidle" });
+    const plates = await page.evaluate(() => ({
+      plates: document.querySelectorAll(".work-card__plate.mineral-plate").length,
+      svgPlates: document.querySelectorAll(".work-card__plate svg").length
+    }));
+    const withoutImage = projects.filter((project) => (project.images ?? []).length === 0).length;
+    if (plates.plates !== withoutImage) fail(`work: expected ${withoutImage} mineral plates, found ${plates.plates}`);
+    if (plates.svgPlates !== 0) fail("work: a waveform plate is still rendered");
+    await still.close();
+
+    // JavaScript off: dividers and their T60 marks are visible, nothing waits for a script.
+    const plain = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 900 } });
+    const bare = await plain.newPage();
+    await bare.goto(`${BASE}/`, { waitUntil: "networkidle" });
+    const hidden = await bare.evaluate(() =>
+      [...document.querySelectorAll("[data-draw] .edge__box")].filter((box) => getComputedStyle(box).clipPath !== "none").length +
+      [...document.querySelectorAll("[data-draw] .edge__t60")].filter((mark) => getComputedStyle(mark).opacity !== "1").length
+    );
+    if (hidden !== 0) fail(`dividers (no JS): ${hidden} divider part(s) are hidden`);
+    await plain.close();
+  }
+
 } catch (error) {
   fail(`harness: ${error.message}`);
 } finally {
@@ -292,6 +365,6 @@ if (failures.length > 0) {
 } else {
   console.log(
     `browser smoke: pass (${ROUTES.length} routes × ${VIEWPORTS.length} widths, ${showcase.length} showcase pages, ` +
-    `explorer, overlay (${overlayCount} projects), no-JS fallback, contact flow, reveal)`
+    `explorer, overlay (${overlayCount} projects), no-JS fallback, contact flow, reveal, dividers and mineral layer)`
   );
 }

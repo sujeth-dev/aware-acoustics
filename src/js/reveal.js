@@ -1,5 +1,6 @@
 /**
- * reveal.js — fades `[data-reveal]` elements in as they enter the viewport.
+ * reveal.js — fades `[data-reveal]` elements in, and draws `[data-draw]` dividers, as
+ * they enter the viewport.
  *
  * The hidden starting state exists only under `.js` and only when the visitor
  * has not asked for reduced motion (see motion.css), so with scripting blocked,
@@ -11,7 +12,7 @@
  * the visitor has already scrolled to or past, so nothing waits for the failsafe.
  */
 
-const SELECTOR = "[data-reveal]";
+const SELECTOR = "[data-reveal], [data-draw]";
 const VISIBLE_FRACTION = 0.94;
 
 export function initReveal() {

@@ -13,7 +13,7 @@
  */
 
 import { esc, each, when, join } from "../lib/html.js";
-import { eyebrow, dataList } from "../components/ui.js";
+import { eyebrow, dataList, octaveAxis } from "../components/ui.js";
 import { imageHero } from "../components/hero.js";
 import { picture, bestImage } from "../components/picture.js";
 import { edge } from "../components/wave.js";
@@ -87,7 +87,7 @@ function featureRow(project, index, data) {
 function featured(data, showcase, total) {
   if (showcase.length === 0) return "";
   return `<section class="section ground-mineral" aria-labelledby="work-featured">
-  ${edge()}
+  ${edge("wave", { live: true })}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>
@@ -161,12 +161,13 @@ function dialog() {
 
 function explore(data, projects) {
   return `<section class="section ground-navy has-lines on-dark" id="explore" aria-labelledby="work-explore">
-  ${edge()}
+  ${edge("decay")}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>
         ${eyebrow(null, "Explore all work")}
         <h2 class="t-h2" id="work-explore">The complete <em>record.</em></h2>
+        ${octaveAxis()}
       </div>
       <p class="t-body">All ${projects.length} projects, by sector. Open any project to see its images and facts.</p>
     </div>

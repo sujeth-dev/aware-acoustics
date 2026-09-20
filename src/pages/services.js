@@ -19,7 +19,7 @@
  */
 
 import { esc, each, when, join } from "../lib/html.js";
-import { eyebrow, cta, tagRow } from "../components/ui.js";
+import { eyebrow, cta, tagRow, octaveAxis } from "../components/ui.js";
 import { picture, bestImage } from "../components/picture.js";
 import { arcs, edge, signature } from "../components/wave.js";
 import { buildUp } from "../components/material.js";
@@ -161,7 +161,7 @@ function discipline(data, service, index) {
   ].filter((row) => row.html);
 
   return `<section class="section ${ground}" id="${esc(service.slug)}" aria-labelledby="service-${esc(service.slug)}">
-  ${edge()}
+  ${index === 0 ? "" : edge("wave", { seed: index })}
   <div class="wrap svc-disc${flip ? " svc-disc--flip" : ""}">
     <aside class="svc-disc__sig panel mineral-plate mineral-plate--earth ticks on-dark" data-reveal>
       <div class="svc-disc__art">${signature(service.id)}</div>
@@ -193,7 +193,7 @@ function materialStudy(list) {
   ].filter((row) => row.html);
 
   return `<section class="section ground-navy-deep on-dark" aria-labelledby="services-buildup">
-  ${edge()}
+  ${edge("skyline")}
   <div class="wrap material-study">
     <div class="material-study__visual mineral-plate mineral-plate--2 ticks" data-reveal>
       ${buildUp()}
@@ -222,12 +222,13 @@ function sectorIndex(data) {
   if (sectors.length === 0) return "";
 
   return `<section class="section ground-navy has-lines on-dark" aria-labelledby="services-sectors">
-  ${edge()}
+  ${edge("decay")}
   <div class="wrap">
     <div class="section__head grid grid--projects-head grid--end">
       <div>
         ${eyebrow(null, "Where it applies")}
         <h2 class="t-h2" id="services-sectors">Applied across <em>sectors.</em></h2>
+        ${octaveAxis()}
       </div>
       <p class="t-body">The same four disciplines, brought to different kinds of space. Open a sector to see its projects.</p>
     </div>

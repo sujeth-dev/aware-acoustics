@@ -80,6 +80,26 @@
   .pv-dialog[open] { animation: pv-in .38s var(--ease); }
   @keyframes pv-in { from { opacity: 0; transform: translateY(18px) scale(.985); } }
 
+  /* ─── Sound dividers: draw in once, then (wave only) drift ─── */
+
+  .js [data-draw] .edge__box {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.8s cubic-bezier(.3, .55, .25, 1);
+  }
+
+  .js [data-draw].is-in .edge__box { clip-path: inset(0 0 0 0); }
+
+  .js [data-draw] .edge__t60 { opacity: 0; transition: opacity .6s var(--ease) 1.4s; }
+  .js [data-draw].is-in .edge__t60 { opacity: 1; }
+
+  /* If the script never runs, nothing may stay hidden. */
+  .js [data-draw]:not(.is-in) .edge__box { animation: draw-failsafe .01s 4s forwards; }
+  .js [data-draw]:not(.is-in) .edge__t60 { animation: reveal-failsafe .01s 4s forwards; }
+  @keyframes draw-failsafe { to { clip-path: inset(0 0 0 0); } }
+
+  .edge--live .edge__svg { will-change: transform; animation: wave-drift 64s linear infinite; }
+  @keyframes wave-drift { to { transform: translateX(-50%); } }
+
   /* ─── Arcs breathe ─── */
 
   .arcs svg { animation: arcs-breathe 12s ease-in-out infinite alternate; transform-origin: center; }
