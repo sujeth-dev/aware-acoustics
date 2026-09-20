@@ -633,17 +633,18 @@ featured projects; client photography to replace the web-sourced set; the V-14 p
 | **Date** | 2026-09-20 |
 | **Status** | `COMPLETE` — pending client review |
 
-Sourced photographs for 17 of the 41 projects that had none, and replaced or removed the published images that
-showed people (staff, ceremonies, a thumbnail with title text). Result: 84 published images on 51 projects; 23
-projects still have no image. Licences: 20 openly licensed (CC0, CC BY, CC BY-SA), 2 from the practice's own
-former website (ownership not documented here) and 62 recorded as not verified, on the site owner's direction.
+Every project now has images (74 of 74; 133 images). Of the 41 that had none, 18 received a photograph of the project or
+of a related site of the same client, and 23 received a generic exterior and interior chosen at the site owner's
+direction, each marked `Generic image: …; not the project site` in `depicts`. Published images that centred on people
+(staff, ceremonies, a thumbnail with title text) were replaced, cropped or removed. Showcase heroes were upgraded to
+1920 px landscape sources where one exists (Guwahati airport, Dehradun airport, Google Ananta); REVA (878 px), JW Marriott
+Sahar (1200 px) and the ABB aerial (1200 px) are still the best sources found.
 
-Left without an image, by rule: bare client names with no city (Anaplan, Caterpillar, Trimont, ExxonMobil,
-Salesforce, Samsung, IHG, Grand Oberoi, Godrej, Adani), L&T multipurpose hall, Swaram TATA, Pristine Design
-Studio and Great Eastern Shipping Museum. Left without an image because nothing usable was found: Wayfair, ICICI
-Prudential Life, DE Shaw, ZenQ, Razorpay, Gland Pharma, T Abdul Wahid School, ITI theatre and Gaudium (every
-available photograph showed children). Identifications that are assumptions: Marie Gold = Marigold Hotel,
-Hyderabad; HICC = Hyderabad International Convention Centre; eBay = Embassy TechVillage.
+Licences across 133 images: 69 open (CC0, CC BY, CC BY-SA, public domain), 2 from the practice's own former website
+(ownership not documented here) and 62 recorded as not verified, on the site owner's direction.
 
-Open items: client photography for the 23 image-less projects and to replace the unverified set
-(`IMAGE_WORKFLOW.md` §5); ask the client for the Aware Acoustics photographs behind the old website's works page.
+Assumed identifications: Marie Gold = Marigold Hotel, Hyderabad; HICC = Hyderabad International Convention Centre;
+eBay = Embassy TechVillage; Grand Oberoi = The Oberoi Grand, Kolkata; IHG = an InterContinental hotel in Mumbai.
+
+Open items: client photography to replace every generic and unverified image (`IMAGE_WORKFLOW.md` §5); ask the client for the
+photographs behind the old website's works page; better sources for the REVA, JW Marriott Sahar and ABB heroes.

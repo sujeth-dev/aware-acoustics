@@ -581,17 +581,22 @@ reference.
 
 ### Addendum to DEC-019 and DEC-020 — image sourcing pass, 2026-09-20
 
-The site owner asked for photographs for every project without one, and for images centred on people to be
-replaced by exterior or interior views. This adds no new rule beyond that direction.
+The site owner asked for photographs for every project without one, for images centred on people to be replaced by
+exterior or interior views, and, for projects where nothing specific could be found, for a generic suitable exterior and
+interior to be used. This adds no rule beyond that direction.
 
-- **People.** No published image is chosen for its people: staff group photos, ceremonies, ribbon-cuttings and
-  portraits are excluded, and frames are cropped where a person sits at the edge. Small incidental figures in a
-  large space remain in a few images (airport concourse, Amazon reception, mall exterior, some renders).
-- **Identification.** A named facility with a city is matched to that facility, or to a flagship site of the same
-  client in that city, and the record is marked `representative: true` when the picture is not the room worked on.
-  Bare client names with no city are left without an image rather than guessed.
-- **Sources.** Wikimedia Commons (licence read from the API) first, then the operator's or designer's own pages.
-  Two images are the practice's own project photographs from its former website (Internet Archive capture); the
-  repository does not record who owns them.
-- **Counts.** 84 published images on 51 projects; 23 projects have none. 20 images carry open licences, 2 are the
-  practice's own, 62 are recorded as not verified.
+- **People.** No published image is chosen for its people: staff group photos, ceremonies, ribbon-cutting and portraits are
+  excluded, and frames are cropped where a person sits at the edge. Small incidental figures in a large space remain in a few
+  images (airport concourse, Amazon reception, mall exterior, some renders).
+- **Identification.** A named facility with a city is matched to that facility, or to a flagship site of the same client in
+  that city, and marked `representative: true` when the picture is not the room worked on.
+- **Generic stand-ins.** 23 projects (bare client names with no city, vague titles, and titles for which no photograph was
+  found) carry a comparable Indian building or room instead. Each one says `Generic image: …; not the project site` in
+  `depicts`; no on-page label is shown (DEC-020). Replace them when the client supplies photography.
+- **Sources.** Wikimedia Commons (licence read from the API) first, then the operator's or designer's own pages. Two images are
+  the practice's own project photographs from its former website (Internet Archive capture); the repository does not record
+  who owns them.
+- **Heroes.** The hero and card image of a project is its widest landscape image (`bestImage`). A project whose only wide
+  image is small, or that has none, falls back to a portrait, which is why Guwahati airport was replaced by a 1920 px view.
+- **Counts.** 133 published images on 74 projects: 69 open (CC0, CC BY, CC BY-SA, public domain), 2 the practice's own, 62 recorded
+  as not verified.

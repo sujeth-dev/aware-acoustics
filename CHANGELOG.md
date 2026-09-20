@@ -24,9 +24,10 @@ follow semantic versioning once implementation begins.
 
 ### Added (image sourcing pass, 2026-09-20)
 
-- Photographs for 17 more projects: 51 of 74 now have images and 23 still have none. Each image records its source, licence and credit. Two (Kuvempu Kalamandira and Intel SRR4) come from the practice's own former website, recovered from the Internet Archive.
+- Every project now has images: 74 of 74, 133 in total. 18 projects that had none received a photograph of the project or a related site of the same client, and 23 received a generic exterior and interior chosen by the site owner's direction (recorded as `Generic image: …; not the project site` in `depicts`, and `representative: true`). Each image records its source, licence and credit. Two (Kuvempu Kalamandira and Intel SRR4) come from the practice's own former website, recovered from the Internet Archive.
 - Images that centred on people (a staff group photo, a ribbon-cutting, a ceremony, a video thumbnail with title text, a person in the foreground) were replaced with exterior or interior views. Where no substitute was found the image was removed (ABB technical lab, second image; HN Science Centre, second image). Frames were cropped where a person sat at the edge.
-- Working copies and a source table for this pass are in `assets/source/web-research/additions-2026-09-20/`.
+- Hero images: the Guwahati airport showcase now uses a 1920 px landscape view of the terminal canopy (it previously fell back to a 1050 px portrait), Dehradun airport adds a 1920 px concourse view, and Google Ananta is re-cut at 1920 px. Hero picks are unchanged in code: the widest landscape image of each showcase project.
+- Working copies of non-Commons images and a source table for this pass are in `assets/source/web-research/additions-2026-09-20/`.
 
 ### Changed (DEC-020 visual redesign)
 
