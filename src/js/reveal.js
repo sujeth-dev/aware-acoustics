@@ -10,10 +10,25 @@
  * moment it samples: a fast scroll, a slow frame or an anchor jump can carry an
  * element past the viewport unseen. A rAF-throttled sweep on scroll reveals anything
  * the visitor has already scrolled to or past, so nothing waits for the failsafe.
+ *
+ * The hero wave drifts slowly; it is paused whenever it is off screen so it costs
+ * nothing while the visitor reads the rest of the page.
  */
 
 const SELECTOR = "[data-reveal], [data-draw]";
 const VISIBLE_FRACTION = 0.94;
+
+function pauseLiveWavesOffscreen() {
+  const waves = document.querySelectorAll(".edge--live");
+  if (waves.length === 0) return;
+  const watcher = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) entry.target.classList.toggle("is-idle", !entry.isIntersecting);
+    },
+    { rootMargin: "80px 0px" }
+  );
+  waves.forEach((wave) => watcher.observe(wave));
+}
 
 export function initReveal() {
   const items = [...document.querySelectorAll(SELECTOR)];
@@ -25,6 +40,8 @@ export function initReveal() {
     showAll();
     return;
   }
+
+  pauseLiveWavesOffscreen();
 
   const pending = new Set(items);
 

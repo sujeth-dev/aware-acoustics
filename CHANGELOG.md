@@ -41,6 +41,14 @@ follow semantic versioning once implementation begins.
 - New `npm run test:contrast` checks every new colour pair, including the worst grain and hairline pixel (34 of 34 pass). Stone-band text uses `--slate-mineral` and `--red-mineral` because the existing tokens fall below 4.5:1 there.
 - `reveal.js` sweeps on scroll so an element skipped by the observer is no longer left hidden.
 
+### Changed (DEC-021 sound-themed dividers)
+
+- Section dividers are now sound-related inline SVG: a smooth oscilloscope wave (default; hero bottoms drift slowly and pause offscreen), one continuous reverberation-decay divider per page with a -60 dB line and a T60 tick, and the diffuser skyline kept in the footer and the Services material study.
+- Each divider is a single closed path in the section's own ground, so it is gap-free at any width and against any ground above.
+- Traces draw in once when scrolled into view; static under reduced motion and without JavaScript.
+- An octave-band axis (125 to 4k Hz) replaces section numbers in a few section heads.
+- `npm run test:browser` checks the divider states, full-width gap-free rendering and that no SVG-noise grain, waveform plate or build-up figure has returned.
+
 ### Changed
 
 - Home and Work pages recomposed with editorial alternation and per-discipline materials; homepage hero unchanged.

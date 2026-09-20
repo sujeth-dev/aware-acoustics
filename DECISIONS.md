@@ -643,3 +643,44 @@ part 2, stacked on this one).
   jump is now revealed instead of waiting for the 4 s failsafe.
 - With 41 of 74 projects currently without a photograph, the mineral plate is very visible on Work. It is a
   deliberate, honest fallback, but photography still shows the work better.
+
+**Decision, part 2 — sound-themed dividers** (branch `design/sound-dividers`).
+
+- **Wave is the default.** A smooth oscilloscope trace, used at most section boundaries and at hero
+  bottoms and the footer top. Its shape varies by a `seed` so neighbours are not identical. Hero-bottom
+  waves are `live`: they drift one exact period over 64 s (the curve is built from whole-cycle harmonics
+  of the period, so the loop is seamless) and pause whenever they are off screen.
+- **Decay is used once per page.** One continuous rectified waveform under an exponential envelope, a fine
+  gold −60 dB line and a small "T60" tick and mark. It sits where the page talks about measurement
+  (Home Verification, Services sector index, About Standards, Work "The complete record").
+- **The skyline stays in two places:** the footer body under the crimson call band, and the Services
+  material study, the diffuser signature.
+- **Continuous, gap-free.** Every silhouette is a single closed path filled with the section's own ground,
+  bottom edge overlapping the section by 1 px, `preserveAspectRatio="none"`. It cannot show a gap at any
+  width or against any ground above. The first version drew the decay as separate bars, which left gaps
+  and read as a bar chart; it was redrawn as one unbroken curve.
+- **Contrast without knowing the neighbour.** The −60 dB line, the trace and the T60 mark sit inside the
+  lower ground and take `--edge-line` / `--edge-ink` from that ground (gold on navy and footer, gold-light
+  on crimson, `--gold-ink` and the ground's own secondary text on light bands), so nothing depends on the
+  colour above.
+- **Octave-band axis.** `octaveAxis()`: a mono rule reading 125 · 250 · 500 · 1k · 2k · 4k Hz in five
+  section heads, instead of section numbers. The values are the standard preferred band centres, not
+  project data.
+- **Motion.** Waves and envelopes draw in once when scrolled into view (a clip wipe, driven by `data-draw`
+  in `reveal.js`). Everything is static and complete under `prefers-reduced-motion` and without
+  JavaScript. CSS and SVG only: no canvas, no library, no audio.
+
+**Consequences, part 2.**
+
+- Dividers are decorative (`aria-hidden`); nothing on a page depends on them.
+- HTML grows by about 2 KB per wave and 7 KB per decay before compression; a page carries roughly six
+  dividers, and the markup compresses well (Home 10.8 KB gzipped).
+- Scroll cost was measured against `main` in headless software Chromium. With backdrop blur off to lower
+  the noise floor, Home was about 3 ms per frame slower and About was level; with blur on the difference is
+  inside run-to-run variation (the baseline alone moved by about 7 ms between runs). Pausing the drift
+  offscreen removed about 5 ms of the earlier gap.
+- The first discipline on Services carries no divider: the sticky sub-nav sits directly above it and would
+  hide it.
+- `npm run test:browser` now checks dividers under reduced motion (not clipped, not animating), without
+  JavaScript (visible), full width and gap-free, that no numbered eyebrow exists, and that no SVG-noise
+  grain, waveform plate or build-up figure has come back.
