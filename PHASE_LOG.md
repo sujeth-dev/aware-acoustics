@@ -658,9 +658,10 @@ or waits for photography; the deeper crimson used for italics on stone.
 | **Branch** | `design/sound-dividers`, stacked on `design/mineral-sound` |
 | **Status** | `COMPLETE` — experimental, pending client review |
 
-Replaced most diffuser-skyline transitions with sound dividers built as inline SVG in `wave.js`: a smooth
-oscilloscope wave as the default (live at hero bottoms), one continuous reverberation-decay divider with a
-−60 dB line and T60 tick per page, and the skyline kept in the footer and the Services material study. Added
+Replaced the diffuser-skyline transitions with sound dividers built as inline SVG in `wave.js`: a smooth
+oscilloscope wave as the default (every wave loops seamlessly forever, still when motion is off), one continuous reverberation-decay divider with a
+−60 dB line and T60 tick per page. The skyline was first kept in the footer and the Services material study,
+then replaced there too so the site uses one family of dividers. Added
 an octave-band axis in a few section heads instead of numbers. Traces draw in once on scroll; everything is
 static under reduced motion and without JavaScript.
 
@@ -671,5 +672,8 @@ Verification: `validate:data`, `test:smoke`, `test:contrast` and `test:browser` 
 375 with no horizontal overflow and one h1 each, plus the new divider checks). Reduced-motion and
 no-JavaScript states are asserted by the browser test; the live draw-in and drift were checked directly.
 
+Direction change after review: every wave is an infinite loop, not only the hero ones.
+
 Open items for the client: whether the wave-everywhere rhythm is preferred to the skyline; whether the T60
-mark and the octave axis read as intended or as noise; whether the slow hero-wave drift stays.
+mark and the octave axis read as intended or as noise; whether the constant motion is welcome or should be
+limited to the hero.

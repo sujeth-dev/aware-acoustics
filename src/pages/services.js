@@ -193,7 +193,7 @@ function materialStudy(list) {
   ].filter((row) => row.html);
 
   return `<section class="section ground-navy-deep on-dark" aria-labelledby="services-buildup">
-  ${edge("skyline")}
+  ${edge("wave", { seed: 2 })}
   <div class="wrap material-study">
     <div class="material-study__visual mineral-plate mineral-plate--2 ticks" data-reveal>
       ${buildUp()}

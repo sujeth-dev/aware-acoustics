@@ -20,11 +20,13 @@ const round = (value) => Math.round(value * 10) / 10;
    the T60 label are drawn inside the lower ground only, in colours set per ground
    (--edge-line, --edge-ink), so contrast never depends on the ground above.
 
-     wave     a smooth oscilloscope trace: the default, used at most boundaries;
-              `live` lets it drift slowly, `seed` varies the shape
+     wave     a smooth oscilloscope trace: the default, used at most boundaries.
+              It loops forever (a seamless one-period drift) unless motion is off;
+              `seed` varies the shape, speed and direction between neighbours
      decay    reverberation decay: one continuous rectified waveform under an
               exponential envelope, a fine -60 dB line and a T60 tick. Used sparingly.
-     skyline  quadratic-residue diffuser wells: the diffuser signature. Used twice.
+     skyline  quadratic-residue diffuser wells, the original divider. Kept available but
+              no longer used: the site keeps to one family of dividers (wave, decay).
 
    Traces and envelopes draw in once when scrolled into view (data-draw, see
    reveal.js and motion.css). Without JavaScript or under reduced motion they are
@@ -64,14 +66,17 @@ const waveY = (x, seed) => {
   );
 };
 
+const DRIFT_SECONDS = [44, 58, 72]; // one period of drift; varied so neighbours are never in step
+
 function wave(live, seed) {
   const width = WAVE_PERIOD * (live ? 2 : 1);
+  const drift = live ? ` style="--drift:${DRIFT_SECONDS[seed % DRIFT_SECONDS.length]}s"` : "";
   const curve = (offset) => {
     const points = [];
     for (let x = 0; x <= width; x += WAVE_STEP) points.push(`${x} ${round(waveY(x, seed) + offset)}`);
     return points.join(" ");
   };
-  return `<div class="edge edge--wave${live ? " edge--live" : ""}" aria-hidden="true" data-draw><div class="edge__box"><svg class="edge__svg" viewBox="0 0 ${width} ${WAVE_HEIGHT}" preserveAspectRatio="none" focusable="false"><path class="edge__fill" d="M0 ${WAVE_HEIGHT}L${curve(0)}L${width} ${WAVE_HEIGHT}Z"/><path class="edge__line" d="M${curve(4)}"/></svg></div></div>`;
+  return `<div class="edge edge--wave${live ? " edge--live" : ""}${live && seed % 2 === 1 ? " edge--rev" : ""}" aria-hidden="true" data-draw${drift}><div class="edge__box"><svg class="edge__svg" viewBox="0 0 ${width} ${WAVE_HEIGHT}" preserveAspectRatio="none" focusable="false"><path class="edge__fill" d="M0 ${WAVE_HEIGHT}L${curve(0)}L${width} ${WAVE_HEIGHT}Z"/><path class="edge__line" d="M${curve(4)}"/></svg></div></div>`;
 }
 
 /* ─── Decay ─── */
@@ -110,11 +115,11 @@ function decay(label) {
 /**
  * @param {"wave"|"decay"|"skyline"} [kind]  wave is the default
  * @param {object} [options]
- * @param {boolean} [options.live]   wave only: drift slowly (hero bottoms)
+ * @param {boolean} [options.live]   wave only: loop forever; pass false for a still wave
  * @param {number}  [options.seed]   wave only: vary the shape between neighbours
  * @param {boolean} [options.label]  decay only: print the small "T60" mark
  */
-export function edge(kind = "wave", { live = false, seed = 0, label = true } = {}) {
+export function edge(kind = "wave", { live = true, seed = 0, label = true } = {}) {
   if (kind === "wave") return wave(live, seed);
   if (kind === "decay") return decay(label);
   if (kind === "skyline") return skyline();

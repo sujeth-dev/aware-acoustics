@@ -36,7 +36,7 @@ export function siteFooter(data, { withCta = true } = {}) {
   return `<footer class="site-footer">
   ${when(withCta, callBand)}
   <div class="site-footer__main">
-    ${edge("skyline")}
+    ${edge("wave", { seed: 1 })}
     <div class="site-footer__inner">
 
       <div class="site-footer__col">

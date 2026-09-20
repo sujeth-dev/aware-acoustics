@@ -97,7 +97,8 @@
   .js [data-draw]:not(.is-in) .edge__t60 { animation: reveal-failsafe .01s 4s forwards; }
   @keyframes draw-failsafe { to { clip-path: inset(0 0 0 0); } }
 
-  .edge--live .edge__svg { will-change: transform; animation: wave-drift 64s linear infinite; }
+  .edge--live .edge__svg { will-change: transform; animation: wave-drift var(--drift, 64s) linear infinite; }
+  .edge--rev .edge__svg { animation-direction: reverse; }
   .edge--live.is-idle .edge__svg { animation-play-state: paused; }
   @keyframes wave-drift { to { transform: translateX(-50%); } }
 

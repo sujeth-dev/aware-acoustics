@@ -43,7 +43,7 @@ follow semantic versioning once implementation begins.
 
 ### Changed (DEC-021 sound-themed dividers)
 
-- Section dividers are now sound-related inline SVG: a smooth oscilloscope wave (default; hero bottoms drift slowly and pause offscreen), one continuous reverberation-decay divider per page with a -60 dB line and a T60 tick, and the diffuser skyline kept in the footer and the Services material study.
+- Section dividers are now sound-related inline SVG: a smooth oscilloscope wave (default; every wave loops seamlessly forever, paused offscreen, still under reduced motion), one continuous reverberation-decay divider per page with a -60 dB line and a T60 tick, and no diffuser skyline left: the footer and the Services material study use waves too.
 - Each divider is a single closed path in the section's own ground, so it is gap-free at any width and against any ground above.
 - Traces draw in once when scrolled into view; static under reduced motion and without JavaScript.
 - An octave-band axis (125 to 4k Hz) replaces section numbers in a few section heads.

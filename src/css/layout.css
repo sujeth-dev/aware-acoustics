@@ -33,6 +33,7 @@
 .ground-dust {
   --edge-color: var(--dust);
   background:
+    linear-gradient(180deg, var(--dust) 0, transparent 72px),
     radial-gradient(900px 420px at 92% 12%, rgba(212, 168, 75, .13), transparent 62%),
     var(--dust);
 }
@@ -50,6 +51,7 @@
   --edge-color: var(--navy);
   --lines-color: rgba(243, 237, 224, .05);
   background:
+    linear-gradient(180deg, var(--navy) 0, transparent 72px),
     radial-gradient(900px 520px at 88% 46%, rgba(36, 71, 109, .55), transparent 65%),
     linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
   color: var(--color-text-inverse);
@@ -59,6 +61,7 @@
   --edge-color: var(--navy-deep);
   --lines-color: rgba(243, 237, 224, .045);
   background:
+    linear-gradient(180deg, var(--navy-deep) 0, transparent 72px),
     radial-gradient(1000px 560px at 82% 50%, rgba(22, 49, 79, .8), transparent 66%),
     var(--navy-deep);
   color: var(--color-text-inverse);
@@ -77,9 +80,11 @@
 .ground-crimson,
 .ground-earth { isolation: isolate; }
 
-/* ─── Section edge — the diffuser skyline ────────────────────────────────
-   Sits on top of a section and rises into the one above it, like the wells of
-   a quadratic-residue diffuser. Fill comes from the section's own ground. */
+/* ─── Section edge ────────────────────────────────────────────────────────
+   Sits on top of a section and rises into the one above it. Fill comes from the
+   section's own ground, so each ground below fades to exactly its --edge-color over
+   its first 72px: a glow gradient can then never leave a step at the seam.
+   The divider kinds and their styling are in wave.js and sound.css. */
 
 .edge {
   position: absolute;

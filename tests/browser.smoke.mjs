@@ -302,6 +302,7 @@ try {
           if (rect.left > 0.5 || rect.right < window.innerWidth - 0.5) problems.push("a divider does not span the full width");
           if (rect.bottom < section.top - 0.5) problems.push("a divider leaves a gap above its section");
         }
+        if (document.querySelector(".edge--skyline")) problems.push("an old skyline divider is still on the page");
         const texts = [...document.querySelectorAll(".eyebrow")].map((element) => element.textContent.trim());
         if (texts.some((text) => /^\d/.test(text))) problems.push("a numbered eyebrow is back");
         return { count: edges.length, problems: [...new Set(problems)] };
@@ -339,6 +340,19 @@ try {
     if (plates.plates !== withoutImage) fail(`work: expected ${withoutImage} mineral plates, found ${plates.plates}`);
     if (plates.svgPlates !== 0) fail("work: a waveform plate is still rendered");
     await still.close();
+
+    // Motion allowed: every wave is an infinite loop (paused only while off screen).
+    const moving = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: "no-preference" });
+    const loopPage = await moving.newPage();
+    await loopPage.goto(`${BASE}/`, { waitUntil: "networkidle" });
+    const loops = await loopPage.evaluate(() =>
+      [...document.querySelectorAll(".edge--live .edge__svg")].map((svg) => {
+        const style = getComputedStyle(svg);
+        return style.animationName === "wave-drift" && style.animationIterationCount === "infinite";
+      })
+    );
+    if (loops.length === 0 || loops.some((looping) => !looping)) fail("dividers: every wave should loop forever when motion is allowed");
+    await moving.close();
 
     // JavaScript off: dividers and their T60 marks are visible, nothing waits for a script.
     const plain = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 900 } });
