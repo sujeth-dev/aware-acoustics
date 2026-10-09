@@ -30,6 +30,20 @@ follow semantic versioning once implementation begins.
 - Showcase order changed to Dehradun airport, JW Marriott Sahar, Google India Opal, ABB technical lab, Guwahati airport, REVA University (Guwahati is no longer first on the Work and Services lists). REVA's first image is now the practice's own photograph of the Rangasthala stage, replacing the exterior with the "Swami Vivekananda Block" signage, and REVA no longer opens the homepage hero.
 - Working copies of non-Commons images and a source table for this pass are in `assets/source/web-research/additions-2026-09-20/`.
 
+### Added (client deck pass, 2026-10-09 — DEC-022)
+
+- 19 photographs and renders from the owner's `Project snaps.pptx` are published across 12 projects, the first images to come from the practice rather than from web research. Published images rise from 133 to 144 — 19 deck frames, 8 of which replace existing files rather than adding to them.
+- Three new projects: L&T TC4 Building (Chennai), Mercedes-Benz and Target. The project count rises from 74 to 77.
+- Anaplan, Johnson & Johnson, Razorpay and Microsoft now show their real sites; their generic stand-ins (and, for J&J, images of the wrong city) are gone. Trimont, Cisco, both VMware records and Google Opal keep their existing images and gain the deck frame.
+- Cities recorded from the deck captions: Anaplan is Gurugram, Trimont is Hyderabad, Cisco is Bengaluru. Cisco's scope widens to Buildings 11, 14 and 15 plus the Hyderabad and Pune offices.
+- The unmodified deck extraction and a provenance note are kept in `assets/source/project-snaps-2026-10-09/`; the prepared masters and their per-frame recipes are in `assets/projects/_from-deck-2026-10-09/`.
+
+### Fixed (client deck pass, 2026-10-09)
+
+- The Google Opal interior was labelled as the Google Ananta campus and flagged as a representative image. The deck shows it is the Opal site; both the flag and the label are corrected.
+- Every deck frame was colour-corrected and shaped before publication. One VMware exterior arrived with a severe cyan cast and was rebalanced; images were cropped to 3:2 or 3:4 and resampled, capped at twice their native size.
+- Three deck frames are not published: one is too small to use, and two show Wayfair's US buildings rather than the Bengaluru office. Wayfair keeps its existing images.
+
 ### Changed (DEC-020 visual redesign)
 
 - New visual system: deep navy, crimson and gold with beige paper bands; Spectral, Manrope and JetBrains Mono; diffuser-skyline section edges, registration ticks, sound arcs and ruled grids. The numbered 01–04 squares are replaced by four discipline signature drawings.

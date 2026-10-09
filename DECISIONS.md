@@ -715,3 +715,82 @@ part 2, stacked on this one).
   first loop shipped with that bug; the browser test now asserts the wave covers its box at five phases
   of the loop, including the last frame before it wraps, and it was checked to fail with the cap
   restored. To make the waves still instead, flip the `live` default in `wave.js` to `false`.
+
+---
+
+## DEC-022 — Client deck photography replaces part of the web-research image set
+
+**Status:** Decided · 2026-10-09 · narrows DEC-019 and the DEC-020 image consequences for 12 records ·
+does not change the DEC-020 labelling rule
+
+**Context.** The site owner supplied `Project snaps.pptx`, a 14-slide deck captioned by client and site,
+holding 22 photographs and renders across 13 projects. This is the first image set to come from the
+practice rather than from web research, and therefore the first chance to act on the route
+`IMAGE_WORKFLOW.md` §5 and DEC-019 both name: replace researched stand-ins with client-supplied material.
+
+**Decision.**
+
+- **19 of the 22 frames are published**, across 12 records. Three are rejected: one is 299 × 168, and two
+  show Wayfair facilities in the United States (US street signage, a "$25" parking board) rather than the
+  Bengaluru office the record describes. Wayfair therefore keeps its generic stand-ins.
+- **Four records have their images replaced outright** — Anaplan, Johnson & Johnson, Razorpay and
+  Microsoft. All four previously carried generic stand-ins or, in J&J's case, images of the wrong city.
+- **Five records keep what they had and gain the deck frame** — Trimont, Cisco, VMware ORR, VMware
+  Kalyani Vista and Google Opal. Trimont is an explicit exception to replacement: its deck frame is
+  420 × 280, too small to carry the record's hero, so the generic exterior stays as `bestImage` and the
+  real photograph sits third.
+- **Three records are new:** `l-and-t-tc4-chennai`, `mercedes-benz`, `target`. All three are corporate,
+  `tier: record`, published, with scope and summary at the same minimal level as the other bare-client
+  rows. No scope, area, year or outcome is invented.
+- **One correction.** Deck image13 and the published
+  `technology-workplace-bengaluru-01-project-space-03` are the same room — the same LED pixel ceiling,
+  amphitheatre stair and columns. That image was marked `representative: true` and
+  `depicts: "Google Ananta campus"`. Both were wrong; it is the Opal site, and both are corrected.
+- **Metadata from the deck captions:** Anaplan → Gurugram, Trimont → Hyderabad, Cisco → Bengaluru, with
+  Cisco's scope widened to Buildings 11, 14 and 15 plus the Hyderabad and Pune offices.
+- **Slide 6 ("VM Ware Bangalore") is split without evidence.** The caption names only the city, and the
+  practice has two VMware records. The exterior went to ORR and the atrium stair to Kalyani Vista, on the
+  owner's instruction to split and record what was done. Neither assignment is evidenced by the deck, and
+  this is the one placement in this pass that may be wrong.
+
+**Image preparation.** Every frame was colour-corrected, shaped and resampled before publication:
+
+- **Colour.** A 0.5–99.5 percentile per-channel levels stretch at 25–45% strength. One frame needed more:
+  deck image6 (VMware exterior) arrived with a severe cyan cast — channel means R 32, G 145, B 169 — and
+  took a 50% grey-world balance plus desaturation to 0.55 and a 1.05 contrast lift. Full grey-world
+  correction turned the foliage orange and was rejected.
+- **Shape.** Cropped to 3:2 landscape or 3:4 portrait so the set is consistent and dead space is gone.
+  Deck image3 was first cropped out of its surrounding news graphic.
+- **Resolution.** Lanczos resampling with an unsharp mask, capped at 2× — no frame is enlarged beyond
+  twice its native size, because past that the result invents detail the deck does not contain. Heroes
+  land at about 1200 px; the two smallest published frames (Trimont 840 px, Google Opal portraits
+  659–600 px) stay below that and are not heroes.
+
+Recipes, per-frame figures and the rejection reasons are in
+`assets/projects/_from-deck-2026-10-09/MANIFEST.json`. The unmodified extraction and a provenance note are in
+`assets/source/project-snaps-2026-10-09/`.
+
+**Consequences.**
+
+- **The copyright position improves but is not resolved.** 11 of the 55 web-research images carried
+  verified open licences; the images these 19 replace or join were mostly in the unverified 44. The deck
+  frames are the owner's own material to supply, which is a stronger position than a scraped press image
+  — but the deck carries no credits, no photographer and no date, and at least one frame is demonstrably
+  third-party: deck image3 arrived as a `cxotechbot.com` news graphic, masthead and headline included.
+  Its `source` field records that. Four frames (image1, image3, image12, image14) are renders rather than
+  photographs. `cleared: true` on these rows means the same thing it meant under DEC-019 — the owner's
+  direction, not a rights finding.
+- **Two frames publish legible faces.** Trimont and Razorpay show staff at their desks. The DEC-019
+  addendum excluded images chosen for their people; the owner directed that these publish as-is on the
+  ground that they are workplaces shown in use. No consent is recorded for the individuals shown.
+- **The Google Opal showcase still leads with the wrong campus.** Its hero is still the 1920 px Ananta
+  image, because `bestImage()` takes the widest landscape and both new Opal frames are portrait. The
+  record now holds verified Opal imagery, but a visitor sees Ananta first. Fixing this needs either a
+  landscape Opal photograph or a change to how that showcase picks its hero.
+- **Three disputed or missing facts stay out of the data.** The L&T TC4 slide says "667,417 sqm", which
+  would be 7.18 million sq ft for a 13-storey building; `area` is left `null` until the unit is
+  confirmed. Mercedes-Benz and Target have no city on the slide and none is guessed. "Angkor" appears on
+  both the Microsoft and the Wayfair slide, which is unexplained.
+- Published images rise from 133 to 144 (19 deck frames, 8 of them replacing existing files), projects
+  from 74 to 77, and `validate-data.js`,
+  `test:smoke` and `test:browser` all pass. `build:production` still fails at V-14 by design (DEC-020).

@@ -701,3 +701,55 @@ that checks the drawing spans its box at every phase of the loop.
 Open items for the client: whether the wave-everywhere rhythm is preferred to the skyline; whether the T60
 mark and the octave axis read as intended or as noise; whether the constant motion is welcome or should be
 limited to the hero.
+
+## Client deck photography pass (DEC-022)
+
+| Field | Value |
+|---|---|
+| **Date** | 2026-10-09 |
+| **Branch** | `images/client-deck-2026-10-09` |
+| **Status** | `COMPLETE` — pending client review of three open facts |
+
+The site owner supplied `Project snaps.pptx`: 14 slides, 22 images, 13 projects captioned by client and
+site. This is the first image set from the practice rather than from web research, so it is the first
+chance to act on the replacement route named in `IMAGE_WORKFLOW.md` §5 and DEC-019.
+
+19 of the 22 frames were published across 12 records. Four records had their stand-ins replaced outright
+(Anaplan, Johnson & Johnson, Razorpay, Microsoft), five kept what they had and gained the deck frame
+(Trimont, Cisco, both VMware records, Google Opal), and three new records were created (L&T TC4 Chennai,
+Mercedes-Benz, Target). Projects rise 74 → 77, images 133 → 144.
+
+Two existing errors were corrected on the evidence of the deck. The Johnson & Johnson record had been
+showing images labelled "J&J Institute, Chennai" — the wrong city. And deck image13 turned out to be the
+same room as the published `technology-workplace-bengaluru-01-project-space-03`: same LED pixel ceiling,
+amphitheatre stair and columns. That image had been flagged `representative: true` and labelled "Google
+Ananta campus"; both were wrong and both are fixed without touching the file.
+
+No frame was published as it came out of the deck. Each was colour-corrected (a 0.5–99.5 percentile
+per-channel levels stretch at 25–45%), cropped to 3:2 or 3:4, and resampled with Lanczos and an unsharp
+mask **capped at 2×**, past which the result invents detail the deck does not hold. One frame needed much
+more: the VMware exterior arrived with a severe cyan cast (channel means R 32, G 145, B 169) and took a
+50% grey-world balance with desaturation to 0.55 and a 1.05 contrast lift — full grey-world correction
+turned the foliage orange and was rejected. The Anaplan exterior was first cut out of the
+`cxotechbot.com` news graphic it arrived inside. Heroes land at about 1200 px, so the four replaced
+records lost no hero resolution despite small originals.
+
+Three frames were rejected: one at 299 × 168, and two showing Wayfair facilities in the United States
+(US street signage, a "$25" parking board) rather than the Bengaluru office. Wayfair keeps its generic
+stand-ins.
+
+Direction changes during the pass: the owner asked for weak frames to be improved and properly shaped
+rather than published as-is, which added the colour and crop work above; for the ambiguous "VM Ware
+Bangalore" slide to be split across both VMware records with a note that the split is unevidenced; and
+for the two frames showing staff at their desks (Trimont, Razorpay) to publish as-is.
+
+Verification: `validate:data` (77 projects), `test:smoke` and `test:browser` pass. No referenced image
+file is missing and no orphaned file is left in `public/assets/projects/`. Pages were reviewed at 1440
+with Playwright and against a running dev server.
+
+Open items for the client: the L&T TC4 area, given as "667,417 sqm" on the slide, which would be 7.18
+million sq ft for a 13-storey building — `area` is left `null` until the unit is confirmed; which VMware
+record slide 6 actually belongs to; and the Google Opal showcase hero, still the Ananta campus because
+`bestImage()` takes the widest landscape and both real Opal frames are portrait. Also unresolved: the
+deck carries no credits or photographer, so `cleared: true` on these rows still means the owner's
+direction rather than a rights finding, and "Angkor" appears on both the Microsoft and the Wayfair slide.
